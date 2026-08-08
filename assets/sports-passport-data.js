@@ -1,9 +1,17 @@
 window.SportsPassportData = (() => {
   const cache = {};
   async function load(name) {
-    if (!cache[name]) cache[name] = fetch(`data/${name}.json`, {cache:"no-store"}).then(r => {
+    if (!cache[name]) cache[name] = fetch(`data/${name}.json`, {cache:"no-store"}).then(async r => {
       if (!r.ok) throw new Error(`Could not load data/${name}.json`);
-      return r.json();
+      const value = await r.json();
+      if (name === "events" && value && Array.isArray(value.chunks)) {
+        const parts = await Promise.all(value.chunks.map(file => fetch(`data/${file}`, {cache:"no-store"}).then(x => {
+          if (!x.ok) throw new Error(`Could not load data/${file}`);
+          return x.json();
+        })));
+        return parts.flat();
+      }
+      return value;
     });
     return cache[name];
   }
