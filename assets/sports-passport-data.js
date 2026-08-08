@@ -9,7 +9,12 @@ window.SportsPassportData = (() => {
           if (!x.ok) throw new Error(`Could not load data/${file}`);
           return x.json();
         })));
-        return parts.flat();
+        let events = parts.flat();
+        try {
+          const corrections = await fetch("data/corrections.json", {cache:"no-store"}).then(x => x.ok ? x.json() : ({}));
+          events = events.map(e => corrections[e.id] ? {...e, ...corrections[e.id]} : e);
+        } catch (_) {}
+        return events;
       }
       return value;
     });
