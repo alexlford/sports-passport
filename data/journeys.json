@@ -1,0 +1,7 @@
+[
+  {"key":"cardinals","title":"The Cardinals Thread","description":"The recurring St. Louis Cardinals thread across the archive.","match":{"team":"St. Louis Cardinals"}},
+  {"key":"illinois","title":"The Illinois Thread","description":"Every documented Illinois Fighting Illini appearance.","match":{"team":"Illinois Fighting Illini"}},
+  {"key":"kansas","title":"The Kansas Thread","description":"Every documented Kansas Jayhawks appearance.","match":{"team":"Kansas Jayhawks"}},
+  {"key":"kc","title":"Chiefs & Royals","description":"Kansas City's two recurring pro-sports threads.","match":{"teams_any":["Kansas City Chiefs","Kansas City Royals"]}},
+  {"key":"penny","title":"A New Generation","description":"The family thread beginning with Penny's first documented game.","match":{"event_ids":["evt-0250"]},"note":"Future Penny events can be added by event ID here."}
+]

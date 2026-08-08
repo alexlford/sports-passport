@@ -1,0 +1,12 @@
+{
+  "chunks": [
+    "events-1993-2005.json",
+    "events-2006-2010.json",
+    "events-2011-2014.json",
+    "events-2015-2017.json",
+    "events-2018-2021.json",
+    "events-2022-2025.json"
+  ],
+  "event_count": 256,
+  "schema_version": 1
+}
