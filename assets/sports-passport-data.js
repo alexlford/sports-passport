@@ -1,5 +1,15 @@
 window.SportsPassportData = (() => {
   const cache = {};
+  const STATE_NAMES = {
+    Alabama:"AL",Alaska:"AK",Arizona:"AZ",Arkansas:"AR",California:"CA",Colorado:"CO",Connecticut:"CT",Delaware:"DE",Florida:"FL",Georgia:"GA",Hawaii:"HI",Idaho:"ID",Illinois:"IL",Indiana:"IN",Iowa:"IA",Kansas:"KS",Kentucky:"KY",Louisiana:"LA",Maine:"ME",Maryland:"MD",Massachusetts:"MA",Michigan:"MI",Minnesota:"MN",Mississippi:"MS",Missouri:"MO",Montana:"MT",Nebraska:"NE",Nevada:"NV","New Hampshire":"NH","New Jersey":"NJ","New Mexico":"NM","New York":"NY","North Carolina":"NC","North Dakota":"ND",Ohio:"OH",Oklahoma:"OK",Oregon:"OR",Pennsylvania:"PA","Rhode Island":"RI","South Carolina":"SC","South Dakota":"SD",Tennessee:"TN",Texas:"TX",Utah:"UT",Vermont:"VT",Virginia:"VA",Washington:"WA","West Virginia":"WV",Wisconsin:"WI",Wyoming:"WY"
+  };
+  const normalizeCity = value => {
+    if (!value || typeof value !== "string") return value;
+    const parts = value.split(",").map(x => x.trim());
+    if (parts.length < 2) return value.trim();
+    const state = STATE_NAMES[parts.at(-1)] || parts.at(-1);
+    return `${parts.slice(0,-1).join(", ")}, ${state}`;
+  };
   async function load(name) {
     if (!cache[name]) cache[name] = fetch(`data/${name}.json`, {cache:"no-store"}).then(async r => {
       if (!r.ok) throw new Error(`Could not load data/${name}.json`);
@@ -14,6 +24,7 @@ window.SportsPassportData = (() => {
           const corrections = await fetch("data/corrections.json", {cache:"no-store"}).then(x => x.ok ? x.json() : ({}));
           events = events.map(e => corrections[e.id] ? {...e, ...corrections[e.id]} : e);
         } catch (_) {}
+        events = events.map(e => ({...e, city: normalizeCity(e.city)}));
         return events;
       }
       return value;
@@ -45,5 +56,5 @@ window.SportsPassportData = (() => {
     });
     return {w,l,tie,unknown};
   }
-  return {load,slug,score,matchup,counts,venueEvents,yearEvents,teamEvents,phaseEvents,journeyEvents,recordForTeam};
+  return {load,slug,score,matchup,counts,normalizeCity,venueEvents,yearEvents,teamEvents,phaseEvents,journeyEvents,recordForTeam};
 })();
