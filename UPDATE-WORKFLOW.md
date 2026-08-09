@@ -38,9 +38,11 @@ The year automatically appears in `annuals.html` and is available at `year.html?
 
 The new venue then appears automatically in the directory, venue profile system, geography summaries, and venue map. If coordinates are temporarily unavailable, the profile still works and the map reports the venue as awaiting coordinates rather than guessing.
 
-## Historical names
+## Venue-name fact lock
 
-`venue_recorded` preserves the name stored with the original event. `venue_key` identifies the physical building. This prevents naming-rights changes from inflating the physical-venue count.
+`venue_recorded` preserves the venue name supplied by the source attendance archive. Treat that source value as the display fact even when the physical venue had a different historical naming-rights name on the event date. Do not silently reconstruct or normalize event-era venue names. `venue_key` separately identifies the physical building so naming changes do not inflate the physical-venue count.
+
+If the source application's venue label changes during a later re-export, preserve the newly supplied source value unless the source itself is demonstrably wrong. Use `data/corrections.json` only for an audited factual correction, not to substitute a historically reconstructed venue name for the source label.
 
 ## Audited corrections
 
