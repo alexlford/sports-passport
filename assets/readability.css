@@ -1,6 +1,14 @@
 /* Sports Passport readability layer
    Loaded after page-specific styles by assets/sports-passport-data.js. */
-:root{--muted:#625d55}
+:root{
+  --muted:#625d55;
+  --sport-baseball:#b73b3b;
+  --sport-basketball:#d97718;
+  --sport-football:#7a4b2d;
+  --sport-soccer:#377a55;
+  --sport-hockey:#4f7f9f;
+  --sport-other:#725b86;
+}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{line-height:1.5;overflow-x:hidden}
 p{line-height:1.6}
@@ -28,6 +36,16 @@ h1,h2,h3{word-break:normal;overflow-wrap:break-word;text-wrap:balance}
 button,input,textarea,select{font-family:inherit}
 button{min-height:44px}
 :focus-visible{outline:3px solid rgba(49,95,132,.55);outline-offset:3px}
+
+[data-sport="Baseball"],.sport-baseball{--sport-accent:var(--sport-baseball)}
+[data-sport="Basketball"],.sport-basketball{--sport-accent:var(--sport-basketball)}
+[data-sport="Football"],.sport-football{--sport-accent:var(--sport-football)}
+[data-sport="Soccer"],.sport-soccer{--sport-accent:var(--sport-soccer)}
+[data-sport="Hockey"],.sport-hockey{--sport-accent:var(--sport-hockey)}
+.event-card[data-sport]{border-top-color:var(--sport-accent,var(--sport-other))!important}
+.fav-card[data-sport]{border-top:5px solid var(--sport-accent,var(--sport-other))!important}
+.sport-key{display:inline-flex;align-items:center;gap:8px}.sport-key:before{content:"";width:10px;height:10px;border-radius:50%;background:var(--sport-accent,var(--sport-other));flex:0 0 auto}
+.sport-row{position:relative;padding-left:18px!important}.sport-row:before{content:"";position:absolute;left:0;top:14px;width:8px;height:8px;border-radius:50%;background:var(--sport-accent,var(--sport-other))}
 
 @media(max-width:760px){
   .top,.topbar{align-items:flex-start!important;flex-direction:column!important;gap:10px!important}
