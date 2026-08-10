@@ -1,5 +1,6 @@
 window.SportsPassportData = (() => {
   const cache = {};
+  let teamAliases = {};
 
   function ensureStyle(href, marker) {
     if (document.querySelector(`link[${marker}]`)) return;
@@ -28,6 +29,10 @@ window.SportsPassportData = (() => {
     if (!cache[name]) cache[name] = fetch(`data/${name}.json`, {cache:"no-store"}).then(async r => {
       if (!r.ok) throw new Error(`Could not load data/${name}.json`);
       const value = await r.json();
+      if (name === "team-aliases" && value && typeof value === "object" && !Array.isArray(value)) {
+        teamAliases = value;
+        return value;
+      }
       if (name === "events" && value && Array.isArray(value.chunks)) {
         const parts = await Promise.all(value.chunks.map(file => fetch(`data/${file}`, {cache:"no-store"}).then(x => {
           if (!x.ok) throw new Error(`Could not load data/${file}`);
@@ -38,7 +43,15 @@ window.SportsPassportData = (() => {
           const corrections = await fetch("data/corrections.json", {cache:"no-store"}).then(x => x.ok ? x.json() : ({}));
           events = events.map(e => corrections[e.id] ? {...e, ...corrections[e.id]} : e);
         } catch (_) {}
-        events = events.map(e => ({...e, city: normalizeCity(e.city)}));
+        try {
+          const aliases = await fetch("data/team-aliases.json", {cache:"no-store"}).then(x => x.ok ? x.json() : ({}));
+          if (aliases && typeof aliases === "object" && !Array.isArray(aliases)) teamAliases = aliases;
+        } catch (_) {}
+        events = events.map(e => ({
+          ...e,
+          city: normalizeCity(e.city),
+          teams_canonical: Array.isArray(e.teams) ? e.teams.map(t => teamAliases[t] || t) : []
+        }));
         return events;
       }
       if (name === "venues" && Array.isArray(value)) {
@@ -67,21 +80,31 @@ window.SportsPassportData = (() => {
   const score = e => Array.isArray(e.scores) && e.scores.length===2 && e.scores.every(Number.isFinite) ? `${e.scores[0]}–${e.scores[1]}` : "";
   const matchup = e => Array.isArray(e.teams) && e.teams.length===2 ? `${e.teams[0]} vs ${e.teams[1]}` : "Documented event";
   const counts = arr => arr.reduce((o,x)=>(o[x]=(o[x]||0)+1,o),{});
+  const canonicalTeam = team => teamAliases[team] || team;
+  const eventTeams = e => Array.isArray(e.teams_canonical) ? e.teams_canonical : (Array.isArray(e.teams) ? e.teams.map(canonicalTeam) : []);
+  const teamPalette = (teamColors, team) => {
+    if (teamColors?.[team]) return teamColors[team];
+    const source = Object.keys(teamAliases).find(label => teamAliases[label] === team && teamColors?.[label]);
+    return source ? teamColors[source] : null;
+  };
   const venueEvents = (events,key) => events.filter(e => e.venue_key === key);
   const yearEvents = (events,year) => events.filter(e => Number(e.year) === Number(year));
-  const teamEvents = (events,team) => events.filter(e => Array.isArray(e.teams) && e.teams.includes(team));
+  const teamEvents = (events,team) => events.filter(e => eventTeams(e).includes(team));
   const phaseEvents = (events,p) => events.filter(e => e.year >= p.start && e.year <= p.end);
   function journeyEvents(events,j) {
     const m=j.match||{};
     if (m.event_ids?.length) return events.filter(e => m.event_ids.includes(e.id));
-    if (m.team) return teamEvents(events,m.team);
-    if (m.teams_any?.length) return events.filter(e => e.teams?.some(t => m.teams_any.includes(t)));
+    if (m.team) return teamEvents(events,canonicalTeam(m.team));
+    if (m.teams_any?.length) {
+      const wanted = m.teams_any.map(canonicalTeam);
+      return events.filter(e => eventTeams(e).some(t => wanted.includes(t)));
+    }
     return [];
   }
   function recordForTeam(events,team) {
     let w=0,l=0,tie=0,unknown=0;
     events.forEach(e=>{
-      const i=e.teams?.indexOf(team);
+      const teams=eventTeams(e),i=teams.indexOf(team);
       if(i<0||!e.scores?.every(Number.isFinite)){unknown++;return}
       const j=i===0?1:0;
       if(e.scores[i]>e.scores[j])w++; else if(e.scores[i]<e.scores[j])l++; else tie++;
@@ -211,5 +234,5 @@ window.SportsPassportData = (() => {
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 
-  return {load,slug,score,matchup,counts,normalizeCity,venueEvents,yearEvents,teamEvents,phaseEvents,journeyEvents,recordForTeam,enhanceDensity};
+  return {load,slug,score,matchup,counts,normalizeCity,canonicalTeam,eventTeams,teamPalette,venueEvents,yearEvents,teamEvents,phaseEvents,journeyEvents,recordForTeam,enhanceDensity};
 })();
