@@ -1,16 +1,16 @@
 {
   "updated": "2026-08-10",
   "sports_experiences": [
-    {"rank":1,"title":"Super Bowl LIV","detail":"Chiefs 31, 49ers 20 · 2020"},
-    {"rank":2,"title":"Illinois at the 2026 Final Four","detail":"Illinois vs. UConn · Lucas Oil Stadium"},
-    {"rank":3,"title":"Kansas–Oklahoma 3OT","detail":"Kansas 109, Oklahoma 106 · 2016"},
-    {"rank":4,"title":"Kansas–West Virginia · 130.4 dBA","detail":"Kansas 84, West Virginia 80 · 2017"},
-    {"rank":5,"title":"Nuggets–Lakers playoff buzzer-beater","detail":"Nuggets 101, Lakers 99 · 2024"},
-    {"rank":6,"title":"2026 FIFA World Cup","detail":"Ecuador 0, Curaçao 0"},
-    {"rank":7,"title":"Illinois–Penn State","detail":"Illinois 27, No. 21 Penn State 20 · 2007 · Arrelious Benn opening-kickoff TD"},
-    {"rank":8,"title":"Illinois–Missouri","detail":"Illinois 65, Missouri 64 · 2013"},
-    {"rank":9,"title":"Kansas–Kentucky","detail":"Kansas 90, Kentucky 84 · 2016"},
-    {"rank":10,"title":"Illinois–Kansas football","detail":"Illinois 23, Kansas 17 · 2024"}
+    {"rank":1,"title":"Super Bowl LIV","detail":"Chiefs 31, 49ers 20 · 2020","event_id":"evt-0202"},
+    {"rank":2,"title":"Illinois at the 2026 Final Four","detail":"Illinois vs. UConn · Lucas Oil Stadium","event_id":"evt-0261"},
+    {"rank":3,"title":"Kansas–Oklahoma 3OT","detail":"Kansas 109, Oklahoma 106 · 2016","event_id":"evt-0136"},
+    {"rank":4,"title":"Kansas–West Virginia · 130.4 dBA","detail":"Kansas 84, West Virginia 80 · 2017","event_id":"evt-0169"},
+    {"rank":5,"title":"Nuggets–Lakers playoff buzzer-beater","detail":"Nuggets 101, Lakers 99 · 2024","event_id":"evt-0231"},
+    {"rank":6,"title":"2026 FIFA World Cup","detail":"Ecuador 0, Curaçao 0","event_id":"evt-0264"},
+    {"rank":7,"title":"Illinois–Penn State","detail":"Illinois 27, No. 21 Penn State 20 · 2007 · Arrelious Benn opening-kickoff TD","event_id":"evt-0046"},
+    {"rank":8,"title":"Illinois–Missouri","detail":"Illinois 65, Missouri 64 · 2013","event_id":"evt-0104"},
+    {"rank":9,"title":"Kansas–Kentucky","detail":"Kansas 90, Kentucky 84 · 2016","event_id":"evt-0139"},
+    {"rank":10,"title":"Illinois–Kansas football","detail":"Illinois 23, Kansas 17 · 2024","event_id":"evt-0239"}
   ],
   "favorite_venues": [
     {"rank":1,"title":"Allen Fieldhouse"},

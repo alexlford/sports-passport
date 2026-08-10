@@ -8,7 +8,7 @@
   "version": "v26-2026-in-progress",
   "annual_view": "year.html?y=YYYY",
   "annual_index": "annuals.html",
-  "dynamic_views": ["annuals.html","hall-of-fame.html","journey-profile.html","journeys.html","lifetime-analytics.html","phase.html","team-profile.html","teams.html","venue-map.html","venue-profile.html","venues.html","year.html"],
+  "dynamic_views": ["index.html","annuals.html","favorites.html","geography.html","hall-of-fame.html","journey-profile.html","journeys.html","lifetime-analytics.html","phase.html","team-profile.html","teams.html","venue-map.html","venue-profile.html","venues.html","year.html"],
   "update_contract": {
     "events_file": "data/events.json",
     "venues_file": "data/venues.json + data/venue-additions.json",

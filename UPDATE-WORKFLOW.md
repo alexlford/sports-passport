@@ -21,6 +21,8 @@ The pre-2006 archive contains a mixture of documented attendance and reconstruct
 
 Do not upgrade a notional record to verified without evidence or direct user confirmation. The current verified pre-2006 records include the Camden Yards games supported by old ticket stubs and Indiana at Southern Illinois on December 1, 2001. The July 16, 1999 Twins–Cubs Wrigley Field record is explicitly notional.
 
+Aggregate archive views may include both verified/documented and notional records, but they must call those counts **archive records/visits/appearances** and explain the confidence policy. Objective Hall of Fame records and team win/loss records exclude notional reconstructions.
+
 ## Venue-name fact lock
 
 `venue_recorded` is a source fact. Keep the exact venue name supplied by the attendance source, even when a different naming-rights name was historically in use on the event date.
@@ -45,12 +47,12 @@ Add the venue to `data/venue-additions.json` with:
 - `slug`
 - `display_name`
 - `city`
-- exact `latitude` and `longitude`
+- registered `latitude` and `longitude`
 - `aliases`
 - `first_year`
 - `last_year`
 
-Then update `venue_count` in `data/config.json`. The loader combines `data/venues.json` and `data/venue-additions.json` automatically.
+Then update `venue_count` in `data/config.json`. The loader combines `data/venues.json` and `data/venue-additions.json` automatically. Do not describe coordinates as independently verified unless there is evidence supporting that claim; the public map calls them registered venue points.
 
 ## Team colors
 
@@ -68,6 +70,14 @@ Canonical team identities must also be able to resolve a palette, either directl
 
 Each list must contain exactly ten entries ordered with ranks 1 through 10. These lists are user-curated, not algorithmic. Revisit them as new seasons and venues are added, rather than deriving them automatically from attendance counts.
 
+Every `sports_experiences` entry must include the exact archive `event_id`. This keeps the editorial ranking connected to the factual event record and lets the site link each ranked experience back to its annual edition.
+
+The favorite-venue list intentionally permits editorial groupings that are broader than a single physical `venue_key`, such as `Busch Stadium` across stadium generations and `SIU — Arena & Football Stadium` as a personal-place grouping.
+
+## Dynamic views
+
+`data/config.json` contains a `dynamic_views` registry. Keep it complete when a new data-driven page is added. The validator checks both that the known dynamic pages are listed and that every listed path exists.
+
 ## Validation
 
 Run:
@@ -76,4 +86,4 @@ Run:
 python tools/validate_data.py
 ```
 
-The validator checks event IDs, venue keys, archive counts, team palettes and aliases, early-record attendance confidence, curated Top 10 structure, journey/phase uniqueness, favorites, and correction references.
+The validator checks event IDs, venue keys, archive counts, team palettes and aliases, early-record attendance confidence, exact Top 10 event links, dynamic-view coverage, journey/phase uniqueness, source favorites, and correction references.

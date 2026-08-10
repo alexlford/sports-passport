@@ -62,13 +62,14 @@ for chunk in chunks:
     if isinstance(part,list): events.extend(part)
     else: errors.append(f"data/{chunk} must contain an event array")
 
-ids=set(); venue_keys=set(venue_by_key); required=("id","date","year","sport","teams","scores","venue_recorded","city","venue_key")
+ids=set(); event_by_id={}; venue_keys=set(venue_by_key); required=("id","date","year","sport","teams","scores","venue_recorded","city","venue_key")
 for e in events:
     for field in required:
         if field not in e: errors.append(f'{e.get("id","<unknown>")}: missing {field}')
     eid=e.get("id")
     if eid in ids: errors.append(f"duplicate event id {eid}")
     ids.add(eid)
+    if eid: event_by_id[eid]=e
     if e.get("venue_key") and e.get("venue_key") not in venue_keys: errors.append(f'{eid}: unknown venue_key {e.get("venue_key")}')
     status=e.get("attendance_status")
     year=e.get("year")
@@ -98,7 +99,7 @@ for f in favorites:
     event_id=f.get("event_id")
     if event_id and event_id not in ids: errors.append(f'{key}: unknown event_id {event_id}')
 
-# Curated lists are intentional Top 10s. Validate their shape so future edits cannot silently break rank order.
+# Curated lists are intentional Top 10s. Validate rank structure and exact event linkage for sports experiences.
 ranking_keys=("sports_experiences","favorite_venues","best_venues")
 if curated_rankings:
     for key in ranking_keys:
@@ -116,6 +117,15 @@ if curated_rankings:
             errors.append(f'curated-rankings.json {key} entries must have non-empty titles')
         if len(titles)!=len(set(titles)):
             errors.append(f'curated-rankings.json {key} contains duplicate titles')
+    for item in curated_rankings.get("sports_experiences",[]):
+        if not isinstance(item,dict):
+            errors.append("curated-rankings.json sports_experiences contains a non-object entry")
+            continue
+        event_id=item.get("event_id")
+        if not event_id:
+            errors.append(f'curated sports experience #{item.get("rank","?")} missing event_id')
+        elif event_id not in event_by_id:
+            errors.append(f'curated sports experience #{item.get("rank","?")} references unknown event_id {event_id}')
 
 # Source team labels remain immutable in event records. Aliases create a separate canonical identity layer.
 archive_teams=sorted({team for e in events for team in (e.get("teams") or []) if isinstance(team,str) and team.strip()})
@@ -152,11 +162,30 @@ for team in canonical_teams:
 if missing_canonical_colors:
     errors.append("canonical team identities cannot resolve a palette: " + " | ".join(missing_canonical_colors))
 
+# Dynamic-view registry is an update contract; keep it complete and resolvable.
+dynamic_views=config.get("dynamic_views",[])
+expected_dynamic_views={"index.html","annuals.html","favorites.html","geography.html","hall-of-fame.html","journey-profile.html","journeys.html","lifetime-analytics.html","phase.html","team-profile.html","teams.html","venue-map.html","venue-profile.html","venues.html","year.html"}
+if not isinstance(dynamic_views,list):
+    errors.append("config dynamic_views must contain an array")
+    dynamic_views=[]
+if len(dynamic_views)!=len(set(dynamic_views)):
+    errors.append("config dynamic_views contains duplicates")
+missing_dynamic=sorted(expected_dynamic_views-set(dynamic_views))
+if missing_dynamic:
+    errors.append("config dynamic_views missing known dynamic pages: " + " | ".join(missing_dynamic))
+for path in dynamic_views:
+    if not isinstance(path,str) or not path.strip():
+        errors.append("config dynamic_views contains an invalid path")
+    elif not (ROOT/path).is_file():
+        errors.append(f'config dynamic_views references missing file: {path}')
+
 slugs=[v.get("slug") for v in all_venues]
 if len(slugs)!=len(set(slugs)): errors.append("duplicate venue slug")
 if len({j.get("key") for j in journeys})!=len(journeys): errors.append("duplicate journey key")
 if len({p.get("key") for p in phases})!=len(phases): errors.append("duplicate phase key")
 if events and int(config.get("archive_start_year",0))>min(e["year"] for e in events): errors.append("archive_start_year is later than earliest event")
+if events and int(config.get("current_year",0))<max(e["year"] for e in events): errors.append("current_year is earlier than latest event year")
+if config.get("latest_complete_year") is not None and config.get("current_year") is not None and int(config["latest_complete_year"])>=int(config["current_year"]): errors.append("latest_complete_year must be earlier than current_year while the current edition is in progress")
 if manifest.get("event_count") is not None and manifest.get("event_count")!=len(events): errors.append(f'events.json event_count={manifest.get("event_count")} but chunks contain {len(events)}')
 if config.get("event_count") is not None and config.get("event_count")!=len(events): errors.append(f'config event_count={config.get("event_count")} but chunks contain {len(events)}')
 if config.get("venue_count") is not None and config.get("venue_count")!=len(all_venues): errors.append(f'config venue_count={config.get("venue_count")} but base + additions contain {len(all_venues)}')
@@ -165,4 +194,5 @@ if errors:
     print("\n".join("ERROR: "+x for x in errors))
     sys.exit(1)
 ranking_count=sum(1 for key in ranking_keys if isinstance(curated_rankings.get(key),list))
-print(f"OK: {len(events)} events in {len(chunks)} chunks, {len(all_venues)} venues ({len(venue_additions)} incremental), {len(archive_teams)} source team labels -> {len(canonical_teams)} canonical teams via {len(team_aliases)} aliases, {len(journeys)} journeys, {len(phases)} phases, {len(favorites)} favorite experiences, {ranking_count} curated Top 10 rankings, {len(corrections)} audited corrections.")
+ranked_event_links=sum(1 for item in curated_rankings.get("sports_experiences",[]) if isinstance(item,dict) and item.get("event_id") in event_by_id)
+print(f"OK: {len(events)} events in {len(chunks)} chunks, {len(all_venues)} venues ({len(venue_additions)} incremental), {len(archive_teams)} source team labels -> {len(canonical_teams)} canonical teams via {len(team_aliases)} aliases, {len(journeys)} journeys, {len(phases)} phases, {len(favorites)} source favorites, {ranking_count} curated Top 10 rankings ({ranked_event_links} ranked experiences linked to exact events), {len(dynamic_views)} dynamic views, {len(corrections)} audited corrections.")
