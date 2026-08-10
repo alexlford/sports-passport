@@ -11,6 +11,7 @@ window.SportsPassportData = (() => {
   }
   ensureStyle('assets/readability.css', 'data-sports-passport-readability');
   ensureStyle('assets/chrome.css', 'data-sports-passport-chrome');
+  ensureStyle('assets/density.css', 'data-sports-passport-density');
 
   const STATE_NAMES = {
     Alabama:"AL",Alaska:"AK",Arizona:"AZ",Arkansas:"AR",California:"CA",Colorado:"CO",Connecticut:"CT",Delaware:"DE",Florida:"FL",Georgia:"GA",Hawaii:"HI",Idaho:"ID",Illinois:"IL",Indiana:"IN",Iowa:"IA",Kansas:"KS",Kentucky:"KY",Louisiana:"LA",Maine:"ME",Maryland:"MD",Massachusetts:"MA",Michigan:"MI",Minnesota:"MN",Mississippi:"MS",Missouri:"MO",Montana:"MT",Nebraska:"NE",Nevada:"NV","New Hampshire":"NH","New Jersey":"NJ","New Mexico":"NM","New York":"NY","North Carolina":"NC","North Dakota":"ND",Ohio:"OH",Oklahoma:"OK",Oregon:"OR",Pennsylvania:"PA","Rhode Island":"RI","South Carolina":"SC","South Dakota":"SD",Tennessee:"TN",Texas:"TX",Utah:"UT",Vermont:"VT",Virginia:"VA",Washington:"WA","West Virginia":"WV",Wisconsin:"WI",Wyoming:"WY"
@@ -88,6 +89,37 @@ window.SportsPassportData = (() => {
     return {w,l,tie,unknown};
   }
 
+  function enhanceDensity(root=document) {
+    root.querySelectorAll('[data-density]').forEach(container => {
+      if (container.dataset.densityReady === 'true') return;
+      const limit = Math.max(1, Number(container.dataset.density) || 10);
+      const items = [...container.children];
+      if (items.length <= limit) {
+        container.dataset.densityReady = 'true';
+        return;
+      }
+      const extras = items.slice(limit);
+      extras.forEach(el => el.classList.add('density-extra','hidden'));
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'density-toggle';
+      button.textContent = `Show all ${items.length}`;
+      button.setAttribute('aria-expanded','false');
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        extras.forEach(el => el.classList.toggle('hidden', expanded));
+        button.setAttribute('aria-expanded', String(!expanded));
+        button.textContent = expanded ? `Show all ${items.length}` : 'Show fewer';
+      });
+      container.insertAdjacentElement('afterend', button);
+      const note = document.createElement('div');
+      note.className = 'density-note';
+      note.textContent = `Showing ${limit} of ${items.length} by default.`;
+      button.insertAdjacentElement('afterend', note);
+      container.dataset.densityReady = 'true';
+    });
+  }
+
   function navKey() {
     const file = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
     if (file === 'index.html' || file === '') return 'home';
@@ -95,6 +127,7 @@ window.SportsPassportData = (() => {
     if (['geography.html','venue-map.html','venues.html','venue-profile.html'].includes(file)) return 'geography';
     if (['teams.html','team-profile.html'].includes(file)) return 'teams';
     if (['journeys.html','journey-profile.html','phase.html'].includes(file)) return 'journeys';
+    if (file === 'favorites.html') return 'favorites';
     if (file === 'lifetime-analytics.html') return 'analytics';
     if (file === 'hall-of-fame.html') return 'hof';
     return '';
@@ -116,6 +149,7 @@ window.SportsPassportData = (() => {
       ['geography','geography.html','Geography'],
       ['teams','teams.html','Teams'],
       ['journeys','journeys.html','Journeys'],
+      ['favorites','favorites.html','Favorites'],
       ['analytics','lifetime-analytics.html','Analytics'],
       ['hof','hall-of-fame.html','Hall of Fame']
     ];
@@ -177,5 +211,5 @@ window.SportsPassportData = (() => {
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 
-  return {load,slug,score,matchup,counts,normalizeCity,venueEvents,yearEvents,teamEvents,phaseEvents,journeyEvents,recordForTeam};
+  return {load,slug,score,matchup,counts,normalizeCity,venueEvents,yearEvents,teamEvents,phaseEvents,journeyEvents,recordForTeam,enhanceDensity};
 })();
