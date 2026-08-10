@@ -1,0 +1,56 @@
+/* Sports Passport readability layer
+   Loaded after page-specific styles by assets/sports-passport-data.js. */
+:root{--muted:#625d55}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{line-height:1.5}
+p{line-height:1.6}
+.brand,.kicker{font-size:.78rem!important;line-height:1.35}
+.nav a,.pill{font-size:.82rem!important;min-height:44px;display:inline-flex;align-items:center;justify-content:center;line-height:1.2}
+.deck,.hero-deck{line-height:1.55!important}
+.stat span{font-size:.74rem!important;line-height:1.35}
+.card p,.year-card span:nth-child(2){font-size:.9rem!important;line-height:1.55}
+.card b,.year-card b{font-size:.73rem!important;line-height:1.35}
+.leader{align-items:flex-start;line-height:1.45}
+.leader>span,.leader>div{min-width:0;overflow-wrap:anywhere}
+.event small,.tip small{font-size:.82rem!important;line-height:1.5}
+.event b,.team strong,.leader span,.leader strong{line-height:1.4}
+.meta{font-size:.78rem!important;line-height:1.4}
+.venue{font-size:.84rem!important;line-height:1.5}
+.date span{font-size:.74rem!important;line-height:1.3}
+.barwrap span,.bar-col span{font-size:.72rem!important;line-height:1.25;transform:none!important;margin-top:8px!important}
+.pin.hot span{font-size:.68rem!important}
+.notice{line-height:1.55}
+.search{min-height:44px}
+button,input,textarea,select{font-family:inherit}
+button{min-height:44px}
+:focus-visible{outline:3px solid rgba(49,95,132,.55);outline-offset:3px}
+
+@media(max-width:760px){
+  .top,.topbar{align-items:flex-start!important;flex-direction:column!important;gap:10px!important}
+  .top .nav,.topbar .nav{display:flex!important;width:100%;max-width:100%;overflow-x:auto;flex-wrap:nowrap!important;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+  .nav a{flex:0 0 auto}
+  .hero{padding:30px 22px!important;margin-top:16px!important}
+  .hero h1{font-size:clamp(3.15rem,16vw,5.4rem)!important;line-height:.88!important;overflow-wrap:anywhere}
+  .deck,.hero-deck{font-size:1.15rem!important;line-height:1.6!important}
+  .stats{gap:8px!important}
+  .stat{padding:14px 12px!important}
+  .stat strong{font-size:1.55rem!important;overflow-wrap:anywhere}
+  .section{margin:44px 0!important}
+  .panel,.card{padding:18px!important}
+  .event{grid-template-columns:58px minmax(0,1fr)!important}
+  .event-card{grid-template-columns:72px minmax(0,1fr)!important}
+  .event-card .body{min-width:0}
+  .team{grid-template-columns:minmax(0,1fr) auto!important}
+  .team strong:first-child,.venue,.meta span{overflow-wrap:anywhere}
+  .stamp{width:140px!important}
+  input,textarea,select{font-size:16px!important}
+  .map-shell{min-height:360px}
+  .tip{font-size:.92rem!important}
+}
+
+@media(max-width:420px){
+  .stats{grid-template-columns:1fr 1fr!important}
+  .hero h1{font-size:clamp(3rem,17vw,4.4rem)!important}
+  .year-nav a{min-width:62px!important;min-height:44px;display:inline-flex;align-items:center;justify-content:center;font-size:.8rem!important}
+  .passport{justify-content:center}
+}
