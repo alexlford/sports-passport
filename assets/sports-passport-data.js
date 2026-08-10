@@ -1,12 +1,17 @@
 window.SportsPassportData = (() => {
   const cache = {};
-  if (!document.querySelector('link[data-sports-passport-readability]')) {
+
+  function ensureStyle(href, marker) {
+    if (document.querySelector(`link[${marker}]`)) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'assets/readability.css';
-    link.dataset.sportsPassportReadability = 'true';
+    link.href = href;
+    link.setAttribute(marker, 'true');
     document.head.appendChild(link);
   }
+  ensureStyle('assets/readability.css', 'data-sports-passport-readability');
+  ensureStyle('assets/chrome.css', 'data-sports-passport-chrome');
+
   const STATE_NAMES = {
     Alabama:"AL",Alaska:"AK",Arizona:"AZ",Arkansas:"AR",California:"CA",Colorado:"CO",Connecticut:"CT",Delaware:"DE",Florida:"FL",Georgia:"GA",Hawaii:"HI",Idaho:"ID",Illinois:"IL",Indiana:"IN",Iowa:"IA",Kansas:"KS",Kentucky:"KY",Louisiana:"LA",Maine:"ME",Maryland:"MD",Massachusetts:"MA",Michigan:"MI",Minnesota:"MN",Mississippi:"MS",Missouri:"MO",Montana:"MT",Nebraska:"NE",Nevada:"NV","New Hampshire":"NH","New Jersey":"NJ","New Mexico":"NM","New York":"NY","North Carolina":"NC","North Dakota":"ND",Ohio:"OH",Oklahoma:"OK",Oregon:"OR",Pennsylvania:"PA","Rhode Island":"RI","South Carolina":"SC","South Dakota":"SD",Tennessee:"TN",Texas:"TX",Utah:"UT",Vermont:"VT",Virginia:"VA",Washington:"WA","West Virginia":"WV",Wisconsin:"WI",Wyoming:"WY"
   };
@@ -17,6 +22,7 @@ window.SportsPassportData = (() => {
     const state = STATE_NAMES[parts.at(-1)] || parts.at(-1);
     return `${parts.slice(0,-1).join(", ")}, ${state}`;
   };
+
   async function load(name) {
     if (!cache[name]) cache[name] = fetch(`data/${name}.json`, {cache:"no-store"}).then(async r => {
       if (!r.ok) throw new Error(`Could not load data/${name}.json`);
@@ -55,6 +61,7 @@ window.SportsPassportData = (() => {
     });
     return cache[name];
   }
+
   const slug = s => s.toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
   const score = e => Array.isArray(e.scores) && e.scores.length===2 && e.scores.every(Number.isFinite) ? `${e.scores[0]}–${e.scores[1]}` : "";
   const matchup = e => Array.isArray(e.teams) && e.teams.length===2 ? `${e.teams[0]} vs ${e.teams[1]}` : "Documented event";
@@ -80,6 +87,60 @@ window.SportsPassportData = (() => {
     });
     return {w,l,tie,unknown};
   }
+
+  function navKey() {
+    const file = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    if (file === 'index.html' || file === '') return 'home';
+    if (['annuals.html','year.html'].includes(file)) return 'years';
+    if (['geography.html','venue-map.html','venues.html','venue-profile.html'].includes(file)) return 'geography';
+    if (['teams.html','team-profile.html'].includes(file)) return 'teams';
+    if (['journeys.html','journey-profile.html','phase.html'].includes(file)) return 'journeys';
+    if (file === 'lifetime-analytics.html') return 'analytics';
+    if (file === 'hall-of-fame.html') return 'hof';
+    return '';
+  }
+
+  function hydrateGlobalChrome() {
+    const main = document.querySelector('main');
+    if (!main) return;
+    let header = main.querySelector(':scope > header') || document.querySelector('header.top,header.topbar');
+    if (!header) {
+      header = document.createElement('header');
+      main.prepend(header);
+    }
+    header.className = 'site-header';
+    const active = navKey();
+    const links = [
+      ['home','index.html','Home'],
+      ['years','annuals.html','Years'],
+      ['geography','geography.html','Geography'],
+      ['teams','teams.html','Teams'],
+      ['journeys','journeys.html','Journeys'],
+      ['analytics','lifetime-analytics.html','Analytics'],
+      ['hof','hall-of-fame.html','Hall of Fame']
+    ];
+    header.innerHTML = `<div class="brand"><a href="index.html" aria-label="Sports Passport home">Sports Passport</a></div><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="global-nav">Menu</button><nav class="nav global-nav" id="global-nav" aria-label="Primary navigation">${links.map(([key,href,label])=>`<a href="${href}"${key===active?' class="active" aria-current="page"':''}>${label}</a>`).join('')}<a class="external" href="https://www.alexlford.com/">Alex Ford ↗</a></nav>`;
+    const toggle = header.querySelector('.menu-toggle');
+    toggle?.addEventListener('click', () => {
+      const open = header.classList.toggle('menu-open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.textContent = open ? 'Close' : 'Menu';
+    });
+    header.querySelectorAll('.global-nav a').forEach(a => a.addEventListener('click', () => {
+      header.classList.remove('menu-open');
+      toggle?.setAttribute('aria-expanded','false');
+      if (toggle) toggle.textContent = 'Menu';
+    }));
+
+    let footer = main.querySelector(':scope > footer');
+    if (!footer) {
+      footer = document.createElement('footer');
+      main.appendChild(footer);
+    }
+    footer.className = 'site-footer';
+    footer.innerHTML = '<span>Sports Passport · A personal archive of live sports.</span><a href="https://www.alexlford.com/">Back to alexlford.com ↗</a>';
+  }
+
   async function hydrateHomepage() {
     if (!document.querySelector(".hero") || !document.querySelector("#lifetime-desk")) return;
     try {
@@ -108,7 +169,13 @@ window.SportsPassportData = (() => {
       console.warn("Homepage live metrics unavailable; retaining embedded fallback values.", err);
     }
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", hydrateHomepage);
-  else hydrateHomepage();
+
+  function boot() {
+    hydrateGlobalChrome();
+    hydrateHomepage();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+
   return {load,slug,score,matchup,counts,normalizeCity,venueEvents,yearEvents,teamEvents,phaseEvents,journeyEvents,recordForTeam};
 })();

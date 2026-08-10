@@ -1,4 +1,127 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Sports Passport Archive</title><style>
-:root{--paper:#f4ecdc;--paper2:#e8dbc2;--ink:#112b3c;--muted:#6f6a61;--red:#b7443a;--gold:#c49b48;--blue:#315f84;--green:#426d5d;--white:#fffdf8;--line:rgba(17,43,60,.17);--shadow:0 18px 50px rgba(45,34,20,.12);--serif:Georgia,"Times New Roman",serif;--sans:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:var(--sans);background:radial-gradient(circle at 12% 7%,rgba(196,155,72,.13),transparent 22%),repeating-linear-gradient(0deg,rgba(17,43,60,.015) 0,rgba(17,43,60,.015) 1px,transparent 1px,transparent 4px),var(--paper)}a{color:inherit}.shell{max-width:1220px;margin:auto;padding:22px}.topbar{position:sticky;top:10px;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 15px;border:1px solid var(--line);border-radius:18px;background:rgba(244,236,220,.95);backdrop-filter:blur(12px);box-shadow:0 8px 26px rgba(45,34,20,.08)}.brand{font-size:.76rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase}.nav{display:flex;gap:5px;flex-wrap:wrap}.nav a{font-size:.78rem;text-decoration:none;font-weight:850;padding:8px 10px;border-radius:999px}.nav a:hover{background:rgba(17,43,60,.08)}.hero{position:relative;overflow:hidden;margin:22px 0;padding:clamp(28px,6vw,68px);border:1px solid var(--line);border-radius:32px;background:linear-gradient(135deg,rgba(255,253,248,.97),rgba(232,219,194,.92));box-shadow:var(--shadow)}.hero:after{content:"";position:absolute;width:270px;height:270px;right:-60px;top:-70px;border:5px double rgba(183,68,58,.24);border-radius:50%;transform:rotate(10deg)}.kicker{font-size:.72rem;font-weight:950;text-transform:uppercase;letter-spacing:.18em;color:var(--red)}h1,h2,h3{font-family:var(--serif)}h1{font-size:clamp(4.8rem,11vw,8.5rem);line-height:.8;margin:18px 0 20px;letter-spacing:-.06em}.hero-deck{font-family:var(--serif);font-size:clamp(1.25rem,2.4vw,1.9rem);max-width:760px;color:#29495c}.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:28px}.stat{padding:16px 13px;border-top:3px solid var(--ink);background:rgba(255,253,248,.58)}.stat strong{display:block;font-family:var(--serif);font-size:2rem;line-height:1}.stat span{font-size:.67rem;text-transform:uppercase;letter-spacing:.1em;font-weight:850;color:var(--muted)}section{margin:58px 0}.section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,540px);gap:24px;align-items:end;margin-bottom:22px}.section-head h2{font-size:clamp(2.5rem,5vw,4.5rem);line-height:.9;letter-spacing:-.045em;margin:4px 0}.section-deck{color:var(--muted)}.panel{border:1px solid var(--line);border-radius:22px;background:rgba(255,253,248,.82);padding:24px;box-shadow:0 10px 28px rgba(45,34,20,.07)}.footer{border-top:1px solid var(--line);padding:28px 0 48px;color:var(--muted);font-size:.82rem}.archive-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.year-card{min-height:150px;padding:20px;border:1px solid var(--line);border-radius:20px;background:rgba(255,253,248,.78);text-decoration:none;display:flex;flex-direction:column;gap:8px;box-shadow:0 8px 24px rgba(45,34,20,.06)}.year-card:hover{transform:translateY(-2px)}.yc-year{font-family:var(--serif);font-size:2.6rem;font-weight:900;line-height:1}.year-card span:nth-child(2){color:var(--muted);font-size:.8rem;flex:1}.year-card b{font-size:.65rem;letter-spacing:.12em;color:var(--red)}@media(max-width:820px){.shell{padding:13px}.topbar{position:relative;top:auto;align-items:flex-start}.nav{display:none}.stats{grid-template-columns:repeat(3,1fr)}.section-head{grid-template-columns:1fr}.hero{border-radius:24px}}@media(max-width:520px){.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:900px){#life-chapters .archive-grid{grid-template-columns:1fr 1fr}}@media(max-width:640px){#life-chapters .archive-grid,.archive-grid{grid-template-columns:1fr}}
-</style></head><body><main class="shell"><header class="topbar"><div class="brand">Sports Passport · Lifetime Archive</div><nav class="nav"><a href="#years">Years</a><a href="#system">Design system</a><a href="journeys.html">Journeys</a><a href="venue-map.html">Venue Map</a><a href="venues.html">Venue Profiles</a><a href="annuals.html">Annual Editions</a></nav></header><div id="v23-live-banner" style="margin:18px auto;padding:12px 16px;border:1px solid rgba(17,43,60,.14);border-radius:16px;background:#fffaf0;font-size:.8rem"><b>Live archive:</b> <span id="live-event-count">—</span> events · <span id="live-venue-count">—</span> venues · latest year <span id="live-latest-year">—</span>. Lifetime analytics, teams, venues, journeys, life chapters, and Hall of Fame now recalculate from shared data.</div><section class="hero"><div class="kicker">1993 → 2026</div><h1>Sports<br/>Passport</h1><div class="hero-deck">A personal archive of live sports, built like an annual media guide and organized like a passport.</div><div class="stats"><div class="stat"><strong>34</strong><span>Calendar years</span></div><div class="stat"><strong>33</strong><span>Annual editions live</span></div><div class="stat"><strong>5</strong><span>Life chapters</span></div><div class="stat"><strong>1993</strong><span>Archive begins</span></div><div class="stat"><strong>2025</strong><span>Latest complete</span></div><div class="stat"><strong>1</strong><span>Shared design system</span></div></div></section><section id="life-chapters"><div class="section-head"><div><div class="kicker">Browse by era</div><h2>Five chapters of life.</h2></div><div class="section-deck">The same annual archive, reorganized around the places and stages of life that shaped it. The 2010 bridge year appears in both Illinois and Kansas.</div></div><div class="archive-grid"><a class="year-card" href="phase.html?p=origins"><span class="yc-year">I · The Origins</span><span>1993–2005 · Cardinals summers, Southern Illinois basketball, and family trips.</span><b>OPEN CHAPTER</b></a><a class="year-card" href="phase.html?p=illinois"><span class="yc-year">II · The Illinois Years</span><span>2006–2010 · Champaign, Memorial Stadium Saturdays, and Assembly Hall nights.</span><b>OPEN CHAPTER</b></a><a class="year-card" href="phase.html?p=kansas"><span class="yc-year">III · The Kansas Years</span><span>2010–2017 · Lawrence, Allen Fieldhouse, Kansas football, and Kansas City.</span><b>OPEN CHAPTER</b></a><a class="year-card" href="phase.html?p=baltimore"><span class="yc-year">IV · The Baltimore Years</span><span>2018–2021 · Camden Yards, the East Coast, and the pandemic interruption.</span><b>OPEN CHAPTER</b></a><a class="year-card" href="phase.html?p=colorado"><span class="yc-year">V · The Colorado Years</span><span>2022–Present · Denver becomes home base and the passport keeps expanding.</span><b>OPEN CHAPTER</b></a></div></section><section id="lifetime-desk"><div class="section-head"><div><div class="kicker">The lifetime desk</div><h2>Thirty-three years, one record.</h2></div><div class="section-deck">Explore cumulative attendance, sport mix, recurring teams, venues, and cities across the documented archive.</div></div><a class="year-card" href="lifetime-analytics.html"><span class="yc-year">Lifetime Analytics</span><span>Live totals generated from the shared event archive.</span><b>OPEN</b></a></section><section id="explore-more"><div class="section-head"><div><div class="kicker">Explore the museum</div><h2>Three ways in.</h2></div></div><div class="archive-grid"><a class="year-card" href="geography.html"><span class="yc-year">Geography & Venues</span><span>Cities, states, venue rankings, and map-readiness.</span><b>OPEN</b></a><a class="year-card" href="teams.html"><span class="yc-year">Team Explorer</span><span>Most-seen teams and appearance timelines.</span><b>OPEN</b></a><a class="year-card" href="hall-of-fame.html"><span class="yc-year">Hall of Fame</span><span>Objective records and personal selections.</span><b>OPEN</b></a></div></section><section id="venue-profile-desk"><div class="section-head"><div><div class="kicker">Venue museum</div><h2>Stadium and arena profiles.</h2></div></div><a class="year-card" href="venues.html"><span class="yc-year">Venue Profiles</span><span>Physical venue identities, timelines, teams, coordinates, and artifact cases.</span><b>OPEN THE VENUE MUSEUM</b></a></section><section id="journey-desk"><div class="section-head"><div><div class="kicker">Life threads</div><h2>Follow the stories that cross years.</h2></div></div><div class="archive-grid"><a class="year-card" href="journey-profile.html?j=cardinals"><span class="yc-year">The Cardinals Thread</span><span>Family and St. Louis baseball across decades.</span><b>OPEN</b></a><a class="year-card" href="journey-profile.html?j=illinois"><span class="yc-year">The Illinois Thread</span><span>Every documented Illini appearance.</span><b>OPEN</b></a><a class="year-card" href="journey-profile.html?j=kansas"><span class="yc-year">The Kansas Thread</span><span>Every documented Jayhawks appearance.</span><b>OPEN</b></a><a class="year-card" href="journey-profile.html?j=kc"><span class="yc-year">Chiefs & Royals</span><span>Kansas City's recurring pro-sports thread.</span><b>OPEN</b></a><a class="year-card" href="journey-profile.html?j=penny"><span class="yc-year">A New Generation</span><span>The next family chapter.</span><b>OPEN</b></a></div></section><section id="years"><div class="section-head"><div><div class="kicker">Browse by year</div><h2>Annual editions are live.</h2></div><div class="section-deck">New years and new games no longer require new HTML pages.</div></div><a class="year-card" href="annuals.html"><span class="yc-year">Dynamic Annual Archive</span><span>1993 through the current season · generated from shared event data</span><b>OPEN ANNUAL EDITIONS</b></a></section><section id="system"><div class="panel"><h3>Design system status</h3><p>The archive uses a reusable event schema and shared components for annual pages, analytics, team profiles, venue profiles, journeys, and mobile layouts.</p></div></section><footer class="footer">Sports Passport · GitHub Pages production build</footer></main><script src="assets/sports-passport-data.js"></script><script>(async()=>{const D=window.SportsPassportData,[e,v]=await Promise.all([D.load("events"),D.load("venues")]);document.querySelector("#live-event-count").textContent=e.length;document.querySelector("#live-venue-count").textContent=v.length;document.querySelector("#live-latest-year").textContent=Math.max(...e.map(x=>x.year));})();</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sports Passport | Alex Ford</title>
+  <meta name="description" content="Alex Ford's personal archive of live sports: annual editions, venues, teams, geography, journeys, and lifetime analytics from 1993 to the present.">
+  <meta name="theme-color" content="#f4ecdc">
+  <link rel="canonical" href="https://sports.alexlford.com/">
+  <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="assets/home.css">
+</head>
+<body>
+<main class="home-shell">
+  <header class="site-header"><div class="brand"><a href="index.html">Sports Passport</a></div></header>
+
+  <section class="home-hero">
+    <div class="kicker" id="archive-range">1993 → 2026</div>
+    <h1>Sports<br>Passport</h1>
+    <div class="deck">A personal archive of live sports, built like an annual media guide and organized like a passport.</div>
+    <div class="hero-actions">
+      <a class="primary" id="current-year-cta" href="year.html?y=2026">Open 2026 · In Progress →</a>
+      <a href="annuals.html">Browse every year</a>
+    </div>
+    <div class="home-stats" aria-label="Lifetime archive summary">
+      <div class="home-stat"><strong id="event-total">—</strong><span>Events</span></div>
+      <div class="home-stat"><strong id="venue-total">—</strong><span>Venues</span></div>
+      <div class="home-stat"><strong id="city-total">—</strong><span>Cities</span></div>
+      <div class="home-stat"><strong id="year-total">—</strong><span>Calendar years</span></div>
+      <div class="home-stat"><strong id="latest-complete">—</strong><span>Latest complete</span></div>
+    </div>
+  </section>
+
+  <section class="current-feature" aria-labelledby="current-title">
+    <div class="current-main" id="current-main" data-year="2026">
+      <div class="status-line"><span class="status-badge">In progress</span><span class="kicker" id="current-kicker">Current season</span></div>
+      <h2 id="current-title">2026</h2>
+      <p id="current-summary">The current annual edition is live and grows as new games are added.</p>
+      <a class="cta" id="current-open" href="year.html?y=2026">Open the live annual edition →</a>
+    </div>
+    <aside class="current-side">
+      <div class="kicker">Latest entry</div>
+      <h3 id="latest-date">—</h3>
+      <div class="latest-event">
+        <strong id="latest-matchup">—</strong>
+        <span id="latest-detail">—</span>
+      </div>
+      <div class="leader"><span>Events so far</span><strong id="current-events">—</strong></div>
+      <div class="leader"><span>Sports</span><strong id="current-sports">—</strong></div>
+      <div class="leader"><span>Venues</span><strong id="current-venues">—</strong></div>
+      <div class="leader"><span>Cities</span><strong id="current-cities">—</strong></div>
+    </aside>
+  </section>
+
+  <section class="explore-section">
+    <div class="section-intro">
+      <div><div class="kicker">Explore the archive</div><h2>Choose a way in.</h2></div>
+      <p>Browse chronologically, follow recurring teams and stories, or explore the physical footprint of the games.</p>
+    </div>
+    <div class="portal-grid">
+      <a class="portal" href="annuals.html"><span class="num">01</span><h3>Years</h3><p>Annual media-guide editions from the first documented season through the live current year.</p><b>Browse annual editions →</b></a>
+      <a class="portal" href="geography.html"><span class="num">02</span><h3>Geography</h3><p>A real venue map, city leaders, stadium profiles, and the footprint of the archive.</p><b>Open the map →</b></a>
+      <a class="portal" href="teams.html"><span class="num">03</span><h3>Teams</h3><p>Most-seen teams, appearance timelines, records, sports, and recurring venues.</p><b>Explore teams →</b></a>
+      <a class="portal" href="journeys.html"><span class="num">04</span><h3>Journeys</h3><p>Story threads that cross years: Cardinals, Illinois, Kansas, Kansas City, and a new generation.</p><b>Follow the stories →</b></a>
+      <a class="portal" href="lifetime-analytics.html"><span class="num">05</span><h3>Analytics</h3><p>The cumulative record: sport mix, annual pace, recurring teams, venues, and cities.</p><b>Open lifetime analytics →</b></a>
+      <a class="portal" href="hall-of-fame.html"><span class="num">06</span><h3>Hall of Fame</h3><p>Archive records alongside personal selections for the games and places that stand out.</p><b>Enter the Hall →</b></a>
+    </div>
+  </section>
+
+  <section class="explore-section">
+    <div class="section-intro">
+      <div><div class="kicker">Browse by era</div><h2>Five chapters of life.</h2></div>
+      <p>The same archive reorganized around the places and stages of life that shaped it.</p>
+    </div>
+    <div class="chapters">
+      <a class="chapter" href="phase.html?p=origins"><b>I · The Origins</b><span>1993–2005 · Family trips, Cardinals summers, and Southern Illinois.</span></a>
+      <a class="chapter" href="phase.html?p=illinois"><b>II · Illinois</b><span>2006–2010 · Champaign, Memorial Stadium, and Assembly Hall.</span></a>
+      <a class="chapter" href="phase.html?p=kansas"><b>III · Kansas</b><span>2010–2017 · Lawrence, Allen Fieldhouse, and Kansas City.</span></a>
+      <a class="chapter" href="phase.html?p=baltimore"><b>IV · Baltimore</b><span>2018–2021 · Camden Yards, the East Coast, and the pandemic interruption.</span></a>
+      <a class="chapter" href="phase.html?p=colorado"><b>V · Colorado</b><span>2022–Present · Denver becomes home base and the passport keeps expanding.</span></a>
+    </div>
+  </section>
+
+  <div class="home-note"><strong>One shared archive.</strong> New games automatically flow into annual editions, analytics, team histories, venue profiles, journeys, and geography.</div>
+  <footer class="site-footer"></footer>
+</main>
+
+<script src="assets/sports-passport-data.js"></script>
+<script>
+(async()=>{
+  const D=window.SportsPassportData;
+  const [events,venues,config]=await Promise.all([D.load('events'),D.load('venues'),D.load('config')]);
+  const current=Number(config.current_year)||Math.max(...events.map(e=>Number(e.year)));
+  const start=Number(config.archive_start_year)||Math.min(...events.map(e=>Number(e.year)));
+  const complete=Number(config.latest_complete_year)||current-1;
+  const currentEvents=D.yearEvents(events,current).sort((a,b)=>b.date.localeCompare(a.date));
+  const currentSports=D.counts(currentEvents.map(e=>e.sport));
+  const currentVenues=D.counts(currentEvents.map(e=>e.venue_key).filter(Boolean));
+  const currentCities=D.counts(currentEvents.map(e=>e.city).filter(Boolean));
+  const allCities=D.counts(events.map(e=>e.city).filter(Boolean));
+  const latest=currentEvents[0];
+  const dateFmt=d=>new Date(d+'T12:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  document.querySelector('#archive-range').textContent=`${start} → ${current}`;
+  document.querySelector('#event-total').textContent=events.length;
+  document.querySelector('#venue-total').textContent=venues.length;
+  document.querySelector('#city-total').textContent=Object.keys(allCities).length;
+  document.querySelector('#year-total').textContent=current-start+1;
+  document.querySelector('#latest-complete').textContent=complete;
+  document.querySelector('#current-main').dataset.year=current;
+  document.querySelector('#current-title').textContent=current;
+  document.querySelector('#current-kicker').textContent=`Year in Sports · ${current}`;
+  document.querySelector('#current-summary').textContent=currentEvents.length?`The live ${current} edition currently includes ${currentEvents.length} documented event${currentEvents.length===1?'':'s'}${latest?` through ${new Date(latest.date+'T12:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric'})}`:''}. It will keep growing as the season continues.`:`The ${current} edition is ready for the first documented event.`;
+  for(const id of ['#current-year-cta','#current-open'])document.querySelector(id).href=`year.html?y=${current}`;
+  document.querySelector('#current-year-cta').textContent=`Open ${current} · In Progress →`;
+  document.querySelector('#current-events').textContent=currentEvents.length;
+  document.querySelector('#current-sports').textContent=Object.keys(currentSports).length;
+  document.querySelector('#current-venues').textContent=Object.keys(currentVenues).length;
+  document.querySelector('#current-cities').textContent=Object.keys(currentCities).length;
+  if(latest){
+    document.querySelector('#latest-date').textContent=dateFmt(latest.date);
+    document.querySelector('#latest-matchup').textContent=`${D.matchup(latest)}${D.score(latest)?` · ${D.score(latest)}`:''}`;
+    document.querySelector('#latest-detail').textContent=`${latest.venue_recorded}${latest.city?` · ${latest.city}`:''}`;
+  }
+})();
+</script>
+</body>
+</html>
