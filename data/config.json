@@ -3,20 +3,20 @@
   "archive_start_year": 1993,
   "latest_complete_year": 2025,
   "current_year": 2026,
-  "event_count": 256,
-  "venue_count": 51,
-  "version": "v24-github",
+  "event_count": 265,
+  "venue_count": 56,
+  "version": "v25-2026-in-progress",
   "annual_view": "year.html?y=YYYY",
   "annual_index": "annuals.html",
   "dynamic_views": ["annuals.html","hall-of-fame.html","journey-profile.html","journeys.html","lifetime-analytics.html","phase.html","team-profile.html","teams.html","venue-map.html","venue-profile.html","venues.html","year.html"],
   "update_contract": {
     "events_file": "data/events.json",
-    "venues_file": "data/venues.json",
-    "note": "Add events to the appropriate event chunk listed by data/events.json. Add a venue record only when a new physical venue appears. Dynamic pages recalculate automatically on load."
+    "venues_file": "data/venues.json + data/venue-additions.json",
+    "note": "Add events to the appropriate event chunk listed by data/events.json. Add new physical venues to data/venue-additions.json with exact coordinates. Dynamic pages recalculate automatically on load."
   },
   "automatic_update_behavior": {
     "existing_venue_new_event": "event chunk only",
-    "new_physical_venue": "event chunk + venues.json",
+    "new_physical_venue": "event chunk + venue-additions.json",
     "html_regeneration_required": false
   }
 }
