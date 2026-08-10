@@ -1,0 +1,57 @@
+[
+  {
+    "key": "American Airlines Center",
+    "slug": "american-airlines-center",
+    "display_name": "American Airlines Center",
+    "city": "Dallas, TX",
+    "latitude": 32.79049,
+    "longitude": -96.81029,
+    "aliases": [],
+    "first_year": 2026,
+    "last_year": 2026
+  },
+  {
+    "key": "CU Events Center",
+    "slug": "cu-events-center",
+    "display_name": "CU Events Center",
+    "city": "Boulder, CO",
+    "latitude": 40.00469,
+    "longitude": -105.26061,
+    "aliases": ["Coors Events Center"],
+    "first_year": 2026,
+    "last_year": 2026
+  },
+  {
+    "key": "Lucas Oil Stadium",
+    "slug": "lucas-oil-stadium",
+    "display_name": "Lucas Oil Stadium",
+    "city": "Indianapolis, IN",
+    "latitude": 39.76007,
+    "longitude": -86.16381,
+    "aliases": [],
+    "first_year": 2026,
+    "last_year": 2026
+  },
+  {
+    "key": "Regions Field",
+    "slug": "regions-field",
+    "display_name": "Regions Field",
+    "city": "Birmingham, AL",
+    "latitude": 33.50757,
+    "longitude": -86.81025,
+    "aliases": [],
+    "first_year": 2026,
+    "last_year": 2026
+  },
+  {
+    "key": "DICK'S Sporting Goods Park",
+    "slug": "dicks-sporting-goods-park",
+    "display_name": "DICK'S Sporting Goods Park",
+    "city": "Commerce City, CO",
+    "latitude": 39.80581,
+    "longitude": -104.89183,
+    "aliases": [],
+    "first_year": 2026,
+    "last_year": 2026
+  }
+]
