@@ -1,31 +1,29 @@
 # Sports Passport
 
-A personal, data-driven archive of live sporting events attended from 1993 to the present.
+A personal, data-driven archive of live sports attendance for Alex Ford.
 
-## Live architecture
+## Current archive
 
-The site is static HTML/CSS/JavaScript designed for GitHub Pages. The central source of truth is `data/events.json`; venue metadata lives in `data/venues.json`. Annual editions, lifetime analytics, team profiles, venue profiles, journey pages, life chapters, and Hall of Fame records derive from those shared data files.
+- 266 event records
+- 57 physical venues
+- Annual editions from 1993 through the current 2026 season
+- Team, venue, geography, journey, analytics, favorites, and Hall of Fame views
+- Three curated Top 10 rankings: sports experiences, favorite venues, and best venues visited
+
+## Historical confidence
+
+The early archive is intentionally transparent about evidentiary confidence. Pre-2006 events are labeled either `verified` or `notional` in the source data. Verified early events have surviving evidence or direct confirmation; notional records are plausible reconstructions used to preserve the shape of the early sports timeline without claiming exact attendance certainty.
+
+Examples of verified pre-2006 attendance include Camden Yards games supported by old ticket stubs and Indiana at Southern Illinois on December 1, 2001. The July 16, 1999 Twins–Cubs Wrigley Field record is notional.
 
 ## Updating the archive
 
-1. Add the attended event to `data/events.json`.
-2. If it is a brand-new physical venue, add it to `data/venues.json` with exact coordinates.
-3. Run `python tools/validate_data.py`.
-4. Commit the changes. GitHub Pages publishes the updated static site.
+See [`UPDATE-WORKFLOW.md`](UPDATE-WORKFLOW.md) for the event, venue, team identity, confidence, and validation rules.
 
-See `UPDATE-WORKFLOW.md` for the full maintenance contract.
+Run the archive validator before merging data changes:
 
-## Entry points
+```bash
+python tools/validate_data.py
+```
 
-- `index.html` — archive home
-- `annuals.html` — annual editions
-- `lifetime-analytics.html` — lifetime analytics
-- `teams.html` — team explorer
-- `venues.html` — venue museum
-- `venue-map.html` — interactive venue atlas
-- `journeys.html` — cross-year life threads
-- `hall-of-fame.html` — record book and personal ballot
-
-## Hosting
-
-Intended for GitHub Pages from the `main` branch, repository root.
+The public site is hosted with GitHub Pages at `sports.alexlford.com`.

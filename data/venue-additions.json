@@ -53,5 +53,16 @@
     "aliases": [],
     "first_year": 2026,
     "last_year": 2026
+  },
+  {
+    "key": "Wrigley Field",
+    "slug": "wrigley-field",
+    "display_name": "Wrigley Field",
+    "city": "Chicago, IL",
+    "latitude": 41.9484,
+    "longitude": -87.6553,
+    "aliases": [],
+    "first_year": 1999,
+    "last_year": 1999
   }
 ]
