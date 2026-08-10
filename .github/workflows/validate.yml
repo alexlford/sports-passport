@@ -1,4 +1,4 @@
-name: Validate Sports Passport data
+name: Validate Sports Passport
 
 on:
   push:
@@ -21,3 +21,5 @@ jobs:
           python-version: '3.12'
       - name: Validate archive data
         run: python tools/validate_data.py
+      - name: Validate site integrity
+        run: python tools/validate_site.py
