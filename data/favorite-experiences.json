@@ -1,0 +1,49 @@
+[
+  {
+    "key": "super-bowl-liv",
+    "title": "Super Bowl LIV",
+    "label": "Favorite outdoor sports experience",
+    "year": 2020,
+    "date": "2020-02-02",
+    "event_id": "evt-0202",
+    "category": "Football",
+    "description": "Watching Kansas City win Super Bowl LIV in Miami.",
+    "source_url": "https://www.alexlford.com/about"
+  },
+  {
+    "key": "ku-oklahoma-triple-overtime",
+    "title": "Kansas vs. Oklahoma · 3OT",
+    "label": "Favorite indoor sports experience",
+    "year": 2016,
+    "date": "2016-01-04",
+    "event_id": "evt-0136",
+    "category": "Basketball",
+    "description": "Kansas' 109–106 triple-overtime win over Oklahoma at Allen Fieldhouse.",
+    "source_url": "https://www.alexlford.com/about"
+  },
+  {
+    "key": "allen-fieldhouse-world-record",
+    "title": "130.4 dBA at Allen Fieldhouse",
+    "label": "Guinness World Record night",
+    "year": 2017,
+    "date": "2017-02-13",
+    "event_id": "evt-0169",
+    "category": "Basketball",
+    "description": "Kansas–West Virginia at Allen Fieldhouse, when the crowd set the Guinness World Record for loudest crowd roar at an indoor sports event at 130.4 dBA.",
+    "source_url": "https://www.alexlford.com/about",
+    "verification_url": "https://www.guinnessworldrecords.com/world-records/loudest-crowd-roar-at-a-sports-stadium-%28indoors%29"
+  },
+  {
+    "key": "illinois-final-four-2005",
+    "title": "Illinois at the 2005 Final Four",
+    "label": "Favorite Illinois experience",
+    "year": 2005,
+    "date": null,
+    "event_id": null,
+    "category": "Basketball",
+    "description": "Watching Illinois compete in the 2005 Final Four in St. Louis during its historic national runner-up season.",
+    "note": "The personal-site memory identifies the Final Four experience, but not a specific game or session, so it is intentionally not tied to a documented Sports Passport event record.",
+    "source_url": "https://www.alexlford.com/about",
+    "verification_url": "https://fightingillini.com/news/2005/3/29/Illinois_NCAA_Tournament_Final_Four_Notes"
+  }
+]
