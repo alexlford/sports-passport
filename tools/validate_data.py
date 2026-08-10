@@ -24,6 +24,7 @@ journeys=load_json("journeys.json") or []
 phases=load_json("phases.json") or []
 favorites=load_json("favorite-experiences.json", optional=True) or []
 team_colors=load_json("team-colors.json", optional=True) or {}
+team_aliases=load_json("team-aliases.json", optional=True) or {}
 config=load_json("config.json") or {}
 corrections=load_json("corrections.json") or {}
 
@@ -36,6 +37,9 @@ if not isinstance(favorites,list):
 if not isinstance(team_colors,dict):
     errors.append("data/team-colors.json must contain an object keyed by exact archive team name")
     team_colors={}
+if not isinstance(team_aliases,dict):
+    errors.append("data/team-aliases.json must contain an object mapping source labels to canonical team identities")
+    team_aliases={}
 
 # New-season venue records override an existing key if one is intentionally refreshed.
 venue_by_key={v.get("key"):v for v in venues if isinstance(v,dict) and v.get("key")}
@@ -81,15 +85,40 @@ for f in favorites:
     event_id=f.get("event_id")
     if event_id and event_id not in ids: errors.append(f'{key}: unknown event_id {event_id}')
 
-# Every team displayed on a team profile must have an explicit primary/secondary palette.
+# Source team labels remain immutable in event records. Aliases create a separate canonical identity layer.
 archive_teams=sorted({team for e in events for team in (e.get("teams") or []) if isinstance(team,str) and team.strip()})
+archive_team_set=set(archive_teams)
+for source,target in team_aliases.items():
+    if source not in archive_team_set:
+        errors.append(f'team-aliases.json source not present in archive: {source}')
+    if not isinstance(target,str) or not target.strip():
+        errors.append(f'{source}: canonical team identity must be a non-empty string')
+    elif target == source:
+        errors.append(f'{source}: team alias must not point to itself')
+    elif target in team_aliases:
+        errors.append(f'{source}: alias target {target} is also an alias source; use one-step canonical mappings only')
+
+canonical=lambda team: team_aliases.get(team,team)
+canonical_teams=sorted({canonical(team) for team in archive_teams})
+
+# Every source-label palette must be valid, and every canonical profile must be able to resolve a palette.
 for team,palette in team_colors.items():
-    if team not in archive_teams: errors.append(f'team-colors.json contains team not present in archive: {team}')
+    if team not in archive_team_set: errors.append(f'team-colors.json contains team not present in archive: {team}')
     if not isinstance(palette,list) or len(palette)!=2 or not all(isinstance(c,str) and re.fullmatch(r"#[0-9A-Fa-f]{6}",c) for c in palette):
         errors.append(f'{team}: team palette must be exactly two six-digit hex colors')
-missing_colors=[team for team in archive_teams if team not in team_colors]
-if missing_colors:
-    errors.append("missing team color palettes: " + " | ".join(missing_colors))
+missing_source_colors=[team for team in archive_teams if team not in team_colors]
+if missing_source_colors:
+    errors.append("missing source-label team color palettes: " + " | ".join(missing_source_colors))
+
+missing_canonical_colors=[]
+for team in canonical_teams:
+    if team in team_colors:
+        continue
+    sources=[source for source,target in team_aliases.items() if target==team and source in team_colors]
+    if not sources:
+        missing_canonical_colors.append(team)
+if missing_canonical_colors:
+    errors.append("canonical team identities cannot resolve a palette: " + " | ".join(missing_canonical_colors))
 
 slugs=[v.get("slug") for v in all_venues]
 if len(slugs)!=len(set(slugs)): errors.append("duplicate venue slug")
@@ -103,4 +132,4 @@ if config.get("venue_count") is not None and config.get("venue_count")!=len(all_
 if errors:
     print("\n".join("ERROR: "+x for x in errors))
     sys.exit(1)
-print(f"OK: {len(events)} events in {len(chunks)} chunks, {len(all_venues)} venues ({len(venue_additions)} incremental), {len(archive_teams)} teams with explicit palettes, {len(journeys)} journeys, {len(phases)} phases, {len(favorites)} favorite experiences, {len(corrections)} audited corrections.")
+print(f"OK: {len(events)} events in {len(chunks)} chunks, {len(all_venues)} venues ({len(venue_additions)} incremental), {len(archive_teams)} source team labels -> {len(canonical_teams)} canonical teams via {len(team_aliases)} aliases, {len(journeys)} journeys, {len(phases)} phases, {len(favorites)} favorite experiences, {len(corrections)} audited corrections.")
