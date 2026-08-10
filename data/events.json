@@ -5,8 +5,9 @@
     "events-2011-2014.json",
     "events-2015-2017.json",
     "events-2018-2021.json",
-    "events-2022-2025.json"
+    "events-2022-2025.json",
+    "events-2026.json"
   ],
-  "event_count": 256,
+  "event_count": 265,
   "schema_version": 1
 }
