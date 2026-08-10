@@ -8,7 +8,8 @@
     "event_id": "evt-0202",
     "category": "Football",
     "description": "Watching Kansas City win Super Bowl LIV in Miami.",
-    "source_url": "https://www.alexlford.com/about"
+    "source_url": "https://www.alexlford.com/about",
+    "source_label": "Personal-site source"
   },
   {
     "key": "ku-oklahoma-triple-overtime",
@@ -19,7 +20,8 @@
     "event_id": "evt-0136",
     "category": "Basketball",
     "description": "Kansas' 109–106 triple-overtime win over Oklahoma at Allen Fieldhouse.",
-    "source_url": "https://www.alexlford.com/about"
+    "source_url": "https://www.alexlford.com/about",
+    "source_label": "Personal-site source"
   },
   {
     "key": "allen-fieldhouse-world-record",
@@ -31,19 +33,19 @@
     "category": "Basketball",
     "description": "Kansas–West Virginia at Allen Fieldhouse, when the crowd set the Guinness World Record for loudest crowd roar at an indoor sports event at 130.4 dBA.",
     "source_url": "https://www.alexlford.com/about",
+    "source_label": "Personal-site source",
     "verification_url": "https://www.guinnessworldrecords.com/world-records/loudest-crowd-roar-at-a-sports-stadium-%28indoors%29"
   },
   {
-    "key": "illinois-final-four-2005",
-    "title": "Illinois at the 2005 Final Four",
+    "key": "illinois-final-four-2026",
+    "title": "Illinois at the 2026 Final Four",
     "label": "Favorite Illinois experience",
-    "year": 2005,
-    "date": null,
-    "event_id": null,
+    "year": 2026,
+    "date": "2026-04-04",
+    "event_id": "evt-0261",
     "category": "Basketball",
-    "description": "Watching Illinois compete in the 2005 Final Four in St. Louis during its historic national runner-up season.",
-    "note": "The personal-site memory identifies the Final Four experience, but not a specific game or session, so it is intentionally not tied to a documented Sports Passport event record.",
-    "source_url": "https://www.alexlford.com/about",
-    "verification_url": "https://fightingillini.com/news/2005/3/29/Illinois_NCAA_Tournament_Final_Four_Notes"
+    "description": "Seeing Illinois play UConn in the 2026 NCAA Final Four national semifinal at Lucas Oil Stadium in Indianapolis.",
+    "source_label": "User-confirmed favorite",
+    "verification_url": "https://fightingillini.com/news/2026/4/4/mens-basketball-final-four-recap-vs-uconn"
   }
 ]

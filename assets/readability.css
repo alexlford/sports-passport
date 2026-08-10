@@ -1,6 +1,14 @@
 /* Sports Passport readability layer
    Loaded after page-specific styles by assets/sports-passport-data.js. */
-:root{--muted:#625d55}
+:root{
+  --muted:#625d55;
+  --sport-baseball:#b73b3b;
+  --sport-basketball:#d97718;
+  --sport-football:#7a4b2d;
+  --sport-soccer:#377a55;
+  --sport-hockey:#4f7f9f;
+  --sport-other:#725b86;
+}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{line-height:1.5;overflow-x:hidden}
 p{line-height:1.6}
@@ -22,12 +30,34 @@ h1,h2,h3{word-break:normal;overflow-wrap:break-word;text-wrap:balance}
 .venue{font-size:.84rem!important;line-height:1.5}
 .date span{font-size:.74rem!important;line-height:1.3}
 .barwrap span,.bar-col span{font-size:.72rem!important;line-height:1.25;transform:none!important;margin-top:8px!important}
+.bars .bar{background:var(--ink)!important}
 .pin.hot span{font-size:.68rem!important}
 .notice{line-height:1.55}
 .search{min-height:44px}
 button,input,textarea,select{font-family:inherit}
 button{min-height:44px}
 :focus-visible{outline:3px solid rgba(49,95,132,.55);outline-offset:3px}
+
+[data-sport="Baseball"],.sport-baseball{--sport-accent:var(--sport-baseball)}
+[data-sport="Basketball"],.sport-basketball{--sport-accent:var(--sport-basketball)}
+[data-sport="Football"],.sport-football{--sport-accent:var(--sport-football)}
+[data-sport="Soccer"],.sport-soccer{--sport-accent:var(--sport-soccer)}
+[data-sport="Hockey"],.sport-hockey{--sport-accent:var(--sport-hockey)}
+.event-card[data-sport]{border-top-color:var(--sport-accent,var(--sport-other))!important}
+.fav-card[data-sport]{border-top:5px solid var(--sport-accent,var(--sport-other))!important}
+.card[data-sport]{border-top:4px solid var(--sport-accent,var(--sport-other))!important}
+.sport-key{display:inline-flex;align-items:center;gap:8px}.sport-key:before{content:"";width:10px;height:10px;border-radius:50%;background:var(--sport-accent,var(--sport-other));flex:0 0 auto}
+.sport-row{position:relative;padding-left:18px!important}.sport-row:before{content:"";position:absolute;left:0;top:14px;width:8px;height:8px;border-radius:50%;background:var(--sport-accent,var(--sport-other))}
+button[data-filter="Baseball"]{border-color:var(--sport-baseball)!important;color:var(--sport-baseball)}
+button[data-filter="Basketball"]{border-color:var(--sport-basketball)!important;color:var(--sport-basketball)}
+button[data-filter="Football"]{border-color:var(--sport-football)!important;color:var(--sport-football)}
+button[data-filter="Soccer"]{border-color:var(--sport-soccer)!important;color:var(--sport-soccer)}
+button[data-filter="Hockey"]{border-color:var(--sport-hockey)!important;color:var(--sport-hockey)}
+button[data-filter="Baseball"].active{background:var(--sport-baseball)!important;color:#fff!important}
+button[data-filter="Basketball"].active{background:var(--sport-basketball)!important;color:#fff!important}
+button[data-filter="Football"].active{background:var(--sport-football)!important;color:#fff!important}
+button[data-filter="Soccer"].active{background:var(--sport-soccer)!important;color:#fff!important}
+button[data-filter="Hockey"].active{background:var(--sport-hockey)!important;color:#fff!important}
 
 @media(max-width:760px){
   .top,.topbar{align-items:flex-start!important;flex-direction:column!important;gap:10px!important}

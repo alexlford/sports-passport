@@ -72,7 +72,7 @@ for f in favorites:
     if not key: errors.append("favorite experience missing key")
     elif key in favorite_keys: errors.append(f"duplicate favorite experience key {key}")
     favorite_keys.add(key)
-    for field in ("title","label","year","category","description","source_url"):
+    for field in ("title","label","year","category","description","source_label"):
         if not f.get(field): errors.append(f'{key or "<favorite>"}: missing {field}')
     event_id=f.get("event_id")
     if event_id and event_id not in ids: errors.append(f'{key}: unknown event_id {event_id}')
