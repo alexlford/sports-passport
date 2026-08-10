@@ -35,11 +35,20 @@ window.SportsPassportData = (() => {
         return events;
       }
       if (name === "venues" && Array.isArray(value)) {
+        let venues = value;
+        try {
+          const additions = await fetch("data/venue-additions.json", {cache:"no-store"}).then(x => x.ok ? x.json() : ([]));
+          if (Array.isArray(additions) && additions.length) {
+            const byKey = new Map(venues.map(v => [v.key, v]));
+            additions.forEach(v => byKey.set(v.key, {...(byKey.get(v.key)||{}), ...v}));
+            venues = [...byKey.values()];
+          }
+        } catch (_) {}
         try {
           const corrections = await fetch("data/venue-corrections.json", {cache:"no-store"}).then(x => x.ok ? x.json() : ({}));
-          return value.map(v => corrections[v.key] ? {...v, ...corrections[v.key], city: normalizeCity(corrections[v.key].city || v.city)} : {...v, city: normalizeCity(v.city)});
+          return venues.map(v => corrections[v.key] ? {...v, ...corrections[v.key], city: normalizeCity(corrections[v.key].city || v.city)} : {...v, city: normalizeCity(v.city)});
         } catch (_) {
-          return value.map(v => ({...v, city: normalizeCity(v.city)}));
+          return venues.map(v => ({...v, city: normalizeCity(v.city)}));
         }
       }
       return value;
