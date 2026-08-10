@@ -23,6 +23,7 @@ venue_additions=load_json("venue-additions.json", optional=True) or []
 journeys=load_json("journeys.json") or []
 phases=load_json("phases.json") or []
 favorites=load_json("favorite-experiences.json", optional=True) or []
+curated_rankings=load_json("curated-rankings.json", optional=True) or {}
 team_colors=load_json("team-colors.json", optional=True) or {}
 team_aliases=load_json("team-aliases.json", optional=True) or {}
 config=load_json("config.json") or {}
@@ -34,6 +35,9 @@ if not isinstance(venue_additions,list):
 if not isinstance(favorites,list):
     errors.append("data/favorite-experiences.json must contain an array")
     favorites=[]
+if not isinstance(curated_rankings,dict):
+    errors.append("data/curated-rankings.json must contain an object")
+    curated_rankings={}
 if not isinstance(team_colors,dict):
     errors.append("data/team-colors.json must contain an object keyed by exact archive team name")
     team_colors={}
@@ -66,6 +70,15 @@ for e in events:
     if eid in ids: errors.append(f"duplicate event id {eid}")
     ids.add(eid)
     if e.get("venue_key") and e.get("venue_key") not in venue_keys: errors.append(f'{eid}: unknown venue_key {e.get("venue_key")}')
+    status=e.get("attendance_status")
+    year=e.get("year")
+    if isinstance(year,int) and year < 2006:
+        if status not in {"verified","notional"}:
+            errors.append(f'{eid}: pre-2006 event must declare attendance_status verified or notional')
+        if status == "verified" and not e.get("verification"):
+            errors.append(f'{eid}: verified pre-2006 event must include verification evidence')
+    elif status is not None and status not in {"verified","notional"}:
+        errors.append(f'{eid}: attendance_status must be verified or notional when present')
 
 for eid, patch in corrections.items():
     if eid not in ids: errors.append(f"correction references unknown event {eid}")
@@ -84,6 +97,25 @@ for f in favorites:
         if not f.get(field): errors.append(f'{key or "<favorite>"}: missing {field}')
     event_id=f.get("event_id")
     if event_id and event_id not in ids: errors.append(f'{key}: unknown event_id {event_id}')
+
+# Curated lists are intentional Top 10s. Validate their shape so future edits cannot silently break rank order.
+ranking_keys=("sports_experiences","favorite_venues","best_venues")
+if curated_rankings:
+    for key in ranking_keys:
+        items=curated_rankings.get(key)
+        if not isinstance(items,list):
+            errors.append(f'curated-rankings.json {key} must contain an array')
+            continue
+        if len(items)!=10:
+            errors.append(f'curated-rankings.json {key} must contain exactly 10 entries')
+        ranks=[item.get("rank") for item in items if isinstance(item,dict)]
+        if ranks != list(range(1,11)):
+            errors.append(f'curated-rankings.json {key} ranks must be ordered 1 through 10')
+        titles=[item.get("title") for item in items if isinstance(item,dict)]
+        if any(not isinstance(title,str) or not title.strip() for title in titles):
+            errors.append(f'curated-rankings.json {key} entries must have non-empty titles')
+        if len(titles)!=len(set(titles)):
+            errors.append(f'curated-rankings.json {key} contains duplicate titles')
 
 # Source team labels remain immutable in event records. Aliases create a separate canonical identity layer.
 archive_teams=sorted({team for e in events for team in (e.get("teams") or []) if isinstance(team,str) and team.strip()})
@@ -132,4 +164,5 @@ if config.get("venue_count") is not None and config.get("venue_count")!=len(all_
 if errors:
     print("\n".join("ERROR: "+x for x in errors))
     sys.exit(1)
-print(f"OK: {len(events)} events in {len(chunks)} chunks, {len(all_venues)} venues ({len(venue_additions)} incremental), {len(archive_teams)} source team labels -> {len(canonical_teams)} canonical teams via {len(team_aliases)} aliases, {len(journeys)} journeys, {len(phases)} phases, {len(favorites)} favorite experiences, {len(corrections)} audited corrections.")
+ranking_count=sum(1 for key in ranking_keys if isinstance(curated_rankings.get(key),list))
+print(f"OK: {len(events)} events in {len(chunks)} chunks, {len(all_venues)} venues ({len(venue_additions)} incremental), {len(archive_teams)} source team labels -> {len(canonical_teams)} canonical teams via {len(team_aliases)} aliases, {len(journeys)} journeys, {len(phases)} phases, {len(favorites)} favorite experiences, {ranking_count} curated Top 10 rankings, {len(corrections)} audited corrections.")
