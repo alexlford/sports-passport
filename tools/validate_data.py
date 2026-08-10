@@ -22,12 +22,16 @@ venues=load_json("venues.json") or []
 venue_additions=load_json("venue-additions.json", optional=True) or []
 journeys=load_json("journeys.json") or []
 phases=load_json("phases.json") or []
+favorites=load_json("favorite-experiences.json", optional=True) or []
 config=load_json("config.json") or {}
 corrections=load_json("corrections.json") or {}
 
 if not isinstance(venue_additions,list):
     errors.append("data/venue-additions.json must contain an array")
     venue_additions=[]
+if not isinstance(favorites,list):
+    errors.append("data/favorite-experiences.json must contain an array")
+    favorites=[]
 
 # New-season venue records override an existing key if one is intentionally refreshed.
 venue_by_key={v.get("key"):v for v in venues if isinstance(v,dict) and v.get("key")}
@@ -59,6 +63,20 @@ for eid, patch in corrections.items():
     if eid not in ids: errors.append(f"correction references unknown event {eid}")
     if not isinstance(patch,dict): errors.append(f"correction for {eid} must be an object")
 
+favorite_keys=set()
+for f in favorites:
+    if not isinstance(f,dict):
+        errors.append("favorite-experiences.json contains a non-object entry")
+        continue
+    key=f.get("key")
+    if not key: errors.append("favorite experience missing key")
+    elif key in favorite_keys: errors.append(f"duplicate favorite experience key {key}")
+    favorite_keys.add(key)
+    for field in ("title","label","year","category","description","source_url"):
+        if not f.get(field): errors.append(f'{key or "<favorite>"}: missing {field}')
+    event_id=f.get("event_id")
+    if event_id and event_id not in ids: errors.append(f'{key}: unknown event_id {event_id}')
+
 slugs=[v.get("slug") for v in all_venues]
 if len(slugs)!=len(set(slugs)): errors.append("duplicate venue slug")
 if len({j.get("key") for j in journeys})!=len(journeys): errors.append("duplicate journey key")
@@ -71,4 +89,4 @@ if config.get("venue_count") is not None and config.get("venue_count")!=len(all_
 if errors:
     print("\n".join("ERROR: "+x for x in errors))
     sys.exit(1)
-print(f"OK: {len(events)} events in {len(chunks)} chunks, {len(all_venues)} venues ({len(venue_additions)} incremental), {len(journeys)} journeys, {len(phases)} phases, {len(corrections)} audited corrections.")
+print(f"OK: {len(events)} events in {len(chunks)} chunks, {len(all_venues)} venues ({len(venue_additions)} incremental), {len(journeys)} journeys, {len(phases)} phases, {len(favorites)} favorite experiences, {len(corrections)} audited corrections.")
