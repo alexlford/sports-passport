@@ -23,6 +23,8 @@ Do not upgrade a notional record to verified without evidence or direct user con
 
 Aggregate archive views may include both verified/documented and notional records, but they must call those counts **archive records/visits/appearances** and explain the confidence policy. Objective Hall of Fame records and team win/loss records exclude notional reconstructions.
 
+Use the shared helpers in `assets/sports-passport-data.js` when a view needs confidence logic: `isConfirmedEvent`, `confirmedEvents`, `isNotionalEvent`, `notionalEvents`, and `confidenceLabel`. Do not create a competing definition of “confirmed” in a new page.
+
 ## Venue-name fact lock
 
 `venue_recorded` is a source fact. Keep the exact venue name supplied by the attendance source, even when a different naming-rights name was historically in use on the event date.
@@ -72,6 +74,8 @@ Each list must contain exactly ten entries ordered with ranks 1 through 10. Thes
 
 Every `sports_experiences` entry must include the exact archive `event_id`. This keeps the editorial ranking connected to the factual event record and lets the site link each ranked experience back to its annual edition.
 
+`data/favorite-experiences.json` is the source-backed favorite seed set (personal-site favorites and directly confirmed favorites), not the complete public ranking. Every source favorite must remain represented in the curated Top 10, and its event date/year must agree with its referenced archive event.
+
 The favorite-venue list intentionally permits editorial groupings that are broader than a single physical `venue_key`, such as `Busch Stadium` across stadium generations and `SIU — Arena & Football Stadium` as a personal-place grouping.
 
 ## Dynamic views
@@ -84,6 +88,7 @@ Run:
 
 ```bash
 python tools/validate_data.py
+python tools/validate_site.py
 ```
 
-The validator checks event IDs, venue keys, archive counts, team palettes and aliases, early-record attendance confidence, exact Top 10 event links, dynamic-view coverage, journey/phase uniqueness, source favorites, and correction references.
+The validators check event IDs, venue keys, archive counts, team palettes and aliases, early-record attendance confidence, exact Top 10 event links, source-favorite provenance, dynamic-view coverage, local page/resource references, JavaScript syntax, journey/phase uniqueness, and correction references.
