@@ -2,6 +2,7 @@
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
+import json
 import re
 import subprocess
 import sys
@@ -81,6 +82,8 @@ with tempfile.TemporaryDirectory() as tmp:
 robots=ROOT/"robots.txt"
 sitemap=ROOT/"sitemap.xml"
 not_found=ROOT/"404.html"
+favicon=ROOT/"favicon.svg"
+manifest=ROOT/"site.webmanifest"
 if not robots.is_file():
     errors.append("missing robots.txt")
 else:
@@ -97,6 +100,43 @@ else:
         errors.append("404.html must be noindex")
     if 'href="index.html"' not in not_found_text:
         errors.append("404.html must provide a path back to the archive home")
+    if 'href="favicon.svg"' not in not_found_text:
+        errors.append("404.html must use the Sports Passport favicon")
+
+if not favicon.is_file():
+    errors.append("missing favicon.svg")
+else:
+    try:
+        ET.parse(favicon)
+    except Exception as exc:
+        errors.append(f"favicon.svg parse error: {exc}")
+
+if not manifest.is_file():
+    errors.append("missing site.webmanifest")
+else:
+    try:
+        manifest_data=json.loads(manifest.read_text(encoding="utf-8"))
+        for field in ("name","short_name","start_url","display","background_color","theme_color"):
+            if not manifest_data.get(field):
+                errors.append(f"site.webmanifest missing {field}")
+    except Exception as exc:
+        errors.append(f"site.webmanifest parse error: {exc}")
+
+shared_js=ROOT/"assets"/"sports-passport-data.js"
+if not shared_js.is_file():
+    errors.append("missing shared Sports Passport data/runtime script")
+else:
+    shared_text=shared_js.read_text(encoding="utf-8")
+    for token,label in (
+        ("favicon.svg","shared favicon injection"),
+        ("og:title","Open Graph title metadata"),
+        ("og:description","Open Graph description metadata"),
+        ("og:url","Open Graph canonical URL metadata"),
+        ("twitter:card","Twitter card metadata"),
+        ("upsertLink('canonical'","canonical-link metadata"),
+    ):
+        if token not in shared_text:
+            errors.append(f"shared runtime missing {label}")
 
 sitemap_urls=[]
 if not sitemap.is_file():
@@ -139,5 +179,6 @@ if errors:
     sys.exit(1)
 print(
     f"OK: {len(html_files)} HTML pages, {len(js_files)} shared JS files, local references, data loads, "
-    f"inline JavaScript syntax, branded 404 recovery, robots.txt, and {len(sitemap_urls)} sitemap URLs validated."
+    f"inline JavaScript syntax, publication metadata, favicon/manifest, branded 404 recovery, robots.txt, "
+    f"and {len(sitemap_urls)} sitemap URLs validated."
 )
