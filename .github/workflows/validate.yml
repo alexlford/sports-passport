@@ -29,5 +29,7 @@ jobs:
         run: python tools/validate_artifacts.py
       - name: Validate clean public URLs
         run: python tools/validate_clean_urls.py
+      - name: Validate public storytelling polish
+        run: python tools/validate_public_copy.py
       - name: Validate site integrity
         run: python tools/validate_site.py
