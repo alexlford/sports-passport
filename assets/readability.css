@@ -21,6 +21,7 @@ h1,h2,h3{word-break:normal;overflow-wrap:break-word;text-wrap:balance}
 .stat span{font-size:.74rem!important;line-height:1.35}
 .card p,.year-card span:nth-child(2){font-size:.9rem!important;line-height:1.55}
 .card b,.year-card b{font-size:.73rem!important;line-height:1.35}
+.cards>a.card,.portal,.chapter-card,.my-team-card{touch-action:manipulation}
 .leader{display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:start!important;line-height:1.45}
 .leader>span,.leader>div{min-width:0;word-break:normal;overflow-wrap:break-word}
 .leader>strong{white-space:nowrap;text-align:right;padding-left:10px}
@@ -37,6 +38,8 @@ h1,h2,h3{word-break:normal;overflow-wrap:break-word;text-wrap:balance}
 .pin.hot span{font-size:.68rem!important}
 .notice{line-height:1.55}
 .search{min-height:44px}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 18px}
+.filter-row button{padding:8px 12px;border-radius:999px;white-space:nowrap}
 button,input,textarea,select{font-family:inherit}
 button{min-height:44px}
 :focus-visible{outline:3px solid rgba(49,95,132,.55);outline-offset:3px}
@@ -76,6 +79,9 @@ button[data-filter="Hockey"].active{background:var(--sport-hockey)!important;col
   .stat span{font-size:.7rem!important;letter-spacing:.04em!important}
   .section{margin:42px 0!important}
   .panel,.card{padding:18px!important}
+  .cards{gap:10px!important}
+  .filter-row{width:100%;max-width:100%;overflow-x:auto;flex-wrap:nowrap!important;padding:2px 0 8px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+  .filter-row button{flex:0 0 auto;min-height:44px}
   .analytics{gap:12px!important}
   .analytics .panel{overflow:hidden}
   .analytics h3{margin-top:0;line-height:1.2}
@@ -96,7 +102,9 @@ button[data-filter="Hockey"].active{background:var(--sport-hockey)!important;col
   .stamp{width:auto!important;min-width:0!important;min-height:92px!important;padding:14px!important}
   .stamp b{font-size:.95rem!important;line-height:1.22!important}
   input,textarea,select{font-size:16px!important}
+  .search{width:100%!important;max-width:none!important}
   .map-shell{min-height:360px}
+  .leaflet-popup-content{max-width:min(72vw,280px)}
   .tip{font-size:.92rem!important}
   .ranking-item{grid-template-columns:32px minmax(0,1fr)!important}
   .ranking-item strong,.ranking-item small{overflow-wrap:break-word;word-break:normal}
