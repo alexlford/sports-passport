@@ -43,6 +43,11 @@ def check_ref(source, value):
     if not target.exists():
         errors.append(f"{source.name}: missing local reference {value}")
 
+def team_slug(value):
+    value=value.lower().replace("&","and")
+    value=re.sub(r"[^a-z0-9]+","-",value)
+    return value.strip("-")
+
 # Validate static local href/src targets and data loader references.
 load_re=re.compile(r"\bD\.load\(\s*['\"]([^'\"]+)['\"]\s*\)")
 for html in html_files:
@@ -148,6 +153,7 @@ else:
         sitemap_urls=[node.text.strip() for node in tree.findall("sm:url/sm:loc",ns) if node.text and node.text.strip()]
     except Exception as exc:
         errors.append(f"sitemap.xml parse error: {exc}")
+
     required_urls={
         f"{PUBLIC_ORIGIN}/",
         f"{PUBLIC_ORIGIN}/annuals.html",
@@ -160,9 +166,48 @@ else:
         f"{PUBLIC_ORIGIN}/venue-map.html",
         f"{PUBLIC_ORIGIN}/venues.html",
     }
+
+    # Every annual edition, life chapter, and recurring journey should be directly discoverable.
+    try:
+        config=json.loads((ROOT/"data"/"config.json").read_text(encoding="utf-8"))
+        start=int(config["archive_start_year"])
+        current=int(config["current_year"])
+        required_urls.update(f"{PUBLIC_ORIGIN}/year.html?y={year}" for year in range(start,current+1))
+    except Exception as exc:
+        errors.append(f"could not derive annual sitemap URLs: {exc}")
+    try:
+        phases=json.loads((ROOT/"data"/"phases.json").read_text(encoding="utf-8"))
+        required_urls.update(f"{PUBLIC_ORIGIN}/phase.html?p={p['key']}" for p in phases if p.get("key"))
+    except Exception as exc:
+        errors.append(f"could not derive life-chapter sitemap URLs: {exc}")
+    try:
+        journeys=json.loads((ROOT/"data"/"journeys.json").read_text(encoding="utf-8"))
+        required_urls.update(f"{PUBLIC_ORIGIN}/journey-profile.html?j={j['key']}" for j in journeys if j.get("key"))
+    except Exception as exc:
+        errors.append(f"could not derive journey sitemap URLs: {exc}")
+
+    # Personal Canon content gets explicit sitemap priority: favorite teams and every ranked venue identity.
+    try:
+        lore=json.loads((ROOT/"data"/"team-lore.json").read_text(encoding="utf-8"))
+        favorite_teams=[team for team,data in lore.items() if isinstance(data,dict) and data.get("favorite")]
+        required_urls.update(f"{PUBLIC_ORIGIN}/team-profile.html?t={team_slug(team)}" for team in favorite_teams)
+    except Exception as exc:
+        errors.append(f"could not derive favorite-team sitemap URLs: {exc}")
+    try:
+        rankings=json.loads((ROOT/"data"/"curated-rankings.json").read_text(encoding="utf-8"))
+        ranked_slugs={
+            slug
+            for list_name in ("favorite_venues","best_venues")
+            for item in rankings.get(list_name,[])
+            for slug in item.get("venue_slugs",[])
+        }
+        required_urls.update(f"{PUBLIC_ORIGIN}/venue-profile.html?v={slug}" for slug in ranked_slugs)
+    except Exception as exc:
+        errors.append(f"could not derive ranked-venue sitemap URLs: {exc}")
+
     missing=sorted(required_urls-set(sitemap_urls))
     if missing:
-        errors.append("sitemap.xml missing core public URLs: " + " | ".join(missing))
+        errors.append("sitemap.xml missing required public URLs: " + " | ".join(missing))
     for url in sitemap_urls:
         parsed=urlsplit(url)
         if f"{parsed.scheme}://{parsed.netloc}" != PUBLIC_ORIGIN:
@@ -180,5 +225,5 @@ if errors:
 print(
     f"OK: {len(html_files)} HTML pages, {len(js_files)} shared JS files, local references, data loads, "
     f"inline JavaScript syntax, publication metadata, favicon/manifest, branded 404 recovery, robots.txt, "
-    f"and {len(sitemap_urls)} sitemap URLs validated."
+    f"and {len(sitemap_urls)} sitemap URLs validated against archive/editorial data."
 )
