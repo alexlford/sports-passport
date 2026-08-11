@@ -96,6 +96,12 @@ window.SportsPassportData = (() => {
     const source = Object.keys(teamAliases).find(label => teamAliases[label] === team && teamColors?.[label]);
     return source ? teamColors[source] : null;
   };
+  const venueByKey = (venues,key) => (venues || []).find(v => v.key === key) || null;
+  const venueName = (venues,key,fallback="Venue not recorded") => venueByKey(venues,key)?.display_name || fallback;
+  const venueHref = (venues,key) => {
+    const venue = venueByKey(venues,key);
+    return venue?.slug ? `venue-profile.html?v=${encodeURIComponent(venue.slug)}` : null;
+  };
   const venueEvents = (events,key) => events.filter(e => e.venue_key === key);
   const yearEvents = (events,year) => events.filter(e => Number(e.year) === Number(year));
   const teamEvents = (events,team) => events.filter(e => eventTeams(e).includes(team));
@@ -213,5 +219,5 @@ window.SportsPassportData = (() => {
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 
-  return {load,slug,score,matchup,counts,normalizeCity,isNotionalEvent,isVerifiedEvent,isConfirmedEvent,confirmedEvents,notionalEvents,confidenceLabel,canonicalTeam,eventTeams,teamPalette,venueEvents,yearEvents,teamEvents,phaseEvents,journeyEvents,recordForTeam,enhanceDensity};
+  return {load,slug,score,matchup,counts,normalizeCity,isNotionalEvent,isVerifiedEvent,isConfirmedEvent,confirmedEvents,notionalEvents,confidenceLabel,canonicalTeam,eventTeams,teamPalette,venueByKey,venueName,venueHref,venueEvents,yearEvents,teamEvents,phaseEvents,journeyEvents,recordForTeam,enhanceDensity};
 })();
