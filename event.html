@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Event Passport | Sports Passport</title>
+  <meta name="description" content="An exact game record from Alex Ford's Sports Passport archive.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .event-hero{border-top:7px solid var(--event-accent,#b7443a)}
+    .event-hero h1{max-width:980px;font-size:clamp(3rem,8vw,6.4rem)}
+    .status-row{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+    .status-chip{display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:#fffdf8;font-size:.7rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+    .status-chip.top10{background:#fff1cf;color:#76520b;border-color:#e4cf96}.status-chip.notional{background:#eee8f2;color:#654875}.status-chip.verified{background:#e6f2e9;color:#255d38}
+    .scoreboard{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;margin-top:26px;padding:22px;border:1px solid var(--line);border-radius:22px;background:#fffdf8c9}
+    .team-side{min-width:0}.team-side:last-child{text-align:right}.team-name{display:block;font:900 clamp(1.35rem,3vw,2.2rem)/1.05 var(--serif);text-decoration:none;overflow-wrap:anywhere}.team-name:hover{text-decoration:underline}.team-score{display:block;margin-top:8px;font:900 clamp(2.6rem,7vw,4.8rem)/.9 var(--serif)}.versus{font-size:.7rem;font-weight:950;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+    .context-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.context-card{display:block;padding:20px;border:1px solid var(--line);border-radius:18px;background:#fffdf8;text-decoration:none}.context-card:hover h3{text-decoration:underline}.context-card h3{margin:.35rem 0 .4rem;font-size:1.35rem}.context-card p{margin:0;color:var(--muted);line-height:1.45;font-size:.86rem}.context-card .open{display:block;margin-top:12px;font-size:.72rem;font-weight:900;color:var(--red)}
+    .record-panel{padding:24px;border:1px solid var(--line);border-radius:20px;background:#fffdf8c9}.record-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px}.record-row{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}.record-row span{color:var(--muted)}.record-row strong{text-align:right;overflow-wrap:anywhere}
+    .journey-links{display:flex;flex-wrap:wrap;gap:8px}.journey-links a{min-height:38px;display:inline-flex;align-items:center;padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:#fffdf8;text-decoration:none;font-size:.76rem;font-weight:850}.journey-links a:hover{text-decoration:underline}
+    .archive-nav{display:grid;grid-template-columns:1fr 1fr;gap:14px}.archive-nav a{display:block;padding:18px;border:1px solid var(--line);border-radius:18px;background:#fffdf8;text-decoration:none}.archive-nav a:last-child{text-align:right}.archive-nav span{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase;font-weight:900;letter-spacing:.08em}.archive-nav strong{display:block;margin-top:5px;font:900 1.1rem/1.2 var(--serif)}
+    .missing{max-width:760px}.missing .cta{display:inline-flex;margin-top:16px;min-height:44px;align-items:center;padding:9px 13px;border:1px solid var(--line);border-radius:999px;background:#fffdf8;text-decoration:none;font-weight:850}
+    @media(max-width:800px){.context-grid{grid-template-columns:1fr 1fr}.record-list{grid-template-columns:1fr}}
+    @media(max-width:600px){.scoreboard{grid-template-columns:1fr auto 1fr;padding:16px;gap:10px}.context-grid{grid-template-columns:1fr}.archive-nav{grid-template-columns:1fr}.archive-nav a:last-child{text-align:left}.team-score{font-size:2.7rem}.team-name{font-size:1.1rem}}
+  </style>
+</head>
+<body>
+<main class="shell">
+  <header></header>
+  <div id="app"></div>
+  <footer></footer>
+</main>
+<script src="assets/sports-passport-data.js"></script>
+<script>
+(async()=>{
+  const D=window.SportsPassportData;
+  const [events,venues,rankings,journeys]=await Promise.all([D.load('events'),D.load('venues'),D.load('curated-rankings'),D.load('journeys')]);
+  const id=new URLSearchParams(location.search).get('id');
+  const app=document.querySelector('#app');
+  const event=events.find(e=>e.id===id);
+  if(!event){
+    document.title='Event not found | Sports Passport';
+    app.innerHTML='<section class="hero missing"><div class="kicker">Exact archive record</div><h1>Event not found.</h1><div class="deck">This event identifier does not resolve to a record in the Sports Passport archive.</div><a class="cta" href="annuals.html">Browse annual editions →</a></section>';
+    return;
+  }
+
+  const sorted=[...events].sort((a,b)=>a.date.localeCompare(b.date)||a.id.localeCompare(b.id));
+  const index=sorted.findIndex(e=>e.id===event.id),prev=sorted[index-1],next=sorted[index+1];
+  const venue=D.venueByKey(venues,event.venue_key),canonical=D.eventTeams(event),rank=(rankings.sports_experiences||[]).find(r=>r.event_id===event.id);
+  const colors={Baseball:'#b73b3b',Basketball:'#d97718',Football:'#7a4b2d',Hockey:'#4f7f9f',Soccer:'#377a55',Other:'#725b86'},accent=colors[event.sport]||colors.Other;
+  const date=new Date(event.date+'T12:00:00'),dateLabel=isNaN(date)?event.date:date.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  const scoreKnown=Array.isArray(event.scores)&&event.scores.length===2&&event.scores.every(Number.isFinite);
+  const evidence=(()=>{const s=String(event.source||'').toLowerCase();if(s.includes('ticket'))return'Ticket-stub evidence';if(s.includes('screenshot'))return'Attendance record';if(s.includes('direct')||s.includes('confirm'))return'Direct confirmation';if(D.isVerifiedEvent(event))return'Verified archive evidence';if(D.isNotionalEvent(event))return'Reconstructed early archive';return'Documented archive record'})();
+  const matchingJourneys=(journeys||[]).filter(j=>D.journeyEvents([event],j).length);
+  const venueName=venue?.display_name||event.venue_recorded||'Venue not recorded',venueHref=venue?.slug?`venue-profile.html?v=${encodeURIComponent(venue.slug)}`:'venues.html';
+  const confidence=D.confidenceLabel(event);
+  const title=rank?`${rank.title} | Sports Passport`:`${D.matchup(event)} | Sports Passport`;
+  const description=`${D.matchup(event)}${D.score(event)?` ${D.score(event)}`:''} · ${dateLabel} · ${venueName} · ${event.city||''}`;
+  document.title=title;
+  const canonicalUrl=`https://sports.alexlford.com/event.html?id=${encodeURIComponent(event.id)}`;
+  const upsert=(attr,key,value)=>{let el=document.head.querySelector(`meta[${attr}="${key}"]`);if(!el){el=document.createElement('meta');el.setAttribute(attr,key);document.head.appendChild(el)}el.setAttribute('content',value)};
+  upsert('name','description',description);upsert('property','og:title',title);upsert('property','og:description',description);upsert('property','og:url',canonicalUrl);upsert('name','twitter:title',title);upsert('name','twitter:description',description);
+  let canonicalLink=document.head.querySelector('link[rel="canonical"]');if(!canonicalLink){canonicalLink=document.createElement('link');canonicalLink.rel='canonical';document.head.appendChild(canonicalLink)}canonicalLink.href=canonicalUrl;
+
+  const scoreSide=(team,i)=>`<div class="team-side"><a class="team-name" href="team-profile.html?t=${encodeURIComponent(D.slug(canonical[i]||team))}">${team}</a><span class="team-score">${scoreKnown?event.scores[i]:'—'}</span></div>`;
+  const context=[
+    `<a class="context-card" href="year.html?y=${event.year}"><div class="kicker">Annual edition</div><h3>${event.year}</h3><p>See this game in the context of the full season.</p><span class="open">Open ${event.year} →</span></a>`,
+    `<a class="context-card" href="${venueHref}"><div class="kicker">Venue</div><h3>${venueName}</h3><p>${event.city||venue?.city||''}</p><span class="open">Open venue profile →</span></a>`,
+    rank?`<a class="context-card" href="favorites.html#top-experiences"><div class="kicker">Personal Canon</div><h3>#${rank.rank} overall</h3><p>${rank.detail||rank.title}</p><span class="open">Open Top 10 →</span></a>`:`<a class="context-card" href="hall-of-fame.html"><div class="kicker">Archive context</div><h3>Hall of Fame</h3><p>Compare this game with confirmed archive leaders and signature moments.</p><span class="open">Open Hall of Fame →</span></a>`
+  ];
+
+  const navCard=(e,label)=>e?`<a href="event.html?id=${encodeURIComponent(e.id)}"><span>${label}</span><strong>${D.matchup(e)} · ${e.date}</strong></a>`:'<div></div>';
+  app.innerHTML=`<section class="hero event-hero" style="--event-accent:${accent}"><div class="kicker">Exact archive record · ${event.sport}${event.league?` · ${event.league}`:''}</div><h1>${rank?rank.title:D.matchup(event)}</h1><div class="deck">${dateLabel} · ${venueName}${event.city?` · ${event.city}`:''}</div><div class="status-row">${rank?`<span class="status-chip top10">Top 10 · #${rank.rank}</span>`:''}<span class="status-chip ${D.isNotionalEvent(event)?'notional':D.isVerifiedEvent(event)?'verified':''}">${confidence}</span><span class="status-chip">${evidence}</span></div><div class="scoreboard">${scoreSide(event.teams?.[0]||'Team 1',0)}<span class="versus">vs</span>${scoreSide(event.teams?.[1]||'Team 2',1)}</div></section><section class="section"><div class="head"><div><div class="kicker">Connected record</div><h2>Where this game lives.</h2></div><p>This exact event is the archive node connecting its season, teams, venue, and any Personal Canon or recurring-journey context.</p></div><div class="context-grid">${context.join('')}</div></section><section class="section record-panel"><div class="kicker">Event passport</div><h2>Record details</h2><div class="record-list"><div class="record-row"><span>Date</span><strong>${dateLabel}</strong></div><div class="record-row"><span>Sport / league</span><strong>${event.sport}${event.league?` · ${event.league}`:''}</strong></div><div class="record-row"><span>Venue</span><strong>${venueName}</strong></div><div class="record-row"><span>City</span><strong>${event.city||'—'}</strong></div><div class="record-row"><span>Archive confidence</span><strong>${confidence}</strong></div><div class="record-row"><span>Evidence class</span><strong>${evidence}</strong></div></div>${matchingJourneys.length?`<div style="margin-top:20px"><div class="kicker">Recurring journeys</div><div class="journey-links" style="margin-top:10px">${matchingJourneys.map(j=>`<a href="journey-profile.html?j=${encodeURIComponent(j.key)}">${j.title} →</a>`).join('')}</div></div>`:''}</section><section class="section"><div class="head"><div><div class="kicker">Archive sequence</div><h2>Before and after.</h2></div><p>Move chronologically through the complete Sports Passport event archive.</p></div><div class="archive-nav">${navCard(prev,'Previous event')}${navCard(next,'Next event')}</div></section>`;
+})();
+</script>
+</body>
+</html>
