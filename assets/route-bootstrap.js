@@ -1,36 +1,57 @@
 (() => {
   const parts = location.pathname.split('/').filter(Boolean).map(decodeURIComponent);
   const first = parts[0] || '';
+  const publicQuery = new URLSearchParams(location.search);
   let template = null;
   let params = {};
   let dynamic = false;
 
-  if (first === 'about' && parts.length === 1) template = 'about.html';
-  else if (first === 'years' && parts.length === 1) template = 'annuals.html';
-  else if (first === 'years' && parts[1]) { template = 'year.html'; params = {y: parts[1]}; dynamic = true; }
-  else if (first === 'events' && parts[1]) { template = 'event.html'; params = {id: parts[1]}; dynamic = true; }
-  else if (first === 'teams' && parts.length === 1) template = 'teams.html';
-  else if (first === 'teams' && parts[1]) { template = 'team-profile.html'; params = {t: parts[1]}; dynamic = true; }
-  else if (first === 'venues' && parts.length === 1) template = 'venues.html';
-  else if (first === 'venues' && parts[1]) { template = 'venue-profile.html'; params = {v: parts[1]}; dynamic = true; }
-  else if (first === 'geography' && parts.length === 1) template = 'geography.html';
+  if (first === 'about') template = 'about.html';
+  else if (first === 'years') {
+    const year = publicQuery.get('year') || parts[1];
+    if (year) { template = 'year.html'; params = {y: year}; dynamic = true; }
+    else template = 'annuals.html';
+  }
+  else if (first === 'events') {
+    const event = publicQuery.get('event') || publicQuery.get('id') || parts[1];
+    if (event) { template = 'event.html'; params = {id: event}; dynamic = true; }
+  }
+  else if (first === 'teams') {
+    const team = publicQuery.get('team') || parts[1];
+    if (team) { template = 'team-profile.html'; params = {t: team}; dynamic = true; }
+    else template = 'teams.html';
+  }
+  else if (first === 'venues') {
+    const venue = publicQuery.get('venue') || parts[1];
+    if (venue) { template = 'venue-profile.html'; params = {v: venue}; dynamic = true; }
+    else template = 'venues.html';
+  }
   else if (first === 'geography' && parts[1] === 'map') template = 'venue-map.html';
-  else if (first === 'journeys' && parts.length === 1) template = 'journeys.html';
-  else if (first === 'journeys' && parts[1]) { template = 'journey-profile.html'; params = {j: parts[1]}; dynamic = true; }
-  else if (first === 'chapters' && parts[1]) { template = 'phase.html'; params = {p: parts[1]}; dynamic = true; }
-  else if (first === 'favorites' && parts.length === 1) template = 'favorites.html';
-  else if (first === 'analytics' && parts.length === 1) template = 'lifetime-analytics.html';
-  else if (first === 'hall-of-fame' && parts.length === 1) template = 'hall-of-fame.html';
+  else if (first === 'geography') template = 'geography.html';
+  else if (first === 'journeys') {
+    const journey = publicQuery.get('journey') || parts[1];
+    if (journey) { template = 'journey-profile.html'; params = {j: journey}; dynamic = true; }
+    else template = 'journeys.html';
+  }
+  else if (first === 'chapters') {
+    const chapter = publicQuery.get('chapter') || parts[1];
+    if (chapter) { template = 'phase.html'; params = {p: chapter}; dynamic = true; }
+    else template = 'journeys.html';
+  }
+  else if (first === 'favorites') template = 'favorites.html';
+  else if (first === 'analytics') template = 'lifetime-analytics.html';
+  else if (first === 'hall-of-fame') template = 'hall-of-fame.html';
 
   if (!template) return;
 
   const cleanPath = location.pathname.endsWith('/') ? location.pathname : `${location.pathname}/`;
+  const cleanPublicUrl = `${cleanPath}${location.search || ''}`;
   window.SPORTS_CLEAN_ROUTE = true;
-  window.SPORTS_ROUTE_CLEAN_PATH = cleanPath;
+  window.SPORTS_ROUTE_PUBLIC_URL = cleanPublicUrl;
   window.SPORTS_ROUTE_PARAMS = params;
 
-  const query = new URLSearchParams(params).toString();
-  if (query) history.replaceState(null, '', `${cleanPath}?${query}`);
+  const legacyQuery = new URLSearchParams(params).toString();
+  if (legacyQuery) history.replaceState(null, '', `${cleanPath}?${legacyQuery}`);
 
   fetch(`/${template}`, {cache:'no-store'})
     .then(response => {
@@ -38,7 +59,7 @@
       return response.text();
     })
     .then(source => {
-      const restore = `<script>(function(){const clean=window.SPORTS_ROUTE_CLEAN_PATH||location.pathname;const dynamic=${dynamic?'true':'false'};let tries=0;function ready(){const app=document.querySelector('#app');return !dynamic||(app&&app.children.length>0)||document.querySelector('.hero');}function finish(){if(ready()||tries++>120){history.replaceState(null,'',clean);return;}setTimeout(finish,25);}finish();})();<\/script>`;
+      const restore = `<script>(function(){const clean=window.SPORTS_ROUTE_PUBLIC_URL||location.pathname;const dynamic=${dynamic?'true':'false'};let tries=0;function ready(){const app=document.querySelector('#app');return !dynamic||(app&&app.children.length>0)||document.querySelector('.hero');}function finish(){if(ready()||tries++>160){history.replaceState(null,'',clean);return;}setTimeout(finish,25);}finish();})();<\/script>`;
       let html = source.replace(/<head>/i, '<head><base href="/">');
       html = html.replace(/<\/body>/i, '<script src="/assets/clean-urls.js"><\/script>' + restore + '</body>');
       document.open();
