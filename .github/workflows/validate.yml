@@ -23,5 +23,7 @@ jobs:
         run: python tools/validate_data.py
       - name: Validate Personal Canon and cross-links
         run: python tools/validate_canon.py
+      - name: Validate exact event passports
+        run: python tools/validate_event_passports.py
       - name: Validate site integrity
         run: python tools/validate_site.py
