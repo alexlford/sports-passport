@@ -6,8 +6,10 @@ import re
 import subprocess
 import sys
 import tempfile
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
+PUBLIC_ORIGIN = "https://sports.alexlford.com"
 errors=[]
 html_files=sorted(ROOT.glob("*.html"))
 
@@ -75,7 +77,67 @@ with tempfile.TemporaryDirectory() as tmp:
             detail=(proc.stderr or proc.stdout).strip().splitlines()
             errors.append(f"{label}: JavaScript syntax check failed: {' | '.join(detail[-3:])}")
 
+# Publication/discovery files are part of the public-site contract.
+robots=ROOT/"robots.txt"
+sitemap=ROOT/"sitemap.xml"
+not_found=ROOT/"404.html"
+if not robots.is_file():
+    errors.append("missing robots.txt")
+else:
+    robots_text=robots.read_text(encoding="utf-8")
+    if f"Sitemap: {PUBLIC_ORIGIN}/sitemap.xml" not in robots_text:
+        errors.append("robots.txt must advertise the canonical sitemap URL")
+    if "Allow: /" not in robots_text:
+        errors.append("robots.txt should allow the public archive to be crawled")
+if not not_found.is_file():
+    errors.append("missing branded 404.html")
+else:
+    not_found_text=not_found.read_text(encoding="utf-8")
+    if 'name="robots" content="noindex"' not in not_found_text:
+        errors.append("404.html must be noindex")
+    if 'href="index.html"' not in not_found_text:
+        errors.append("404.html must provide a path back to the archive home")
+
+sitemap_urls=[]
+if not sitemap.is_file():
+    errors.append("missing sitemap.xml")
+else:
+    try:
+        tree=ET.parse(sitemap)
+        ns={"sm":"http://www.sitemaps.org/schemas/sitemap/0.9"}
+        sitemap_urls=[node.text.strip() for node in tree.findall("sm:url/sm:loc",ns) if node.text and node.text.strip()]
+    except Exception as exc:
+        errors.append(f"sitemap.xml parse error: {exc}")
+    required_urls={
+        f"{PUBLIC_ORIGIN}/",
+        f"{PUBLIC_ORIGIN}/annuals.html",
+        f"{PUBLIC_ORIGIN}/favorites.html",
+        f"{PUBLIC_ORIGIN}/geography.html",
+        f"{PUBLIC_ORIGIN}/hall-of-fame.html",
+        f"{PUBLIC_ORIGIN}/journeys.html",
+        f"{PUBLIC_ORIGIN}/lifetime-analytics.html",
+        f"{PUBLIC_ORIGIN}/teams.html",
+        f"{PUBLIC_ORIGIN}/venue-map.html",
+        f"{PUBLIC_ORIGIN}/venues.html",
+    }
+    missing=sorted(required_urls-set(sitemap_urls))
+    if missing:
+        errors.append("sitemap.xml missing core public URLs: " + " | ".join(missing))
+    for url in sitemap_urls:
+        parsed=urlsplit(url)
+        if f"{parsed.scheme}://{parsed.netloc}" != PUBLIC_ORIGIN:
+            errors.append(f"sitemap URL is off canonical origin: {url}")
+            continue
+        local_path=parsed.path.lstrip("/") or "index.html"
+        if not (ROOT/local_path).is_file():
+            errors.append(f"sitemap URL has no matching public template: {url}")
+    if len(sitemap_urls) != len(set(sitemap_urls)):
+        errors.append("sitemap.xml contains duplicate URLs")
+
 if errors:
     print("\n".join("ERROR: "+e for e in errors))
     sys.exit(1)
-print(f"OK: {len(html_files)} HTML pages, {len(js_files)} shared JS files, local references, data loads, and inline JavaScript syntax validated.")
+print(
+    f"OK: {len(html_files)} HTML pages, {len(js_files)} shared JS files, local references, data loads, "
+    f"inline JavaScript syntax, branded 404 recovery, robots.txt, and {len(sitemap_urls)} sitemap URLs validated."
+)
