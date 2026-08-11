@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 from collections import defaultdict
 from pathlib import Path
+from urllib.parse import parse_qs, urlsplit
 import json
 import re
 import sys
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data'
+PUBLIC_ORIGIN = 'https://sports.alexlford.com'
 errors = []
 
 
@@ -82,6 +85,51 @@ for year in range(start, current + 1):
     if year not in years:
         errors.append(f'year route: configured public year {year} has no archive events')
 
+# Build the complete set of identities that the dynamic public routes can resolve.
+valid_identities = {
+    'year': {str(year) for year in years},
+    'event': {str(e.get('id')) for e in events if e.get('id')},
+    'team': {slug(team) for team in canonical_teams},
+    'venue': {str(v.get('slug')) for v in venues if v.get('slug')},
+    'journey': {str(j.get('key')) for j in journeys if j.get('key')},
+    'chapter': {str(p.get('key')) for p in phases if p.get('key')},
+}
+route_path_to_identity = {
+    '/years/': 'year',
+    '/events/': 'event',
+    '/teams/': 'team',
+    '/venues/': 'venue',
+    '/journeys/': 'journey',
+    '/chapters/': 'chapter',
+}
+
+# Audit every identity-bearing sitemap URL, not only the required subset. This catches
+# stale links left behind after a record, slug, or narrative key changes.
+sitemap = ROOT / 'sitemap.xml'
+if not sitemap.is_file():
+    errors.append('sitemap identity audit: missing sitemap.xml')
+else:
+    try:
+        tree = ET.parse(sitemap)
+        ns = {'sm': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+        sitemap_urls = [node.text.strip() for node in tree.findall('sm:url/sm:loc', ns) if node.text and node.text.strip()]
+        for url in sitemap_urls:
+            parsed = urlsplit(url)
+            if f'{parsed.scheme}://{parsed.netloc}' != PUBLIC_ORIGIN:
+                continue
+            identity_key = route_path_to_identity.get(parsed.path)
+            params = parse_qs(parsed.query)
+            if not identity_key or not params:
+                continue
+            if set(params) != {identity_key} or len(params.get(identity_key, [])) != 1:
+                errors.append(f'sitemap identity audit: malformed dynamic route {url}')
+                continue
+            identity = params[identity_key][0]
+            if identity not in valid_identities[identity_key]:
+                errors.append(f'sitemap identity audit: stale {identity_key} identity {identity!r}: {url}')
+    except Exception as exc:
+        errors.append(f'sitemap identity audit: could not parse sitemap.xml: {exc}')
+
 # Route runtime must support every public identity family used above.
 route = (ROOT / 'assets' / 'route-bootstrap.js').read_text(encoding='utf-8')
 clean = (ROOT / 'assets' / 'clean-urls.js').read_text(encoding='utf-8')
@@ -108,7 +156,7 @@ if errors:
     sys.exit(1)
 
 print(
-    f'OK: unique public route identities validated for {len(events)} events, '
+    f'OK: unique public route identities and sitemap targets validated for {len(events)} events, '
     f'{len(canonical_teams)} canonical teams, {len(venues)} venues, '
     f'{len(journeys)} journeys, {len(phases)} chapters, and {len(years)} annual editions.'
 )
