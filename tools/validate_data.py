@@ -97,7 +97,14 @@ for f in favorites:
     for field in ("title","label","year","category","description","source_label"):
         if not f.get(field): errors.append(f'{key or "<favorite>"}: missing {field}')
     event_id=f.get("event_id")
-    if event_id and event_id not in ids: errors.append(f'{key}: unknown event_id {event_id}')
+    if event_id and event_id not in ids:
+        errors.append(f'{key}: unknown event_id {event_id}')
+    elif event_id:
+        event=event_by_id[event_id]
+        if f.get("year") != event.get("year"):
+            errors.append(f'{key}: favorite year {f.get("year")} does not match {event_id} year {event.get("year")}')
+        if f.get("date") and f.get("date") != event.get("date"):
+            errors.append(f'{key}: favorite date {f.get("date")} does not match {event_id} date {event.get("date")}')
 
 # Curated lists are intentional Top 10s. Validate rank structure and exact event linkage for sports experiences.
 ranking_keys=("sports_experiences","favorite_venues","best_venues")
@@ -126,6 +133,12 @@ if curated_rankings:
             errors.append(f'curated sports experience #{item.get("rank","?")} missing event_id')
         elif event_id not in event_by_id:
             errors.append(f'curated sports experience #{item.get("rank","?")} references unknown event_id {event_id}')
+
+curated_sports_ids={item.get("event_id") for item in curated_rankings.get("sports_experiences",[]) if isinstance(item,dict) and item.get("event_id")}
+source_favorite_ids={f.get("event_id") for f in favorites if isinstance(f,dict) and f.get("event_id")}
+unranked_source_favorites=sorted(source_favorite_ids-curated_sports_ids)
+if unranked_source_favorites:
+    errors.append("source favorites missing from curated Top 10 sports experiences: " + " | ".join(unranked_source_favorites))
 
 # Source team labels remain immutable in event records. Aliases create a separate canonical identity layer.
 archive_teams=sorted({team for e in events for team in (e.get("teams") or []) if isinstance(team,str) and team.strip()})
