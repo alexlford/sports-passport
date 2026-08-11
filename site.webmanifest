@@ -1,0 +1,10 @@
+{
+  "name": "Sports Passport by Alex Ford",
+  "short_name": "Sports Passport",
+  "description": "A personal archive of live sports, annual editions, venues, teams, maps, rankings, and life chapters.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f4ecdc",
+  "theme_color": "#112b3c"
+}
