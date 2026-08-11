@@ -20,7 +20,6 @@ for chunk in manifest.get('chunks',[]):
 by_id={e.get('id'):e for e in events if e.get('id')}
 artifacts=load(Path('data/artifacts.json'))
 priorities=load(Path('data/artifact-priorities.json'))
-rankings=load(Path('data/curated-rankings.json'))
 phases=load(Path('data/phases.json'))
 phase_by_key={p.get('key'):p for p in phases if p.get('key')}
 artifact_event_ids={a.get('event_id') for a in artifacts if a.get('event_id')}
@@ -55,7 +54,6 @@ for artifact in artifacts:
     elif status!='image_pending':
         errors.append(f'{aid or "artifact"} has no media and must remain image_pending')
 
-# Research priorities are deliberately separate from known physical objects.
 priority_seen=set()
 for priority in priorities:
     pid=priority.get('id')
@@ -87,8 +85,7 @@ for priority in priorities:
             errors.append(f'{pid or "priority"} references {event_id}, which already has a cataloged artifact')
         if phase and not (int(phase.get('start',-9999)) <= int(event.get('year',-9999)) <= int(phase.get('end',9999))):
             errors.append(f'{pid or "priority"} event {event_id} falls outside phase {phase.get("key")}')
-    candidate_types=priority.get('candidate_types') or []
-    unsupported=set(candidate_types)-ALLOWED_TYPES
+    unsupported=set(priority.get('candidate_types') or [])-ALLOWED_TYPES
     if unsupported:
         errors.append(f'{pid or "priority"} has unsupported candidate types: {sorted(unsupported)}')
     if priority.get('status')=='needs_exact_event_confirmation' and len(event_ids)<2:
@@ -99,7 +96,7 @@ for priority in priorities:
             if event and (int(event.get('year',9999))>=2006 or event.get('attendance_status')!='verified'):
                 errors.append(f'{pid or "priority"} verified_early_archive event {event_id} must be verified and pre-2006')
 
-# Fact-lock the two known ticket-stub evidence records.
+# Preserve known evidence and research facts even while the feature is unpublished.
 expected={'evt-0001':'artifact-0001','evt-0008':'artifact-0002'}
 for event_id,artifact_id in expected.items():
     event=by_id.get(event_id)
@@ -108,7 +105,6 @@ for event_id,artifact_id in expected.items():
     if not any(a.get('id')==artifact_id and a.get('event_id')==event_id and a.get('type')=='ticket_stub' for a in artifacts):
         errors.append(f'{event_id} must remain linked to {artifact_id}')
 
-# Fact-lock the first biography-level research priorities without inventing evidence.
 priority_by_id={p.get('id'):p for p in priorities if p.get('id')}
 indiana=priority_by_id.get('artifact-priority-0001')
 if not indiana or indiana.get('event_ids')!=['evt-0020'] or indiana.get('category')!='verified_early_archive':
@@ -120,93 +116,50 @@ else:
 penny=priority_by_id.get('artifact-priority-0003')
 if not penny or penny.get('event_ids')!=['evt-0250','evt-0251'] or penny.get('status')!='needs_exact_event_confirmation':
     errors.append("Penny's first-game research lead must preserve both July 2025 candidate events until the exact date is confirmed")
-else:
-    for event_id in penny.get('event_ids',[]):
-        event=by_id.get(event_id)
-        teams=set(event.get('teams',[])) if event else set()
-        if not event or int(event.get('year',0))!=2025 or not {'St. Louis Cardinals','Colorado Rockies'}.issubset(teams):
-            errors.append(f'{event_id} must remain a 2025 Cardinals–Rockies candidate for the unresolved first-game lead')
 
-page=ROOT/'artifacts.html'
-if not page.is_file():
-    errors.append('missing artifacts.html')
-else:
-    text=page.read_text(encoding='utf-8')
-    for token in (
-        "D.load('artifacts')",
-        "D.load('artifact-priorities')",
-        '/events/?event=',
-        'Image pending digitization',
-        'data-artifact-filter',
-        'artifact-search',
-        'data-status=',
-        'Collection status',
-        'Digitization queue',
-        'Biography research priorities',
-        'Personal Canon coverage',
-        'topTenCandidates',
-        'Candidate for a future ticket',
-        'research leads',
-        'provenance over decoration',
-        'assets/clean-urls.js',
-    ):
-        if token not in text:
-            errors.append(f'artifacts.html missing {token}')
-    ranked_ids={r.get('event_id') for r in rankings.get('sports_experiences',[]) if r.get('event_id')}
-    if len(ranked_ids)!=10:
-        errors.append('artifact coverage queue expects exactly 10 unique Personal Canon event IDs')
-
-event_page=ROOT/'event.html'
-if not event_page.is_file() or "D.load('artifacts')" not in event_page.read_text(encoding='utf-8'):
-    errors.append('event passports must load artifact catalog')
-
-annuals=ROOT/'annuals.html'
-if not annuals.is_file():
-    errors.append('missing annuals.html')
-else:
-    text=annuals.read_text(encoding='utf-8')
-    for token in ("D.load('artifacts')",'artifactByYear','artifact-status','Artifact years'):
-        if token not in text:
-            errors.append(f'annuals.html missing artifact integration token: {token}')
-
-venue_page=ROOT/'venue-profile.html'
-if not venue_page.is_file():
-    errors.append('missing venue-profile.html')
-else:
-    text=venue_page.read_text(encoding='utf-8')
-    for token in ("D.load('artifacts')",'venueArtifacts','artifact-badge','Artifacts from this venue','Open the artifact museum'):
-        if token not in text:
-            errors.append(f'venue-profile.html missing artifact integration token: {token}')
-
-story_pages={
-    'year.html':("D.load('artifacts')",'artifactByEvent','yearArtifacts','badge artifact','Physical archive','Open the complete artifact museum'),
-    'phase.html':('D.load("artifacts")','D.load("artifact-priorities")','chapterArtifacts','chapterResearch','Physical archive','Artifacts from this chapter','Artifact research','Evidence boundary','Open the complete artifact museum'),
-    'journey-profile.html':('D.load("artifacts")','journeyArtifacts','artifact-badge','Artifacts in this thread','Open the complete artifact museum'),
-}
-for name,tokens in story_pages.items():
-    path=ROOT/name
-    if not path.is_file():
-        errors.append(f'missing {name}')
-        continue
-    text=path.read_text(encoding='utf-8')
-    for token in tokens:
-        if token not in text:
-            errors.append(f'{name} missing artifact storytelling token: {token}')
+# Keep the implementation files intact for possible future use.
+for rel in ('artifacts.html','artifacts/index.html','ARTIFACT-WORKFLOW.md','data/artifacts.json','data/artifact-priorities.json'):
+    if not (ROOT/rel).is_file():
+        errors.append(f'retained artifact file missing: {rel}')
 
 workflow=ROOT/'ARTIFACT-WORKFLOW.md'
-if not workflow.is_file():
-    errors.append('missing ARTIFACT-WORKFLOW.md')
-else:
+if workflow.is_file():
     workflow_text=workflow.read_text(encoding='utf-8')
     for token in ('data/artifacts.json','data/artifact-priorities.json','assets/artifacts/','image_pending','digitized','research lead','provenance over decoration'):
         if token not in workflow_text:
             errors.append(f'ARTIFACT-WORKFLOW.md missing workflow token: {token}')
 
-route=ROOT/'artifacts/index.html'
-if not route.is_file():
-    errors.append('missing clean /artifacts/ route entry')
+# The feature is intentionally not public-facing. Core public templates must neither load it nor link to it.
+public_templates=('index.html','annuals.html','year.html','event.html','venue-profile.html','phase.html','journey-profile.html')
+for name in public_templates:
+    path=ROOT/name
+    if not path.is_file():
+        errors.append(f'missing public template {name}')
+        continue
+    text=path.read_text(encoding='utf-8')
+    forbidden=("D.load('artifacts')",'D.load("artifacts")',"D.load('artifact-priorities')",'D.load("artifact-priorities")','href="artifacts.html"','href="/artifacts/"')
+    for token in forbidden:
+        if token in text:
+            errors.append(f'{name} still exposes retained artifact feature: {token}')
+
+home=(ROOT/'index.html').read_text(encoding='utf-8') if (ROOT/'index.html').is_file() else ''
+if '<h3>Artifacts</h3>' in home or 'journeys, artifacts,' in home:
+    errors.append('homepage still advertises Artifacts')
+
+sitemap=(ROOT/'sitemap.xml').read_text(encoding='utf-8') if (ROOT/'sitemap.xml').is_file() else ''
+if '/artifacts/' in sitemap or '/artifacts.html' in sitemap:
+    errors.append('public sitemap still includes Artifacts')
+robots=(ROOT/'robots.txt').read_text(encoding='utf-8') if (ROOT/'robots.txt').is_file() else ''
+for token in ('Disallow: /artifacts/','Disallow: /artifacts.html'):
+    if token not in robots:
+        errors.append(f'robots.txt missing artifact exclusion: {token}')
+
+# Retained page is suppressed from presentation if reached directly.
+density=(ROOT/'assets'/'density.css').read_text(encoding='utf-8') if (ROOT/'assets'/'density.css').is_file() else ''
+if 'body:has(.artifact-hero){display:none!important}' not in density:
+    errors.append('retained artifact page is not suppressed from direct public presentation')
 
 if errors:
     print('\n'.join('ERROR: '+e for e in errors))
     sys.exit(1)
-print(f'OK: {len(artifacts)} cataloged artifacts and {len(priorities)} biography research priorities validated across museum coverage, digitization workflow, exact events, annual editions, venue profiles, life chapters, recurring journeys, and evidence fact locks.')
+print(f'OK: {len(artifacts)} cataloged artifacts and {len(priorities)} research priorities remain validated and retained internally while Artifacts stays excluded from public navigation, templates, sitemap, and crawl surface.')
