@@ -25,5 +25,7 @@ jobs:
         run: python tools/validate_canon.py
       - name: Validate exact event passports
         run: python tools/validate_event_passports.py
+      - name: Validate artifact catalog
+        run: python tools/validate_artifacts.py
       - name: Validate site integrity
         run: python tools/validate_site.py
