@@ -21,5 +21,7 @@ jobs:
           python-version: '3.12'
       - name: Validate archive data
         run: python tools/validate_data.py
+      - name: Validate Personal Canon and cross-links
+        run: python tools/validate_canon.py
       - name: Validate site integrity
         run: python tools/validate_site.py
