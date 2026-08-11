@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 import json
 import re
 import subprocess
@@ -89,6 +89,14 @@ sitemap=ROOT/"sitemap.xml"
 not_found=ROOT/"404.html"
 favicon=ROOT/"favicon.svg"
 manifest=ROOT/"site.webmanifest"
+clean_urls=ROOT/"assets"/"clean-urls.js"
+route_bootstrap=ROOT/"assets"/"route-bootstrap.js"
+route_entry_paths=[
+    "about/index.html","years/index.html","events/index.html","teams/index.html","venues/index.html",
+    "geography/index.html","geography/map/index.html","journeys/index.html","chapters/index.html",
+    "favorites/index.html","analytics/index.html","hall-of-fame/index.html",
+]
+
 if not robots.is_file():
     errors.append("missing robots.txt")
 else:
@@ -143,6 +151,33 @@ else:
         if token not in shared_text:
             errors.append(f"shared runtime missing {label}")
 
+if not clean_urls.is_file():
+    errors.append("missing assets/clean-urls.js")
+else:
+    clean_text=clean_urls.read_text(encoding="utf-8")
+    for token in ("/years/?year=", "/events/?event=", "/teams/?team=", "/venues/?venue=", "/journeys/?journey=", "/chapters/?chapter="):
+        if token not in clean_text:
+            errors.append(f"clean URL normalizer missing route pattern {token}")
+
+if not route_bootstrap.is_file():
+    errors.append("missing assets/route-bootstrap.js")
+else:
+    route_text=route_bootstrap.read_text(encoding="utf-8")
+    for token in ("publicQuery.get('year')", "publicQuery.get('event')", "publicQuery.get('team')", "publicQuery.get('venue')", "publicQuery.get('journey')", "publicQuery.get('chapter')"):
+        if token not in route_text:
+            errors.append(f"route bootstrap missing clean query mapping: {token}")
+
+for rel in route_entry_paths:
+    path=ROOT/rel
+    if not path.is_file():
+        errors.append(f"missing clean public route entry: {rel}")
+    elif "/assets/route-bootstrap.js" not in path.read_text(encoding="utf-8"):
+        errors.append(f"clean public route entry does not load route bootstrap: {rel}")
+
+home=ROOT/"index.html"
+if home.is_file() and 'assets/clean-urls.js' not in home.read_text(encoding="utf-8"):
+    errors.append("homepage must load clean URL normalizer")
+
 sitemap_urls=[]
 if not sitemap.is_file():
     errors.append("missing sitemap.xml")
@@ -156,15 +191,16 @@ else:
 
     required_urls={
         f"{PUBLIC_ORIGIN}/",
-        f"{PUBLIC_ORIGIN}/annuals.html",
-        f"{PUBLIC_ORIGIN}/favorites.html",
-        f"{PUBLIC_ORIGIN}/geography.html",
-        f"{PUBLIC_ORIGIN}/hall-of-fame.html",
-        f"{PUBLIC_ORIGIN}/journeys.html",
-        f"{PUBLIC_ORIGIN}/lifetime-analytics.html",
-        f"{PUBLIC_ORIGIN}/teams.html",
-        f"{PUBLIC_ORIGIN}/venue-map.html",
-        f"{PUBLIC_ORIGIN}/venues.html",
+        f"{PUBLIC_ORIGIN}/about/",
+        f"{PUBLIC_ORIGIN}/years/",
+        f"{PUBLIC_ORIGIN}/favorites/",
+        f"{PUBLIC_ORIGIN}/geography/",
+        f"{PUBLIC_ORIGIN}/geography/map/",
+        f"{PUBLIC_ORIGIN}/hall-of-fame/",
+        f"{PUBLIC_ORIGIN}/journeys/",
+        f"{PUBLIC_ORIGIN}/analytics/",
+        f"{PUBLIC_ORIGIN}/teams/",
+        f"{PUBLIC_ORIGIN}/venues/",
     }
 
     # Every annual edition, life chapter, and recurring journey should be directly discoverable.
@@ -172,25 +208,25 @@ else:
         config=json.loads((ROOT/"data"/"config.json").read_text(encoding="utf-8"))
         start=int(config["archive_start_year"])
         current=int(config["current_year"])
-        required_urls.update(f"{PUBLIC_ORIGIN}/year.html?y={year}" for year in range(start,current+1))
+        required_urls.update(f"{PUBLIC_ORIGIN}/years/?year={year}" for year in range(start,current+1))
     except Exception as exc:
         errors.append(f"could not derive annual sitemap URLs: {exc}")
     try:
         phases=json.loads((ROOT/"data"/"phases.json").read_text(encoding="utf-8"))
-        required_urls.update(f"{PUBLIC_ORIGIN}/phase.html?p={p['key']}" for p in phases if p.get("key"))
+        required_urls.update(f"{PUBLIC_ORIGIN}/chapters/?chapter={p['key']}" for p in phases if p.get("key"))
     except Exception as exc:
         errors.append(f"could not derive life-chapter sitemap URLs: {exc}")
     try:
         journeys=json.loads((ROOT/"data"/"journeys.json").read_text(encoding="utf-8"))
-        required_urls.update(f"{PUBLIC_ORIGIN}/journey-profile.html?j={j['key']}" for j in journeys if j.get("key"))
+        required_urls.update(f"{PUBLIC_ORIGIN}/journeys/?journey={j['key']}" for j in journeys if j.get("key"))
     except Exception as exc:
         errors.append(f"could not derive journey sitemap URLs: {exc}")
 
-    # Personal Canon content gets explicit sitemap priority: favorite teams and every ranked venue identity.
+    # Personal Canon content gets explicit sitemap priority: favorite teams, ranked events, and ranked venue identities.
     try:
         lore=json.loads((ROOT/"data"/"team-lore.json").read_text(encoding="utf-8"))
         favorite_teams=[team for team,data in lore.items() if isinstance(data,dict) and data.get("favorite")]
-        required_urls.update(f"{PUBLIC_ORIGIN}/team-profile.html?t={team_slug(team)}" for team in favorite_teams)
+        required_urls.update(f"{PUBLIC_ORIGIN}/teams/?team={team_slug(team)}" for team in favorite_teams)
     except Exception as exc:
         errors.append(f"could not derive favorite-team sitemap URLs: {exc}")
     try:
@@ -201,21 +237,32 @@ else:
             for item in rankings.get(list_name,[])
             for slug in item.get("venue_slugs",[])
         }
-        required_urls.update(f"{PUBLIC_ORIGIN}/venue-profile.html?v={slug}" for slug in ranked_slugs)
+        required_urls.update(f"{PUBLIC_ORIGIN}/venues/?venue={slug}" for slug in ranked_slugs)
+        required_urls.update(f"{PUBLIC_ORIGIN}/events/?event={item['event_id']}" for item in rankings.get("sports_experiences",[]) if item.get("event_id"))
     except Exception as exc:
-        errors.append(f"could not derive ranked-venue sitemap URLs: {exc}")
+        errors.append(f"could not derive ranked sitemap URLs: {exc}")
 
     missing=sorted(required_urls-set(sitemap_urls))
     if missing:
         errors.append("sitemap.xml missing required public URLs: " + " | ".join(missing))
+
+    allowed_query_keys={"year","event","team","venue","journey","chapter"}
     for url in sitemap_urls:
         parsed=urlsplit(url)
         if f"{parsed.scheme}://{parsed.netloc}" != PUBLIC_ORIGIN:
             errors.append(f"sitemap URL is off canonical origin: {url}")
             continue
-        local_path=parsed.path.lstrip("/") or "index.html"
-        if not (ROOT/local_path).is_file():
-            errors.append(f"sitemap URL has no matching public template: {url}")
+        if ".html" in parsed.path:
+            errors.append(f"sitemap URL exposes legacy .html route: {url}")
+        query_keys=set(parse_qs(parsed.query).keys())
+        if not query_keys.issubset(allowed_query_keys):
+            errors.append(f"sitemap URL uses noncanonical query keys: {url}")
+        if parsed.path == "/":
+            local=ROOT/"index.html"
+        else:
+            local=ROOT/parsed.path.strip("/")/"index.html"
+        if not local.is_file():
+            errors.append(f"sitemap URL has no matching clean route entry: {url}")
     if len(sitemap_urls) != len(set(sitemap_urls)):
         errors.append("sitemap.xml contains duplicate URLs")
 
@@ -223,7 +270,7 @@ if errors:
     print("\n".join("ERROR: "+e for e in errors))
     sys.exit(1)
 print(
-    f"OK: {len(html_files)} HTML pages, {len(js_files)} shared JS files, local references, data loads, "
-    f"inline JavaScript syntax, publication metadata, favicon/manifest, branded 404 recovery, robots.txt, "
-    f"and {len(sitemap_urls)} sitemap URLs validated against archive/editorial data."
+    f"OK: {len(html_files)} legacy templates, {len(js_files)} shared JS files, clean route entries, local references, "
+    f"data loads, JavaScript syntax, publication metadata, favicon/manifest, branded 404 recovery, robots.txt, "
+    f"and {len(sitemap_urls)} clean canonical sitemap URLs validated against archive/editorial data."
 )
