@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Artifacts | Sports Passport</title>
+  <meta name="description" content="Ticket stubs, credentials, programs, seat views, keepsakes, and other physical evidence from Alex Ford's Sports Passport archive.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .artifact-hero{border-top:7px solid #8b5e3c}.artifact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}.artifact-card{overflow:hidden;border:1px solid var(--line);border-radius:20px;background:#fffdf8}.artifact-image{min-height:210px;display:grid;place-items:center;padding:24px;background:repeating-linear-gradient(135deg,#f7efdf,#f7efdf 16px,#efe3cf 16px,#efe3cf 32px);border-bottom:1px solid var(--line);text-align:center}.artifact-image span{max-width:180px;color:var(--muted);font-size:.76rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;line-height:1.45}.artifact-image img{width:100%;height:100%;max-height:360px;object-fit:contain}.artifact-body{padding:20px}.artifact-body h3{margin:.35rem 0 .55rem;font-size:1.45rem}.artifact-body p{margin:.45rem 0;color:var(--muted);line-height:1.55}.artifact-meta{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}.artifact-chip{display:inline-flex;align-items:center;min-height:30px;padding:5px 8px;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:.66rem;font-weight:900;text-transform:uppercase;letter-spacing:.05em}.artifact-chip.evidence{background:#e6f2e9;color:#255d38}.artifact-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}.artifact-actions a{font-weight:900;text-underline-offset:3px}.method{margin-top:20px;padding:16px 18px;border-left:5px solid #8b5e3c;border-radius:14px;background:#fffaf0;color:var(--muted);line-height:1.6}@media(max-width:650px){.artifact-grid{grid-template-columns:1fr}.artifact-image{min-height:170px}}
+  </style>
+</head>
+<body>
+<main class="shell">
+  <header class="top"><div class="brand">Sports Passport · Artifacts</div><nav class="nav"><a href="index.html">Archive</a><a href="annuals.html">Years</a><a href="favorites.html">Top Tens</a><a href="about.html">About</a></nav></header>
+  <div id="app"></div>
+</main>
+<script src="assets/sports-passport-data.js"></script>
+<script>
+(async()=>{
+  const D=window.SportsPassportData;
+  const [artifacts,events,venues,rankings]=await Promise.all([D.load('artifacts'),D.load('events'),D.load('venues'),D.load('curated-rankings')]);
+  const byId=new Map(events.map(e=>[e.id,e]));
+  const rankedById=new Map((rankings.sports_experiences||[]).map(r=>[r.event_id,r]));
+  const linked=artifacts.map(a=>({...a,event:byId.get(a.event_id)})).filter(a=>a.event);
+  const digitized=linked.filter(a=>a.media).length;
+  const years=[...new Set(linked.map(a=>a.event.year))];
+  const venueCount=new Set(linked.map(a=>a.event.venue_key).filter(Boolean)).size;
+  const typeLabel=t=>({ticket_stub:'Ticket stub',credential:'Credential',program:'Program',seat_view:'Seat view',keepsake:'Keepsake',photo:'Photo'}[t]||'Artifact');
+  const cards=linked.sort((a,b)=>a.event.date.localeCompare(b.event.date)).map(a=>{
+    const e=a.event,venue=D.venueByKey(venues,e.venue_key),rank=rankedById.get(e.id),eventHref=`event.html?id=${encodeURIComponent(e.id)}`,venueHref=venue?.slug?`venue-profile.html?v=${encodeURIComponent(venue.slug)}`:null;
+    const image=a.media?`<img src="${a.media}" alt="${a.title}">`:`<span>Cataloged artifact<br>Image pending digitization</span>`;
+    return `<article class="artifact-card"><div class="artifact-image">${image}</div><div class="artifact-body"><div class="kicker">${e.year} · ${typeLabel(a.type)}</div><h3>${a.title}</h3><div class="artifact-meta"><span class="artifact-chip evidence">Archive evidence</span>${rank?`<span class="artifact-chip">Top 10 · #${rank.rank}</span>`:''}${a.digitization_status==='image_pending'?'<span class="artifact-chip">Image pending</span>':''}</div><p>${a.summary}</p><p><strong>Provenance:</strong> ${a.provenance}</p><div class="artifact-actions"><a href="${eventHref}">Open exact event →</a>${venueHref?`<a href="${venueHref}">${venue.display_name} →</a>`:''}</div></div></article>`;
+  }).join('');
+  document.querySelector('#app').innerHTML=`<section class="hero artifact-hero"><div class="kicker">The physical archive</div><h1>Artifacts</h1><div class="deck">Ticket stubs, credentials, programs, photographs, seat views, and keepsakes that connect the data record to something tangible.</div><div class="stats"><div class="stat"><strong>${linked.length}</strong><span>Cataloged artifacts</span></div><div class="stat"><strong>${digitized}</strong><span>Images digitized</span></div><div class="stat"><strong>${years.length}</strong><span>Years represented</span></div><div class="stat"><strong>${venueCount}</strong><span>Venues represented</span></div></div><div class="method"><strong>Artifact policy.</strong> The catalog only lists objects or evidence known to exist. A visual is shown only after an actual source file has been added; otherwise the item remains transparently marked as awaiting digitization.</div></section><section class="section"><div class="head"><div><div class="kicker">Museum cases</div><h2>Cataloged evidence & keepsakes.</h2></div><p>The first records come from the ticket stubs that independently verify two of the earliest Camden Yards games in the archive.</p></div><div class="artifact-grid">${cards||'<div class="panel"><h3>No artifacts cataloged yet.</h3></div>'}</div></section>`;
+})();
+</script>
+</body>
+</html>
