@@ -1,5 +1,5 @@
 [
-  {"key":"cardinals","title":"The Cardinals Thread","description":"The recurring St. Louis Cardinals thread across the archive.","match":{"team":"St. Louis Cardinals"}},
+  {"key":"cardinals","title":"Growing Up with Sports","description":"The sports roots of my childhood in southern Illinois: Cardinals baseball trips with my father and maternal grandfather, plus SIU Salukis basketball and football games growing up in and around Carbondale.","match":{"teams_any":["St. Louis Cardinals","Southern Illinois Salukis"]},"note":"This journey intentionally brings the Cardinals and SIU threads together as the family-and-home foundation of the archive."},
   {"key":"illinois","title":"The Illinois Thread","description":"Every documented Illinois Fighting Illini appearance.","match":{"team":"Illinois Fighting Illini"}},
   {"key":"kansas","title":"The Kansas Thread","description":"Every documented Kansas Jayhawks appearance.","match":{"team":"Kansas Jayhawks"}},
   {"key":"kc","title":"Chiefs & Royals","description":"Kansas City's two recurring pro-sports threads.","match":{"teams_any":["Kansas City Chiefs","Kansas City Royals"]}},
