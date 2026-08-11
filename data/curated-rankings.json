@@ -13,27 +13,27 @@
     {"rank":10,"title":"Illinois–Kansas football","detail":"Illinois 23, Kansas 17 · 2024","event_id":"evt-0239"}
   ],
   "favorite_venues": [
-    {"rank":1,"title":"Allen Fieldhouse"},
-    {"rank":2,"title":"Memorial Stadium — Champaign"},
-    {"rank":3,"title":"Arrowhead Stadium"},
-    {"rank":4,"title":"State Farm Center"},
-    {"rank":5,"title":"Busch Stadium","note":"Personal favorite grouping spans old and current Busch Stadium eras."},
-    {"rank":6,"title":"SIU — Arena & Football Stadium","note":"Personal favorite grouping combines SIU basketball and football venues."},
-    {"rank":7,"title":"Oriole Park at Camden Yards"},
-    {"rank":8,"title":"Kauffman Stadium"},
-    {"rank":9,"title":"Ball Arena"},
-    {"rank":10,"title":"Coors Field"}
+    {"rank":1,"title":"Allen Fieldhouse","venue_slugs":["allen-fieldhouse"]},
+    {"rank":2,"title":"Memorial Stadium — Champaign","venue_slugs":["memorial-stadium-champaign"]},
+    {"rank":3,"title":"Arrowhead Stadium","venue_slugs":["arrowhead-stadium"]},
+    {"rank":4,"title":"State Farm Center","venue_slugs":["state-farm-center"]},
+    {"rank":5,"title":"Busch Stadium","venue_slugs":["busch-memorial-stadium","busch-stadium"],"note":"Personal favorite grouping spans old and current Busch Stadium eras."},
+    {"rank":6,"title":"SIU — Arena & Football Stadium","venue_slugs":["banterra-center","mcandrew-stadium"],"note":"Personal favorite grouping combines SIU basketball and football venues."},
+    {"rank":7,"title":"Oriole Park at Camden Yards","venue_slugs":["oriole-park-at-camden-yards"]},
+    {"rank":8,"title":"Kauffman Stadium","venue_slugs":["kauffman-stadium"]},
+    {"rank":9,"title":"Ball Arena","venue_slugs":["ball-arena"]},
+    {"rank":10,"title":"Coors Field","venue_slugs":["coors-field"]}
   ],
   "best_venues": [
-    {"rank":1,"title":"Oriole Park at Camden Yards"},
-    {"rank":2,"title":"Madison Square Garden"},
-    {"rank":3,"title":"Allen Fieldhouse"},
-    {"rank":4,"title":"Wrigley Field"},
-    {"rank":5,"title":"Memorial Stadium — Lincoln"},
-    {"rank":6,"title":"Dodger Stadium"},
-    {"rank":7,"title":"SoFi Stadium"},
-    {"rank":8,"title":"Arrowhead Stadium"},
-    {"rank":9,"title":"Hard Rock Stadium"},
-    {"rank":10,"title":"Busch Stadium","note":"Ranked as the Busch Stadium experience rather than splitting stadium generations."}
+    {"rank":1,"title":"Oriole Park at Camden Yards","venue_slugs":["oriole-park-at-camden-yards"]},
+    {"rank":2,"title":"Madison Square Garden","venue_slugs":["madison-square-garden"]},
+    {"rank":3,"title":"Allen Fieldhouse","venue_slugs":["allen-fieldhouse"]},
+    {"rank":4,"title":"Wrigley Field","venue_slugs":["wrigley-field"]},
+    {"rank":5,"title":"Memorial Stadium — Lincoln","venue_slugs":["memorial-stadium-lincoln"]},
+    {"rank":6,"title":"Dodger Stadium","venue_slugs":["dodger-stadium"]},
+    {"rank":7,"title":"SoFi Stadium","venue_slugs":["sofi-stadium"]},
+    {"rank":8,"title":"Arrowhead Stadium","venue_slugs":["arrowhead-stadium"]},
+    {"rank":9,"title":"Hard Rock Stadium","venue_slugs":["hard-rock-stadium"]},
+    {"rank":10,"title":"Busch Stadium","venue_slugs":["busch-memorial-stadium","busch-stadium"],"note":"Ranked as the Busch Stadium experience rather than splitting stadium generations."}
   ]
 }
