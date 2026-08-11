@@ -68,8 +68,14 @@ for name in linked_pages:
         errors.append(f"missing {name}")
         continue
     text = path.read_text(encoding="utf-8")
-    if "event.html?id=" not in text:
+    if "event.html?id=" not in text and "/events/?event=" not in text:
         errors.append(f"{name} does not deep-link to exact event passports")
+
+# New work may link directly to the public clean URL instead of relying on the
+# normalizer. Keep both forms valid during the compatibility transition.
+phase_text=(ROOT/'phase.html').read_text(encoding='utf-8') if (ROOT/'phase.html').is_file() else ''
+if phase_text and '/events/?event=' not in phase_text:
+    errors.append('phase.html should use the clean public exact-event URL contract')
 
 sitemap = ROOT / "sitemap.xml"
 if not sitemap.is_file():
