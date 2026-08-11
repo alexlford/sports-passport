@@ -17,12 +17,31 @@
     return CLEAN_ROUTE_PREFIXES.some(prefix => url.pathname === prefix || url.pathname.startsWith(prefix));
   }
 
+  function deepCleanRoute(url) {
+    const parts = url.pathname.split('/').filter(Boolean).map(decodeURIComponent);
+    if (parts.length !== 2) return null;
+    const [section, value] = parts;
+    if (!value) return null;
+    const route = {
+      years: ['year', value],
+      events: ['event', value],
+      teams: ['team', value],
+      venues: ['venue', value],
+      journeys: ['journey', value],
+      chapters: ['chapter', value]
+    }[section];
+    if (!route) return null;
+    return `/${section}/?${route[0]}=${encode(route[1])}${url.hash || ''}`;
+  }
+
   function cleanPathForLegacy(rawHref) {
     if (!rawHref || rawHref.startsWith('#') || rawHref.startsWith('mailto:') || rawHref.startsWith('tel:') || rawHref.startsWith('javascript:')) return null;
     let url;
-    try { url = new URL(rawHref, location.href); } catch (_) { return null; }
+    try { url = new URL(rawHref, document.baseURI || location.href); } catch (_) { return null; }
     if (url.origin !== location.origin) return null;
 
+    const deep = deepCleanRoute(url);
+    if (deep) return deep;
     if (isCleanPublicRoute(url)) return `${url.pathname}${url.search}${url.hash}`;
 
     const file = (url.pathname.split('/').pop() || '').toLowerCase();
@@ -81,7 +100,7 @@
     const cleaned = cleanPathForLegacy(location.href);
     if (cleaned) return cleaned;
     if (location.pathname === '/index.html') return '/';
-    return `${location.pathname}${location.search}`;
+    return `${location.pathname}${location.search}${location.hash || ''}`;
   }
 
   function setCanonicalToCurrentCleanUrl() {
@@ -151,7 +170,7 @@
     observer.observe(document.documentElement, {subtree:true, childList:true, attributes:true, attributeFilter:['href']});
   }
 
-  window.SportsPassportCleanUrls = { cleanPathForLegacy, rewriteLinks, currentPublicRelativeUrl, isCleanPublicRoute, cleanRouteKey, polishPublicChrome };
+  window.SportsPassportCleanUrls = { cleanPathForLegacy, rewriteLinks, currentPublicRelativeUrl, isCleanPublicRoute, cleanRouteKey, polishPublicChrome, deepCleanRoute };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, {once:true});
   else boot();
 })();
