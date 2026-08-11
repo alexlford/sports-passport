@@ -7,6 +7,7 @@
   let dynamic = false;
 
   if (first === 'about') template = 'about.html';
+  else if (first === 'artifacts') template = 'artifacts.html';
   else if (first === 'years') {
     const year = publicQuery.get('year') || parts[1];
     if (year) { template = 'year.html'; params = {y: year}; dynamic = true; }
