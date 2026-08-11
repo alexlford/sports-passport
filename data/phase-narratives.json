@@ -7,7 +7,11 @@
       "Those Cardinals memories stretch across eras. I remember watching Ozzie Smith, Mark McGwire, and then a young Albert Pujols. Closer to home, SIU basketball and football were part of growing up too. I went with family, friends, and school groups, so Saluki games became woven into everyday life in Southern Illinois rather than reserved for one particular tradition.",
       "That combination — family, place, and the excitement of being in the building — became the foundation for everything that followed. Some of the earliest archive entries are reconstructions rather than verified tickets, but the larger story is clear: live sports were already becoming a way to remember people and periods of my life."
     ],
-    "pullquote": "The Cardinals were the big treat. SIU was part of growing up. Together, they made live sports feel connected to family and home."
+    "pullquote": "The Cardinals were the big treat. SIU was part of growing up. Together, they made live sports feel connected to family and home.",
+    "traditions": [
+      {"label":"Family tradition","title":"Cardinals with Dad & Grandpa","text":"Trips to Cardinals games with my father and maternal grandfather made major-league baseball feel like a special occasion from the beginning."},
+      {"label":"Home tradition","title":"SIU was part of everyday life","text":"Saluki basketball and football came through family, friends, and school groups — a recurring part of growing up in Southern Illinois."}
+    ]
   },
   "illinois": {
     "eyebrow": "Student years",
@@ -17,7 +21,10 @@
       "The 2007 football season captured that feeling better than anything. Illinois surprised everyone, and I vividly remember the home win over Penn State and Arrelious Benn's opening-kickoff touchdown. The season kept building toward the incredible high of Illinois going to Columbus and knocking off No. 1 Ohio State. Then came the other side of being invested in a team: watching the Rose Bowl loss at a watch party and feeling just how quickly the emotional arc of a season can turn.",
       "Basketball still carried the glow of the 2005 national-title run when I arrived. The teams I watched were exciting and State Farm Center remained a huge part of the experience, even if Illinois never quite recaptured the dominance of that 2005 team during my undergraduate years. Illinois became the standard against which every school connection that came later would be measured."
     ],
-    "pullquote": "Illinois was different because it was mine: my school, my student section, my Saturdays, and my team."
+    "pullquote": "Illinois was different because it was mine: my school, my student section, my Saturdays, and my team.",
+    "traditions": [
+      {"label":"Student tradition","title":"Season tickets","text":"Football and basketball were not occasional outings anymore. They became part of the weekly rhythm of being a student in Champaign."}
+    ]
   },
   "kansas": {
     "eyebrow": "Lawrence years",
@@ -27,7 +34,11 @@
       "Over seven years, Kansas became my team too. The Oklahoma triple-overtime game, Kentucky at Allen Fieldhouse, and the 130.4 dBA West Virginia night are among the best games I have ever attended. The distinction is still simple: if Illinois plays Kansas, I root for Illinois. In essentially every other situation, I am rooting for Kansas.",
       "Lawrence also expanded my sports world beyond college basketball. My connection to Kansas City sports grew, especially after I started dating Abby. Her family had been Chiefs fans their entire lives and were season-ticket holders, giving me a family connection to Arrowhead and the Chiefs that would continue well beyond graduate school."
     ],
-    "pullquote": "Illinois came first. Kansas was the team I fell in love with by living in Lawrence."
+    "pullquote": "Illinois came first. Kansas was the team I fell in love with by living in Lawrence.",
+    "traditions": [
+      {"label":"Marriage & family","title":"The Chiefs through Abby","text":"Dating Abby connected me to a family of lifelong Chiefs fans and season-ticket holders. Arrowhead became part of my sports life through them."},
+      {"label":"Loyalty rule","title":"Illinois first, Kansas otherwise","text":"If Illinois and Kansas play each other, I root for Illinois. In essentially every other situation, Kansas is my team."}
+    ]
   },
   "baltimore": {
     "eyebrow": "A wider map",
@@ -37,7 +48,10 @@
       "I used that opportunity to travel to new sports venues and, after Big Ten expansion pushed the conference farther east, to keep seeing Illinois play away from Champaign. That made the period feel less like adopting a single new hometown team and more like exploration: following an existing connection into unfamiliar stadiums and arenas while adding new places to the map.",
       "It was a fun stretch, but also a brief one. COVID interrupted the normal rhythm of live sports and travel, creating a clear break before the next chapter began in Colorado."
     ],
-    "pullquote": "The East Coast chapter was about using a new home base to see familiar teams in unfamiliar places."
+    "pullquote": "The East Coast chapter was about using a new home base to see familiar teams in unfamiliar places.",
+    "traditions": [
+      {"label":"Travel habit","title":"Follow Illinois east","text":"Big Ten expansion created new chances to see Illinois away from Champaign while using East Coast life as a base for discovering new venues."}
+    ]
   },
   "colorado": {
     "eyebrow": "Home, travel, and the next generation",
@@ -48,6 +62,11 @@
       "The most important change, though, is that sports are becoming a family tradition in a new direction. I am incredibly excited to share my love of sports with Penny. Her first sporting event was a Cardinals game with my mom — a small moment that connects directly back to the Cardinals games I attended with my father and maternal grandfather growing up.",
       "That is the thread running through the whole archive. The places change, and every place adds something different, but sports keep connecting the chapters: Southern Illinois, Champaign, Lawrence, Baltimore, Denver, and now a new generation experiencing some of those traditions for the first time."
     ],
-    "pullquote": "My grandfather and father took me to Cardinals games. Penny's first sporting event was a Cardinals game with my mom. The tradition keeps moving forward."
+    "pullquote": "My grandfather and father took me to Cardinals games. Penny's first sporting event was a Cardinals game with my mom. The tradition keeps moving forward.",
+    "traditions": [
+      {"label":"Next generation","title":"Penny's first game","text":"Her first sporting event was a Cardinals game with my mom — a direct continuation of the Cardinals tradition that began with my father and maternal grandfather."},
+      {"label":"Travel tradition","title":"Turn work travel into sports travel","text":"When work takes me somewhere new, I look for a chance to add a stadium, arena, or sporting event to the trip."},
+      {"label":"Colorado teams","title":"Nuggets & Avalanche","text":"Two championship runs in our first two years in Colorado made it impossible not to become invested in both teams."}
+    ]
   }
 }
