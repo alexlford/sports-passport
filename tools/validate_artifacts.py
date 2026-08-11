@@ -54,13 +54,38 @@ if not page.is_file():
     errors.append('missing artifacts.html')
 else:
     text=page.read_text(encoding='utf-8')
-    for token in ("D.load('artifacts')","event.html?id=","Image pending digitization"):
+    for token in (
+        "D.load('artifacts')",
+        'event.html?id=',
+        'Image pending digitization',
+        'data-artifact-filter',
+        'artifact-search',
+        'data-status=',
+    ):
         if token not in text:
             errors.append(f'artifacts.html missing {token}')
 
 event_page=ROOT/'event.html'
 if not event_page.is_file() or "D.load('artifacts')" not in event_page.read_text(encoding='utf-8'):
     errors.append('event passports must load artifact catalog')
+
+annuals=ROOT/'annuals.html'
+if not annuals.is_file():
+    errors.append('missing annuals.html')
+else:
+    text=annuals.read_text(encoding='utf-8')
+    for token in ("D.load('artifacts')",'artifactByYear','artifact-status','Artifact years'):
+        if token not in text:
+            errors.append(f'annuals.html missing artifact integration token: {token}')
+
+venue_page=ROOT/'venue-profile.html'
+if not venue_page.is_file():
+    errors.append('missing venue-profile.html')
+else:
+    text=venue_page.read_text(encoding='utf-8')
+    for token in ("D.load('artifacts')",'venueArtifacts','artifact-badge','Artifacts from this venue','Open the artifact museum'):
+        if token not in text:
+            errors.append(f'venue-profile.html missing artifact integration token: {token}')
 
 route=ROOT/'artifacts/index.html'
 if not route.is_file():
@@ -69,4 +94,4 @@ if not route.is_file():
 if errors:
     print('\n'.join('ERROR: '+e for e in errors))
     sys.exit(1)
-print(f'OK: {len(artifacts)} cataloged artifacts validated against {len(events)} archive events, including ticket-stub evidence locks.')
+print(f'OK: {len(artifacts)} cataloged artifacts validated across museum filters, exact events, annual editions, venue profiles, and ticket-stub evidence locks.')
