@@ -89,9 +89,12 @@ manifest=ROOT/"site.webmanifest"
 clean_urls=ROOT/"assets"/"clean-urls.js"
 route_bootstrap=ROOT/"assets"/"route-bootstrap.js"
 route_entry_paths=[
-    "about/index.html","artifacts/index.html","years/index.html","events/index.html","teams/index.html","venues/index.html",
+    "about/index.html","years/index.html","events/index.html","teams/index.html","venues/index.html",
     "geography/index.html","geography/map/index.html","journeys/index.html","chapters/index.html",
     "favorites/index.html","analytics/index.html","hall-of-fame/index.html",
+]
+retained_artifact_files=[
+    "artifacts.html","artifacts/index.html","data/artifacts.json","data/artifact-priorities.json","ARTIFACT-WORKFLOW.md"
 ]
 
 if not robots.is_file():
@@ -102,6 +105,9 @@ else:
         errors.append("robots.txt must advertise the canonical sitemap URL")
     if "Allow: /" not in robots_text:
         errors.append("robots.txt should allow the public archive to be crawled")
+    for token in ("Disallow: /artifacts/","Disallow: /artifacts.html"):
+        if token not in robots_text:
+            errors.append(f"robots.txt must keep retained artifact pages out of the public crawl surface: {token}")
 if not not_found.is_file():
     errors.append("missing branded 404.html")
 else:
@@ -132,6 +138,10 @@ else:
     except Exception as exc:
         errors.append(f"site.webmanifest parse error: {exc}")
 
+for rel in retained_artifact_files:
+    if not (ROOT/rel).is_file():
+        errors.append(f"retained artifact source is missing: {rel}")
+
 shared_js=ROOT/"assets"/"sports-passport-data.js"
 if not shared_js.is_file():
     errors.append("missing shared Sports Passport data/runtime script")
@@ -152,15 +162,18 @@ if not clean_urls.is_file():
     errors.append("missing assets/clean-urls.js")
 else:
     clean_text=clean_urls.read_text(encoding="utf-8")
-    for token in ("/artifacts/", "/years/?year=", "/events/?event=", "/teams/?team=", "/venues/?venue=", "/journeys/?journey=", "/chapters/?chapter="):
+    for token in ("/years/?year=", "/events/?event=", "/teams/?team=", "/venues/?venue=", "/journeys/?journey=", "/chapters/?chapter="):
         if token not in clean_text:
             errors.append(f"clean URL normalizer missing route pattern {token}")
+    for retired in ("'/artifacts/'", "artifacts.html", "ensureArtifactsNav"):
+        if retired in clean_text:
+            errors.append(f"clean URL normalizer still publicizes retained artifact feature: {retired}")
 
 if not route_bootstrap.is_file():
     errors.append("missing assets/route-bootstrap.js")
 else:
     route_text=route_bootstrap.read_text(encoding="utf-8")
-    for token in ("first === 'artifacts'", "publicQuery.get('year')", "publicQuery.get('event')", "publicQuery.get('team')", "publicQuery.get('venue')", "publicQuery.get('journey')", "publicQuery.get('chapter')"):
+    for token in ("publicQuery.get('year')", "publicQuery.get('event')", "publicQuery.get('team')", "publicQuery.get('venue')", "publicQuery.get('journey')", "publicQuery.get('chapter')"):
         if token not in route_text:
             errors.append(f"route bootstrap missing clean route mapping: {token}")
 
@@ -172,8 +185,13 @@ for rel in route_entry_paths:
         errors.append(f"clean public route entry does not load route bootstrap: {rel}")
 
 home=ROOT/"index.html"
-if home.is_file() and 'assets/clean-urls.js' not in home.read_text(encoding="utf-8"):
-    errors.append("homepage must load clean URL normalizer")
+if home.is_file():
+    home_text=home.read_text(encoding="utf-8")
+    if 'assets/clean-urls.js' not in home_text:
+        errors.append("homepage must load clean URL normalizer")
+    for token in ('href="artifacts.html"','href="/artifacts/"','<h3>Artifacts</h3>'):
+        if token in home_text:
+            errors.append(f"homepage must not expose retained artifact feature: {token}")
 
 sitemap_urls=[]
 if not sitemap.is_file():
@@ -189,7 +207,6 @@ else:
     required_urls={
         f"{PUBLIC_ORIGIN}/",
         f"{PUBLIC_ORIGIN}/about/",
-        f"{PUBLIC_ORIGIN}/artifacts/",
         f"{PUBLIC_ORIGIN}/years/",
         f"{PUBLIC_ORIGIN}/favorites/",
         f"{PUBLIC_ORIGIN}/geography/",
@@ -241,6 +258,8 @@ else:
     missing=sorted(required_urls-set(sitemap_urls))
     if missing:
         errors.append("sitemap.xml missing required public URLs: " + " | ".join(missing))
+    if any('/artifacts/' in url or url.endswith('/artifacts.html') for url in sitemap_urls):
+        errors.append("sitemap.xml must not publish retained artifact pages")
 
     allowed_query_keys={"year","event","team","venue","journey","chapter"}
     for url in sitemap_urls:
@@ -266,7 +285,7 @@ if errors:
     print("\n".join("ERROR: "+e for e in errors))
     sys.exit(1)
 print(
-    f"OK: {len(html_files)} legacy templates, {len(js_files)} shared JS files, clean route entries, local references, "
+    f"OK: {len(html_files)} legacy templates, {len(js_files)} shared JS files, public clean-route entries, local references, "
     f"data loads, JavaScript syntax, publication metadata, favicon/manifest, branded 404 recovery, robots.txt, "
-    f"and {len(sitemap_urls)} clean canonical sitemap URLs validated against archive/editorial data."
+    f"and {len(sitemap_urls)} clean canonical sitemap URLs validated; artifact source files remain retained but unpublished."
 )

@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /artifacts/
+Disallow: /artifacts.html
 
 Sitemap: https://sports.alexlford.com/sitemap.xml
