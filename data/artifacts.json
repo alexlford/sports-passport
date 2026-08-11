@@ -1,0 +1,22 @@
+[
+  {
+    "id": "artifact-0001",
+    "event_id": "evt-0001",
+    "type": "ticket_stub",
+    "title": "1993 Camden Yards ticket stub",
+    "summary": "Original ticket stub preserved from the August 8, 1993 Cleveland–Baltimore game at Oriole Park at Camden Yards.",
+    "provenance": "Physical ticket stub used to verify attendance in the early archive.",
+    "digitization_status": "image_pending",
+    "media": null
+  },
+  {
+    "id": "artifact-0002",
+    "event_id": "evt-0008",
+    "type": "ticket_stub",
+    "title": "1997 Camden Yards ticket stub",
+    "summary": "Original ticket stub preserved from the August 12, 1997 Oakland–Baltimore game at Oriole Park at Camden Yards.",
+    "provenance": "Physical ticket stub used to verify attendance in the early archive.",
+    "digitization_status": "image_pending",
+    "media": null
+  }
+]
