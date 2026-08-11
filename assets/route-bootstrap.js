@@ -9,33 +9,34 @@
   if (first === 'about') template = 'about.html';
   else if (first === 'artifacts') template = 'artifacts.html';
   else if (first === 'years') {
-    const year = publicQuery.get('year') || parts[1];
+    const year = publicQuery.get('year') || publicQuery.get('y') || parts[1];
     if (year) { template = 'year.html'; params = {y: year}; dynamic = true; }
     else template = 'annuals.html';
   }
   else if (first === 'events') {
     const event = publicQuery.get('event') || publicQuery.get('id') || parts[1];
     if (event) { template = 'event.html'; params = {id: event}; dynamic = true; }
+    else template = 'annuals.html';
   }
   else if (first === 'teams') {
-    const team = publicQuery.get('team') || parts[1];
+    const team = publicQuery.get('team') || publicQuery.get('t') || parts[1];
     if (team) { template = 'team-profile.html'; params = {t: team}; dynamic = true; }
     else template = 'teams.html';
   }
   else if (first === 'venues') {
-    const venue = publicQuery.get('venue') || parts[1];
+    const venue = publicQuery.get('venue') || publicQuery.get('v') || parts[1];
     if (venue) { template = 'venue-profile.html'; params = {v: venue}; dynamic = true; }
     else template = 'venues.html';
   }
   else if (first === 'geography' && parts[1] === 'map') template = 'venue-map.html';
   else if (first === 'geography') template = 'geography.html';
   else if (first === 'journeys') {
-    const journey = publicQuery.get('journey') || parts[1];
+    const journey = publicQuery.get('journey') || publicQuery.get('j') || parts[1];
     if (journey) { template = 'journey-profile.html'; params = {j: journey}; dynamic = true; }
     else template = 'journeys.html';
   }
   else if (first === 'chapters') {
-    const chapter = publicQuery.get('chapter') || parts[1];
+    const chapter = publicQuery.get('chapter') || publicQuery.get('p') || parts[1];
     if (chapter) { template = 'phase.html'; params = {p: chapter}; dynamic = true; }
     else template = 'journeys.html';
   }
@@ -46,13 +47,13 @@
   if (!template) return;
 
   const cleanPath = location.pathname.endsWith('/') ? location.pathname : `${location.pathname}/`;
-  const cleanPublicUrl = `${cleanPath}${location.search || ''}`;
+  const cleanPublicUrl = `${cleanPath}${location.search || ''}${location.hash || ''}`;
   window.SPORTS_CLEAN_ROUTE = true;
   window.SPORTS_ROUTE_PUBLIC_URL = cleanPublicUrl;
   window.SPORTS_ROUTE_PARAMS = params;
 
   const legacyQuery = new URLSearchParams(params).toString();
-  if (legacyQuery) history.replaceState(null, '', `${cleanPath}?${legacyQuery}`);
+  if (legacyQuery) history.replaceState(null, '', `${cleanPath}?${legacyQuery}${location.hash || ''}`);
 
   fetch(`/${template}`, {cache:'no-store'})
     .then(response => {
