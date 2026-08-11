@@ -81,7 +81,7 @@ window.SportsPassportData = (() => {
   const matchup = e => Array.isArray(e.teams) && e.teams.length===2 ? `${e.teams[0]} vs ${e.teams[1]}` : "Archive event";
   const counts = arr => arr.reduce((o,x)=>(o[x]=(o[x]||0)+1,o),{});
 
-  // Confidence semantics live here so every derived view uses the same rule.
+  // Confidence semantics live here so every derived view can use the same rule.
   const isNotionalEvent = e => e?.attendance_status === "notional";
   const isVerifiedEvent = e => e?.attendance_status === "verified";
   const isConfirmedEvent = e => Number(e?.year) >= 2006 || isVerifiedEvent(e);
@@ -207,38 +207,8 @@ window.SportsPassportData = (() => {
     footer.innerHTML = '<span>Sports Passport · A personal archive of live sports.</span><a href="https://www.alexlford.com/">Back to alexlford.com ↗</a>';
   }
 
-  async function hydrateHomepage() {
-    if (!document.querySelector(".hero") || !document.querySelector("#lifetime-desk")) return;
-    try {
-      const [config,events,phases] = await Promise.all([load("config"),load("events"),load("phases")]);
-      const start = Number(config.archive_start_year) || Math.min(...events.map(e=>Number(e.year)));
-      const current = Number(config.current_year) || Math.max(...events.map(e=>Number(e.year)));
-      const latestComplete = Number(config.latest_complete_year) || current - 1;
-      const calendarYears = current - start + 1;
-      const editions = new Set(events.map(e=>Number(e.year))).size;
-      const hero = document.querySelector(".hero");
-      const kicker = hero?.querySelector(".kicker");
-      if (kicker) kicker.textContent = `${start} → ${current}`;
-      const values = hero?.querySelectorAll(".stats .stat strong");
-      if (values?.length >= 6) {
-        values[0].textContent = calendarYears;
-        values[1].textContent = editions;
-        values[2].textContent = Array.isArray(phases) ? phases.length : values[2].textContent;
-        values[3].textContent = start;
-        values[4].textContent = latestComplete;
-      }
-      const lifetimeTitle = document.querySelector("#lifetime-desk h2");
-      if (lifetimeTitle) lifetimeTitle.textContent = `${calendarYears} years, one record.`;
-      const annualCopy = document.querySelector("#years .year-card span:nth-child(2)");
-      if (annualCopy) annualCopy.textContent = `${start} through the current season · generated from shared event data`;
-    } catch (err) {
-      console.warn("Homepage live metrics unavailable; retaining embedded fallback values.", err);
-    }
-  }
-
   function boot() {
     hydrateGlobalChrome();
-    hydrateHomepage();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
