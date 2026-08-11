@@ -87,6 +87,22 @@ else:
         if token not in text:
             errors.append(f'venue-profile.html missing artifact integration token: {token}')
 
+# Artifact context should travel with the annual, chronological, and recurring-story views.
+story_pages={
+    'year.html':("D.load('artifacts')",'artifactByEvent','yearArtifacts','badge artifact','Physical archive','Open the complete artifact museum'),
+    'phase.html':('D.load("artifacts")','chapterArtifacts','Physical archive','Artifacts from this chapter','Open the complete artifact museum'),
+    'journey-profile.html':('D.load("artifacts")','journeyArtifacts','artifact-badge','Artifacts in this thread','Open the complete artifact museum'),
+}
+for name,tokens in story_pages.items():
+    path=ROOT/name
+    if not path.is_file():
+        errors.append(f'missing {name}')
+        continue
+    text=path.read_text(encoding='utf-8')
+    for token in tokens:
+        if token not in text:
+            errors.append(f'{name} missing artifact storytelling token: {token}')
+
 route=ROOT/'artifacts/index.html'
 if not route.is_file():
     errors.append('missing clean /artifacts/ route entry')
@@ -94,4 +110,4 @@ if not route.is_file():
 if errors:
     print('\n'.join('ERROR: '+e for e in errors))
     sys.exit(1)
-print(f'OK: {len(artifacts)} cataloged artifacts validated across museum filters, exact events, annual editions, venue profiles, and ticket-stub evidence locks.')
+print(f'OK: {len(artifacts)} cataloged artifacts validated across museum filters, exact events, annual editions, venue profiles, life chapters, recurring journeys, and ticket-stub evidence locks.')
