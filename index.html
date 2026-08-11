@@ -153,5 +153,6 @@
   document.querySelector('#canon-preview').innerHTML=previews.map(p=>`<a class="portal" href="${p.href}"><span class="num">${p.num}</span><h3>${p.title}</h3><p>${p.copy}</p>${p.item?`<b>#1 · ${p.item.title} →</b>`:'<b>Open ranking →</b>'}</a>`).join('');
 })();
 </script>
+<script src="assets/clean-urls.js"></script>
 </body>
 </html>
