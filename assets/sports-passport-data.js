@@ -171,6 +171,30 @@ window.SportsPassportData = (() => {
     return '';
   }
 
+  async function polishAnnualVenueLeaders() {
+    const file = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    if (file !== 'year.html') return;
+    const venueHeading = [...document.querySelectorAll('.panel h3')].find(h => h.textContent.trim() === 'Venue leaders');
+    if (!venueHeading) return;
+    let venues;
+    try { venues = await load('venues'); } catch (_) { return; }
+    let row = venueHeading.nextElementSibling;
+    while (row?.classList?.contains('leader')) {
+      const label = row.querySelector('span');
+      if (label) {
+        const key = label.textContent.trim();
+        const venue = venueByKey(venues,key);
+        if (venue) {
+          const link = document.createElement('a');
+          link.href = venueHref(venues,key);
+          link.textContent = venue.display_name;
+          label.replaceChildren(link);
+        }
+      }
+      row = row.nextElementSibling;
+    }
+  }
+
   function hydrateGlobalChrome() {
     const main = document.querySelector('main');
     if (!main) return;
@@ -215,6 +239,7 @@ window.SportsPassportData = (() => {
 
   function boot() {
     hydrateGlobalChrome();
+    polishAnnualVenueLeaders();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
