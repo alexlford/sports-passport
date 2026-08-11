@@ -15,7 +15,24 @@ Add one record to `data/artifacts.json` with:
 - `digitization_status`: `image_pending` until a real media file is present; `digitized` after one is added
 - `media`: `null` until digitized
 
-Do not create an artifact record simply because an event would benefit from one. The public Personal Canon coverage queue is intentionally separate from the catalog so candidate moments cannot be mistaken for known physical objects.
+Do not create an artifact record simply because an event would benefit from one. Candidate moments and research leads live separately so they cannot be mistaken for known physical objects.
+
+## 1A. Track a research lead
+
+Use `data/artifact-priorities.json` when physical evidence would materially strengthen the biography but no known object has yet been identified. A research lead can point to one exact event, several candidate events, or a broader set of notional early-archive records.
+
+Each research lead should include:
+
+- a stable `artifact-priority-####` ID
+- the life-chapter `phase_key`
+- a category such as `verified_early_archive` or `family_history`
+- a public-facing summary explaining why evidence would matter
+- `event_ids` defining the exact or candidate archive records in scope
+- a status that makes uncertainty explicit
+- supported `candidate_types` worth looking for
+- a `research_note` stating what still needs to be established
+
+A research lead is not evidence. It must never change attendance confidence, create a museum case, or imply ownership of an object. If the exact event is unresolved, preserve every plausible candidate until the date can be confirmed rather than guessing.
 
 ## 2. Digitize the source
 
@@ -30,7 +47,20 @@ For an existing physical artifact:
 
 The website will automatically surface the new visual on the Artifact Museum and on connected Event Passport, annual, venue, life-chapter, and recurring-journey views.
 
-## 3. Validate provenance
+## 3. Promote a research lead into the catalog
+
+When a real source is found:
+
+1. Match it to an exact event before creating an artifact record.
+2. If a lead contains multiple candidate events, resolve the event first and update the research record so the uncertainty is removed deliberately.
+3. Create the real artifact entry in `data/artifacts.json`.
+4. Add media only if an actual scan or photograph exists.
+5. Remove or retire the corresponding research lead once the new catalog entry makes it redundant.
+6. Only update a pre-2006 attendance confidence label if the new evidence genuinely supports that change.
+
+This separation keeps the research queue useful without allowing future possibilities to masquerade as provenance.
+
+## 4. Validate provenance
 
 Before merging, confirm:
 
@@ -38,18 +68,20 @@ Before merging, confirm:
 - the public title and summary do not overstate what the object proves
 - the media file is the actual artifact named in the catalog
 - known early-archive confidence labels remain unchanged unless new evidence truly changes the underlying attendance claim
-- no Personal Canon candidate is promoted into the catalog without a real identified source
+- no Personal Canon candidate or biography research lead is promoted into the catalog without a real identified source
+- unresolved multi-event research leads still preserve every plausible event rather than selecting one by assumption
 
-Run the repository validation suite or rely on the pull-request CI checks. `tools/validate_artifacts.py` verifies IDs, event references, supported object/status values, media-file consistency, and the known Camden Yards ticket-stub fact locks.
+Run the repository validation suite or rely on the pull-request CI checks. `tools/validate_artifacts.py` verifies artifact IDs, research-priority IDs, event references, supported object/status values, media-file consistency, life-chapter alignment, and the known evidence fact locks.
 
-## 4. Priority order
+## 5. Priority order
 
-When choosing what to digitize next, use this order:
+When choosing what to digitize or research next, use this order:
 
 1. already-cataloged evidence with `image_pending`
 2. physical evidence that can strengthen a Verified early-archive record
 3. known artifacts tied to a Top 10 Sports Experience
 4. family-history artifacts that add provenance or personal narrative
-5. other tickets, credentials, programs, photos, seat views, and keepsakes that add something the event data alone cannot show
+5. unresolved biography research leads where one exact event still needs confirmation
+6. other tickets, credentials, programs, photos, seat views, and keepsakes that add something the event data alone cannot show
 
 The guiding rule is simple: **provenance over decoration**.
