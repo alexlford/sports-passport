@@ -48,7 +48,6 @@ def team_slug(value):
     value=re.sub(r"[^a-z0-9]+","-",value)
     return value.strip("-")
 
-# Validate static local href/src targets and data loader references.
 load_re=re.compile(r"\bD\.load\(\s*['\"]([^'\"]+)['\"]\s*\)")
 for html in html_files:
     text=html.read_text(encoding="utf-8")
@@ -62,7 +61,6 @@ for html in html_files:
         if not target.is_file():
             errors.append(f"{html.name}: D.load('{name}') has no data/{name}.json")
 
-# Syntax-check shared JS and every inline script without executing browser code.
 js_files=sorted((ROOT/"assets").glob("*.js"))
 script_re=re.compile(r"<script(?![^>]*\bsrc\s*=)[^>]*>(.*?)</script>",re.IGNORECASE|re.DOTALL)
 with tempfile.TemporaryDirectory() as tmp:
@@ -83,7 +81,6 @@ with tempfile.TemporaryDirectory() as tmp:
             detail=(proc.stderr or proc.stdout).strip().splitlines()
             errors.append(f"{label}: JavaScript syntax check failed: {' | '.join(detail[-3:])}")
 
-# Publication/discovery files are part of the public-site contract.
 robots=ROOT/"robots.txt"
 sitemap=ROOT/"sitemap.xml"
 not_found=ROOT/"404.html"
@@ -92,7 +89,7 @@ manifest=ROOT/"site.webmanifest"
 clean_urls=ROOT/"assets"/"clean-urls.js"
 route_bootstrap=ROOT/"assets"/"route-bootstrap.js"
 route_entry_paths=[
-    "about/index.html","years/index.html","events/index.html","teams/index.html","venues/index.html",
+    "about/index.html","artifacts/index.html","years/index.html","events/index.html","teams/index.html","venues/index.html",
     "geography/index.html","geography/map/index.html","journeys/index.html","chapters/index.html",
     "favorites/index.html","analytics/index.html","hall-of-fame/index.html",
 ]
@@ -155,7 +152,7 @@ if not clean_urls.is_file():
     errors.append("missing assets/clean-urls.js")
 else:
     clean_text=clean_urls.read_text(encoding="utf-8")
-    for token in ("/years/?year=", "/events/?event=", "/teams/?team=", "/venues/?venue=", "/journeys/?journey=", "/chapters/?chapter="):
+    for token in ("/artifacts/", "/years/?year=", "/events/?event=", "/teams/?team=", "/venues/?venue=", "/journeys/?journey=", "/chapters/?chapter="):
         if token not in clean_text:
             errors.append(f"clean URL normalizer missing route pattern {token}")
 
@@ -163,9 +160,9 @@ if not route_bootstrap.is_file():
     errors.append("missing assets/route-bootstrap.js")
 else:
     route_text=route_bootstrap.read_text(encoding="utf-8")
-    for token in ("publicQuery.get('year')", "publicQuery.get('event')", "publicQuery.get('team')", "publicQuery.get('venue')", "publicQuery.get('journey')", "publicQuery.get('chapter')"):
+    for token in ("first === 'artifacts'", "publicQuery.get('year')", "publicQuery.get('event')", "publicQuery.get('team')", "publicQuery.get('venue')", "publicQuery.get('journey')", "publicQuery.get('chapter')"):
         if token not in route_text:
-            errors.append(f"route bootstrap missing clean query mapping: {token}")
+            errors.append(f"route bootstrap missing clean route mapping: {token}")
 
 for rel in route_entry_paths:
     path=ROOT/rel
@@ -192,6 +189,7 @@ else:
     required_urls={
         f"{PUBLIC_ORIGIN}/",
         f"{PUBLIC_ORIGIN}/about/",
+        f"{PUBLIC_ORIGIN}/artifacts/",
         f"{PUBLIC_ORIGIN}/years/",
         f"{PUBLIC_ORIGIN}/favorites/",
         f"{PUBLIC_ORIGIN}/geography/",
@@ -203,7 +201,6 @@ else:
         f"{PUBLIC_ORIGIN}/venues/",
     }
 
-    # Every annual edition, life chapter, and recurring journey should be directly discoverable.
     try:
         config=json.loads((ROOT/"data"/"config.json").read_text(encoding="utf-8"))
         start=int(config["archive_start_year"])
@@ -222,7 +219,6 @@ else:
     except Exception as exc:
         errors.append(f"could not derive journey sitemap URLs: {exc}")
 
-    # Personal Canon content gets explicit sitemap priority: favorite teams, ranked events, and ranked venue identities.
     try:
         lore=json.loads((ROOT/"data"/"team-lore.json").read_text(encoding="utf-8"))
         favorite_teams=[team for team,data in lore.items() if isinstance(data,dict) and data.get("favorite")]

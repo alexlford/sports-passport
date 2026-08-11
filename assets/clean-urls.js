@@ -21,6 +21,7 @@
 
     if (file === '' || file === 'index.html') path = '/';
     else if (file === 'about.html') path = '/about/';
+    else if (file === 'artifacts.html') path = '/artifacts/';
     else if (file === 'annuals.html') path = '/years/';
     else if (file === 'year.html' && p.get('y')) path = `/years/?year=${encode(p.get('y'))}`;
     else if (file === 'event.html' && p.get('id')) path = `/events/?event=${encode(p.get('id'))}`;
