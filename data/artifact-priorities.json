@@ -1,0 +1,38 @@
+[
+  {
+    "id": "artifact-priority-0001",
+    "title": "Indiana at SIU — verified early archive",
+    "phase_key": "origins",
+    "category": "verified_early_archive",
+    "priority": 1,
+    "status": "candidate",
+    "event_ids": ["evt-0020"],
+    "summary": "The 2001 Indiana at Southern Illinois game is already user-confirmed. A surviving ticket, program, photograph, or keepsake would add physical provenance to one of the few verified pre-2006 records.",
+    "research_note": "No artifact is currently cataloged for this event.",
+    "candidate_types": ["ticket_stub", "program", "photo", "keepsake"]
+  },
+  {
+    "id": "artifact-priority-0002",
+    "title": "Cardinals family trips — early archive",
+    "phase_key": "origins",
+    "category": "family_history",
+    "priority": 2,
+    "status": "research_lead",
+    "event_ids": ["evt-0003", "evt-0004", "evt-0006", "evt-0011", "evt-0013", "evt-0015", "evt-0016", "evt-0018", "evt-0019", "evt-0022", "evt-0023", "evt-0028"],
+    "summary": "The Growing Up chapter is built around Cardinals trips with family. A surviving ticket, program, photograph, or keepsake from any of those childhood trips could preserve the family story and, once matched to a specific game, potentially strengthen a notional early-archive record.",
+    "research_note": "These are plausible reconstruction records, not confirmed artifact matches. Evidence should only be attached after it can be tied to a specific game.",
+    "candidate_types": ["ticket_stub", "program", "photo", "keepsake"]
+  },
+  {
+    "id": "artifact-priority-0003",
+    "title": "Penny's first Cardinals game",
+    "phase_key": "colorado",
+    "category": "family_history",
+    "priority": 1,
+    "status": "needs_exact_event_confirmation",
+    "event_ids": ["evt-0250", "evt-0251"],
+    "summary": "The Denver chapter records Penny's first sporting event as a Cardinals game with my mom. The archive contains Cardinals–Rockies games at Coors Field on July 22 and July 23, 2025; the exact game should be confirmed before an artifact is attached.",
+    "research_note": "Treat both dates as candidate records until the exact first game is confirmed.",
+    "candidate_types": ["photo", "ticket_stub", "keepsake"]
+  }
+]
