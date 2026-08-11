@@ -62,8 +62,24 @@
     root.querySelectorAll?.('a[href]').forEach(rewriteAnchor);
   }
 
+  const cleanRouteKey = path => {
+    const pathname = path || '/';
+    if (pathname === '/') return 'home';
+    if (pathname.startsWith('/years/') || pathname.startsWith('/events/')) return 'years';
+    if (pathname.startsWith('/geography/') || pathname.startsWith('/venues/')) return 'geography';
+    if (pathname.startsWith('/teams/')) return 'teams';
+    if (pathname.startsWith('/journeys/') || pathname.startsWith('/chapters/')) return 'journeys';
+    if (pathname.startsWith('/favorites/')) return 'favorites';
+    if (pathname.startsWith('/analytics/')) return 'analytics';
+    if (pathname.startsWith('/hall-of-fame/')) return 'hof';
+    if (pathname.startsWith('/about/')) return 'about';
+    return '';
+  };
+
   function currentPublicRelativeUrl() {
     if (window.SPORTS_ROUTE_PUBLIC_URL) return window.SPORTS_ROUTE_PUBLIC_URL;
+    const cleaned = cleanPathForLegacy(location.href);
+    if (cleaned) return cleaned;
     if (location.pathname === '/index.html') return '/';
     return `${location.pathname}${location.search}`;
   }
@@ -86,21 +102,56 @@
     og.setAttribute('content', clean);
   }
 
+  function polishPublicChrome() {
+    const header = document.querySelector('.site-header');
+    if (header) {
+      const brand = header.querySelector('.brand a');
+      if (brand) brand.setAttribute('href','/');
+      const active = cleanRouteKey(new URL(currentPublicRelativeUrl(), ORIGIN).pathname);
+      header.querySelectorAll('.global-nav a:not(.external)').forEach(anchor => {
+        const clean = cleanPathForLegacy(anchor.getAttribute('href')) || anchor.getAttribute('href');
+        const key = cleanRouteKey(new URL(clean, ORIGIN).pathname);
+        anchor.classList.toggle('active', !!active && key === active);
+        if (active && key === active) anchor.setAttribute('aria-current','page');
+        else anchor.removeAttribute('aria-current');
+        if (clean === '/journeys/') anchor.textContent = 'Life Chapters';
+        if (clean === '/favorites/') anchor.textContent = 'Personal Canon';
+      });
+    }
+
+    const footer = document.querySelector('.site-footer');
+    if (footer && !footer.querySelector('[data-about-archive]')) {
+      const about = document.createElement('a');
+      about.href = '/about/';
+      about.dataset.aboutArchive = 'true';
+      about.textContent = 'About the archive';
+      const external = footer.querySelector('a[href*="alexlford.com"]');
+      if (external) footer.insertBefore(about, external);
+      else footer.appendChild(about);
+    }
+  }
+
   function boot() {
     rewriteLinks(document);
-    if (location.pathname === '/' || window.SPORTS_CLEAN_ROUTE) setCanonicalToCurrentCleanUrl();
+    setCanonicalToCurrentCleanUrl();
+    polishPublicChrome();
     const observer = new MutationObserver(mutations => {
+      let chromeChanged = false;
       for (const mutation of mutations) {
         if (mutation.type === 'attributes' && mutation.target instanceof HTMLAnchorElement) rewriteAnchor(mutation.target);
         mutation.addedNodes.forEach(node => {
-          if (node.nodeType === Node.ELEMENT_NODE) rewriteLinks(node);
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            rewriteLinks(node);
+            if (node.matches?.('.site-header,.site-footer') || node.querySelector?.('.site-header,.site-footer')) chromeChanged = true;
+          }
         });
       }
+      if (chromeChanged) polishPublicChrome();
     });
     observer.observe(document.documentElement, {subtree:true, childList:true, attributes:true, attributeFilter:['href']});
   }
 
-  window.SportsPassportCleanUrls = { cleanPathForLegacy, rewriteLinks, currentPublicRelativeUrl, isCleanPublicRoute };
+  window.SportsPassportCleanUrls = { cleanPathForLegacy, rewriteLinks, currentPublicRelativeUrl, isCleanPublicRoute, cleanRouteKey, polishPublicChrome };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, {once:true});
   else boot();
 })();
