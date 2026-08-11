@@ -1,7 +1,7 @@
 (() => {
   const ORIGIN = 'https://sports.alexlford.com';
   const CLEAN_ROUTE_PREFIXES = [
-    '/about/','/artifacts/','/years/','/events/','/teams/','/venues/','/geography/',
+    '/about/','/years/','/events/','/teams/','/venues/','/geography/',
     '/journeys/','/chapters/','/favorites/','/analytics/','/hall-of-fame/'
   ];
 
@@ -23,8 +23,6 @@
     try { url = new URL(rawHref, location.href); } catch (_) { return null; }
     if (url.origin !== location.origin) return null;
 
-    // Clean section routes are already canonical. Preserve their path and descriptive query keys
-    // rather than allowing the trailing slash to be mistaken for the archive home page.
     if (isCleanPublicRoute(url)) return `${url.pathname}${url.search}${url.hash}`;
 
     const file = (url.pathname.split('/').pop() || '').toLowerCase();
@@ -33,7 +31,6 @@
 
     if (url.pathname === '/' || file === 'index.html') path = '/';
     else if (file === 'about.html') path = '/about/';
-    else if (file === 'artifacts.html') path = '/artifacts/';
     else if (file === 'annuals.html') path = '/years/';
     else if (file === 'year.html' && p.get('y')) path = `/years/?year=${encode(p.get('y'))}`;
     else if (file === 'event.html' && p.get('id')) path = `/events/?event=${encode(p.get('id'))}`;
@@ -65,24 +62,6 @@
     root.querySelectorAll?.('a[href]').forEach(rewriteAnchor);
   }
 
-  function ensureArtifactsNav() {
-    const nav = document.querySelector('#global-nav,.global-nav');
-    if (!nav) return;
-    let link = nav.querySelector('a[data-artifacts-nav]');
-    if (!link) {
-      link = document.createElement('a');
-      link.href = '/artifacts/';
-      link.textContent = 'Artifacts';
-      link.dataset.artifactsNav = 'true';
-      const external = nav.querySelector('a.external');
-      nav.insertBefore(link, external || null);
-    }
-    const active = location.pathname.startsWith('/artifacts');
-    link.classList.toggle('active', active);
-    if (active) link.setAttribute('aria-current','page');
-    else link.removeAttribute('aria-current');
-  }
-
   function currentPublicRelativeUrl() {
     if (window.SPORTS_ROUTE_PUBLIC_URL) return window.SPORTS_ROUTE_PUBLIC_URL;
     if (location.pathname === '/index.html') return '/';
@@ -109,20 +88,14 @@
 
   function boot() {
     rewriteLinks(document);
-    ensureArtifactsNav();
     if (location.pathname === '/' || window.SPORTS_CLEAN_ROUTE) setCanonicalToCurrentCleanUrl();
     const observer = new MutationObserver(mutations => {
-      let navMayNeedRefresh = false;
       for (const mutation of mutations) {
         if (mutation.type === 'attributes' && mutation.target instanceof HTMLAnchorElement) rewriteAnchor(mutation.target);
         mutation.addedNodes.forEach(node => {
-          if (node.nodeType === Node.ELEMENT_NODE) {
-            rewriteLinks(node);
-            if (node.matches?.('.global-nav,#global-nav') || node.querySelector?.('.global-nav,#global-nav')) navMayNeedRefresh = true;
-          }
+          if (node.nodeType === Node.ELEMENT_NODE) rewriteLinks(node);
         });
       }
-      if (navMayNeedRefresh) ensureArtifactsNav();
     });
     observer.observe(document.documentElement, {subtree:true, childList:true, attributes:true, attributeFilter:['href']});
   }
