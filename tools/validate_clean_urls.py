@@ -13,6 +13,16 @@ else:
     required=(
         'CLEAN_ROUTE_PREFIXES',
         'isCleanPublicRoute',
+        'function deepCleanRoute(url)',
+        'new URL(rawHref, document.baseURI || location.href)',
+        'const deep = deepCleanRoute(url);',
+        'if (deep) return deep;',
+        "years: ['year', value]",
+        "events: ['event', value]",
+        "teams: ['team', value]",
+        "venues: ['venue', value]",
+        "journeys: ['journey', value]",
+        "chapters: ['chapter', value]",
         "if (isCleanPublicRoute(url)) return `${url.pathname}${url.search}${url.hash}`;",
         "if (url.pathname === '/' || file === 'index.html') path = '/';",
         '/years/?year=',
@@ -27,10 +37,11 @@ else:
             errors.append(f'clean URL runtime missing regression token: {token}')
     if "if (file === '' || file === 'index.html') path = '/';" in text:
         errors.append('trailing-slash regression: empty filename must not be treated as archive home')
+    deep=text.find('const deep = deepCleanRoute(url);')
     guard=text.find('if (isCleanPublicRoute(url))')
     file_parse=text.find("const file = (url.pathname.split('/').pop()")
-    if guard < 0 or file_parse < 0 or guard > file_parse:
-        errors.append('already-clean route guard must run before legacy filename parsing')
+    if min(deep,guard,file_parse) < 0 or not (deep < guard < file_parse):
+        errors.append('deep clean routes must normalize before already-clean route guard and legacy filename parsing')
     for route in ('/about/','/years/','/events/','/teams/','/venues/','/geography/','/journeys/','/chapters/','/favorites/','/analytics/','/hall-of-fame/'):
         if route not in text:
             errors.append(f'clean route prefix missing: {route}')
@@ -41,4 +52,4 @@ else:
 if errors:
     print('\n'.join('ERROR: '+e for e in errors))
     sys.exit(1)
-print('OK: clean public routes preserve trailing-slash section URLs and descriptive query strings without publishing the retained Artifacts feature.')
+print('OK: clean public routes preserve section URLs, normalize deep routes to GitHub-Pages-safe query routes, and resolve relative links against document.baseURI.')
