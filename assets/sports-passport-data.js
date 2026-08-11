@@ -78,8 +78,17 @@ window.SportsPassportData = (() => {
 
   const slug = s => s.toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
   const score = e => Array.isArray(e.scores) && e.scores.length===2 && e.scores.every(Number.isFinite) ? `${e.scores[0]}–${e.scores[1]}` : "";
-  const matchup = e => Array.isArray(e.teams) && e.teams.length===2 ? `${e.teams[0]} vs ${e.teams[1]}` : "Documented event";
+  const matchup = e => Array.isArray(e.teams) && e.teams.length===2 ? `${e.teams[0]} vs ${e.teams[1]}` : "Archive event";
   const counts = arr => arr.reduce((o,x)=>(o[x]=(o[x]||0)+1,o),{});
+
+  // Confidence semantics live here so every derived view can use the same rule.
+  const isNotionalEvent = e => e?.attendance_status === "notional";
+  const isVerifiedEvent = e => e?.attendance_status === "verified";
+  const isConfirmedEvent = e => Number(e?.year) >= 2006 || isVerifiedEvent(e);
+  const confirmedEvents = events => (events || []).filter(isConfirmedEvent);
+  const notionalEvents = events => (events || []).filter(isNotionalEvent);
+  const confidenceLabel = e => isNotionalEvent(e) ? "Notional" : (isVerifiedEvent(e) ? "Verified" : "Documented");
+
   const canonicalTeam = team => teamAliases[team] || team;
   const eventTeams = e => Array.isArray(e.teams_canonical) ? e.teams_canonical : (Array.isArray(e.teams) ? e.teams.map(canonicalTeam) : []);
   const teamPalette = (teamColors, team) => {
@@ -198,41 +207,11 @@ window.SportsPassportData = (() => {
     footer.innerHTML = '<span>Sports Passport · A personal archive of live sports.</span><a href="https://www.alexlford.com/">Back to alexlford.com ↗</a>';
   }
 
-  async function hydrateHomepage() {
-    if (!document.querySelector(".hero") || !document.querySelector("#lifetime-desk")) return;
-    try {
-      const [config,events,phases] = await Promise.all([load("config"),load("events"),load("phases")]);
-      const start = Number(config.archive_start_year) || Math.min(...events.map(e=>Number(e.year)));
-      const current = Number(config.current_year) || Math.max(...events.map(e=>Number(e.year)));
-      const latestComplete = Number(config.latest_complete_year) || current - 1;
-      const calendarYears = current - start + 1;
-      const editions = new Set(events.map(e=>Number(e.year))).size;
-      const hero = document.querySelector(".hero");
-      const kicker = hero?.querySelector(".kicker");
-      if (kicker) kicker.textContent = `${start} → ${current}`;
-      const values = hero?.querySelectorAll(".stats .stat strong");
-      if (values?.length >= 6) {
-        values[0].textContent = calendarYears;
-        values[1].textContent = editions;
-        values[2].textContent = Array.isArray(phases) ? phases.length : values[2].textContent;
-        values[3].textContent = start;
-        values[4].textContent = latestComplete;
-      }
-      const lifetimeTitle = document.querySelector("#lifetime-desk h2");
-      if (lifetimeTitle) lifetimeTitle.textContent = `${calendarYears} years, one record.`;
-      const annualCopy = document.querySelector("#years .year-card span:nth-child(2)");
-      if (annualCopy) annualCopy.textContent = `${start} through the current season · generated from shared event data`;
-    } catch (err) {
-      console.warn("Homepage live metrics unavailable; retaining embedded fallback values.", err);
-    }
-  }
-
   function boot() {
     hydrateGlobalChrome();
-    hydrateHomepage();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 
-  return {load,slug,score,matchup,counts,normalizeCity,canonicalTeam,eventTeams,teamPalette,venueEvents,yearEvents,teamEvents,phaseEvents,journeyEvents,recordForTeam,enhanceDensity};
+  return {load,slug,score,matchup,counts,normalizeCity,isNotionalEvent,isVerifiedEvent,isConfirmedEvent,confirmedEvents,notionalEvents,confidenceLabel,canonicalTeam,eventTeams,teamPalette,venueEvents,yearEvents,teamEvents,phaseEvents,journeyEvents,recordForTeam,enhanceDensity};
 })();
