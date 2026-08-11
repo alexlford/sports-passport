@@ -33,5 +33,7 @@ jobs:
         run: python tools/validate_navigation.py
       - name: Validate public storytelling polish
         run: python tools/validate_public_copy.py
+      - name: Validate visual hierarchy and density
+        run: python tools/validate_visual_polish.py
       - name: Validate site integrity
         run: python tools/validate_site.py
