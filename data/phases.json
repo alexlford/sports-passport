@@ -1,7 +1,7 @@
 [
-  {"key":"origins","title":"The Origins","range":"1993–2005","start":1993,"end":2005,"deck":"Family trips, Cardinals baseball, and the earliest documented sports memories.","accent":"#b7443a"},
-  {"key":"illinois","title":"The Illinois Years","range":"2006–2010","start":2006,"end":2010,"deck":"Undergraduate years in Champaign, with Illinois football and basketball at the center of the calendar.","accent":"#d96b28"},
-  {"key":"kansas","title":"The Kansas Years","range":"2010–2017","start":2010,"end":2017,"deck":"Graduate school in Lawrence, Allen Fieldhouse, Kansas football, and an expanding Kansas City orbit.","accent":"#2d66a5"},
-  {"key":"baltimore","title":"The Baltimore Years","range":"2018–2021","start":2018,"end":2021,"deck":"The early-career Mid-Atlantic chapter, including the unusual pandemic-era seasons.","accent":"#315f84"},
-  {"key":"colorado","title":"The Colorado Years","range":"2022–Present","start":2022,"end":9999,"deck":"Denver becomes home base and the archive expands into a new family chapter.","accent":"#426d5d"}
+  {"key":"origins","title":"Growing Up","range":"1993–2005","start":1993,"end":2005,"deck":"Southern Illinois sports roots: Cardinals baseball with my father and maternal grandfather, SIU basketball and football, family trips, and the earliest memories in the archive.","accent":"#b7443a"},
+  {"key":"illinois","title":"Undergrad","range":"2006–2010","start":2006,"end":2010,"deck":"The University of Illinois years in Champaign, with Illini football and basketball becoming the center of the sports calendar.","accent":"#d96b28"},
+  {"key":"kansas","title":"Grad School","range":"2010–2017","start":2010,"end":2017,"deck":"The University of Kansas years in Lawrence: Allen Fieldhouse, Kansas football, the Border War orbit, and a growing connection to Kansas City sports.","accent":"#2d66a5"},
+  {"key":"baltimore","title":"Baltimore / East Coast","range":"2018–2021","start":2018,"end":2021,"deck":"The Baltimore and Mid-Atlantic chapter, with East Coast venues, professional sports, travel, and the unusual pandemic-era seasons.","accent":"#315f84"},
+  {"key":"colorado","title":"Denver","range":"2022–Present","start":2022,"end":9999,"deck":"Denver becomes home base: Nuggets, Avalanche, Rockies, Broncos, Colorado soccer, destination sports travel, and the beginning of a new family chapter.","accent":"#426d5d"}
 ]
