@@ -33,7 +33,10 @@ for source in source_files:
         if '://' in prefix:
             continue
 
-        target = (source.parent / rel).resolve()
+        # Links emitted by shared scripts resolve in the document's URL context, not
+        # relative to /assets/. Top-level HTML templates resolve relative to themselves.
+        base = ROOT if source.parent == ROOT / 'assets' else source.parent
+        target = (base / rel).resolve()
         try:
             target.relative_to(ROOT)
         except ValueError:
