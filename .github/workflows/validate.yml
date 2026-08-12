@@ -33,6 +33,8 @@ jobs:
         run: python tools/validate_route_identities.py
       - name: Validate static fragment targets
         run: python tools/validate_fragments.py
+      - name: Validate generated link targets
+        run: python tools/validate_generated_links.py
       - name: Validate public navigation polish
         run: python tools/validate_navigation.py
       - name: Validate public storytelling polish
