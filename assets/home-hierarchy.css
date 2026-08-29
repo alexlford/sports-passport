@@ -1,0 +1,49 @@
+/* DS-09: reduce equal-weight homepage entry points without removing destinations. */
+.home-secondary-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.home-secondary-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255,253,248,.58);
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.home-secondary-links a:hover,
+.home-secondary-links a:focus-visible {
+  color: var(--ink);
+  background: var(--white);
+}
+
+@media(max-width:700px) {
+  .home-secondary-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .home-secondary-links a {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media(max-width:420px) {
+  .home-secondary-links {
+    grid-template-columns: 1fr;
+  }
+}
