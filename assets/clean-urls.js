@@ -127,12 +127,18 @@
       const brand = header.querySelector('.brand a');
       if (brand) brand.setAttribute('href','/');
       const active = cleanRouteKey(new URL(currentPublicRelativeUrl(), ORIGIN).pathname);
+      const primaryNavPaths = new Set(['/years/','/teams/','/geography/','/journeys/','/favorites/']);
       header.querySelectorAll('.global-nav a:not(.external)').forEach(anchor => {
         const clean = cleanPathForLegacy(anchor.getAttribute('href')) || anchor.getAttribute('href');
+        if (!primaryNavPaths.has(clean)) {
+          anchor.remove();
+          return;
+        }
         const key = cleanRouteKey(new URL(clean, ORIGIN).pathname);
         anchor.classList.toggle('active', !!active && key === active);
         if (active && key === active) anchor.setAttribute('aria-current','page');
         else anchor.removeAttribute('aria-current');
+        if (clean === '/geography/') anchor.textContent = 'Places';
         if (clean === '/journeys/') anchor.textContent = 'Life Chapters';
         if (clean === '/favorites/') anchor.textContent = 'Personal Canon';
       });
