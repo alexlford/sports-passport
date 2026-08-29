@@ -1,0 +1,22 @@
+/* DS-07: shared Alex Ford parent/subsite convention for Sports Passport.
+   Keep the publication identity dominant while adding a restrained parent cue. */
+
+body .brand {
+  display: inline-grid;
+  gap: 3px;
+  line-height: 1.05;
+}
+
+body .brand::before {
+  content: "ALEX FORD";
+  color: var(--muted);
+  font-size: .58rem;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: .15em;
+}
+
+body .brand:hover::before,
+body .brand:focus-within::before {
+  color: var(--ink);
+}
