@@ -21,6 +21,9 @@ required_clean=(
     "if (pathname.startsWith('/favorites/')) return 'favorites';",
     "if (pathname.startsWith('/analytics/')) return 'analytics';",
     "if (pathname.startsWith('/hall-of-fame/')) return 'hof';",
+    "const primaryNavPaths = new Set(['/years/','/teams/','/geography/','/journeys/','/favorites/']);",
+    "if (!primaryNavPaths.has(clean))",
+    "if (clean === '/geography/') anchor.textContent = 'Places';",
     "if (clean === '/journeys/') anchor.textContent = 'Life Chapters';",
     "if (clean === '/favorites/') anchor.textContent = 'Personal Canon';",
     "if (brand) brand.setAttribute('href','/');",
@@ -77,4 +80,4 @@ if '.site-footer span{margin-right:auto}' not in chrome:
 if errors:
     print('\n'.join('ERROR: '+e for e in errors))
     sys.exit(1)
-print('OK: clean navigation, deep-route recovery, root-safe 404 assets, canonical URLs, footer links, and responsive chrome are validated consistently.')
+print('OK: simplified global navigation, clean routes, recovery, canonical URLs, footer links, and responsive chrome are validated consistently.')
