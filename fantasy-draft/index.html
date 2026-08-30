@@ -7,158 +7,25 @@
   <meta name="theme-color" content="#0b1020">
   <title>2026 Fantasy Draft Poll</title>
   <style>
-    :root{--bg:#090d18;--panel:#11182a;--panel2:#151e33;--line:#26324d;--text:#f7f8fc;--muted:#a9b4cc;--accent:#8b5cf6;--accent2:#c084fc;--good:#22c55e;--shadow:0 18px 55px rgba(0,0,0,.35)}
-    *{box-sizing:border-box}
-    html{background:var(--bg)}
-    body{margin:0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;color:var(--text);background:radial-gradient(circle at 50% -10%,rgba(139,92,246,.25),transparent 35%),linear-gradient(180deg,#0b1020 0%,#090d18 100%);padding:24px 16px 48px}
-    .shell{max-width:620px;margin:0 auto}
-    .hero{text-align:center;padding:24px 12px 20px}
-    .ball{width:54px;height:54px;border-radius:16px;margin:0 auto 14px;display:grid;place-items:center;background:linear-gradient(145deg,var(--accent),#5b21b6);box-shadow:0 10px 30px rgba(139,92,246,.3);font-size:29px}
-    .eyebrow{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800}
-    h1{font-size:clamp(2rem,9vw,3.1rem);line-height:.97;margin:8px 0 12px;letter-spacing:-.045em}
-    .lead{margin:0 auto;color:var(--muted);font-size:1rem;line-height:1.5;max-width:480px}
-    .card{background:rgba(17,24,42,.94);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow);margin-bottom:16px}
-    .step{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}
-    .stepnum{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;flex:0 0 30px;background:rgba(139,92,246,.15);border:1px solid rgba(192,132,252,.3);color:#d8b4fe;font-weight:900}
-    h2{font-size:1.16rem;margin:2px 0 4px;letter-spacing:-.015em}
-    .hint{color:var(--muted);font-size:.88rem;line-height:1.4}
-    label.name-label{font-size:.82rem;color:var(--muted);font-weight:700;display:block;margin-bottom:8px}
-    input[type=text]{width:100%;appearance:none;border:1px solid var(--line);background:#0c1323;color:var(--text);font:inherit;font-size:1rem;border-radius:15px;padding:14px 15px;outline:none}
-    input[type=text]:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(139,92,246,.16)}
-    .choices{display:grid;gap:10px}
-    .choice{position:relative;display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;border:1px solid var(--line);border-radius:16px;background:#0c1323;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;transition:.16s ease}
-    .choice:hover{border-color:#405174}
-    .choice:has(input:checked){border-color:var(--accent);background:linear-gradient(90deg,rgba(139,92,246,.15),rgba(139,92,246,.055));box-shadow:inset 0 0 0 1px rgba(139,92,246,.18)}
-    .choice input{position:absolute;opacity:0;pointer-events:none}
-    .check{width:24px;height:24px;border-radius:8px;border:1.5px solid #50617f;display:grid;place-items:center;flex:0 0 24px;color:white;font-size:.85rem;font-weight:900}
-    .choice:has(input:checked) .check{background:var(--accent);border-color:var(--accent)}
-    .choice:has(input:checked) .check:after{content:"✓"}
-    .choice-main{font-weight:800;line-height:1.15}
-    .choice-sub{font-size:.8rem;color:var(--muted);margin-top:3px}
-    .times{grid-template-columns:repeat(2,1fr)}
-    .times .choice{justify-content:flex-start}
-    .error{display:none;margin:12px 0 0;padding:10px 12px;border-radius:12px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.28);color:#fecaca;font-size:.86rem}
-    .submit{width:100%;appearance:none;border:0;border-radius:17px;padding:16px 18px;font:inherit;font-weight:900;font-size:1.03rem;color:white;background:linear-gradient(135deg,var(--accent),#6d28d9);box-shadow:0 12px 28px rgba(109,40,217,.3);cursor:pointer}
-    .submit:active{transform:translateY(1px)}
-    .privacy{text-align:center;margin:11px 8px 0;color:#7f8ba5;font-size:.77rem;line-height:1.35}
-    details{background:rgba(17,24,42,.72);border:1px solid var(--line);border-radius:20px;overflow:hidden}
-    summary{list-style:none;cursor:pointer;padding:17px 18px;font-weight:850;display:flex;justify-content:space-between;align-items:center}
-    summary::-webkit-details-marker{display:none}
-    summary:after{content:"＋";color:var(--accent2);font-size:1.2rem}
-    details[open] summary:after{content:"−"}
-    .order{margin:0;padding:0 18px 18px;list-style:none;counter-reset:draft}
-    .order li{counter-increment:draft;display:flex;align-items:center;gap:11px;padding:10px 0;border-top:1px solid rgba(38,50,77,.65);font-size:.9rem;font-weight:700}
-    .order li:before{content:counter(draft);width:27px;height:27px;border-radius:9px;display:grid;place-items:center;background:#1d2840;color:#d8b4fe;font-size:.75rem;font-weight:900;flex:0 0 27px}
-    .foot{text-align:center;color:#66738d;font-size:.72rem;margin-top:16px}
-    .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;padding:11px 14px;border-radius:13px;font-size:.86rem;font-weight:800;opacity:0;pointer-events:none;transition:.22s ease;box-shadow:var(--shadow);z-index:10}
-    .toast.show{opacity:1;transform:translate(-50%,0)}
-    @media(max-width:420px){body{padding-left:12px;padding-right:12px}.card{padding:17px}.times{grid-template-columns:1fr 1fr}.choice{padding:11px 12px}}
+    :root{--bg:#090d18;--panel:#11182a;--line:#26324d;--text:#f7f8fc;--muted:#a9b4cc;--accent:#8b5cf6;--accent2:#c084fc;--good:#22c55e;--shadow:0 18px 55px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{background:var(--bg)}body{margin:0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;color:var(--text);background:radial-gradient(circle at 50% -10%,rgba(139,92,246,.25),transparent 35%),linear-gradient(180deg,#0b1020,#090d18);padding:24px 16px 48px}.shell{max-width:620px;margin:0 auto}.hero{text-align:center;padding:24px 12px 20px}.ball{width:54px;height:54px;border-radius:16px;margin:0 auto 14px;display:grid;place-items:center;background:linear-gradient(145deg,var(--accent),#5b21b6);box-shadow:0 10px 30px rgba(139,92,246,.3);font-size:29px}.eyebrow{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800}h1{font-size:clamp(2rem,9vw,3.1rem);line-height:.97;margin:8px 0 12px;letter-spacing:-.045em}.lead{margin:0 auto;color:var(--muted);font-size:1rem;line-height:1.5;max-width:490px}.card{background:rgba(17,24,42,.94);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow);margin-bottom:16px}.step{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}.stepnum{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;flex:0 0 30px;background:rgba(139,92,246,.15);border:1px solid rgba(192,132,252,.3);color:#d8b4fe;font-weight:900}h2{font-size:1.16rem;margin:2px 0 4px}.hint{color:var(--muted);font-size:.88rem;line-height:1.4}label.field-label{font-size:.82rem;color:var(--muted);font-weight:700;display:block;margin-bottom:8px}select{width:100%;appearance:none;border:1px solid var(--line);background:#0c1323;color:var(--text);font:inherit;font-size:1rem;border-radius:15px;padding:14px 15px;outline:none}.choices{display:grid;gap:10px}.choice{position:relative;display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 14px;border:1px solid var(--line);border-radius:16px;background:#0c1323;cursor:pointer;user-select:none}.choice:has(input:checked){border-color:var(--accent);background:linear-gradient(90deg,rgba(139,92,246,.15),rgba(139,92,246,.055))}.choice input{position:absolute;opacity:0;pointer-events:none}.check{width:24px;height:24px;border-radius:8px;border:1.5px solid #50617f;display:grid;place-items:center;flex:0 0 24px}.choice:has(input:checked) .check{background:var(--accent);border-color:var(--accent)}.choice:has(input:checked) .check:after{content:"✓"}.choice-main{font-weight:800}.times{grid-template-columns:repeat(2,1fr)}.error,.status{display:none;margin:12px 0 0;padding:11px 12px;border-radius:12px;font-size:.86rem;line-height:1.4}.error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.28);color:#fecaca}.status{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#bbf7d0}.submit{width:100%;appearance:none;border:0;border-radius:17px;padding:16px 18px;font:inherit;font-weight:900;font-size:1.03rem;color:white;background:linear-gradient(135deg,var(--accent),#6d28d9);box-shadow:0 12px 28px rgba(109,40,217,.3);cursor:pointer}.submit:disabled{opacity:.62;cursor:wait}.privacy{text-align:center;margin:11px 8px 0;color:#7f8ba5;font-size:.77rem;line-height:1.35}details{background:rgba(17,24,42,.72);border:1px solid var(--line);border-radius:20px;overflow:hidden}summary{list-style:none;cursor:pointer;padding:17px 18px;font-weight:850}.order{margin:0;padding:0 18px 18px;list-style:none;counter-reset:draft}.order li{counter-increment:draft;display:flex;align-items:center;gap:11px;padding:10px 0;border-top:1px solid rgba(38,50,77,.65);font-size:.9rem;font-weight:700}.order li:before{content:counter(draft);width:27px;height:27px;border-radius:9px;display:grid;place-items:center;background:#1d2840;color:#d8b4fe;font-size:.75rem;font-weight:900}.foot{text-align:center;color:#66738d;font-size:.72rem;margin-top:16px}@media(max-width:420px){body{padding-left:12px;padding-right:12px}.card{padding:17px}.times{grid-template-columns:1fr 1fr}}
   </style>
 </head>
 <body>
-  <main class="shell">
-    <section class="hero">
-      <div class="ball">🏈</div>
-      <div class="eyebrow">Commissioner's Poll</div>
-      <h1>Fantasy Draft 2026</h1>
-      <p class="lead">Vote for <strong>every date and start time</strong> that works for you. Then send your ballot back in the league iMessage thread.</p>
-    </section>
-
-    <form id="poll" novalidate>
-      <section class="card">
-        <div class="step"><div class="stepnum">1</div><div><h2>Who's voting?</h2><div class="hint">Use your name or team name.</div></div></div>
-        <label class="name-label" for="name">NAME / TEAM</label>
-        <input id="name" type="text" autocomplete="name" placeholder="e.g., Alex / Team Name" maxlength="60" required>
-      </section>
-
-      <section class="card">
-        <div class="step"><div class="stepnum">2</div><div><h2>Which dates work?</h2><div class="hint">Select all that you could make.</div></div></div>
-        <div class="choices" id="dates">
-          <label class="choice"><input type="checkbox" value="Sunday, Sept. 6"><span class="check"></span><span><div class="choice-main">Sunday, Sept. 6</div><div class="choice-sub">Draft night option 1</div></span></label>
-          <label class="choice"><input type="checkbox" value="Monday, Sept. 7"><span class="check"></span><span><div class="choice-main">Monday, Sept. 7</div><div class="choice-sub">Draft night option 2</div></span></label>
-          <label class="choice"><input type="checkbox" value="Tuesday, Sept. 8"><span class="check"></span><span><div class="choice-main">Tuesday, Sept. 8</div><div class="choice-sub">Draft night option 3</div></span></label>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="step"><div class="stepnum">3</div><div><h2>Which start times work?</h2><div class="hint">All times are Central Time. Select all that work.</div></div></div>
-        <div class="choices times" id="times">
-          <label class="choice"><input type="checkbox" value="4:00 PM CT"><span class="check"></span><span class="choice-main">4:00 PM</span></label>
-          <label class="choice"><input type="checkbox" value="5:00 PM CT"><span class="check"></span><span class="choice-main">5:00 PM</span></label>
-          <label class="choice"><input type="checkbox" value="6:00 PM CT"><span class="check"></span><span class="choice-main">6:00 PM</span></label>
-          <label class="choice"><input type="checkbox" value="7:00 PM CT"><span class="check"></span><span class="choice-main">7:00 PM</span></label>
-        </div>
-        <div class="error" id="error">Please enter your name and choose at least one date and one time.</div>
-      </section>
-
-      <section class="card">
-        <button class="submit" type="submit">Send My Vote in iMessage →</button>
-        <div class="privacy">No login required. Your selections stay on your phone until you choose where to send them.</div>
-      </section>
-    </form>
-
-    <details>
-      <summary>2026 Draft Order</summary>
-      <ol class="order">
-        <li>Who Dey and the Blowfish</li>
-        <li>SlivShiesty</li>
-        <li>Lack Attack</li>
-        <li>For Josh Sakes</li>
-        <li>In For The Chase</li>
-        <li>Dinkin Flicka</li>
-        <li>Team Frolic</li>
-        <li>Pour 1 Out 4 Mahomes</li>
-        <li>No Winz For Yinz</li>
-        <li>SCLSU Mud Dogs</li>
-        <li>LivinDevitoLoco</li>
-        <li>Barkley Bites Back</li>
-      </ol>
-    </details>
-
-    <div class="foot">2026 Fantasy Football · Good luck this season.</div>
-  </main>
-  <div class="toast" id="toast">Vote copied. Paste it into the league chat.</div>
-
-  <script>
-    const form=document.querySelector('#poll');
-    const error=document.querySelector('#error');
-    const toast=document.querySelector('#toast');
-    const selected=(id)=>[...document.querySelectorAll(`#${id} input:checked`)].map(x=>x.value);
-
-    function ballot(){
-      const name=document.querySelector('#name').value.trim();
-      const dates=selected('dates');
-      const times=selected('times');
-      return {name,dates,times,text:`🏈 FANTASY DRAFT VOTE\n\n${name}\n\nDATES THAT WORK:\n${dates.map(d=>'✓ '+d).join('\n')}\n\nSTART TIMES THAT WORK:\n${times.map(t=>'✓ '+t).join('\n')}\n\nVote submitted from the 2026 Draft Poll.`};
-    }
-
-    async function sendVote(text){
-      if(navigator.share){
-        try{await navigator.share({title:'2026 Fantasy Draft Vote',text});return;}
-        catch(e){if(e && e.name==='AbortError') return;}
-      }
-      try{
-        await navigator.clipboard.writeText(text);
-        toast.classList.add('show');
-        setTimeout(()=>toast.classList.remove('show'),2600);
-      }catch(e){
-        window.location.href='sms:?&body='+encodeURIComponent(text);
-      }
-    }
-
-    form.addEventListener('submit',async e=>{
-      e.preventDefault();
-      const b=ballot();
-      if(!b.name || !b.dates.length || !b.times.length){
-        error.style.display='block';
-        error.scrollIntoView({behavior:'smooth',block:'center'});
-        return;
-      }
-      error.style.display='none';
-      await sendVote(b.text);
-    });
-
-    form.addEventListener('input',()=>{error.style.display='none'});
-  </script>
-</body>
-</html>
+<main class="shell">
+<section class="hero"><div class="ball">🏈</div><div class="eyebrow">Commissioner's Poll</div><h1>Fantasy Draft 2026</h1><p class="lead">Vote for <strong>every date and start time</strong> that works for you. Your ballot is saved automatically and included in the league totals.</p></section>
+<form id="poll" novalidate>
+<section class="card"><div class="step"><div class="stepnum">1</div><div><h2>Which team are you?</h2><div class="hint">Submitting again replaces your previous ballot.</div></div></div><label class="field-label" for="team">TEAM</label><select id="team"><option value="">Select your team…</option><option value="1793f9d1-7367-5d9f-9f17-3b80676921cf">Who Dey and the Blowfish</option><option value="395ea983-c977-5ec9-bfb8-c28c18ca3f06">SlivShiesty</option><option value="2559e9ab-fa37-511c-9ebe-2990017c47b6">Lack Attack</option><option value="90d9dc97-1592-5ab9-af63-58132bd1f837">For Josh Sakes</option><option value="054d9d0f-6858-5268-8330-f94a87852803">In For The Chase</option><option value="abe7a57c-3c8d-59b8-8f0e-7c2287da495a">Dinkin Flicka</option><option value="24035e31-ad98-5924-8fee-eaa5abdab123">Team Frolic</option><option value="3317412e-1e0d-587a-857c-4d2ebcaac76a">Pour 1 Out 4 Mahomes</option><option value="57dc2c72-43c7-5a2c-8a7c-a1ef88eb3aa0">No Winz For Yinz</option><option value="d7191f33-632b-53e7-a4cf-792607d4cba4">SCLSU Mud Dogs</option><option value="bd2f6479-4055-5a19-95a1-1d7de811ba9c">LivinDevitoLoco</option><option value="a284e91f-9729-5682-9213-44ca6ebece9d">Barkley Bites Back</option></select></section>
+<section class="card"><div class="step"><div class="stepnum">2</div><div><h2>Which dates work?</h2><div class="hint">Select every night you could make.</div></div></div><div class="choices" id="dates"><label class="choice"><input type="checkbox" value="2026-09-06"><span class="check"></span><span class="choice-main">Sunday, Sept. 6</span></label><label class="choice"><input type="checkbox" value="2026-09-07"><span class="check"></span><span class="choice-main">Monday, Sept. 7</span></label><label class="choice"><input type="checkbox" value="2026-09-08"><span class="check"></span><span class="choice-main">Tuesday, Sept. 8</span></label></div></section>
+<section class="card"><div class="step"><div class="stepnum">3</div><div><h2>Which start times work?</h2><div class="hint">All times are Central Time. Select every start time you could make.</div></div></div><div class="choices times" id="times"><label class="choice"><input type="checkbox" value="4:00 PM CT"><span class="check"></span><span class="choice-main">4:00 PM</span></label><label class="choice"><input type="checkbox" value="4:30 PM CT"><span class="check"></span><span class="choice-main">4:30 PM</span></label><label class="choice"><input type="checkbox" value="5:00 PM CT"><span class="check"></span><span class="choice-main">5:00 PM</span></label><label class="choice"><input type="checkbox" value="5:30 PM CT"><span class="check"></span><span class="choice-main">5:30 PM</span></label><label class="choice"><input type="checkbox" value="6:00 PM CT"><span class="check"></span><span class="choice-main">6:00 PM</span></label><label class="choice"><input type="checkbox" value="6:30 PM CT"><span class="check"></span><span class="choice-main">6:30 PM</span></label><label class="choice"><input type="checkbox" value="7:00 PM CT"><span class="check"></span><span class="choice-main">7:00 PM</span></label></div><div class="error" id="error">Choose your team and at least one date and one start time.</div></section>
+<section class="card"><button class="submit" id="submit" type="submit">Submit Vote</button><div class="status" id="status"></div><div class="privacy">No account required. This temporary poll stores only your team name and availability. Re-submit anytime to update your vote.</div></section>
+</form>
+<details><summary>2026 Draft Order</summary><ol class="order"><li>Who Dey and the Blowfish</li><li>SlivShiesty</li><li>Lack Attack</li><li>For Josh Sakes</li><li>In For The Chase</li><li>Dinkin Flicka</li><li>Team Frolic</li><li>Pour 1 Out 4 Mahomes</li><li>No Winz For Yinz</li><li>SCLSU Mud Dogs</li><li>LivinDevitoLoco</li><li>Barkley Bites Back</li></ol></details><div class="foot">2026 Fantasy Football · Good luck this season.</div>
+</main>
+<script>
+const STORE='https://jsonblob.io',team=document.querySelector('#team'),form=document.querySelector('#poll'),error=document.querySelector('#error'),status=document.querySelector('#status'),submit=document.querySelector('#submit');
+const selected=id=>[...document.querySelectorAll(`#${id} input:checked`)].map(x=>x.value);const teamName=()=>team.options[team.selectedIndex]?.text||'';
+form.addEventListener('submit',async e=>{e.preventDefault();error.style.display='none';status.style.display='none';const id=team.value,dates=selected('dates'),times=selected('times');if(!id||!dates.length||!times.length){error.style.display='block';return}submit.disabled=true;submit.textContent='Saving…';try{const r=await fetch(`${STORE}/${id}`,{method:'POST',body:JSON.stringify({season:2026,team:teamName(),dates,times,updatedAt:new Date().toISOString(),schema:1}),cache:'no-store'});if(!r.ok)throw new Error(r.status);localStorage.setItem('fantasyDraftTeamId',id);status.innerHTML='<strong>Vote saved.</strong> Your availability is now included in the league totals. Submit again anytime to update it.';status.style.display='block';submit.textContent='Update Vote'}catch(err){console.error(err);error.textContent='Could not save your vote. Check your connection and try again.';error.style.display='block';submit.textContent='Submit Vote'}finally{submit.disabled=false}});
+form.addEventListener('input',()=>error.style.display='none');const remembered=localStorage.getItem('fantasyDraftTeamId');if(remembered&&[...team.options].some(o=>o.value===remembered))team.value=remembered;
+</script>
+</body></html>
