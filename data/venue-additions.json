@@ -64,5 +64,27 @@
     "aliases": [],
     "first_year": 1999,
     "last_year": 1999
+  },
+  {
+    "key": "Robin Roberts Stadium",
+    "slug": "robin-roberts-stadium",
+    "display_name": "Robin Roberts Stadium",
+    "city": "Springfield, IL",
+    "latitude": 39.817074,
+    "longitude": -89.6364,
+    "aliases": ["Robin Roberts Stadium at Lanphier Park"],
+    "first_year": 2026,
+    "last_year": 2026
+  },
+  {
+    "key": "Toyota Field",
+    "slug": "toyota-field-madison",
+    "display_name": "Toyota Field",
+    "city": "Madison, AL",
+    "latitude": 34.683883,
+    "longitude": -86.724288,
+    "aliases": [],
+    "first_year": 2026,
+    "last_year": 2026
   }
 ]

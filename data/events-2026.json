@@ -115,5 +115,44 @@
     "source": "attendance-screenshot-2026",
     "id": "evt-0265",
     "venue_key": "DICK'S Sporting Goods Park"
+  },
+  {
+    "date": "2026-08-29",
+    "year": 2026,
+    "sport": "Baseball",
+    "league": "WPBL",
+    "teams": ["New York Heights", "Los Angeles Queens"],
+    "scores": [6, 10],
+    "venue_recorded": "Robin Roberts Stadium",
+    "city": "Springfield, IL",
+    "source": "attendance-screenshot-2026",
+    "id": "evt-0266",
+    "venue_key": "Robin Roberts Stadium"
+  },
+  {
+    "date": "2026-09-01",
+    "year": 2026,
+    "sport": "Baseball",
+    "league": "Double-A",
+    "teams": ["Montgomery Biscuits", "Rocket City Trash Pandas"],
+    "scores": [9, 10],
+    "venue_recorded": "Toyota Field",
+    "city": "Madison, AL",
+    "source": "attendance-screenshot-2026",
+    "id": "evt-0267",
+    "venue_key": "Toyota Field"
+  },
+  {
+    "date": "2026-09-14",
+    "year": 2026,
+    "sport": "Football",
+    "league": "NFL",
+    "teams": ["Denver Broncos", "Kansas City Chiefs"],
+    "scores": [10, 31],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "attendance-screenshot-2026",
+    "id": "evt-0268",
+    "venue_key": "Arrowhead Stadium"
   }
 ]
