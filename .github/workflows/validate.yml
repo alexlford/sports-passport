@@ -58,15 +58,41 @@ jobs:
         run: npm install
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
-      - name: Run browser regression suite
-        run: npm run test:browser
-      - name: Upload Playwright diagnostics
+      - name: Desktop route rendering and overflow
+        id: desktop_routes
+        continue-on-error: true
+        run: npx playwright test tests/browser/smoke.spec.js --project=desktop --grep "renders without overflow"
+      - name: Tablet route rendering and overflow
+        id: tablet_routes
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: |
-            playwright-report/
-            test-results/
-          if-no-files-found: ignore
-          retention-days: 7
+        continue-on-error: true
+        run: npx playwright test tests/browser/smoke.spec.js --project=tablet --grep "renders without overflow"
+      - name: Phone route rendering and overflow
+        id: phone_routes
+        if: always()
+        continue-on-error: true
+        run: npx playwright test tests/browser/smoke.spec.js --project=phone --grep "renders without overflow"
+      - name: Desktop interaction regressions
+        id: desktop_interactions
+        if: always()
+        continue-on-error: true
+        run: npx playwright test tests/browser/smoke.spec.js --project=desktop --grep-invert "renders without overflow|mobile navigation"
+      - name: Mobile navigation regression
+        id: mobile_navigation
+        if: always()
+        continue-on-error: true
+        run: npx playwright test tests/browser/smoke.spec.js --project=phone --grep "mobile navigation"
+      - name: Critical accessibility scan
+        id: accessibility
+        if: always()
+        continue-on-error: true
+        run: npx playwright test tests/browser/accessibility.spec.js --project=desktop
+      - name: Require all browser checks to pass
+        if: always()
+        run: |
+          test "${{ steps.desktop_routes.outcome }}" = "success"
+          test "${{ steps.tablet_routes.outcome }}" = "success"
+          test "${{ steps.phone_routes.outcome }}" = "success"
+          test "${{ steps.desktop_interactions.outcome }}" = "success"
+          test "${{ steps.mobile_navigation.outcome }}" = "success"
+          test "${{ steps.accessibility.outcome }}" = "success"
