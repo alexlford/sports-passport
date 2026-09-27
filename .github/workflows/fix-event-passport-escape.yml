@@ -1,0 +1,44 @@
+name: Fix Event Passport Escape
+
+on:
+  push:
+    branches:
+      - audit/event-passport-atomic
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/event-passport-atomic
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Fix escape helper and regenerate routes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('event.html')
+          text=p.read_text(encoding='utf-8')
+          old="  const escapeHtml=value=>String(value??'').replace(/[&<>\\\"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','\\\"':'&quot;',\"'\":'&#39;'}[ch]));"
+          new="  const escapeHtml=value=>String(value??'').replace(/[&<>\"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[ch]));"
+          if old not in text:
+              raise SystemExit('escape helper target not found')
+          p.write_text(text.replace(old,new,1),encoding='utf-8')
+          PY
+          python tools/generate_routes.py
+          python tools/validate_event_passports.py
+          python tools/validate_site.py
+      - name: Remove one-shot workflow and commit
+        run: |
+          rm .github/workflows/fix-event-passport-escape.yml
+          git config user.name "sports-passport-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "Fix Event Passport rich-field escaping"
+          git push origin HEAD:audit/event-passport-atomic
