@@ -49,56 +49,84 @@ window.SportsPassportData = (() => {
     return `${parts.slice(0,-1).join(", ")}, ${state}`;
   };
 
-  async function load(name) {
-    if (!cache[name]) cache[name] = fetch(`data/${name}.json`, {cache:"no-store"}).then(async r => {
-      if (!r.ok) throw new Error(`Could not load data/${name}.json`);
-      const value = await r.json();
-      if (name === "team-aliases" && value && typeof value === "object" && !Array.isArray(value)) {
-        teamAliases = value;
-        return value;
-      }
-      if (name === "events" && value && Array.isArray(value.chunks)) {
-        const parts = await Promise.all(value.chunks.map(file => fetch(`data/${file}`, {cache:"no-store"}).then(x => {
-          if (!x.ok) throw new Error(`Could not load data/${file}`);
-          return x.json();
-        })));
-        let events = parts.flat();
-        try {
-          const corrections = await fetch("data/corrections.json", {cache:"no-store"}).then(x => x.ok ? x.json() : ({}));
-          events = events.map(e => corrections[e.id] ? {...e, ...corrections[e.id]} : e);
-        } catch (_) {}
-        try {
-          const aliases = await fetch("data/team-aliases.json", {cache:"no-store"}).then(x => x.ok ? x.json() : ({}));
-          if (aliases && typeof aliases === "object" && !Array.isArray(aliases)) teamAliases = aliases;
-        } catch (_) {}
-        events = events.map(e => ({
-          ...e,
-          city: normalizeCity(e.city),
-          teams_canonical: Array.isArray(e.teams) ? e.teams.map(t => teamAliases[t] || t) : []
-        }));
-        return events;
-      }
-      if (name === "venues" && Array.isArray(value)) {
-        let venues = value;
-        try {
-          const additions = await fetch("data/venue-additions.json", {cache:"no-store"}).then(x => x.ok ? x.json() : ([]));
-          if (Array.isArray(additions) && additions.length) {
-            const byKey = new Map(venues.map(v => [v.key, v]));
-            additions.forEach(v => byKey.set(v.key, {...(byKey.get(v.key)||{}), ...v}));
-            venues = [...byKey.values()];
-          }
-        } catch (_) {}
-        try {
-          const corrections = await fetch("data/venue-corrections.json", {cache:"no-store"}).then(x => x.ok ? x.json() : ({}));
-          return venues.map(v => corrections[v.key] ? {...v, ...corrections[v.key], city: normalizeCity(corrections[v.key].city || v.city)} : {...v, city: normalizeCity(v.city)});
-        } catch (_) {
-          return venues.map(v => ({...v, city: normalizeCity(v.city)}));
-        }
-      }
-      return value;
-    });
-    return cache[name];
+  let cacheManifestPromise = null;
+
+async function cacheManifest() {
+  if (!cacheManifestPromise) {
+    cacheManifestPromise = fetch('/data/cache-manifest.json', {cache:'no-cache'})
+      .then(async response => {
+        if (!response.ok) throw new Error('Could not load data/cache-manifest.json');
+        const manifest = await response.json();
+        return manifest && typeof manifest.version === 'string' ? manifest : null;
+      })
+      .catch(() => null);
   }
+  return cacheManifestPromise;
+}
+
+async function versionedDataRequest(path) {
+  const manifest = await cacheManifest();
+  if (!manifest?.version) return {url:path, options:{cache:"no-cache"}};
+  const url = new URL(path, location.origin);
+  url.searchParams.set('v', manifest.version);
+  return {url:`${url.pathname}${url.search}`, options:{cache:"force-cache"}};
+}
+
+async function fetchJson(path, fallback) {
+  const {url,options} = await versionedDataRequest(path);
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    if (arguments.length > 1) return fallback;
+    throw new Error(`Could not load ${path}`);
+  }
+  return response.json();
+}
+
+async function load(name) {
+  if (!cache[name]) cache[name] = fetchJson(`/data/${name}.json`).then(async value => {
+    if (name === "team-aliases" && value && typeof value === "object" && !Array.isArray(value)) {
+      teamAliases = value;
+      return value;
+    }
+    if (name === "events" && value && Array.isArray(value.chunks)) {
+      const parts = await Promise.all(value.chunks.map(file => fetchJson(`/data/${file}`)));
+      let events = parts.flat();
+      try {
+        const corrections = await fetchJson("/data/corrections.json", {});
+        events = events.map(e => corrections[e.id] ? {...e, ...corrections[e.id]} : e);
+      } catch (_) {}
+      try {
+        const aliases = await fetchJson("/data/team-aliases.json", {});
+        if (aliases && typeof aliases === "object" && !Array.isArray(aliases)) teamAliases = aliases;
+      } catch (_) {}
+      events = events.map(e => ({
+        ...e,
+        city: normalizeCity(e.city),
+        teams_canonical: Array.isArray(e.teams) ? e.teams.map(t => teamAliases[t] || t) : []
+      }));
+      return events;
+    }
+    if (name === "venues" && Array.isArray(value)) {
+      let venues = value;
+      try {
+        const additions = await fetchJson("/data/venue-additions.json", []);
+        if (Array.isArray(additions) && additions.length) {
+          const byKey = new Map(venues.map(v => [v.key, v]));
+          additions.forEach(v => byKey.set(v.key, {...(byKey.get(v.key)||{}), ...v}));
+          venues = [...byKey.values()];
+        }
+      } catch (_) {}
+      try {
+        const corrections = await fetchJson("/data/venue-corrections.json", {});
+        return venues.map(v => corrections[v.key] ? {...v, ...corrections[v.key], city: normalizeCity(corrections[v.key].city || v.city)} : {...v, city: normalizeCity(v.city)});
+      } catch (_) {
+        return venues.map(v => ({...v, city: normalizeCity(v.city)}));
+      }
+    }
+    return value;
+  });
+  return cache[name];
+}
 
   const slug = s => s.toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
   const score = e => Array.isArray(e.scores) && e.scores.length===2 && e.scores.every(Number.isFinite) ? `${e.scores[0]}–${e.scores[1]}` : "";
