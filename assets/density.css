@@ -11,15 +11,14 @@
 /* Lifetime Analytics: keep the year distribution readable on narrow screens.
    Desktop retains the detailed scrollable chart. On phones, all years share the
    available width so the chart opens on the full archive shape instead of a mostly
-   empty slice of low-count early years. Sparse year labels prevent collisions. */
+   empty slice of low-count early years. Sparse five-year labels stay inside the card. */
 @media(max-width:700px){
   body:has(.bars .barwrap) .hero .stats .stat:last-child{grid-column:1/-1}
   body:has(.bars .barwrap) .bars{height:208px;gap:2px;padding:12px 0 30px;overflow-x:hidden}
   body:has(.bars .barwrap) .bars .barwrap{min-width:0;flex:1 1 0}
   body:has(.bars .barwrap) .bars .barwrap b{display:none}
-  body:has(.bars .barwrap) .bars .barwrap span{display:none;margin-top:8px;font-size:.5rem;line-height:1;transform:rotate(-45deg);transform-origin:top left;white-space:nowrap}
-  body:has(.bars .barwrap) .bars .barwrap:nth-child(5n+1) span,
-  body:has(.bars .barwrap) .bars .barwrap:last-child span{display:block}
+  body:has(.bars .barwrap) .bars .barwrap span{display:none;margin-top:8px;font-size:.48rem;line-height:1;white-space:nowrap;transform:none}
+  body:has(.bars .barwrap) .bars .barwrap:nth-child(5n+3) span{display:block}
 }
 
 /* Artifact source files and data are intentionally retained, but the feature is not part of the public site. */
