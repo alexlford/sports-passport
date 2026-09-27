@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "version": "57e0bb9b354f3c3be9e6",
+  "version": "29d050f0f23e74501fdc",
   "strategy": "revalidated-manifest-versioned-data",
-  "json_file_count": 24
+  "json_file_count": 26
 }
