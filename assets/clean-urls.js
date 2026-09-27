@@ -2,7 +2,7 @@
   const ORIGIN = 'https://sports.alexlford.com';
   const CLEAN_ROUTE_PREFIXES = [
     '/about/','/years/','/events/','/teams/','/venues/','/geography/',
-    '/journeys/','/chapters/','/favorites/','/analytics/','/hall-of-fame/'
+    '/journeys/','/chapters/','/favorites/','/analytics/','/hall-of-fame/','/search/'
   ];
   const GENERATED_META = window.SPORTS_ROUTE_SOURCE ? {
     title: document.title,
@@ -78,6 +78,7 @@
     else if (file === 'favorites.html') path = '/favorites/';
     else if (file === 'lifetime-analytics.html') path = '/analytics/';
     else if (file === 'hall-of-fame.html') path = '/hall-of-fame/';
+    else if (file === 'search.html') path = '/search/';
 
     return path ? withHash(path, url.hash) : null;
   }
@@ -105,6 +106,7 @@
     if (pathname.startsWith('/analytics/')) return 'analytics';
     if (pathname.startsWith('/hall-of-fame/')) return 'hof';
     if (pathname.startsWith('/about/')) return 'about';
+    if (pathname.startsWith('/search/')) return 'search';
     return '';
   };
 
@@ -175,6 +177,13 @@
         if (clean === '/journeys/') anchor.textContent = 'Life Chapters';
         if (clean === '/favorites/') anchor.textContent = 'Personal Canon';
       });
+      const search = header.querySelector('.global-search-link');
+      if (search) {
+        search.setAttribute('href','/search/');
+        search.classList.toggle('active', active === 'search');
+        if (active === 'search') search.setAttribute('aria-current','page');
+        else search.removeAttribute('aria-current');
+      }
     }
 
     const footer = document.querySelector('.site-footer');

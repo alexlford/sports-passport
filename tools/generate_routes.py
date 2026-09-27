@@ -32,6 +32,7 @@ STATIC_ROUTES = {
     "/favorites/": "favorites.html",
     "/analytics/": "lifetime-analytics.html",
     "/hall-of-fame/": "hall-of-fame.html",
+    "/search/": "search.html",
 }
 
 DYNAMIC_ROUTE_INFO = {
@@ -211,7 +212,7 @@ def write_route(public_path: str, content: str) -> None:
 
 
 def reset_owned_routes() -> None:
-    for name in ("about", "years", "events", "teams", "venues", "geography", "journeys", "chapters", "favorites", "analytics", "hall-of-fame"):
+    for name in ("about", "years", "events", "teams", "venues", "geography", "journeys", "chapters", "favorites", "analytics", "hall-of-fame", "search"):
         path = ROOT / name
         if path.exists():
             shutil.rmtree(path)

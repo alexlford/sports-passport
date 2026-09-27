@@ -8,7 +8,8 @@ const criticalRoutes = [
   '/teams/',
   '/teams/kansas-city-chiefs/',
   '/venues/arrowhead-stadium/',
-  '/favorites/'
+  '/favorites/',
+  '/search/?q=Chiefs'
 ];
 
 for (const path of criticalRoutes) {

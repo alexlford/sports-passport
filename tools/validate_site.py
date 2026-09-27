@@ -92,7 +92,7 @@ route_bootstrap=ROOT/"assets"/"route-bootstrap.js"
 route_entry_paths=[
     "about/index.html","years/index.html","events/index.html","teams/index.html","venues/index.html",
     "geography/index.html","geography/map/index.html","journeys/index.html","chapters/index.html",
-    "favorites/index.html","analytics/index.html","hall-of-fame/index.html",
+    "favorites/index.html","analytics/index.html","hall-of-fame/index.html","search/index.html",
 ]
 retained_artifact_files=[
     "artifacts.html","artifacts/index.html","data/artifacts.json","data/artifact-priorities.json","ARTIFACT-WORKFLOW.md"
@@ -218,7 +218,7 @@ else:
         f"{PUBLIC_ORIGIN}/", f"{PUBLIC_ORIGIN}/about/", f"{PUBLIC_ORIGIN}/years/",
         f"{PUBLIC_ORIGIN}/favorites/", f"{PUBLIC_ORIGIN}/geography/", f"{PUBLIC_ORIGIN}/geography/map/",
         f"{PUBLIC_ORIGIN}/hall-of-fame/", f"{PUBLIC_ORIGIN}/journeys/", f"{PUBLIC_ORIGIN}/analytics/",
-        f"{PUBLIC_ORIGIN}/teams/", f"{PUBLIC_ORIGIN}/venues/",
+        f"{PUBLIC_ORIGIN}/teams/", f"{PUBLIC_ORIGIN}/venues/", f"{PUBLIC_ORIGIN}/search/",
     }
     try:
         config=json.loads((ROOT/"data"/"config.json").read_text(encoding="utf-8"))
