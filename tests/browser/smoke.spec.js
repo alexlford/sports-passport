@@ -10,6 +10,7 @@ const routes = [
   ['venue directory', '/venues/', /Venue/i],
   ['venue profile', '/venues/arrowhead-stadium/', /Arrowhead Stadium/i],
   ['geography', '/geography/', /Places/i],
+  ['venue atlas', '/geography/map/', /Where it\s*happened/i],
   ['life chapters', '/journeys/', /Sports|Journeys/i],
   ['personal canon', '/favorites/', /Top Tens/i],
   ['analytics', '/analytics/', /Lifetime\s*Analytics/i],
@@ -139,6 +140,53 @@ test('geography map renders without overflow and preserves mobile interactions',
   await expect(page.locator('#geo-map')).toBeVisible();
 
   const markers = page.locator('#geo-map .leaflet-marker-icon');
+  const firstMarker = markers.first();
+  await expect(firstMarker).toBeVisible({ timeout: 10000 });
+  expect(await markers.count()).toBeGreaterThan(0);
+
+  await firstMarker.focus();
+  await expect(firstMarker).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('.leaflet-popup-content')).toBeVisible();
+  await expect(page.locator('.leaflet-popup-content a')).toHaveAttribute('href', /\/venues\/[^/?#]+\//);
+
+  const reset = page.locator('#reset-map');
+  await expect(reset).toBeVisible();
+  await expect(reset).toHaveCSS('min-height', '44px');
+  await reset.click();
+
+  const overflow = await page.evaluate(() => ({
+    scrollWidth: document.documentElement.scrollWidth,
+    clientWidth: document.documentElement.clientWidth
+  }));
+  expect(overflow.scrollWidth).toBeLessThanOrEqual(overflow.clientWidth + 2);
+});
+
+test('venue atlas initializes and exposes venue popups', async ({ page }) => {
+  await page.goto('/geography/map/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('#map')).toBeVisible();
+  const markers = page.locator('#map .leaflet-marker-icon');
+  const firstMarker = markers.first();
+  await expect(firstMarker).toBeVisible({ timeout: 10000 });
+  expect(await markers.count()).toBeGreaterThan(0);
+
+  await firstMarker.focus();
+  await expect(firstMarker).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('.leaflet-popup-content')).toBeVisible();
+  await expect(page.locator('.leaflet-popup-content a')).toHaveAttribute('href', /\/venues\/[^/?#]+\//);
+
+  const reset = page.locator('#reset-map');
+  await expect(reset).toBeVisible();
+  await reset.click();
+});
+
+test('venue atlas renders without overflow and preserves mobile interactions', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'phone', 'This regression is specific to the narrow mobile map layout.');
+  await page.goto('/geography/map/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('#map')).toBeVisible();
+
+  const markers = page.locator('#map .leaflet-marker-icon');
   const firstMarker = markers.first();
   await expect(firstMarker).toBeVisible({ timeout: 10000 });
   expect(await markers.count()).toBeGreaterThan(0);
