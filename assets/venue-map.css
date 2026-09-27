@@ -1,0 +1,25 @@
+.atlas-shell{overflow:hidden;border:1px solid var(--line);border-radius:28px;background:#fffdf8;box-shadow:0 14px 40px rgba(17,43,60,.08)}
+.atlas-toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 16px;background:var(--ink);color:white}
+.atlas-toolbar b{font-family:var(--serif);font-size:1.05rem}
+.atlas-toolbar button{min-height:44px;padding:8px 12px;border:1px solid rgba(255,255,255,.32);border-radius:999px;background:rgba(255,255,255,.1);color:#fff;font-weight:850;cursor:pointer}
+.map-shell{height:clamp(560px,68vw,760px);width:100%;background:#dbe8e7}
+.map-shell .leaflet-control-attribution{font-size:.68rem}
+.map-shell .leaflet-popup-content-wrapper{border-radius:16px;box-shadow:0 12px 34px rgba(17,43,60,.2)}
+.map-shell .leaflet-popup-content{margin:15px 17px;line-height:1.45}
+.popup-title{font:900 1.05rem var(--serif);color:var(--ink);margin-bottom:5px}
+.popup-meta{color:var(--muted);font-size:.82rem}
+.popup-link{display:inline-block;margin-top:9px;font-weight:900;color:var(--ink)}
+.popup-ranks{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px}
+.popup-rank{display:inline-flex;padding:4px 7px;border-radius:999px;font-size:.68rem;font-weight:900}
+.popup-rank.favorite{background:#e8eef9;color:#1d4ed8}
+.popup-rank.best{background:#e5f2ef;color:#0f766e}
+.venue-marker{display:grid;place-items:center;border:2px solid #fff;border-radius:999px;background:var(--red);color:#fff;font-weight:950;box-shadow:0 3px 10px rgba(0,0,0,.32);font-size:.68rem}
+.venue-marker.frequent{background:var(--ink)}
+.venue-marker.ranked{box-shadow:0 0 0 4px #d6a928,0 4px 14px rgba(0,0,0,.35)}
+.notice{margin:16px 0;padding:14px 16px;border-left:4px solid var(--green);background:#fffaf0;border-radius:0 14px 14px 0;color:var(--muted)}
+.notice.warn{border-left-color:var(--red)}
+.confidence-note{margin:16px 0;padding:14px 16px;border:1px solid var(--line);border-left:5px solid #725b86;border-radius:14px;background:#fffaf0;color:var(--muted);line-height:1.45}
+.atlas-legend{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;padding:13px 16px;color:var(--muted);font-size:.82rem}
+.legend-dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--red);border:2px solid #fff;box-shadow:0 0 0 1px rgba(17,43,60,.16);margin-right:7px;vertical-align:-1px}
+.legend-dot.ranked{box-shadow:0 0 0 3px #d6a928;margin-left:8px}
+@media(max-width:700px){.map-shell{height:620px}.atlas-toolbar{align-items:flex-start}.atlas-legend{display:block}.atlas-legend span{display:block;margin-bottom:8px}}
