@@ -92,3 +92,12 @@ python tools/validate_site.py
 ```
 
 The validators check event IDs, venue keys, archive counts, team palettes and aliases, early-record attendance confidence, exact Top 10 event links, source-favorite provenance, dynamic-view coverage, local page/resource references, JavaScript syntax, journey/phase uniqueness, and correction references.
+
+## Structured event evidence and optional context
+
+Every event record carries an `evidence` object with an explicit `type` and `basis`. Display code reads these structured fields through `SportsPassportData.evidenceLabel()`; `source` and `verification` remain provenance/history and are not parsed to determine the public evidence class.
+
+Supported evidence types are `ticket_stub`, `attendance_record`, `direct_confirmation`, `verified_archive`, `reconstructed_archive`, and `documented_archive`. Optional `evidence.provenance` preserves the human-readable source note.
+
+Event records may also add `competition_round`, `site_type`, `personal_note`, `media_ids`, and `personal_context`. `media_ids` must resolve to stable IDs in `data/media.json`; `personal_context` is a small structured object whose values are non-empty strings or arrays of strings. These fields are optional so ordinary game additions stay lightweight.
+
