@@ -1,0 +1,34 @@
+name: Regenerate Analytics Route
+
+on:
+  push:
+    branches: [audit/analytics-insights]
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/analytics-insights
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Regenerate first-class routes
+        run: python tools/generate_routes.py
+      - name: Validate analytics page
+        run: |
+          python tools/validate_site.py
+          python tools/build_resolved_data.py --check
+      - name: Commit generated route
+        run: |
+          rm .github/workflows/regenerate-analytics.yml
+          git config user.name "sports-passport-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "Regenerate analytics route"
+          git push origin HEAD:audit/analytics-insights
