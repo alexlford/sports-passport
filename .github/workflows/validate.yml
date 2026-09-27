@@ -59,7 +59,7 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Prepare diagnostics
-        run: mkdir -p test-results
+        run: mkdir -p diagnostics
       - name: Desktop route rendering and overflow
         id: desktop_routes
         continue-on-error: true
@@ -81,7 +81,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          npx playwright test tests/browser/smoke.spec.js --project=desktop --grep-invert "renders without overflow|mobile navigation" 2>&1 | tee test-results/desktop-interactions.log
+          npx playwright test tests/browser/smoke.spec.js --project=desktop --grep-invert "renders without overflow|mobile navigation" 2>&1 | tee diagnostics/desktop-interactions.log
       - name: Mobile navigation regression
         id: mobile_navigation
         if: always()
@@ -94,13 +94,15 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          npx playwright test tests/browser/accessibility.spec.js --project=desktop 2>&1 | tee test-results/accessibility.log
+          npx playwright test tests/browser/accessibility.spec.js --project=desktop 2>&1 | tee diagnostics/accessibility.log
       - name: Upload browser diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: browser-diagnostics
-          path: test-results/
+          path: |
+            diagnostics/
+            test-results/
           if-no-files-found: warn
           retention-days: 1
       - name: Require desktop routes
