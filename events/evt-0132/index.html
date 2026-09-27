@@ -54,7 +54,7 @@ history.replaceState(null,"","/events/evt-0132/?id=evt-0132"+window.SPORTS_ROUTE
   const matchingJourneys=(journeys||[]).filter(j=>D.journeyEvents([event],j).length);
   const venueName=venue?.display_name||event.venue_recorded||'Venue not recorded',venueHref=venue?.slug?`venue-profile.html?v=${encodeURIComponent(venue.slug)}`:'venues.html';
   const confidence=D.confidenceLabel(event);
-  const escapeHtml=value=>String(value??'').replace(/[&<>\"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[ch]));
+  const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const optionalRows=[['Competition round',event.competition_round],['Site type',event.site_type]].filter(([,value])=>value!==undefined&&value!==null&&String(value).trim()).map(([label,value])=>`<div class="record-row"><span>${label}</span><strong>${escapeHtml(value)}</strong></div>`).join('');
   const personalNote=event.personal_note?`<div class="event-note"><div class="kicker">Personal note</div><p>${escapeHtml(event.personal_note)}</p></div>`:'';
   const title=rank?`${rank.title} | Sports Passport`:`${D.matchup(event)} | Sports Passport`;
