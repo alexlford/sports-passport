@@ -22,22 +22,7 @@ history.replaceState(null,"","/events/evt-0006/?id=evt-0006"+window.SPORTS_ROUTE
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="assets/site.css">
-  <style>
-    .event-hero{border-top:7px solid var(--event-accent,#b7443a)}
-    .event-hero h1{max-width:980px;font-size:clamp(3rem,8vw,6.4rem)}
-    .status-row{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
-    .status-chip{display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:#fffdf8;font-size:.7rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
-    .status-chip.top10{background:#fff1cf;color:#76520b;border-color:#e4cf96}.status-chip.notional{background:#eee8f2;color:#654875}.status-chip.verified{background:#e6f2e9;color:#255d38}
-    .scoreboard{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;margin-top:26px;padding:22px;border:1px solid var(--line);border-radius:22px;background:#fffdf8c9}
-    .team-side{min-width:0}.team-side:last-child{text-align:right}.team-name{display:block;font:900 clamp(1.35rem,3vw,2.2rem)/1.05 var(--serif);text-decoration:none;overflow-wrap:anywhere}.team-name:hover{text-decoration:underline}.team-score{display:block;margin-top:8px;font:900 clamp(2.6rem,7vw,4.8rem)/.9 var(--serif)}.versus{font-size:.7rem;font-weight:950;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-    .context-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.context-card{display:block;padding:20px;border:1px solid var(--line);border-radius:18px;background:#fffdf8;text-decoration:none}.context-card:hover h3{text-decoration:underline}.context-card h3{margin:.35rem 0 .4rem;font-size:1.35rem}.context-card p{margin:0;color:var(--muted);line-height:1.45;font-size:.86rem}.context-card .open{display:block;margin-top:12px;font-size:.72rem;font-weight:900;color:var(--red)}
-    .record-panel{padding:24px;border:1px solid var(--line);border-radius:20px;background:#fffdf8c9}.record-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px}.record-row{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}.record-row span{color:var(--muted)}.record-row strong{text-align:right;overflow-wrap:anywhere}
-    .journey-links{display:flex;flex-wrap:wrap;gap:8px}.journey-links a{min-height:38px;display:inline-flex;align-items:center;padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:#fffdf8;text-decoration:none;font-size:.76rem;font-weight:850}.journey-links a:hover{text-decoration:underline}
-    .archive-nav{display:grid;grid-template-columns:1fr 1fr;gap:14px}.archive-nav a{display:block;padding:18px;border:1px solid var(--line);border-radius:18px;background:#fffdf8;text-decoration:none}.archive-nav a:last-child{text-align:right}.archive-nav span{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase;font-weight:900;letter-spacing:.08em}.archive-nav strong{display:block;margin-top:5px;font:900 1.1rem/1.2 var(--serif)}
-    .missing{max-width:760px}.missing .cta{display:inline-flex;margin-top:16px;min-height:44px;align-items:center;padding:9px 13px;border:1px solid var(--line);border-radius:999px;background:#fffdf8;text-decoration:none;font-weight:850}
-    @media(max-width:800px){.context-grid{grid-template-columns:1fr 1fr}.record-list{grid-template-columns:1fr}}
-    @media(max-width:600px){.scoreboard{grid-template-columns:1fr auto 1fr;padding:16px;gap:10px}.context-grid{grid-template-columns:1fr}.archive-nav{grid-template-columns:1fr}.archive-nav a:last-child{text-align:left}.team-score{font-size:2.7rem}.team-name{font-size:1.1rem}}
-  </style>
+  <link rel="stylesheet" href="assets/event.css">
 </head>
 <body>
 <main class="shell">
