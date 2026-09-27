@@ -62,13 +62,15 @@
     })
     .then(source => {
       const restore = `<script>(function(){const clean=window.SPORTS_ROUTE_PUBLIC_URL||location.pathname;const dynamic=${dynamic?'true':'false'};let tries=0;function ready(){const app=document.querySelector('#app');return !dynamic||(app&&app.children.length>0)||document.querySelector('.hero');}function finish(){if(ready()||tries++>160){history.replaceState(null,'',clean);return;}setTimeout(finish,25);}finish();})();<\/script>`;
-      let html = source.replace(/<head>/i, '<head><base href="/">');
+      let html = source.replace(/<html(?![^>]*\blang\s*=)/i, '<html lang="en"');
+      html = html.replace(/<head>/i, '<head><base href="/"><link rel="stylesheet" href="/assets/accessibility.css">');
       html = html.replace(/<\/body>/i, '<script src="/assets/clean-urls.js"><\/script>' + restore + '</body>');
       document.open();
       document.write(html);
       document.close();
     })
     .catch(() => {
+      document.documentElement.lang = document.documentElement.lang || 'en';
       document.body.innerHTML = '<main style="max-width:760px;margin:64px auto;padding:24px;font-family:system-ui"><h1>Sports Passport route unavailable</h1><p>This clean archive route could not load its underlying page.</p><p><a href="/">Return to Sports Passport</a></p></main>';
     });
 })();
