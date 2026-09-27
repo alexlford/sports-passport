@@ -4,6 +4,11 @@
     '/about/','/years/','/events/','/teams/','/venues/','/geography/',
     '/journeys/','/chapters/','/favorites/','/analytics/','/hall-of-fame/'
   ];
+  const GENERATED_META = window.SPORTS_ROUTE_SOURCE ? {
+    title: document.title,
+    description: document.head.querySelector('meta[name="description"]')?.getAttribute('content') || '',
+    canonical: document.head.querySelector('link[rel="canonical"]')?.href || '',
+  } : null;
 
   function encode(value) {
     return encodeURIComponent(String(value || '').trim());
@@ -21,17 +26,23 @@
     const parts = url.pathname.split('/').filter(Boolean).map(decodeURIComponent);
     if (parts.length !== 2) return null;
     const [section, value] = parts;
-    if (!value) return null;
+    if (!value || !['years','events','teams','venues','journeys','chapters'].includes(section)) return null;
+    return `/${section}/${encode(value)}/${url.hash || ''}`;
+  }
+
+  function queryCleanRoute(url) {
+    const path = url.pathname.endsWith('/') ? url.pathname : `${url.pathname}/`;
     const route = {
-      years: ['year', value],
-      events: ['event', value],
-      teams: ['team', value],
-      venues: ['venue', value],
-      journeys: ['journey', value],
-      chapters: ['chapter', value]
-    }[section];
+      '/years/': ['year','y'],
+      '/events/': ['event','id'],
+      '/teams/': ['team','t'],
+      '/venues/': ['venue','v'],
+      '/journeys/': ['journey','j'],
+      '/chapters/': ['chapter','p'],
+    }[path];
     if (!route) return null;
-    return `/${section}/?${route[0]}=${encode(route[1])}${url.hash || ''}`;
+    const value = route.map(key => url.searchParams.get(key)).find(Boolean);
+    return value ? `${path}${encode(value)}/${url.hash || ''}` : null;
   }
 
   function cleanPathForLegacy(rawHref) {
@@ -42,6 +53,8 @@
 
     const deep = deepCleanRoute(url);
     if (deep) return deep;
+    const queryRoute = queryCleanRoute(url);
+    if (queryRoute) return queryRoute;
     if (isCleanPublicRoute(url)) return `${url.pathname}${url.search}${url.hash}`;
 
     const file = (url.pathname.split('/').pop() || '').toLowerCase();
@@ -51,17 +64,17 @@
     if (url.pathname === '/' || file === 'index.html') path = '/';
     else if (file === 'about.html') path = '/about/';
     else if (file === 'annuals.html') path = '/years/';
-    else if (file === 'year.html' && p.get('y')) path = `/years/?year=${encode(p.get('y'))}`;
-    else if (file === 'event.html' && p.get('id')) path = `/events/?event=${encode(p.get('id'))}`;
+    else if (file === 'year.html' && p.get('y')) path = `/years/${encode(p.get('y'))}/`;
+    else if (file === 'event.html' && p.get('id')) path = `/events/${encode(p.get('id'))}/`;
     else if (file === 'teams.html') path = '/teams/';
-    else if (file === 'team-profile.html' && p.get('t')) path = `/teams/?team=${encode(p.get('t'))}`;
+    else if (file === 'team-profile.html' && p.get('t')) path = `/teams/${encode(p.get('t'))}/`;
     else if (file === 'venues.html') path = '/venues/';
-    else if (file === 'venue-profile.html' && p.get('v')) path = `/venues/?venue=${encode(p.get('v'))}`;
+    else if (file === 'venue-profile.html' && p.get('v')) path = `/venues/${encode(p.get('v'))}/`;
     else if (file === 'geography.html') path = '/geography/';
     else if (file === 'venue-map.html') path = '/geography/map/';
     else if (file === 'journeys.html') path = '/journeys/';
-    else if (file === 'journey-profile.html' && p.get('j')) path = `/journeys/?journey=${encode(p.get('j'))}`;
-    else if (file === 'phase.html' && p.get('p')) path = `/chapters/?chapter=${encode(p.get('p'))}`;
+    else if (file === 'journey-profile.html' && p.get('j')) path = `/journeys/${encode(p.get('j'))}/`;
+    else if (file === 'phase.html' && p.get('p')) path = `/chapters/${encode(p.get('p'))}/`;
     else if (file === 'favorites.html') path = '/favorites/';
     else if (file === 'lifetime-analytics.html') path = '/analytics/';
     else if (file === 'hall-of-fame.html') path = '/hall-of-fame/';
@@ -103,6 +116,17 @@
     return `${location.pathname}${location.search}${location.hash || ''}`;
   }
 
+  function upsertMeta(attribute, key, content) {
+    if (!content) return;
+    let meta = document.head.querySelector(`meta[${attribute}="${key}"]`);
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.setAttribute(attribute, key);
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute('content', content);
+  }
+
   function setCanonicalToCurrentCleanUrl() {
     const clean = `${ORIGIN}${currentPublicRelativeUrl()}`;
     let canonical = document.head.querySelector('link[rel="canonical"]');
@@ -112,13 +136,22 @@
       document.head.appendChild(canonical);
     }
     canonical.href = clean;
-    let og = document.head.querySelector('meta[property="og:url"]');
-    if (!og) {
-      og = document.createElement('meta');
-      og.setAttribute('property','og:url');
-      document.head.appendChild(og);
+    upsertMeta('property','og:url',clean);
+  }
+
+  function restoreGeneratedMetadata() {
+    if (!GENERATED_META) return;
+    if (GENERATED_META.title) {
+      document.title = GENERATED_META.title;
+      upsertMeta('property','og:title',GENERATED_META.title);
+      upsertMeta('name','twitter:title',GENERATED_META.title);
     }
-    og.setAttribute('content', clean);
+    if (GENERATED_META.description) {
+      upsertMeta('name','description',GENERATED_META.description);
+      upsertMeta('property','og:description',GENERATED_META.description);
+      upsertMeta('name','twitter:description',GENERATED_META.description);
+    }
+    setCanonicalToCurrentCleanUrl();
   }
 
   function polishPublicChrome() {
@@ -160,6 +193,7 @@
     rewriteLinks(document);
     setCanonicalToCurrentCleanUrl();
     polishPublicChrome();
+    if (GENERATED_META) setTimeout(restoreGeneratedMetadata, 0);
     const observer = new MutationObserver(mutations => {
       let chromeChanged = false;
       for (const mutation of mutations) {
@@ -176,7 +210,7 @@
     observer.observe(document.documentElement, {subtree:true, childList:true, attributes:true, attributeFilter:['href']});
   }
 
-  window.SportsPassportCleanUrls = { cleanPathForLegacy, rewriteLinks, currentPublicRelativeUrl, isCleanPublicRoute, cleanRouteKey, polishPublicChrome, deepCleanRoute };
+  window.SportsPassportCleanUrls = { cleanPathForLegacy, rewriteLinks, currentPublicRelativeUrl, isCleanPublicRoute, cleanRouteKey, polishPublicChrome, deepCleanRoute, queryCleanRoute };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, {once:true});
   else boot();
 })();
