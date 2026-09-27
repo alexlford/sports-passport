@@ -1,0 +1,45 @@
+name: One-shot Year CSS extraction
+
+on:
+  push:
+    branches: [refactor/year-css]
+
+permissions:
+  contents: write
+
+jobs:
+  extract-and-regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: refactor/year-css
+      - name: Extract Year styles and regenerate clean routes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          source = Path('year.html')
+          text = source.read_text(encoding='utf-8')
+          match = re.search(r'<style>\s*(.*?)\s*</style>', text, flags=re.S)
+          if not match:
+              raise SystemExit('Expected inline Year stylesheet was not found')
+          css = match.group(1).strip() + '\n'
+          Path('assets/year.css').write_text(css, encoding='utf-8')
+          links = '<link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/year.css">'
+          source.write_text(text[:match.start()] + links + text[match.end():], encoding='utf-8')
+          PY
+          python tools/generate_routes.py
+          if grep -q '<style>' year.html; then
+            echo 'Inline Year stylesheet remains' >&2
+            exit 1
+          fi
+      - name: Commit generated refactor
+        run: |
+          git config user.name "sports-passport-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add year.html assets/year.css years sitemap.xml
+          git diff --cached --quiet && exit 0
+          git commit -m "Extract Year page styles"
+          git push origin HEAD:refactor/year-css
