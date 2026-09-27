@@ -34,6 +34,12 @@ else:
         ("year.html?y=", "annual-edition context link"),
         ("team-profile.html?t=", "team-profile context links"),
         ("venue-profile.html?v=", "venue-profile context links"),
+        ('id="share-event"', "Event Passport share action"),
+        ('id="copy-event"', "Event Passport copy-link action"),
+        ("event.competition_round", "optional competition-round rendering"),
+        ("event.site_type", "optional site-type rendering"),
+        ("event.personal_note", "optional personal-note rendering"),
+        ("Event ID", "stable event identifier rendering"),
     ):
         if token not in text:
             errors.append(f"event.html missing {label}")
@@ -89,6 +95,8 @@ linked_pages = [
     "journey-profile.html",
     "team-profile.html",
     "venue-profile.html",
+    "year.html",
+    "index.html",
 ]
 for name in linked_pages:
     path = ROOT / name
