@@ -25,6 +25,8 @@ if not page.is_file():
     errors.append("missing event.html exact-record template")
 else:
     text = page.read_text(encoding="utf-8")
+    if "String(event.source" in text or "source||''" in text:
+        errors.append("event.html must not infer evidence class from source-string wording")
     for token, label in (
         ("new URLSearchParams(location.search).get('id')", "event id template handling"),
         ("D.load('events')", "event archive loading"),
@@ -40,6 +42,8 @@ else:
         ("event.site_type", "optional site-type rendering"),
         ("event.personal_note", "optional personal-note rendering"),
         ("Event ID", "stable event identifier rendering"),
+        ("D.evidenceLabel(event)", "structured evidence rendering"),
+        ("Evidence provenance", "evidence provenance rendering"),
     ):
         if token not in text:
             errors.append(f"event.html missing {label}")

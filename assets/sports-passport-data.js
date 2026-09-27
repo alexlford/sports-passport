@@ -140,6 +140,17 @@ async function load(name) {
   const confirmedEvents = events => (events || []).filter(isConfirmedEvent);
   const notionalEvents = events => (events || []).filter(isNotionalEvent);
   const confidenceLabel = e => isNotionalEvent(e) ? "Notional" : (isVerifiedEvent(e) ? "Verified" : "Documented");
+  const EVIDENCE_LABELS = {
+    ticket_stub: "Ticket-stub evidence",
+    attendance_record: "Attendance record",
+    direct_confirmation: "Direct confirmation",
+    verified_archive: "Verified archive evidence",
+    reconstructed_archive: "Reconstructed early archive",
+    documented_archive: "Documented archive record"
+  };
+  const evidenceType = e => e?.evidence?.type || null;
+  const evidenceLabel = e => EVIDENCE_LABELS[evidenceType(e)] || "Archive evidence";
+  const evidenceProvenance = e => e?.evidence?.provenance || "";
 
   const canonicalTeam = team => teamAliases[team] || team;
   const eventTeams = e => Array.isArray(e.teams_canonical) ? e.teams_canonical : (Array.isArray(e.teams) ? e.teams.map(canonicalTeam) : []);
@@ -396,5 +407,5 @@ async function load(name) {
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 
-  return {load,slug,score,matchup,counts,normalizeCity,isNotionalEvent,isVerifiedEvent,isConfirmedEvent,confirmedEvents,notionalEvents,confidenceLabel,canonicalTeam,eventTeams,teamPalette,venueByKey,venueName,venueHref,venueEvents,yearEvents,teamEvents,phaseEvents,journeyEvents,recordForTeam,enhanceDensity};
+  return {load,slug,score,matchup,counts,normalizeCity,isNotionalEvent,isVerifiedEvent,isConfirmedEvent,confirmedEvents,notionalEvents,confidenceLabel,evidenceType,evidenceLabel,evidenceProvenance,canonicalTeam,eventTeams,teamPalette,venueByKey,venueName,venueHref,venueEvents,yearEvents,teamEvents,phaseEvents,journeyEvents,recordForTeam,enhanceDensity};
 })();

@@ -28,6 +28,10 @@ team_colors=load_json("team-colors.json", optional=True) or {}
 team_aliases=load_json("team-aliases.json", optional=True) or {}
 config=load_json("config.json") or {}
 corrections=load_json("corrections.json") or {}
+media_catalog=load_json("media.json", optional=True) or {"items":[]}
+media_ids={item.get("id") for item in media_catalog.get("items",[]) if isinstance(item,dict) and item.get("id")} if isinstance(media_catalog,dict) else set()
+EVIDENCE_TYPES={"ticket_stub","attendance_record","direct_confirmation","verified_archive","reconstructed_archive","documented_archive"}
+EVIDENCE_BASES={"physical_artifact","attendance_record","direct_confirmation","verification_note","reconstruction","archive_record"}
 
 if not isinstance(venue_additions,list):
     errors.append("data/venue-additions.json must contain an array")
@@ -80,6 +84,31 @@ for e in events:
             errors.append(f'{eid}: verified pre-2006 event must include verification evidence')
     elif status is not None and status not in {"verified","notional"}:
         errors.append(f'{eid}: attendance_status must be verified or notional when present')
+    evidence=e.get("evidence")
+    if not isinstance(evidence,dict):
+        errors.append(f'{eid}: evidence must be a structured object')
+    else:
+        if evidence.get("type") not in EVIDENCE_TYPES: errors.append(f'{eid}: unsupported evidence type {evidence.get("type")}')
+        if evidence.get("basis") not in EVIDENCE_BASES: errors.append(f'{eid}: unsupported evidence basis {evidence.get("basis")}')
+        if "provenance" in evidence and (not isinstance(evidence["provenance"],str) or not evidence["provenance"].strip()): errors.append(f'{eid}: evidence provenance must be a non-empty string when present')
+        if status=="notional" and evidence.get("type")!="reconstructed_archive": errors.append(f'{eid}: notional event must use reconstructed_archive evidence')
+        if evidence.get("type")=="ticket_stub" and evidence.get("basis")!="physical_artifact": errors.append(f'{eid}: ticket_stub evidence must use physical_artifact basis')
+    for field in ("competition_round","site_type","personal_note"):
+        if field in e and (not isinstance(e[field],str) or not e[field].strip()): errors.append(f'{eid}: {field} must be a non-empty string when present')
+    media_refs=e.get("media_ids")
+    if media_refs is not None:
+        if not isinstance(media_refs,list) or any(not isinstance(x,str) or not x for x in media_refs): errors.append(f'{eid}: media_ids must be an array of non-empty strings')
+        else:
+            if len(media_refs)!=len(set(media_refs)): errors.append(f'{eid}: media_ids contains duplicates')
+            for media_id in media_refs:
+                if media_id not in media_ids: errors.append(f'{eid}: media_ids references unknown media {media_id}')
+    personal_context=e.get("personal_context")
+    if personal_context is not None:
+        if not isinstance(personal_context,dict): errors.append(f'{eid}: personal_context must be an object')
+        else:
+            for key,value in personal_context.items():
+                if not isinstance(key,str) or not key.strip(): errors.append(f'{eid}: personal_context keys must be non-empty strings')
+                if not (isinstance(value,str) and value.strip()) and not (isinstance(value,list) and value and all(isinstance(x,str) and x.strip() for x in value)): errors.append(f'{eid}: personal_context values must be non-empty strings or arrays of non-empty strings')
 
 for eid, patch in corrections.items():
     if eid not in ids: errors.append(f"correction references unknown event {eid}")
