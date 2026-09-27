@@ -19,6 +19,8 @@
   body:has(.bars .barwrap) .bars .barwrap b{display:none}
   body:has(.bars .barwrap) .bars .barwrap span{display:none;margin-top:8px;font-size:.48rem;line-height:1;white-space:nowrap;transform:none}
   body:has(.bars .barwrap) .bars .barwrap:nth-child(5n+3) span{display:block}
+  body:has(.bars .barwrap) .bars .barwrap:nth-last-child(-n+3) span{display:none}
+  body:has(.bars .barwrap) .bars .barwrap:last-child span{display:block;width:30px;margin-left:calc(100% - 30px);text-align:right}
 }
 
 /* Artifact source files and data are intentionally retained, but the feature is not part of the public site. */
