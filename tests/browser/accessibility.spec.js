@@ -12,7 +12,8 @@ const criticalRoutes = [
 ];
 
 for (const path of criticalRoutes) {
-  test(`critical accessibility rules pass on ${path}`, async ({ page }) => {
+  test(`critical accessibility rules pass on ${path}`, async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'desktop', 'Run the WCAG scan once per route; responsive behavior is covered separately.');
     await page.goto(path, { waitUntil: 'domcontentloaded' });
     await expect(page.locator('h1').first()).toBeVisible();
     const results = await new AxeBuilder({ page })
