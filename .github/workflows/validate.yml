@@ -21,6 +21,10 @@ jobs:
           python-version: '3.12'
       - name: Validate archive data
         run: python tools/validate_data.py
+      - name: Validate resolved public data
+        run: |
+          python tools/build_resolved_data.py --check
+          python tools/validate_resolved_runtime.py
       - name: Validate Personal Canon and cross-links
         run: python tools/validate_canon.py
       - name: Validate exact event passports
