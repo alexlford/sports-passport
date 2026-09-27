@@ -35,6 +35,7 @@ jobs:
           python tools/validate_site.py
       - name: Commit generated tranche
         run: |
+          git checkout HEAD -- .github/workflows/validate.yml
           rm tools/apply_resolved_runtime.py .github/workflows/apply-resolved-data.yml
           git config user.name "sports-passport-bot"
           git config user.email "actions@users.noreply.github.com"
