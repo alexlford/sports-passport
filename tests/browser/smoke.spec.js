@@ -3,12 +3,12 @@ const { test, expect } = require('@playwright/test');
 const routes = [
   ['home', '/', /Sports\s*Passport/i],
   ['annual index', '/years/', /Annual\s*Editions/i],
-  ['current annual edition', '/years/?year=2026', /2026/],
-  ['event passport', '/events/?event=evt-0268', /Denver Broncos|Kansas City Chiefs/i],
+  ['current annual edition', '/years/2026/', /2026/],
+  ['event passport', '/events/evt-0268/', /Denver Broncos|Kansas City Chiefs/i],
   ['team explorer', '/teams/', /Team\s*Explorer/i],
-  ['team profile', '/teams/?team=kansas-city-chiefs', /Kansas City Chiefs/i],
+  ['team profile', '/teams/kansas-city-chiefs/', /Kansas City Chiefs/i],
   ['venue directory', '/venues/', /Venue/i],
-  ['venue profile', '/venues/?venue=arrowhead-stadium', /Arrowhead Stadium/i],
+  ['venue profile', '/venues/arrowhead-stadium/', /Arrowhead Stadium/i],
   ['geography', '/geography/', /Places/i],
   ['life chapters', '/journeys/', /Sports|Journeys/i],
   ['personal canon', '/favorites/', /Top Tens/i],
@@ -31,16 +31,32 @@ for (const [name, path, heading] of routes) {
   });
 }
 
-test('deep clean routes survive a direct reload', async ({ page }) => {
+test('first-class deep routes survive direct reloads without template bootstrapping', async ({ page }) => {
   await page.goto('/teams/kansas-city-chiefs/', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('h1').first()).toContainText('Kansas City Chiefs');
   await page.reload({ waitUntil: 'domcontentloaded' });
   await expect(page.locator('h1').first()).toContainText('Kansas City Chiefs');
 
+  const teamResources = await page.evaluate(() => performance.getEntriesByType('resource').map(entry => entry.name));
+  expect(teamResources.some(url => /team-profile\.html(?:\?|$)/.test(url))).toBe(false);
+  await expect(page.locator('script[src*="route-bootstrap.js"]')).toHaveCount(0);
+
   await page.goto('/events/evt-0268/', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('h1').first()).toContainText(/Denver Broncos|Kansas City Chiefs/i);
   await page.reload({ waitUntil: 'domcontentloaded' });
   await expect(page.locator('h1').first()).toContainText(/Denver Broncos|Kansas City Chiefs/i);
+  const eventResources = await page.evaluate(() => performance.getEntriesByType('resource').map(entry => entry.name));
+  expect(eventResources.some(url => /event\.html(?:\?|$)/.test(url))).toBe(false);
+});
+
+test('legacy clean query URLs redirect to first-class deep pages', async ({ page }) => {
+  await page.goto('/teams/?team=kansas-city-chiefs', { waitUntil: 'domcontentloaded' });
+  await page.waitForURL('**/teams/kansas-city-chiefs/');
+  await expect(page.locator('h1').first()).toContainText('Kansas City Chiefs');
+
+  await page.goto('/years/?year=2026', { waitUntil: 'domcontentloaded' });
+  await page.waitForURL('**/years/2026/');
+  await expect(page.locator('h1').first()).toContainText('2026');
 });
 
 test('team search and sport filters remain functional', async ({ page }) => {
@@ -59,13 +75,14 @@ test('team search and sport filters remain functional', async ({ page }) => {
 });
 
 test('event passports retain chronological navigation', async ({ page }) => {
-  await page.goto('/events/?event=evt-0268', { waitUntil: 'domcontentloaded' });
+  await page.goto('/events/evt-0268/', { waitUntil: 'domcontentloaded' });
   const archiveLinks = page.locator('.archive-nav a');
   await expect(archiveLinks.first()).toBeVisible();
   const before = page.url();
   await archiveLinks.first().click();
   await expect(page.locator('.event-hero')).toBeVisible();
   expect(page.url()).not.toBe(before);
+  expect(page.url()).toMatch(/\/events\/[^/?#]+\/$/);
 });
 
 test('geography map initializes and exposes venue popups', async ({ page }) => {
@@ -76,14 +93,11 @@ test('geography map initializes and exposes venue popups', async ({ page }) => {
   await expect(firstMarker).toBeVisible({ timeout: 10000 });
   expect(await markers.count()).toBeGreaterThan(0);
 
-  // At an archive-wide zoom nearby venues can visually overlap. Leaflet markers
-  // are keyboard-enabled, so use the accessible interaction path rather than
-  // forcing a pointer click through an obscuring marker.
   await firstMarker.focus();
   await expect(firstMarker).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(page.locator('.leaflet-popup-content')).toBeVisible();
-  await expect(page.locator('.leaflet-popup-content a')).toHaveAttribute('href', /venues|venue-profile/);
+  await expect(page.locator('.leaflet-popup-content a')).toHaveAttribute('href', /\/venues\/[^/?#]+\//);
 
   const reset = page.locator('#reset-map');
   await expect(reset).toBeVisible();

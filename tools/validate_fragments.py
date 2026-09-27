@@ -15,6 +15,7 @@ class PageParser(HTMLParser):
         self.text = text
         self.ids = set()
         self.hrefs = []
+        self.base_href = None
         self.feed(text)
         # Client-rendered pages often declare stable section IDs inside JavaScript
         # template literals. Treat those literal IDs as valid fragment targets too.
@@ -24,6 +25,8 @@ class PageParser(HTMLParser):
         attrs = dict(attrs)
         if attrs.get('id'):
             self.ids.add(attrs['id'])
+        if tag == 'base' and attrs.get('href') and self.base_href is None:
+            self.base_href = attrs['href']
         if tag == 'a' and attrs.get('href'):
             self.hrefs.append(attrs['href'])
 
@@ -32,10 +35,31 @@ def parse(path):
     return PageParser(path.read_text(encoding='utf-8'))
 
 
-html_files = sorted(ROOT.rglob('*.html'))
-parsed = {path: parse(path) for path in html_files}
+def local_target(source, page, raw_path):
+    if not raw_path:
+        return source
 
-for source, page in parsed.items():
+    # Absolute public paths map directly into the static route tree.
+    if raw_path.startswith('/'):
+        rel = raw_path.strip('/')
+        target = ROOT / rel
+        if raw_path.endswith('/') or target.is_dir():
+            target = target / 'index.html'
+        return target.resolve()
+
+    # Generated pages declare <base href="/">, so legacy-looking links inside the
+    # copied template resolve from the site root rather than from the deep directory.
+    base = ROOT if page.base_href == '/' else source.parent
+    target = (base / raw_path).resolve()
+    if raw_path.endswith('/') or target.is_dir():
+        target = target / 'index.html'
+    return target
+
+
+html_files = sorted(ROOT.rglob('*.html'))
+parsed = {path.resolve(): parse(path) for path in html_files}
+
+for source, page in list(parsed.items()):
     for href in page.hrefs:
         if href.startswith(('http://', 'https://', 'mailto:', 'tel:', 'javascript:')):
             continue
@@ -43,16 +67,7 @@ for source, page in parsed.items():
         if not parts.fragment:
             continue
 
-        # Query-only links keep the current page; legacy cross-page links resolve from
-        # the source directory. Clean public routes are client-side wrappers and may
-        # contain dynamic content, so only validate targets we can prove from source.
-        if not parts.path:
-            target = source
-        elif parts.path.endswith('.html'):
-            target = (source.parent / parts.path).resolve()
-        else:
-            continue
-
+        target = local_target(source, page, parts.path)
         if target not in parsed:
             if target.is_file():
                 parsed[target] = parse(target)
@@ -76,5 +91,5 @@ fragment_links = sum(
 )
 print(
     f'OK: static and client-rendered fragment targets validated across '
-    f'{len(html_files)} HTML files ({fragment_links} fragment links).'
+    f'{len(html_files)} HTML files ({fragment_links} fragment links), including root-based generated routes.'
 )

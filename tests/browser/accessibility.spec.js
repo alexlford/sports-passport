@@ -3,11 +3,11 @@ const AxeBuilder = require('@axe-core/playwright').default;
 
 const criticalRoutes = [
   '/',
-  '/years/?year=2026',
-  '/events/?event=evt-0268',
+  '/years/2026/',
+  '/events/evt-0268/',
   '/teams/',
-  '/teams/?team=kansas-city-chiefs',
-  '/venues/?venue=arrowhead-stadium',
+  '/teams/kansas-city-chiefs/',
+  '/venues/arrowhead-stadium/',
   '/favorites/'
 ];
 

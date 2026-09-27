@@ -31,6 +31,10 @@ jobs:
         run: python tools/validate_clean_urls.py
       - name: Validate public route identities
         run: python tools/validate_route_identities.py
+      - name: Validate generated route freshness
+        run: |
+          python tools/generate_routes.py
+          git diff --exit-code -- about analytics chapters events favorites geography hall-of-fame journeys teams venues years sitemap.xml
       - name: Validate static fragment targets
         run: python tools/validate_fragments.py
       - name: Validate generated link targets
