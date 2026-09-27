@@ -43,3 +43,83 @@ jobs:
         run: python tools/validate_visual_polish.py
       - name: Validate site integrity
         run: python tools/validate_site.py
+
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser-test dependencies
+        run: npm install
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Prepare diagnostics
+        run: mkdir -p diagnostics
+      - name: Desktop route rendering and overflow
+        id: desktop_routes
+        continue-on-error: true
+        run: npx playwright test tests/browser/smoke.spec.js --project=desktop --grep "renders without overflow"
+      - name: Tablet route rendering and overflow
+        id: tablet_routes
+        if: always()
+        continue-on-error: true
+        run: npx playwright test tests/browser/smoke.spec.js --project=tablet --grep "renders without overflow"
+      - name: Phone route rendering and overflow
+        id: phone_routes
+        if: always()
+        continue-on-error: true
+        run: npx playwright test tests/browser/smoke.spec.js --project=phone --grep "renders without overflow"
+      - name: Desktop interaction regressions
+        id: desktop_interactions
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          npx playwright test tests/browser/smoke.spec.js --project=desktop --grep-invert "renders without overflow|mobile navigation" 2>&1 | tee diagnostics/desktop-interactions.log
+      - name: Mobile navigation regression
+        id: mobile_navigation
+        if: always()
+        continue-on-error: true
+        run: npx playwright test tests/browser/smoke.spec.js --project=phone --grep "mobile navigation"
+      - name: Critical accessibility scan
+        id: accessibility
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          npx playwright test tests/browser/accessibility.spec.js --project=desktop 2>&1 | tee diagnostics/accessibility.log
+      - name: Upload browser diagnostics
+        if: ${{ always() && (steps.desktop_routes.outcome == 'failure' || steps.tablet_routes.outcome == 'failure' || steps.phone_routes.outcome == 'failure' || steps.desktop_interactions.outcome == 'failure' || steps.mobile_navigation.outcome == 'failure' || steps.accessibility.outcome == 'failure') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-diagnostics
+          path: |
+            diagnostics/
+            test-results/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Require desktop routes
+        if: always()
+        run: test "${{ steps.desktop_routes.outcome }}" = "success"
+      - name: Require tablet routes
+        if: always()
+        run: test "${{ steps.tablet_routes.outcome }}" = "success"
+      - name: Require phone routes
+        if: always()
+        run: test "${{ steps.phone_routes.outcome }}" = "success"
+      - name: Require desktop interactions
+        if: always()
+        run: test "${{ steps.desktop_interactions.outcome }}" = "success"
+      - name: Require mobile navigation
+        if: always()
+        run: test "${{ steps.mobile_navigation.outcome }}" = "success"
+      - name: Require accessibility
+        if: always()
+        run: test "${{ steps.accessibility.outcome }}" = "success"
