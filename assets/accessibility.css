@@ -1,0 +1,15 @@
+/* Browser-audit accessibility corrections for public clean routes. */
+:root{
+  /* Preserve sport identity while meeting WCAG AA for normal text on #fffdf8
+     and for white text when the filter is active. */
+  --sport-basketball:#b35a00!important;
+  --sport-hockey:#437492!important;
+}
+
+/* Team colors remain visible in the card border/swatch; the semantic badge
+   uses a stable high-contrast treatment regardless of a team's primary color. */
+.my-team-card .favorite-badge{
+  background:var(--ink)!important;
+  color:#fff!important;
+  border:2px solid var(--team-primary)!important;
+}
