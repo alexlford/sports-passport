@@ -87,12 +87,21 @@ jobs:
         if: always()
         continue-on-error: true
         run: npx playwright test tests/browser/accessibility.spec.js --project=desktop
-      - name: Require all browser checks to pass
+      - name: Require desktop routes
         if: always()
-        run: |
-          test "${{ steps.desktop_routes.outcome }}" = "success"
-          test "${{ steps.tablet_routes.outcome }}" = "success"
-          test "${{ steps.phone_routes.outcome }}" = "success"
-          test "${{ steps.desktop_interactions.outcome }}" = "success"
-          test "${{ steps.mobile_navigation.outcome }}" = "success"
-          test "${{ steps.accessibility.outcome }}" = "success"
+        run: test "${{ steps.desktop_routes.outcome }}" = "success"
+      - name: Require tablet routes
+        if: always()
+        run: test "${{ steps.tablet_routes.outcome }}" = "success"
+      - name: Require phone routes
+        if: always()
+        run: test "${{ steps.phone_routes.outcome }}" = "success"
+      - name: Require desktop interactions
+        if: always()
+        run: test "${{ steps.desktop_interactions.outcome }}" = "success"
+      - name: Require mobile navigation
+        if: always()
+        run: test "${{ steps.mobile_navigation.outcome }}" = "success"
+      - name: Require accessibility
+        if: always()
+        run: test "${{ steps.accessibility.outcome }}" = "success"
