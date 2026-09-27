@@ -1,0 +1,53 @@
+name: One-shot About CSS extraction
+
+on:
+  push:
+    branches: [refactor/about-css]
+
+permissions:
+  contents: write
+
+jobs:
+  refactor-and-regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: refactor/about-css
+      - name: Replace inline About presentation and regenerate clean routes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('about.html')
+          text = path.read_text(encoding='utf-8')
+          updated, count = re.subn(
+              r'\n  <style>.*?</style>',
+              '\n  <link rel="stylesheet" href="assets/about.css">',
+              text,
+              count=1,
+              flags=re.S,
+          )
+          if count != 1:
+              raise SystemExit('Expected inline About stylesheet was not found')
+          updated = updated.replace('<div class="method-grid" style="margin-top:16px">', '<div class="method-grid confidence-methods">', 1)
+          path.write_text(updated, encoding='utf-8')
+          PY
+          python tools/generate_routes.py
+          if grep -q '<style>' about.html; then
+            echo 'Inline About stylesheet remains' >&2
+            exit 1
+          fi
+          if grep -q 'method-grid" style=' about.html; then
+            echo 'Inline About method-grid style remains' >&2
+            exit 1
+          fi
+      - name: Commit generated refactor
+        run: |
+          git config user.name "sports-passport-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add about.html about/index.html sitemap.xml
+          git diff --cached --quiet && exit 0
+          git commit -m "Load About styles from page stylesheet"
+          git push origin HEAD:refactor/about-css
