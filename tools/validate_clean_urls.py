@@ -46,7 +46,7 @@ else:
     file_parse=text.find("const file = (url.pathname.split('/').pop()")
     if min(deep,query,guard,file_parse) < 0 or not (deep < query < guard < file_parse):
         errors.append('deep and legacy-query routes must normalize before already-clean guard and legacy filename parsing')
-    for route in ('/about/','/years/','/events/','/teams/','/venues/','/geography/','/journeys/','/chapters/','/favorites/','/analytics/','/hall-of-fame/'):
+    for route in ('/about/','/years/','/events/','/teams/','/venues/','/geography/','/journeys/','/chapters/','/favorites/','/analytics/','/hall-of-fame/','/search/'):
         if route not in text:
             errors.append(f'clean route prefix missing: {route}')
     for retired in ("'/artifacts/'", 'artifacts.html', 'ensureArtifactsNav', 'data-artifacts-nav'):

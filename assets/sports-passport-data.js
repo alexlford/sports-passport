@@ -267,7 +267,8 @@ async function load(name) {
       'teams.html':['Team Explorer | Sports Passport','Browse favorite-team dossiers and every canonical team represented in Alex Ford’s live-sports archive.'],
       'journeys.html':['Life Chapters & Journeys | Sports Passport','Follow Alex Ford’s sports life through five chronological chapters and recurring family and team threads.'],
       'lifetime-analytics.html':['Lifetime Analytics | Sports Passport','Explore the cumulative patterns in Alex Ford’s live-sports archive across years, sports, teams, venues, and cities.'],
-      'hall-of-fame.html':['Hall of Fame | Sports Passport','Confirmed archive records and Alex Ford’s curated Personal Canon of top live-sports experiences.']
+      'hall-of-fame.html':['Hall of Fame | Sports Passport','Confirmed archive records and Alex Ford’s curated Personal Canon of top live-sports experiences.'],
+      'search.html':['Archive Search | Sports Passport','Search Alex Ford’s Sports Passport archive across live events, teams, venues, cities, and years.']
     };
     let [title,description] = staticMeta[file] || [document.title || 'Sports Passport','A personal archive of live sports by Alex Ford.'];
     try {
@@ -358,6 +359,15 @@ async function load(name) {
     ];
     header.innerHTML = `<div class="brand"><a href="index.html" aria-label="Sports Passport home">Sports Passport</a></div><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="global-nav">Menu</button><nav class="nav global-nav" id="global-nav" aria-label="Primary navigation">${links.map(([key,href,label])=>`<a href="${href}"${key===active?' class="active" aria-current="page"':''}>${label}</a>`).join('')}<a class="external" href="https://www.alexlford.com/">Alex Ford ↗</a></nav>`;
     const toggle = header.querySelector('.menu-toggle');
+    const tools = document.createElement('div');
+    tools.className = 'site-header-tools';
+    const searchLink = document.createElement('a');
+    searchLink.className = 'global-search-link';
+    searchLink.href = '/search/';
+    searchLink.textContent = 'Search';
+    tools.appendChild(searchLink);
+    if (toggle) tools.appendChild(toggle);
+    header.appendChild(tools);
     toggle?.addEventListener('click', () => {
       const open = header.classList.toggle('menu-open');
       toggle.setAttribute('aria-expanded', String(open));

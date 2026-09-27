@@ -15,7 +15,8 @@ const routes = [
   ['personal canon', '/favorites/', /Top Tens/i],
   ['analytics', '/analytics/', /Lifetime\s*Analytics/i],
   ['hall of fame', '/hall-of-fame/', /Hall of\s*Fame/i],
-  ['about', '/about/', /Why this\s*exists/i]
+  ['about', '/about/', /Why this\s*exists/i],
+  ['search', '/search/', /Find a game|Search/i]
 ];
 
 for (const [name, path, heading] of routes) {
@@ -207,6 +208,30 @@ test('venue atlas renders without overflow and preserves mobile interactions', a
     clientWidth: document.documentElement.clientWidth
   }));
   expect(overflow.scrollWidth).toBeLessThanOrEqual(overflow.clientWidth + 2);
+});
+
+test('global archive search spans entities and preserves filters in the URL', async ({ page }) => {
+  await page.goto('/search/?q=Chiefs', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('#global-search')).toHaveValue('Chiefs');
+  await expect(page.locator('.search-result[data-result-type="team"]', { hasText: 'Kansas City Chiefs' })).toBeVisible();
+  expect(await page.locator('.search-result[data-result-type="event"]').count()).toBeGreaterThan(0);
+  await expect(page.locator('.global-search-link')).toHaveAttribute('href', '/search/');
+
+  await page.locator('#type-filters button[data-type="team"]').click();
+  await expect(page).toHaveURL(/type=team/);
+  expect(await page.locator('.search-result:not([data-result-type="team"])').count()).toBe(0);
+
+  await page.locator('#global-search').fill('Arrowhead');
+  await page.locator('#type-filters button[data-type="venue"]').click();
+  await expect(page.locator('.search-result[data-result-type="venue"]', { hasText: 'Arrowhead Stadium' })).toBeVisible();
+
+  await page.locator('#global-search').fill('Denver');
+  await page.locator('#type-filters button[data-type="city"]').click();
+  await expect(page.locator('.search-result[data-result-type="city"]', { hasText: 'Denver, CO' })).toBeVisible();
+
+  await page.locator('#global-search').fill('2026');
+  await page.locator('#type-filters button[data-type="year"]').click();
+  await expect(page.locator('.search-result[data-result-type="year"]', { hasText: '2026' })).toHaveAttribute('href', '/years/2026/');
 });
 
 test('archive JSON requests use the revalidated cache manifest version', async ({ page }) => {

@@ -21,6 +21,8 @@ required_clean=(
     "if (pathname.startsWith('/favorites/')) return 'favorites';",
     "if (pathname.startsWith('/analytics/')) return 'analytics';",
     "if (pathname.startsWith('/hall-of-fame/')) return 'hof';",
+    "if (pathname.startsWith('/search/')) return 'search';",
+    "header.querySelector('.global-search-link')",
     "const primaryNavPaths = new Set(['/years/','/teams/','/geography/','/journeys/','/favorites/']);",
     "if (!primaryNavPaths.has(clean))",
     "if (clean === '/geography/') anchor.textContent = 'Places';",
