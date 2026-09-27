@@ -1,0 +1,7567 @@
+[
+  {
+    "date": "1993-08-08",
+    "year": 1993,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Cleveland Indians",
+      "Baltimore Orioles"
+    ],
+    "scores": [
+      6,
+      7
+    ],
+    "venue_recorded": "Oriole Park at Camden Yards",
+    "city": "Baltimore, MD",
+    "source": "sports-passport-1993.html",
+    "id": "evt-0001",
+    "venue_key": "Oriole Park at Camden Yards",
+    "attendance_status": "verified",
+    "verification": "old ticket stub",
+    "evidence": {
+      "type": "ticket_stub",
+      "basis": "physical_artifact",
+      "provenance": "old ticket stub"
+    },
+    "teams_canonical": [
+      "Cleveland Guardians",
+      "Baltimore Orioles"
+    ]
+  },
+  {
+    "date": "1994-06-21",
+    "year": 1994,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Montreal Expos",
+      "St. Louis Cardinals"
+    ],
+    "scores": [
+      4,
+      5
+    ],
+    "venue_recorded": "Busch Stadium II",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-1994.html",
+    "id": "evt-0003",
+    "venue_key": "Busch Memorial Stadium",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-1994.html"
+    },
+    "teams_canonical": [
+      "Washington Nationals",
+      "St. Louis Cardinals"
+    ]
+  },
+  {
+    "date": "1994-02-24",
+    "year": 1994,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Northern Illinois Huskies",
+      "Western Illinois Leathernecks"
+    ],
+    "scores": [
+      68,
+      70
+    ],
+    "venue_recorded": "Western Hall",
+    "city": "Macomb, IL",
+    "source": "sports-passport-1994.html",
+    "id": "evt-0002",
+    "venue_key": "Western Hall",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-1994.html"
+    },
+    "teams_canonical": [
+      "Northern Illinois Huskies",
+      "Western Illinois Leathernecks"
+    ]
+  },
+  {
+    "date": "1995-08-03",
+    "year": 1995,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Houston Astros",
+      "St. Louis Cardinals"
+    ],
+    "scores": [
+      1,
+      2
+    ],
+    "venue_recorded": "Busch Stadium II",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-1995.html",
+    "id": "evt-0004",
+    "venue_key": "Busch Memorial Stadium",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-1995.html"
+    },
+    "teams_canonical": [
+      "Houston Astros",
+      "St. Louis Cardinals"
+    ]
+  },
+  {
+    "date": "1996-08-09",
+    "year": 1996,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "San Francisco Giants",
+      "St. Louis Cardinals"
+    ],
+    "scores": [
+      8,
+      6
+    ],
+    "venue_recorded": "Busch Stadium II",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-1996.html",
+    "id": "evt-0006",
+    "venue_key": "Busch Memorial Stadium",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-1996.html"
+    },
+    "teams_canonical": [
+      "San Francisco Giants",
+      "St. Louis Cardinals"
+    ]
+  },
+  {
+    "date": "1996-01-06",
+    "year": 1996,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ],
+    "scores": [
+      75,
+      97
+    ],
+    "venue_recorded": "SIU Arena",
+    "city": "Carbondale, IL",
+    "source": "sports-passport-1996.html",
+    "id": "evt-0005",
+    "venue_key": "Banterra Center",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-1996.html"
+    },
+    "teams_canonical": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ]
+  },
+  {
+    "date": "1997-08-12",
+    "year": 1997,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Oakland Athletics",
+      "Baltimore Orioles"
+    ],
+    "scores": [
+      0,
+      8
+    ],
+    "venue_recorded": "Oriole Park at Camden Yards",
+    "city": "Baltimore, MD",
+    "source": "sports-passport-1997.html",
+    "id": "evt-0008",
+    "venue_key": "Oriole Park at Camden Yards",
+    "attendance_status": "verified",
+    "verification": "old ticket stub",
+    "evidence": {
+      "type": "ticket_stub",
+      "basis": "physical_artifact",
+      "provenance": "old ticket stub"
+    },
+    "teams_canonical": [
+      "Oakland Athletics",
+      "Baltimore Orioles"
+    ]
+  },
+  {
+    "date": "1997-01-12",
+    "year": 1997,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ],
+    "scores": [
+      76,
+      70
+    ],
+    "venue_recorded": "SIU Arena",
+    "city": "Carbondale, IL",
+    "source": "sports-passport-1997.html",
+    "id": "evt-0007",
+    "venue_key": "Banterra Center",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-1997.html"
+    },
+    "teams_canonical": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ]
+  },
+  {
+    "date": "1998-07-02",
+    "year": 1998,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Kansas City Royals",
+      "St. Louis Cardinals"
+    ],
+    "scores": [
+      0,
+      3
+    ],
+    "venue_recorded": "Busch Stadium II",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-1998.html",
+    "id": "evt-0011",
+    "venue_key": "Busch Memorial Stadium",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-1998.html"
+    },
+    "teams_canonical": [
+      "Kansas City Royals",
+      "St. Louis Cardinals"
+    ]
+  },
+  {
+    "date": "1998-02-28",
+    "year": 1998,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ],
+    "scores": [
+      83,
+      73
+    ],
+    "venue_recorded": "SIU Arena",
+    "city": "Carbondale, IL",
+    "source": "sports-passport-1998.html",
+    "id": "evt-0010",
+    "venue_key": "Banterra Center",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-1998.html"
+    },
+    "teams_canonical": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ]
+  },
+  {
+    "date": "1998-01-28",
+    "year": 1998,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ],
+    "scores": [
+      79,
+      67
+    ],
+    "venue_recorded": "SIU Arena",
+    "city": "Carbondale, IL",
+    "source": "sports-passport-1998.html",
+    "id": "evt-0009",
+    "venue_key": "Banterra Center",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-1998.html"
+    },
+    "teams_canonical": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ]
+  },
+  {
+    "date": "1999-07-02",
+    "year": 1999,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Arizona Diamondbacks",
+      "St. Louis Cardinals"
+    ],
+    "scores": [
+      9,
+      5
+    ],
+    "venue_recorded": "Busch Stadium II",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-1999.html",
+    "id": "evt-0013",
+    "venue_key": "Busch Memorial Stadium",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-1999.html"
+    },
+    "teams_canonical": [
+      "Arizona Diamondbacks",
+      "St. Louis Cardinals"
+    ]
+  },
+  {
+    "date": "1999-01-30",
+    "year": 1999,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ],
+    "scores": [
+      49,
+      60
+    ],
+    "venue_recorded": "SIU Arena",
+    "city": "Carbondale, IL",
+    "source": "sports-passport-1999.html",
+    "id": "evt-0012",
+    "venue_key": "Banterra Center",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-1999.html"
+    },
+    "teams_canonical": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ]
+  },
+  {
+    "date": "1999-07-16",
+    "year": 1999,
+    "sport": "Baseball",
+    "league": "MLB",
+    "teams": [
+      "Minnesota Twins",
+      "Chicago Cubs"
+    ],
+    "scores": [
+      10,
+      11
+    ],
+    "venue_recorded": "Wrigley Field",
+    "city": "Chicago, IL",
+    "source": "notional pre-2006 reconstruction",
+    "id": "evt-0013a",
+    "venue_key": "Wrigley Field",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "notional pre-2006 reconstruction"
+    },
+    "teams_canonical": [
+      "Minnesota Twins",
+      "Chicago Cubs"
+    ]
+  },
+  {
+    "date": "2000-08-05",
+    "year": 2000,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Atlanta Braves",
+      "St. Louis Cardinals"
+    ],
+    "scores": [
+      0,
+      5
+    ],
+    "venue_recorded": "Busch Stadium II",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2000.html",
+    "id": "evt-0016",
+    "venue_key": "Busch Memorial Stadium",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-2000.html"
+    },
+    "teams_canonical": [
+      "Atlanta Braves",
+      "St. Louis Cardinals"
+    ]
+  },
+  {
+    "date": "2000-06-23",
+    "year": 2000,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Los Angeles Dodgers",
+      "St. Louis Cardinals"
+    ],
+    "scores": [
+      6,
+      9
+    ],
+    "venue_recorded": "Busch Stadium II",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2000.html",
+    "id": "evt-0015",
+    "venue_key": "Busch Memorial Stadium",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-2000.html"
+    },
+    "teams_canonical": [
+      "Los Angeles Dodgers",
+      "St. Louis Cardinals"
+    ]
+  },
+  {
+    "date": "2000-02-12",
+    "year": 2000,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ],
+    "scores": [
+      54,
+      65
+    ],
+    "venue_recorded": "SIU Arena",
+    "city": "Carbondale, IL",
+    "source": "sports-passport-2000.html",
+    "id": "evt-0014",
+    "venue_key": "Banterra Center",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-2000.html"
+    },
+    "teams_canonical": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ]
+  },
+  {
+    "date": "2001-12-01",
+    "year": 2001,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Indiana Hoosiers",
+      "Southern Illinois Salukis"
+    ],
+    "scores": [
+      60,
+      72
+    ],
+    "venue_recorded": "SIU Arena",
+    "city": "Carbondale, IL",
+    "source": "sports-passport-2001.html",
+    "id": "evt-0020",
+    "venue_key": "Banterra Center",
+    "attendance_status": "verified",
+    "verification": "user-confirmed",
+    "evidence": {
+      "type": "direct_confirmation",
+      "basis": "direct_confirmation",
+      "provenance": "user-confirmed"
+    },
+    "teams_canonical": [
+      "Indiana Hoosiers",
+      "Southern Illinois Salukis"
+    ]
+  },
+  {
+    "date": "2001-08-03",
+    "year": 2001,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Florida Marlins",
+      "St. Louis Cardinals"
+    ],
+    "scores": [
+      6,
+      4
+    ],
+    "venue_recorded": "Busch Stadium II",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2001.html",
+    "id": "evt-0019",
+    "venue_key": "Busch Memorial Stadium",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-2001.html"
+    },
+    "teams_canonical": [
+      "Miami Marlins",
+      "St. Louis Cardinals"
+    ]
+  },
+  {
+    "date": "2001-07-24",
+    "year": 2001,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Houston Astros",
+      "St. Louis Cardinals"
+    ],
+    "scores": [
+      2,
+      1
+    ],
+    "venue_recorded": "Busch Stadium II",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2001.html",
+    "id": "evt-0018",
+    "venue_key": "Busch Memorial Stadium",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-2001.html"
+    },
+    "teams_canonical": [
+      "Houston Astros",
+      "St. Louis Cardinals"
+    ]
+  },
+  {
+    "date": "2001-01-14",
+    "year": 2001,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ],
+    "scores": [
+      88,
+      74
+    ],
+    "venue_recorded": "SIU Arena",
+    "city": "Carbondale, IL",
+    "source": "sports-passport-2001.html",
+    "id": "evt-0017",
+    "venue_key": "Banterra Center",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-2001.html"
+    },
+    "teams_canonical": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ]
+  },
+  {
+    "date": "2002-07-02",
+    "year": 2002,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "San Diego Padres",
+      "St. Louis Cardinals"
+    ],
+    "scores": [
+      5,
+      11
+    ],
+    "venue_recorded": "Busch Stadium II",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2002.html",
+    "id": "evt-0023",
+    "venue_key": "Busch Memorial Stadium",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-2002.html"
+    },
+    "teams_canonical": [
+      "San Diego Padres",
+      "St. Louis Cardinals"
+    ]
+  },
+  {
+    "date": "2002-06-28",
+    "year": 2002,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Cincinnati Reds",
+      "St. Louis Cardinals"
+    ],
+    "scores": [
+      2,
+      3
+    ],
+    "venue_recorded": "Busch Stadium II",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2002.html",
+    "id": "evt-0022",
+    "venue_key": "Busch Memorial Stadium",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-2002.html"
+    },
+    "teams_canonical": [
+      "Cincinnati Reds",
+      "St. Louis Cardinals"
+    ]
+  },
+  {
+    "date": "2002-01-05",
+    "year": 2002,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ],
+    "scores": [
+      58,
+      79
+    ],
+    "venue_recorded": "SIU Arena",
+    "city": "Carbondale, IL",
+    "source": "sports-passport-2002.html",
+    "id": "evt-0021",
+    "venue_key": "Banterra Center",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-2002.html"
+    },
+    "teams_canonical": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ]
+  },
+  {
+    "date": "2003-12-28",
+    "year": 2003,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ],
+    "scores": [
+      40,
+      57
+    ],
+    "venue_recorded": "SIU Arena",
+    "city": "Carbondale, IL",
+    "source": "sports-passport-2003.html",
+    "id": "evt-0025",
+    "venue_key": "Banterra Center",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-2003.html"
+    },
+    "teams_canonical": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ]
+  },
+  {
+    "date": "2003-01-04",
+    "year": 2003,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ],
+    "scores": [
+      65,
+      74
+    ],
+    "venue_recorded": "SIU Arena",
+    "city": "Carbondale, IL",
+    "source": "sports-passport-2003.html",
+    "id": "evt-0024",
+    "venue_key": "Banterra Center",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-2003.html"
+    },
+    "teams_canonical": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ]
+  },
+  {
+    "date": "2004-12-23",
+    "year": 2004,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ],
+    "scores": [
+      49,
+      61
+    ],
+    "venue_recorded": "SIU Arena",
+    "city": "Carbondale, IL",
+    "source": "sports-passport-2004.html",
+    "id": "evt-0027",
+    "venue_key": "Banterra Center",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-2004.html"
+    },
+    "teams_canonical": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ]
+  },
+  {
+    "date": "2004-11-27",
+    "year": 2004,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Eastern Washington Eagles",
+      "Southern Illinois Salukis"
+    ],
+    "scores": [
+      35,
+      31
+    ],
+    "venue_recorded": "McAndrew Stadium",
+    "city": "Carbondale, IL",
+    "source": "sports-passport-2004.html",
+    "id": "evt-0026",
+    "venue_key": "McAndrew Stadium",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-2004.html"
+    },
+    "teams_canonical": [
+      "Eastern Washington Eagles",
+      "Southern Illinois Salukis"
+    ]
+  },
+  {
+    "date": "2005-05-10",
+    "year": 2005,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Los Angeles Dodgers",
+      "St. Louis Cardinals"
+    ],
+    "scores": [
+      9,
+      8
+    ],
+    "venue_recorded": "Busch Stadium II",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2005.html",
+    "id": "evt-0028",
+    "venue_key": "Busch Memorial Stadium",
+    "attendance_status": "notional",
+    "evidence": {
+      "type": "reconstructed_archive",
+      "basis": "reconstruction",
+      "provenance": "sports-passport-2005.html"
+    },
+    "teams_canonical": [
+      "Los Angeles Dodgers",
+      "St. Louis Cardinals"
+    ]
+  },
+  {
+    "date": "2006-11-28",
+    "year": 2006,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Maryland Terrapins",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      72,
+      66
+    ],
+    "venue_recorded": "State Farm Center",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2006.html",
+    "id": "evt-0039",
+    "venue_key": "State Farm Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2006.html"
+    },
+    "teams_canonical": [
+      "Maryland Terrapins",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2006-11-18",
+    "year": 2006,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Illinois Fighting Illini",
+      "Northwestern Wildcats"
+    ],
+    "scores": [
+      16,
+      27
+    ],
+    "venue_recorded": "Ryan Field",
+    "city": "Evanston, IL",
+    "source": "sports-passport-2006.html",
+    "id": "evt-0038",
+    "venue_key": "Ryan Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2006.html"
+    },
+    "teams_canonical": [
+      "Illinois Fighting Illini",
+      "Northwestern Wildcats"
+    ]
+  },
+  {
+    "date": "2006-11-15",
+    "year": 2006,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Jackson State Tigers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      55,
+      76
+    ],
+    "venue_recorded": "State Farm Center",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2006.html",
+    "id": "evt-0037",
+    "venue_key": "State Farm Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2006.html"
+    },
+    "teams_canonical": [
+      "Jackson State Tigers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2006-11-11",
+    "year": 2006,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Purdue Boilermakers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      42,
+      31
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2006.html",
+    "id": "evt-0036",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2006.html"
+    },
+    "teams_canonical": [
+      "Purdue Boilermakers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2006-11-04",
+    "year": 2006,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Ohio State Buckeyes",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      17,
+      10
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2006.html",
+    "id": "evt-0035",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2006.html"
+    },
+    "teams_canonical": [
+      "Ohio State Buckeyes",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2006-10-14",
+    "year": 2006,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Ohio Bobcats",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      20,
+      17
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2006.html",
+    "id": "evt-0034",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2006.html"
+    },
+    "teams_canonical": [
+      "Ohio Bobcats",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2006-10-07",
+    "year": 2006,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Indiana Hoosiers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      34,
+      32
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2006.html",
+    "id": "evt-0033",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2006.html"
+    },
+    "teams_canonical": [
+      "Indiana Hoosiers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2006-09-23",
+    "year": 2006,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Iowa Hawkeyes",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      24,
+      7
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2006.html",
+    "id": "evt-0032",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2006.html"
+    },
+    "teams_canonical": [
+      "Iowa Hawkeyes",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2006-09-16",
+    "year": 2006,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Syracuse Orange",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      31,
+      21
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2006.html",
+    "id": "evt-0031",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2006.html"
+    },
+    "teams_canonical": [
+      "Syracuse Orange",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2006-09-02",
+    "year": 2006,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Eastern Illinois Panthers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      17,
+      42
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2006.html",
+    "id": "evt-0030",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2006.html"
+    },
+    "teams_canonical": [
+      "Eastern Illinois Panthers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2006-01-22",
+    "year": 2006,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ],
+    "scores": [
+      44,
+      56
+    ],
+    "venue_recorded": "SIU Arena",
+    "city": "Carbondale, IL",
+    "source": "sports-passport-2006.html",
+    "id": "evt-0029",
+    "venue_key": "Banterra Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2006.html"
+    },
+    "teams_canonical": [
+      "Illinois State Redbirds",
+      "Southern Illinois Salukis"
+    ]
+  },
+  {
+    "date": "2007-11-17",
+    "year": 2007,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Northwestern Wildcats",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      22,
+      41
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2007.html",
+    "id": "evt-0051",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2007.html"
+    },
+    "teams_canonical": [
+      "Northwestern Wildcats",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2007-10-27",
+    "year": 2007,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Ball State Cardinals",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      17,
+      28
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2007.html",
+    "id": "evt-0050",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2007.html"
+    },
+    "teams_canonical": [
+      "Ball State Cardinals",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2007-10-20",
+    "year": 2007,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Michigan Wolverines",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      27,
+      17
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2007.html",
+    "id": "evt-0049",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2007.html"
+    },
+    "teams_canonical": [
+      "Michigan Wolverines",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2007-10-13",
+    "year": 2007,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Illinois Fighting Illini",
+      "Iowa Hawkeyes"
+    ],
+    "scores": [
+      6,
+      10
+    ],
+    "venue_recorded": "Kinnick Stadium",
+    "city": "Iowa City, IA",
+    "source": "sports-passport-2007.html",
+    "id": "evt-0048",
+    "venue_key": "Kinnick Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2007.html"
+    },
+    "teams_canonical": [
+      "Illinois Fighting Illini",
+      "Iowa Hawkeyes"
+    ]
+  },
+  {
+    "date": "2007-10-06",
+    "year": 2007,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Wisconsin Badgers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      26,
+      31
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2007.html",
+    "id": "evt-0047",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2007.html"
+    },
+    "teams_canonical": [
+      "Wisconsin Badgers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2007-09-29",
+    "year": 2007,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Penn State Nittany Lions",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      20,
+      27
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2007.html",
+    "id": "evt-0046",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2007.html"
+    },
+    "teams_canonical": [
+      "Penn State Nittany Lions",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2007-09-08",
+    "year": 2007,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Western Illinois Leathernecks",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      0,
+      21
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2007.html",
+    "id": "evt-0045",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2007.html"
+    },
+    "teams_canonical": [
+      "Western Illinois Leathernecks",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2007-09-01",
+    "year": 2007,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Missouri Tigers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      40,
+      34
+    ],
+    "venue_recorded": "The Dome at America's Center",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2007.html",
+    "id": "evt-0044",
+    "venue_key": "The Dome at America's Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2007.html"
+    },
+    "teams_canonical": [
+      "Missouri Tigers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2007-07-29",
+    "year": 2007,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Milwaukee Brewers",
+      "St. Louis Cardinals"
+    ],
+    "scores": [
+      5,
+      9
+    ],
+    "venue_recorded": "Busch Stadium III",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2007.html",
+    "id": "evt-0043",
+    "venue_key": "Busch Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2007.html"
+    },
+    "teams_canonical": [
+      "Milwaukee Brewers",
+      "St. Louis Cardinals"
+    ]
+  },
+  {
+    "date": "2007-04-11",
+    "year": 2007,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Los Angeles Angels",
+      "Cleveland Indians"
+    ],
+    "scores": [
+      4,
+      1
+    ],
+    "venue_recorded": "Miller Park",
+    "city": "Milwaukee, WI",
+    "source": "sports-passport-2007.html",
+    "id": "evt-0042",
+    "venue_key": "American Family Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2007.html"
+    },
+    "teams_canonical": [
+      "Los Angeles Angels",
+      "Cleveland Guardians"
+    ]
+  },
+  {
+    "date": "2007-02-21",
+    "year": 2007,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Michigan Wolverines",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      42,
+      54
+    ],
+    "venue_recorded": "State Farm Center",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2007.html",
+    "id": "evt-0041",
+    "venue_key": "State Farm Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2007.html"
+    },
+    "teams_canonical": [
+      "Michigan Wolverines",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2007-01-09",
+    "year": 2007,
+    "sport": "Hockey",
+    "league": "",
+    "teams": [
+      "Anaheim Ducks",
+      "Nashville Predators"
+    ],
+    "scores": [
+      4,
+      5
+    ],
+    "venue_recorded": "Bridgestone Arena",
+    "city": "Nashville, TN",
+    "source": "sports-passport-2007.html",
+    "id": "evt-0040",
+    "venue_key": "Bridgestone Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2007.html"
+    },
+    "teams_canonical": [
+      "Anaheim Ducks",
+      "Nashville Predators"
+    ]
+  },
+  {
+    "date": "2008-12-23",
+    "year": 2008,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Missouri Tigers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      59,
+      75
+    ],
+    "venue_recorded": "Enterprise Center",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2008.html",
+    "id": "evt-0062",
+    "venue_key": "Enterprise Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2008.html"
+    },
+    "teams_canonical": [
+      "Missouri Tigers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2008-11-15",
+    "year": 2008,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Ohio State Buckeyes",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      30,
+      20
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2008.html",
+    "id": "evt-0061",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2008.html"
+    },
+    "teams_canonical": [
+      "Ohio State Buckeyes",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2008-11-01",
+    "year": 2008,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Iowa Hawkeyes",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      24,
+      27
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2008.html",
+    "id": "evt-0060",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2008.html"
+    },
+    "teams_canonical": [
+      "Iowa Hawkeyes",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2008-10-18",
+    "year": 2008,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Indiana Hoosiers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      13,
+      55
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2008.html",
+    "id": "evt-0059",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2008.html"
+    },
+    "teams_canonical": [
+      "Indiana Hoosiers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2008-10-11",
+    "year": 2008,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Minnesota Golden Gophers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      27,
+      20
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2008.html",
+    "id": "evt-0058",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2008.html"
+    },
+    "teams_canonical": [
+      "Minnesota Golden Gophers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2008-09-13",
+    "year": 2008,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Louisiana Ragin' Cajuns",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      17,
+      20
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2008.html",
+    "id": "evt-0057",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2008.html"
+    },
+    "teams_canonical": [
+      "Louisiana Ragin' Cajuns",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2008-09-06",
+    "year": 2008,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Eastern Illinois Panthers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      21,
+      47
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2008.html",
+    "id": "evt-0056",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2008.html"
+    },
+    "teams_canonical": [
+      "Eastern Illinois Panthers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2008-08-30",
+    "year": 2008,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Illinois Fighting Illini",
+      "Missouri Tigers"
+    ],
+    "scores": [
+      42,
+      52
+    ],
+    "venue_recorded": "The Dome at America's Center",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2008.html",
+    "id": "evt-0055",
+    "venue_key": "The Dome at America's Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2008.html"
+    },
+    "teams_canonical": [
+      "Illinois Fighting Illini",
+      "Missouri Tigers"
+    ]
+  },
+  {
+    "date": "2008-03-06",
+    "year": 2008,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Michigan State Spartans",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      59,
+      51
+    ],
+    "venue_recorded": "State Farm Center",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2008.html",
+    "id": "evt-0054",
+    "venue_key": "State Farm Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2008.html"
+    },
+    "teams_canonical": [
+      "Michigan State Spartans",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2008-02-20",
+    "year": 2008,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Wisconsin Badgers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      71,
+      57
+    ],
+    "venue_recorded": "State Farm Center",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2008.html",
+    "id": "evt-0053",
+    "venue_key": "State Farm Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2008.html"
+    },
+    "teams_canonical": [
+      "Wisconsin Badgers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2008-01-27",
+    "year": 2008,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Northwestern Wildcats",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      37,
+      70
+    ],
+    "venue_recorded": "State Farm Center",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2008.html",
+    "id": "evt-0052",
+    "venue_key": "State Farm Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2008.html"
+    },
+    "teams_canonical": [
+      "Northwestern Wildcats",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2009-12-05",
+    "year": 2009,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Fresno State Bulldogs",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      53,
+      52
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2009.html",
+    "id": "evt-0070",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2009.html"
+    },
+    "teams_canonical": [
+      "Fresno State Bulldogs",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2009-11-14",
+    "year": 2009,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Northwestern Wildcats",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      21,
+      16
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2009.html",
+    "id": "evt-0069",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2009.html"
+    },
+    "teams_canonical": [
+      "Northwestern Wildcats",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2009-10-31",
+    "year": 2009,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Michigan Wolverines",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      13,
+      38
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2009.html",
+    "id": "evt-0068",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2009.html"
+    },
+    "teams_canonical": [
+      "Michigan Wolverines",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2009-10-10",
+    "year": 2009,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Michigan State Spartans",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      24,
+      14
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2009.html",
+    "id": "evt-0067",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2009.html"
+    },
+    "teams_canonical": [
+      "Michigan State Spartans",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2009-10-03",
+    "year": 2009,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Penn State Nittany Lions",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      35,
+      17
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2009.html",
+    "id": "evt-0066",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2009.html"
+    },
+    "teams_canonical": [
+      "Penn State Nittany Lions",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2009-09-12",
+    "year": 2009,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Illinois State Redbirds",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      17,
+      45
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2009.html",
+    "id": "evt-0065",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2009.html"
+    },
+    "teams_canonical": [
+      "Illinois State Redbirds",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2009-09-05",
+    "year": 2009,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Missouri Tigers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      37,
+      9
+    ],
+    "venue_recorded": "The Dome at America's Center",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2009.html",
+    "id": "evt-0064",
+    "venue_key": "The Dome at America's Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2009.html"
+    },
+    "teams_canonical": [
+      "Missouri Tigers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2009-02-26",
+    "year": 2009,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Minnesota Golden Gophers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      41,
+      52
+    ],
+    "venue_recorded": "State Farm Center",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2009.html",
+    "id": "evt-0063",
+    "venue_key": "State Farm Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2009.html"
+    },
+    "teams_canonical": [
+      "Minnesota Golden Gophers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2010-11-06",
+    "year": 2010,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Colorado Buffaloes",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      45,
+      52
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2010.html",
+    "id": "evt-0077",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2010.html"
+    },
+    "teams_canonical": [
+      "Colorado Buffaloes",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2010-10-23",
+    "year": 2010,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Texas A&M Aggies",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      45,
+      10
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2010.html",
+    "id": "evt-0076",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2010.html"
+    },
+    "teams_canonical": [
+      "Texas A&M Aggies",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2010-10-14",
+    "year": 2010,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Kansas State Wildcats",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      59,
+      7
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2010.html",
+    "id": "evt-0075",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2010.html"
+    },
+    "teams_canonical": [
+      "Kansas State Wildcats",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2010-09-25",
+    "year": 2010,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "New Mexico State Aggies",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      16,
+      42
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2010.html",
+    "id": "evt-0074",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2010.html"
+    },
+    "teams_canonical": [
+      "New Mexico State Aggies",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2010-09-11",
+    "year": 2010,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Georgia Tech Yellow Jackets",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      25,
+      28
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2010.html",
+    "id": "evt-0073",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2010.html"
+    },
+    "teams_canonical": [
+      "Georgia Tech Yellow Jackets",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2010-09-04",
+    "year": 2010,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "North Dakota State Bison",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      6,
+      3
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2010.html",
+    "id": "evt-0072",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2010.html"
+    },
+    "teams_canonical": [
+      "North Dakota State Bison",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2010-12-02",
+    "year": 2010,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "UCLA Bruins",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      76,
+      77
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2010.html",
+    "id": "evt-0078",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2010.html"
+    },
+    "teams_canonical": [
+      "UCLA Bruins",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2010-02-27",
+    "year": 2010,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Minnesota Golden Gophers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      62,
+      60
+    ],
+    "venue_recorded": "State Farm Center",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2010.html",
+    "id": "evt-0071",
+    "venue_key": "State Farm Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2010.html"
+    },
+    "teams_canonical": [
+      "Minnesota Golden Gophers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2011-10-15",
+    "year": 2011,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Oklahoma Sooners",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      47,
+      17
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2011.html",
+    "id": "evt-0082",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2011.html"
+    },
+    "teams_canonical": [
+      "Oklahoma Sooners",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2011-10-01",
+    "year": 2011,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Texas Tech Red Raiders",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      45,
+      34
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2011.html",
+    "id": "evt-0081",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2011.html"
+    },
+    "teams_canonical": [
+      "Texas Tech Red Raiders",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2011-09-03",
+    "year": 2011,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "McNeese State Cowboys",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      24,
+      42
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2011.html",
+    "id": "evt-0080",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2011.html"
+    },
+    "teams_canonical": [
+      "McNeese State Cowboys",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2011-01-22",
+    "year": 2011,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Texas Longhorns",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      74,
+      63
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2011.html",
+    "id": "evt-0079",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2011.html"
+    },
+    "teams_canonical": [
+      "Texas Longhorns",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2012-12-16",
+    "year": 2012,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Western Kentucky Hilltoppers",
+      "Murray State Racers"
+    ],
+    "scores": [
+      70,
+      75
+    ],
+    "venue_recorded": "CFSB Center",
+    "city": "Murray, KY",
+    "source": "sports-passport-2012.html",
+    "id": "evt-0096",
+    "venue_key": "CFSB Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2012.html"
+    },
+    "teams_canonical": [
+      "Western Kentucky Hilltoppers",
+      "Murray State Racers"
+    ]
+  },
+  {
+    "date": "2012-11-17",
+    "year": 2012,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Iowa State Cyclones",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      51,
+      23
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2012.html",
+    "id": "evt-0095",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2012.html"
+    },
+    "teams_canonical": [
+      "Iowa State Cyclones",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2012-11-09",
+    "year": 2012,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Southeast Missouri State Redhawks",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      55,
+      74
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2012.html",
+    "id": "evt-0094",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2012.html"
+    },
+    "teams_canonical": [
+      "Southeast Missouri State Redhawks",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2012-10-27",
+    "year": 2012,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Texas Longhorns",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      21,
+      17
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2012.html",
+    "id": "evt-0093",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2012.html"
+    },
+    "teams_canonical": [
+      "Texas Longhorns",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2012-10-13",
+    "year": 2012,
+    "sport": "Hockey",
+    "league": "",
+    "teams": [
+      "Omaha Mavericks",
+      "Notre Dame Fighting Irish"
+    ],
+    "scores": [
+      2,
+      3
+    ],
+    "venue_recorded": "Sprint Center",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2012.html",
+    "id": "evt-0092",
+    "venue_key": "T-Mobile Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2012.html"
+    },
+    "teams_canonical": [
+      "Omaha Mavericks",
+      "Notre Dame Fighting Irish"
+    ]
+  },
+  {
+    "date": "2012-10-13",
+    "year": 2012,
+    "sport": "Hockey",
+    "league": "",
+    "teams": [
+      "Army Black Knights",
+      "Maine Black Bears"
+    ],
+    "scores": [
+      3,
+      4
+    ],
+    "venue_recorded": "Sprint Center",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2012.html",
+    "id": "evt-0091",
+    "venue_key": "T-Mobile Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2012.html"
+    },
+    "teams_canonical": [
+      "Army Black Knights",
+      "Maine Black Bears"
+    ]
+  },
+  {
+    "date": "2012-09-15",
+    "year": 2012,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "TCU Horned Frogs",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      20,
+      6
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2012.html",
+    "id": "evt-0090",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2012.html"
+    },
+    "teams_canonical": [
+      "TCU Horned Frogs",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2012-09-08",
+    "year": 2012,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Rice Owls",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      25,
+      24
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2012.html",
+    "id": "evt-0089",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2012.html"
+    },
+    "teams_canonical": [
+      "Rice Owls",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2012-09-01",
+    "year": 2012,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Western Michigan Broncos",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      7,
+      24
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2012.html",
+    "id": "evt-0088",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2012.html"
+    },
+    "teams_canonical": [
+      "Western Michigan Broncos",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2012-08-28",
+    "year": 2012,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Detroit Tigers",
+      "Kansas City Royals"
+    ],
+    "scores": [
+      8,
+      9
+    ],
+    "venue_recorded": "Kauffman Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2012.html",
+    "id": "evt-0087",
+    "venue_key": "Kauffman Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2012.html"
+    },
+    "teams_canonical": [
+      "Detroit Tigers",
+      "Kansas City Royals"
+    ]
+  },
+  {
+    "date": "2012-07-21",
+    "year": 2012,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Minnesota Twins",
+      "Kansas City Royals"
+    ],
+    "scores": [
+      3,
+      7
+    ],
+    "venue_recorded": "Kauffman Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2012.html",
+    "id": "evt-0086",
+    "venue_key": "Kauffman Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2012.html"
+    },
+    "teams_canonical": [
+      "Minnesota Twins",
+      "Kansas City Royals"
+    ]
+  },
+  {
+    "date": "2012-02-18",
+    "year": 2012,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Texas Tech Red Raiders",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      50,
+      83
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2012.html",
+    "id": "evt-0085",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2012.html"
+    },
+    "teams_canonical": [
+      "Texas Tech Red Raiders",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2012-01-16",
+    "year": 2012,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Baylor Bears",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      74,
+      92
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2012.html",
+    "id": "evt-0084",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2012.html"
+    },
+    "teams_canonical": [
+      "Baylor Bears",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2012-01-04",
+    "year": 2012,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Eastern Kentucky Colonels",
+      "Murray State Racers"
+    ],
+    "scores": [
+      67,
+      76
+    ],
+    "venue_recorded": "CFSB Center",
+    "city": "Murray, KY",
+    "source": "sports-passport-2012.html",
+    "id": "evt-0083",
+    "venue_key": "CFSB Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2012.html"
+    },
+    "teams_canonical": [
+      "Eastern Kentucky Colonels",
+      "Murray State Racers"
+    ]
+  },
+  {
+    "date": "2013-12-30",
+    "year": 2013,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Toledo Rockets",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      83,
+      93
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2013.html",
+    "id": "evt-0105",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2013.html"
+    },
+    "teams_canonical": [
+      "Toledo Rockets",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2013-12-21",
+    "year": 2013,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Illinois Fighting Illini",
+      "Missouri Tigers"
+    ],
+    "scores": [
+      65,
+      64
+    ],
+    "venue_recorded": "Enterprise Center",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2013.html",
+    "id": "evt-0104",
+    "venue_key": "Enterprise Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2013.html"
+    },
+    "teams_canonical": [
+      "Illinois Fighting Illini",
+      "Missouri Tigers"
+    ]
+  },
+  {
+    "date": "2013-10-26",
+    "year": 2013,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Michigan State Spartans",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      42,
+      3
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2013.html",
+    "id": "evt-0103",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2013.html"
+    },
+    "teams_canonical": [
+      "Michigan State Spartans",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2013-10-05",
+    "year": 2013,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Texas Tech Red Raiders",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      54,
+      16
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2013.html",
+    "id": "evt-0102",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2013.html"
+    },
+    "teams_canonical": [
+      "Texas Tech Red Raiders",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2013-09-07",
+    "year": 2013,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "South Dakota Coyotes",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      14,
+      31
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2013.html",
+    "id": "evt-0101",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2013.html"
+    },
+    "teams_canonical": [
+      "South Dakota Coyotes",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2013-07-13",
+    "year": 2013,
+    "sport": "Soccer",
+    "league": "",
+    "teams": [
+      "Sporting Kansas City",
+      "Toronto FC"
+    ],
+    "scores": [
+      3,
+      0
+    ],
+    "venue_recorded": "Children's Mercy Park",
+    "city": "Kansas City, KS",
+    "source": "sports-passport-2013.html",
+    "id": "evt-0100",
+    "venue_key": "Children's Mercy Park",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2013.html"
+    },
+    "teams_canonical": [
+      "Sporting Kansas City",
+      "Toronto FC"
+    ]
+  },
+  {
+    "date": "2013-04-14",
+    "year": 2013,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Portland Trail Blazers",
+      "Denver Nuggets"
+    ],
+    "scores": [
+      109,
+      118
+    ],
+    "venue_recorded": "Ball Arena",
+    "city": "Denver, CO",
+    "source": "sports-passport-2013.html",
+    "id": "evt-0099",
+    "venue_key": "Ball Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2013.html"
+    },
+    "teams_canonical": [
+      "Portland Trail Blazers",
+      "Denver Nuggets"
+    ]
+  },
+  {
+    "date": "2013-02-11",
+    "year": 2013,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Kansas State Wildcats",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      62,
+      83
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2013.html",
+    "id": "evt-0098",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2013.html"
+    },
+    "teams_canonical": [
+      "Kansas State Wildcats",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2013-01-09",
+    "year": 2013,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Iowa State Cyclones",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      89,
+      97
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2013.html",
+    "id": "evt-0097",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2013.html"
+    },
+    "teams_canonical": [
+      "Iowa State Cyclones",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2014-12-26",
+    "year": 2014,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Houston Rockets",
+      "Memphis Grizzlies"
+    ],
+    "scores": [
+      117,
+      111
+    ],
+    "venue_recorded": "FedExForum",
+    "city": "Memphis, TN",
+    "source": "sports-passport-2014.html",
+    "id": "evt-0116",
+    "venue_key": "FedExForum",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2014.html"
+    },
+    "teams_canonical": [
+      "Houston Rockets",
+      "Memphis Grizzlies"
+    ]
+  },
+  {
+    "date": "2014-12-14",
+    "year": 2014,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Oakland Raiders",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      13,
+      31
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2014.html",
+    "id": "evt-0115",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2014.html"
+    },
+    "teams_canonical": [
+      "Las Vegas Raiders",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2014-11-15",
+    "year": 2014,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "TCU Horned Frogs",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      34,
+      30
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2014.html",
+    "id": "evt-0114",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2014.html"
+    },
+    "teams_canonical": [
+      "TCU Horned Frogs",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2014-09-27",
+    "year": 2014,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Illinois Fighting Illini",
+      "Nebraska Cornhuskers"
+    ],
+    "scores": [
+      14,
+      45
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Lincoln, NE",
+    "source": "sports-passport-2014.html",
+    "id": "evt-0113",
+    "venue_key": "Memorial Stadium — Lincoln",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2014.html"
+    },
+    "teams_canonical": [
+      "Illinois Fighting Illini",
+      "Nebraska Cornhuskers"
+    ]
+  },
+  {
+    "date": "2014-09-06",
+    "year": 2014,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Southeast Missouri State",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      28,
+      34
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2014.html",
+    "id": "evt-0112",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2014.html"
+    },
+    "teams_canonical": [
+      "Southeast Missouri State Redhawks",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2014-07-12",
+    "year": 2014,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Detroit Tigers",
+      "Kansas City Royals"
+    ],
+    "scores": [
+      5,
+      1
+    ],
+    "venue_recorded": "Kauffman Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2014.html",
+    "id": "evt-0111",
+    "venue_key": "Kauffman Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2014.html"
+    },
+    "teams_canonical": [
+      "Detroit Tigers",
+      "Kansas City Royals"
+    ]
+  },
+  {
+    "date": "2014-05-27",
+    "year": 2014,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Midland RockHounds",
+      "Springfield Cardinals"
+    ],
+    "scores": [
+      1,
+      4
+    ],
+    "venue_recorded": "Hammons Field",
+    "city": "Springfield, MO",
+    "source": "sports-passport-2014.html",
+    "id": "evt-0110",
+    "venue_key": "Hammons Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2014.html"
+    },
+    "teams_canonical": [
+      "Midland RockHounds",
+      "Springfield Cardinals"
+    ]
+  },
+  {
+    "date": "2014-02-24",
+    "year": 2014,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Oklahoma Sooners",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      75,
+      83
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2014.html",
+    "id": "evt-0109",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2014.html"
+    },
+    "teams_canonical": [
+      "Oklahoma Sooners",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2014-02-15",
+    "year": 2014,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "TCU Horned Frogs",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      65,
+      95
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2014.html",
+    "id": "evt-0108",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2014.html"
+    },
+    "teams_canonical": [
+      "TCU Horned Frogs",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2014-01-29",
+    "year": 2014,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Iowa State Cyclones",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      81,
+      92
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2014.html",
+    "id": "evt-0107",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2014.html"
+    },
+    "teams_canonical": [
+      "Iowa State Cyclones",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2014-01-05",
+    "year": 2014,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "San Diego State Aztecs",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      61,
+      57
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2014.html",
+    "id": "evt-0106",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2014.html"
+    },
+    "teams_canonical": [
+      "San Diego State Aztecs",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2015-12-30",
+    "year": 2015,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Michigan Wolverines",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      78,
+      68
+    ],
+    "venue_recorded": "State Farm Center",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0134",
+    "venue_key": "State Farm Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Michigan Wolverines",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2015-12-29",
+    "year": 2015,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "UC Irvine Anteaters",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      53,
+      78
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0133",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "UC Irvine Anteaters",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2015-12-23",
+    "year": 2015,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Illinois Fighting Illini",
+      "Missouri Tigers"
+    ],
+    "scores": [
+      68,
+      63
+    ],
+    "venue_recorded": "Enterprise Center",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0132",
+    "venue_key": "Enterprise Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Illinois Fighting Illini",
+      "Missouri Tigers"
+    ]
+  },
+  {
+    "date": "2015-12-19",
+    "year": 2015,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Montana Grizzlies",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      46,
+      88
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0131",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Montana Grizzlies",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2015-12-09",
+    "year": 2015,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Holy Cross Crusaders",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      59,
+      92
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0130",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Holy Cross Crusaders",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2015-12-05",
+    "year": 2015,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Harvard Crimson",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      69,
+      75
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0129",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Harvard Crimson",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2015-12-01",
+    "year": 2015,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Loyola Maryland Greyhounds",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      61,
+      94
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0128",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Loyola Maryland Greyhounds",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2015-11-28",
+    "year": 2015,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Northwestern Wildcats",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      24,
+      14
+    ],
+    "venue_recorded": "Soldier Field",
+    "city": "Chicago, IL",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0127",
+    "venue_key": "Soldier Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Northwestern Wildcats",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2015-11-21",
+    "year": 2015,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Illinois Fighting Illini",
+      "Minnesota Golden Gophers"
+    ],
+    "scores": [
+      23,
+      32
+    ],
+    "venue_recorded": "Huntington Bank Stadium",
+    "city": "Minneapolis, MN",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0126",
+    "venue_key": "Huntington Bank Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Illinois Fighting Illini",
+      "Minnesota Golden Gophers"
+    ]
+  },
+  {
+    "date": "2015-11-13",
+    "year": 2015,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Northern Colorado Bears",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      72,
+      109
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0125",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Northern Colorado Bears",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2015-10-17",
+    "year": 2015,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Texas Tech Red Raiders",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      30,
+      20
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0124",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Texas Tech Red Raiders",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2015-10-03",
+    "year": 2015,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Kansas City Royals",
+      "Minnesota Twins"
+    ],
+    "scores": [
+      5,
+      1
+    ],
+    "venue_recorded": "Target Field",
+    "city": "Minneapolis, MN",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0123",
+    "venue_key": "Target Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Kansas City Royals",
+      "Minnesota Twins"
+    ]
+  },
+  {
+    "date": "2015-09-05",
+    "year": 2015,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Kent State Golden Flashes",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      3,
+      52
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0122",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Kent State Golden Flashes",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2015-08-10",
+    "year": 2015,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Detroit Tigers",
+      "Kansas City Royals"
+    ],
+    "scores": [
+      0,
+      4
+    ],
+    "venue_recorded": "Kauffman Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0121",
+    "venue_key": "Kauffman Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Detroit Tigers",
+      "Kansas City Royals"
+    ]
+  },
+  {
+    "date": "2015-07-11",
+    "year": 2015,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Toronto Blue Jays",
+      "Kansas City Royals"
+    ],
+    "scores": [
+      6,
+      2
+    ],
+    "venue_recorded": "Kauffman Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0120",
+    "venue_key": "Kauffman Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Toronto Blue Jays",
+      "Kansas City Royals"
+    ]
+  },
+  {
+    "date": "2015-06-03",
+    "year": 2015,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Cleveland Indians",
+      "Kansas City Royals"
+    ],
+    "scores": [
+      2,
+      4
+    ],
+    "venue_recorded": "Kauffman Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0119",
+    "venue_key": "Kauffman Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Cleveland Guardians",
+      "Kansas City Royals"
+    ]
+  },
+  {
+    "date": "2015-04-12",
+    "year": 2015,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Toronto Blue Jays",
+      "Baltimore Orioles"
+    ],
+    "scores": [
+      10,
+      7
+    ],
+    "venue_recorded": "Oriole Park at Camden Yards",
+    "city": "Baltimore, MD",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0118",
+    "venue_key": "Oriole Park at Camden Yards",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Toronto Blue Jays",
+      "Baltimore Orioles"
+    ]
+  },
+  {
+    "date": "2015-04-11",
+    "year": 2015,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Toronto Blue Jays",
+      "Baltimore Orioles"
+    ],
+    "scores": [
+      1,
+      7
+    ],
+    "venue_recorded": "Oriole Park at Camden Yards",
+    "city": "Baltimore, MD",
+    "source": "sports-passport-2015.html",
+    "id": "evt-0117",
+    "venue_key": "Oriole Park at Camden Yards",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2015.html"
+    },
+    "teams_canonical": [
+      "Toronto Blue Jays",
+      "Baltimore Orioles"
+    ]
+  },
+  {
+    "date": "2016-12-21",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Missouri Tigers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      66,
+      75
+    ],
+    "venue_recorded": "Enterprise Center",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0165",
+    "venue_key": "Enterprise Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Missouri Tigers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2016-12-18",
+    "year": 2016,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Tennessee Titans",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      19,
+      17
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0164",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Tennessee Titans",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2016-10-23",
+    "year": 2016,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Minnesota Vikings",
+      "Philadelphia Eagles"
+    ],
+    "scores": [
+      10,
+      21
+    ],
+    "venue_recorded": "Lincoln Financial Field",
+    "city": "Philadelphia, PA",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0163",
+    "venue_key": "Lincoln Financial Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Minnesota Vikings",
+      "Philadelphia Eagles"
+    ]
+  },
+  {
+    "date": "2016-09-25",
+    "year": 2016,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "New York Jets",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      3,
+      24
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0162",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "New York Jets",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2016-09-17",
+    "year": 2016,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Chicago White Sox",
+      "Kansas City Royals"
+    ],
+    "scores": [
+      2,
+      3
+    ],
+    "venue_recorded": "Kauffman Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0161",
+    "venue_key": "Kauffman Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Chicago White Sox",
+      "Kansas City Royals"
+    ]
+  },
+  {
+    "date": "2016-09-11",
+    "year": 2016,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "San Diego Chargers",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      27,
+      33
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0160",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Los Angeles Chargers",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2016-09-03",
+    "year": 2016,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Murray State Racers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      3,
+      52
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0159",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Murray State Racers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2016-08-20",
+    "year": 2016,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Minnesota Twins",
+      "Kansas City Royals"
+    ],
+    "scores": [
+      0,
+      10
+    ],
+    "venue_recorded": "Kauffman Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0158",
+    "venue_key": "Kauffman Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Minnesota Twins",
+      "Kansas City Royals"
+    ]
+  },
+  {
+    "date": "2016-08-07",
+    "year": 2016,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Atlanta Braves",
+      "St. Louis Cardinals"
+    ],
+    "scores": [
+      6,
+      3
+    ],
+    "venue_recorded": "Busch Stadium III",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0157",
+    "venue_key": "Busch Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Atlanta Braves",
+      "St. Louis Cardinals"
+    ]
+  },
+  {
+    "date": "2016-08-05",
+    "year": 2016,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Baltimore Orioles",
+      "Chicago White Sox"
+    ],
+    "scores": [
+      7,
+      5
+    ],
+    "venue_recorded": "U.S. Cellular Field",
+    "city": "Chicago, IL",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0156",
+    "venue_key": "Rate Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Baltimore Orioles",
+      "Chicago White Sox"
+    ]
+  },
+  {
+    "date": "2016-06-25",
+    "year": 2016,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Houston Astros",
+      "Kansas City Royals"
+    ],
+    "scores": [
+      13,
+      5
+    ],
+    "venue_recorded": "Kauffman Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0155",
+    "venue_key": "Kauffman Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Houston Astros",
+      "Kansas City Royals"
+    ]
+  },
+  {
+    "date": "2016-05-15",
+    "year": 2016,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Atlanta Braves",
+      "Kansas City Royals"
+    ],
+    "scores": [
+      2,
+      4
+    ],
+    "venue_recorded": "Kauffman Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0154",
+    "venue_key": "Kauffman Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Atlanta Braves",
+      "Kansas City Royals"
+    ]
+  },
+  {
+    "date": "2016-03-19",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Connecticut Huskies",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      61,
+      73
+    ],
+    "venue_recorded": "Wells Fargo Arena",
+    "city": "Des Moines, IA",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0152",
+    "venue_key": "Casey's Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "UConn Huskies",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2016-03-19",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Indiana Hoosiers",
+      "Kentucky Wildcats"
+    ],
+    "scores": [
+      73,
+      67
+    ],
+    "venue_recorded": "Wells Fargo Arena",
+    "city": "Des Moines, IA",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0153",
+    "venue_key": "Casey's Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Indiana Hoosiers",
+      "Kentucky Wildcats"
+    ]
+  },
+  {
+    "date": "2016-03-17",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Austin Peay Governors",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      79,
+      105
+    ],
+    "venue_recorded": "Wells Fargo Arena",
+    "city": "Des Moines, IA",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0150",
+    "venue_key": "Casey's Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Austin Peay Governors",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2016-03-17",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Connecticut Huskies",
+      "Colorado Buffaloes"
+    ],
+    "scores": [
+      74,
+      67
+    ],
+    "venue_recorded": "Wells Fargo Arena",
+    "city": "Des Moines, IA",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0151",
+    "venue_key": "Casey's Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "UConn Huskies",
+      "Colorado Buffaloes"
+    ]
+  },
+  {
+    "date": "2016-03-12",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "West Virginia Mountaineers",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      71,
+      81
+    ],
+    "venue_recorded": "Sprint Center",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0149",
+    "venue_key": "T-Mobile Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "West Virginia Mountaineers",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2016-03-11",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Oklahoma Sooners",
+      "West Virginia Mountaineers"
+    ],
+    "scores": [
+      67,
+      69
+    ],
+    "venue_recorded": "Sprint Center",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0148",
+    "venue_key": "T-Mobile Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Oklahoma Sooners",
+      "West Virginia Mountaineers"
+    ]
+  },
+  {
+    "date": "2016-03-11",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Baylor Bears",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      66,
+      70
+    ],
+    "venue_recorded": "Sprint Center",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0147",
+    "venue_key": "T-Mobile Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Baylor Bears",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2016-03-09",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "TCU Horned Frogs",
+      "Texas Tech Red Raiders"
+    ],
+    "scores": [
+      67,
+      62
+    ],
+    "venue_recorded": "Sprint Center",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0146",
+    "venue_key": "T-Mobile Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "TCU Horned Frogs",
+      "Texas Tech Red Raiders"
+    ]
+  },
+  {
+    "date": "2016-03-09",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Oklahoma State Cowboys",
+      "Kansas State Wildcats"
+    ],
+    "scores": [
+      71,
+      75
+    ],
+    "venue_recorded": "Sprint Center",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0145",
+    "venue_key": "T-Mobile Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Oklahoma State Cowboys",
+      "Kansas State Wildcats"
+    ]
+  },
+  {
+    "date": "2016-03-05",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Iowa State Cyclones",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      78,
+      85
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0144",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Iowa State Cyclones",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2016-02-27",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Texas Tech Red Raiders",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      58,
+      67
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0143",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Texas Tech Red Raiders",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2016-02-15",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Oklahoma State Cowboys",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      67,
+      94
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0142",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Oklahoma State Cowboys",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2016-02-09",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "West Virginia Mountaineers",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      65,
+      75
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0141",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "West Virginia Mountaineers",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2016-02-03",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Kansas State Wildcats",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      59,
+      77
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0140",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Kansas State Wildcats",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2016-01-30",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Kentucky Wildcats",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      84,
+      90
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0139",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Kentucky Wildcats",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2016-01-23",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Texas Longhorns",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      67,
+      76
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0138",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Texas Longhorns",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2016-01-16",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "TCU Horned Frogs",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      63,
+      70
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0137",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "TCU Horned Frogs",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2016-01-04",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Oklahoma Sooners",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      106,
+      109
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0136",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Oklahoma Sooners",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2016-01-02",
+    "year": 2016,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Baylor Bears",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      74,
+      102
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2016.html",
+    "id": "evt-0135",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2016.html"
+    },
+    "teams_canonical": [
+      "Baylor Bears",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2017-12-24",
+    "year": 2017,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Miami Dolphins",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      13,
+      29
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0183",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "Miami Dolphins",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2017-12-23",
+    "year": 2017,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Illinois Fighting Illini",
+      "Missouri Tigers"
+    ],
+    "scores": [
+      70,
+      64
+    ],
+    "venue_recorded": "Enterprise Center",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0182",
+    "venue_key": "Enterprise Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "Illinois Fighting Illini",
+      "Missouri Tigers"
+    ]
+  },
+  {
+    "date": "2017-12-10",
+    "year": 2017,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Oakland Raiders",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      15,
+      26
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0181",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "Las Vegas Raiders",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2017-11-24",
+    "year": 2017,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "North Carolina Central Eagles",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      73,
+      86
+    ],
+    "venue_recorded": "State Farm Center",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0180",
+    "venue_key": "State Farm Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "North Carolina Central Eagles",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2017-10-15",
+    "year": 2017,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Pittsburgh Steelers",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      19,
+      13
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0179",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "Pittsburgh Steelers",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2017-10-07",
+    "year": 2017,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Texas Tech Red Raiders",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      65,
+      19
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0178",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "Texas Tech Red Raiders",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2017-10-02",
+    "year": 2017,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Washington",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      20,
+      29
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0177",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "Washington Commanders",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2017-09-02",
+    "year": 2017,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Ball State Cardinals",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      21,
+      24
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0176",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "Ball State Cardinals",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2017-08-08",
+    "year": 2017,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "St. Louis Cardinals",
+      "Kansas City Royals"
+    ],
+    "scores": [
+      10,
+      3
+    ],
+    "venue_recorded": "Kauffman Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0175",
+    "venue_key": "Kauffman Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "St. Louis Cardinals",
+      "Kansas City Royals"
+    ]
+  },
+  {
+    "date": "2017-07-19",
+    "year": 2017,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Tacoma Rainiers",
+      "Albuquerque Isotopes"
+    ],
+    "scores": [
+      1,
+      3
+    ],
+    "venue_recorded": "Isotopes Park",
+    "city": "Albuquerque, NM",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0174",
+    "venue_key": "Isotopes Park",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "Tacoma Rainiers",
+      "Albuquerque Isotopes"
+    ]
+  },
+  {
+    "date": "2017-05-16",
+    "year": 2017,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "New York Yankees",
+      "Kansas City Royals"
+    ],
+    "scores": [
+      7,
+      1
+    ],
+    "venue_recorded": "Kauffman Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0173",
+    "venue_key": "Kauffman Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "New York Yankees",
+      "Kansas City Royals"
+    ]
+  },
+  {
+    "date": "2017-05-14",
+    "year": 2017,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Baltimore Orioles",
+      "Kansas City Royals"
+    ],
+    "scores": [
+      8,
+      9
+    ],
+    "venue_recorded": "Kauffman Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0172",
+    "venue_key": "Kauffman Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "Baltimore Orioles",
+      "Kansas City Royals"
+    ]
+  },
+  {
+    "date": "2017-02-27",
+    "year": 2017,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Oklahoma Sooners",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      63,
+      73
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0171",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "Oklahoma Sooners",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2017-02-22",
+    "year": 2017,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "TCU Horned Frogs",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      68,
+      87
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0170",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "TCU Horned Frogs",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2017-02-13",
+    "year": 2017,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "West Virginia Mountaineers",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      80,
+      84
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0169",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "West Virginia Mountaineers",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2017-02-01",
+    "year": 2017,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Baylor Bears",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      68,
+      73
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0168",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "Baylor Bears",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2017-01-15",
+    "year": 2017,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Pittsburgh Steelers",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      18,
+      16
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0167",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "Pittsburgh Steelers",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2017-01-02",
+    "year": 2017,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "South Carolina Upstate",
+      "UMKC Kangaroos"
+    ],
+    "scores": [
+      84,
+      75
+    ],
+    "venue_recorded": "Municipal Auditorium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2017.html",
+    "id": "evt-0166",
+    "venue_key": "Municipal Auditorium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2017.html"
+    },
+    "teams_canonical": [
+      "USC Upstate Spartans",
+      "Kansas City Roos"
+    ]
+  },
+  {
+    "date": "2018-12-30",
+    "year": 2018,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Oakland Raiders",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      3,
+      35
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2018.html",
+    "id": "evt-0195",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2018.html"
+    },
+    "teams_canonical": [
+      "Las Vegas Raiders",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2018-12-22",
+    "year": 2018,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Missouri Tigers",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      79,
+      63
+    ],
+    "venue_recorded": "Enterprise Center",
+    "city": "St. Louis, MO",
+    "source": "sports-passport-2018.html",
+    "id": "evt-0194",
+    "venue_key": "Enterprise Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2018.html"
+    },
+    "teams_canonical": [
+      "Missouri Tigers",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2018-12-09",
+    "year": 2018,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Baltimore Ravens",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      24,
+      27
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2018.html",
+    "id": "evt-0193",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2018.html"
+    },
+    "teams_canonical": [
+      "Baltimore Ravens",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2018-10-27",
+    "year": 2018,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Illinois Fighting Illini",
+      "Maryland Terrapins"
+    ],
+    "scores": [
+      33,
+      63
+    ],
+    "venue_recorded": "Capital One Field at Maryland Stadium",
+    "city": "College Park, MD",
+    "source": "sports-passport-2018.html",
+    "id": "evt-0192",
+    "venue_key": "SECU Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2018.html"
+    },
+    "teams_canonical": [
+      "Illinois Fighting Illini",
+      "Maryland Terrapins"
+    ]
+  },
+  {
+    "date": "2018-10-07",
+    "year": 2018,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Minnesota Vikings",
+      "Philadelphia Eagles"
+    ],
+    "scores": [
+      23,
+      21
+    ],
+    "venue_recorded": "Lincoln Financial Field",
+    "city": "Philadelphia, PA",
+    "source": "sports-passport-2018.html",
+    "id": "evt-0191",
+    "venue_key": "Lincoln Financial Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2018.html"
+    },
+    "teams_canonical": [
+      "Minnesota Vikings",
+      "Philadelphia Eagles"
+    ]
+  },
+  {
+    "date": "2018-10-06",
+    "year": 2018,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Illinois Fighting Illini",
+      "Rutgers Scarlet Knights"
+    ],
+    "scores": [
+      38,
+      17
+    ],
+    "venue_recorded": "SHI Stadium",
+    "city": "Piscataway, NJ",
+    "source": "sports-passport-2018.html",
+    "id": "evt-0190",
+    "venue_key": "SHI Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2018.html"
+    },
+    "teams_canonical": [
+      "Illinois Fighting Illini",
+      "Rutgers Scarlet Knights"
+    ]
+  },
+  {
+    "date": "2018-09-29",
+    "year": 2018,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Houston Astros",
+      "Baltimore Orioles"
+    ],
+    "scores": [
+      4,
+      3
+    ],
+    "venue_recorded": "Oriole Park at Camden Yards",
+    "city": "Baltimore, MD",
+    "source": "sports-passport-2018.html",
+    "id": "evt-0188",
+    "venue_key": "Oriole Park at Camden Yards",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2018.html"
+    },
+    "teams_canonical": [
+      "Houston Astros",
+      "Baltimore Orioles"
+    ]
+  },
+  {
+    "date": "2018-09-29",
+    "year": 2018,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Houston Astros",
+      "Baltimore Orioles"
+    ],
+    "scores": [
+      5,
+      2
+    ],
+    "venue_recorded": "Oriole Park at Camden Yards",
+    "city": "Baltimore, MD",
+    "source": "sports-passport-2018.html",
+    "id": "evt-0189",
+    "venue_key": "Oriole Park at Camden Yards",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2018.html"
+    },
+    "teams_canonical": [
+      "Houston Astros",
+      "Baltimore Orioles"
+    ]
+  },
+  {
+    "date": "2018-09-23",
+    "year": 2018,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "San Francisco 49ers",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      27,
+      38
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2018.html",
+    "id": "evt-0187",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2018.html"
+    },
+    "teams_canonical": [
+      "San Francisco 49ers",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2018-08-04",
+    "year": 2018,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "St. Louis Cardinals",
+      "Pittsburgh Pirates"
+    ],
+    "scores": [
+      8,
+      4
+    ],
+    "venue_recorded": "PNC Park",
+    "city": "Pittsburgh, PA",
+    "source": "sports-passport-2018.html",
+    "id": "evt-0186",
+    "venue_key": "PNC Park",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2018.html"
+    },
+    "teams_canonical": [
+      "St. Louis Cardinals",
+      "Pittsburgh Pirates"
+    ]
+  },
+  {
+    "date": "2018-05-08",
+    "year": 2018,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Kansas City Royals",
+      "Baltimore Orioles"
+    ],
+    "scores": [
+      15,
+      7
+    ],
+    "venue_recorded": "Oriole Park at Camden Yards",
+    "city": "Baltimore, MD",
+    "source": "sports-passport-2018.html",
+    "id": "evt-0185",
+    "venue_key": "Oriole Park at Camden Yards",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2018.html"
+    },
+    "teams_canonical": [
+      "Kansas City Royals",
+      "Baltimore Orioles"
+    ]
+  },
+  {
+    "date": "2018-03-31",
+    "year": 2018,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Minnesota Twins",
+      "Baltimore Orioles"
+    ],
+    "scores": [
+      6,
+      2
+    ],
+    "venue_recorded": "Oriole Park at Camden Yards",
+    "city": "Baltimore, MD",
+    "source": "sports-passport-2018.html",
+    "id": "evt-0184",
+    "venue_key": "Oriole Park at Camden Yards",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2018.html"
+    },
+    "teams_canonical": [
+      "Minnesota Twins",
+      "Baltimore Orioles"
+    ]
+  },
+  {
+    "date": "2019-12-21",
+    "year": 2019,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Kansas Jayhawks",
+      "Villanova Wildcats"
+    ],
+    "scores": [
+      55,
+      56
+    ],
+    "venue_recorded": "Xfinity Mobile Arena",
+    "city": "Philadelphia, PA",
+    "source": "sports-passport-2019.html",
+    "id": "evt-0201",
+    "venue_key": "Xfinity Mobile Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2019.html"
+    },
+    "teams_canonical": [
+      "Kansas Jayhawks",
+      "Villanova Wildcats"
+    ]
+  },
+  {
+    "date": "2019-12-15",
+    "year": 2019,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Denver Broncos",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      3,
+      23
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2019.html",
+    "id": "evt-0200",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2019.html"
+    },
+    "teams_canonical": [
+      "Denver Broncos",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2019-12-14",
+    "year": 2019,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "UMKC Kangaroos",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      57,
+      98
+    ],
+    "venue_recorded": "Sprint Center",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2019.html",
+    "id": "evt-0199",
+    "venue_key": "T-Mobile Center",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2019.html"
+    },
+    "teams_canonical": [
+      "Kansas City Roos",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2019-10-27",
+    "year": 2019,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Green Bay Packers",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      31,
+      24
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2019.html",
+    "id": "evt-0198",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2019.html"
+    },
+    "teams_canonical": [
+      "Green Bay Packers",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2019-04-06",
+    "year": 2019,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "New York Yankees",
+      "Baltimore Orioles"
+    ],
+    "scores": [
+      6,
+      4
+    ],
+    "venue_recorded": "Oriole Park at Camden Yards",
+    "city": "Baltimore, MD",
+    "source": "sports-passport-2019.html",
+    "id": "evt-0197",
+    "venue_key": "Oriole Park at Camden Yards",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2019.html"
+    },
+    "teams_canonical": [
+      "New York Yankees",
+      "Baltimore Orioles"
+    ]
+  },
+  {
+    "date": "2019-01-26",
+    "year": 2019,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Illinois Fighting Illini",
+      "Maryland Terrapins"
+    ],
+    "scores": [
+      78,
+      67
+    ],
+    "venue_recorded": "Madison Square Garden",
+    "city": "New York, NY",
+    "source": "sports-passport-2019.html",
+    "id": "evt-0196",
+    "venue_key": "Madison Square Garden",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2019.html"
+    },
+    "teams_canonical": [
+      "Illinois Fighting Illini",
+      "Maryland Terrapins"
+    ]
+  },
+  {
+    "date": "2020-02-02",
+    "year": 2020,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "San Francisco 49ers",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      20,
+      31
+    ],
+    "venue_recorded": "Hard Rock Stadium",
+    "city": "Miami Gardens, FL",
+    "source": "sports-passport-2020.html",
+    "id": "evt-0202",
+    "venue_key": "Hard Rock Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2020.html"
+    },
+    "teams_canonical": [
+      "San Francisco 49ers",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2021-08-25",
+    "year": 2021,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Los Angeles Angels",
+      "Baltimore Orioles"
+    ],
+    "scores": [
+      6,
+      10
+    ],
+    "venue_recorded": "Oriole Park at Camden Yards",
+    "city": "Baltimore, MD",
+    "source": "sports-passport-2021.html",
+    "id": "evt-0203",
+    "venue_key": "Oriole Park at Camden Yards",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2021.html"
+    },
+    "teams_canonical": [
+      "Los Angeles Angels",
+      "Baltimore Orioles"
+    ]
+  },
+  {
+    "date": "2022-10-16",
+    "year": 2022,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Buffalo Bills",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      24,
+      20
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2022.html",
+    "id": "evt-0209",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2022.html"
+    },
+    "teams_canonical": [
+      "Buffalo Bills",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2022-08-01",
+    "year": 2022,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "New York Mets",
+      "Washington Nationals"
+    ],
+    "scores": [
+      7,
+      3
+    ],
+    "venue_recorded": "Nationals Park",
+    "city": "Washington, DC",
+    "source": "sports-passport-2022.html",
+    "id": "evt-0208",
+    "venue_key": "Nationals Park",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2022.html"
+    },
+    "teams_canonical": [
+      "New York Mets",
+      "Washington Nationals"
+    ]
+  },
+  {
+    "date": "2022-05-17",
+    "year": 2022,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Cincinnati Reds",
+      "Cleveland Guardians"
+    ],
+    "scores": [
+      5,
+      4
+    ],
+    "venue_recorded": "Progressive Field",
+    "city": "Cleveland, OH",
+    "source": "sports-passport-2022.html",
+    "id": "evt-0207",
+    "venue_key": "Progressive Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2022.html"
+    },
+    "teams_canonical": [
+      "Cincinnati Reds",
+      "Cleveland Guardians"
+    ]
+  },
+  {
+    "date": "2022-05-13",
+    "year": 2022,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Kansas City Royals",
+      "Colorado Rockies"
+    ],
+    "scores": [
+      14,
+      10
+    ],
+    "venue_recorded": "Coors Field",
+    "city": "Denver, CO",
+    "source": "sports-passport-2022.html",
+    "id": "evt-0206",
+    "venue_key": "Coors Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2022.html"
+    },
+    "teams_canonical": [
+      "Kansas City Royals",
+      "Colorado Rockies"
+    ]
+  },
+  {
+    "date": "2022-03-04",
+    "year": 2022,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Houston Rockets",
+      "Denver Nuggets"
+    ],
+    "scores": [
+      101,
+      116
+    ],
+    "venue_recorded": "Ball Arena",
+    "city": "Denver, CO",
+    "source": "sports-passport-2022.html",
+    "id": "evt-0205",
+    "venue_key": "Ball Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2022.html"
+    },
+    "teams_canonical": [
+      "Houston Rockets",
+      "Denver Nuggets"
+    ]
+  },
+  {
+    "date": "2022-01-08",
+    "year": 2022,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Kansas City Chiefs",
+      "Denver Broncos"
+    ],
+    "scores": [
+      28,
+      24
+    ],
+    "venue_recorded": "Empower Field at Mile High",
+    "city": "Denver, CO",
+    "source": "sports-passport-2022.html",
+    "id": "evt-0204",
+    "venue_key": "Empower Field at Mile High",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2022.html"
+    },
+    "teams_canonical": [
+      "Kansas City Chiefs",
+      "Denver Broncos"
+    ]
+  },
+  {
+    "date": "2023-12-29",
+    "year": 2023,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Oklahoma City Thunder",
+      "Denver Nuggets"
+    ],
+    "scores": [
+      119,
+      93
+    ],
+    "venue_recorded": "Ball Arena",
+    "city": "Denver, CO",
+    "source": "sports-passport-2023.html",
+    "id": "evt-0224",
+    "venue_key": "Ball Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2023.html"
+    },
+    "teams_canonical": [
+      "Oklahoma City Thunder",
+      "Denver Nuggets"
+    ]
+  },
+  {
+    "date": "2023-12-16",
+    "year": 2023,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Minnesota Vikings",
+      "Cincinnati Bengals"
+    ],
+    "scores": [
+      24,
+      27
+    ],
+    "venue_recorded": "Paycor Stadium",
+    "city": "Cincinnati, OH",
+    "source": "sports-passport-2023.html",
+    "id": "evt-0223",
+    "venue_key": "Paycor Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2023.html"
+    },
+    "teams_canonical": [
+      "Minnesota Vikings",
+      "Cincinnati Bengals"
+    ]
+  },
+  {
+    "date": "2023-11-25",
+    "year": 2023,
+    "sport": "Hockey",
+    "league": "",
+    "teams": [
+      "Yale",
+      "Denver"
+    ],
+    "scores": [
+      0,
+      9
+    ],
+    "venue_recorded": "Magness Arena",
+    "city": "Denver, CO",
+    "source": "sports-passport-2023.html",
+    "id": "evt-0222",
+    "venue_key": "Magness Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2023.html"
+    },
+    "note": "Yale 0, Denver 9 at Magness Arena on 2023-11-25 was men's ice hockey, not soccer.",
+    "teams_canonical": [
+      "Yale Bulldogs",
+      "Denver Pioneers"
+    ]
+  },
+  {
+    "date": "2023-11-20",
+    "year": 2023,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Philadelphia Eagles",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      21,
+      17
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2023.html",
+    "id": "evt-0221",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2023.html"
+    },
+    "teams_canonical": [
+      "Philadelphia Eagles",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2023-11-15",
+    "year": 2023,
+    "sport": "Hockey",
+    "league": "",
+    "teams": [
+      "Anaheim Ducks",
+      "Colorado Avalanche"
+    ],
+    "scores": [
+      2,
+      8
+    ],
+    "venue_recorded": "Ball Arena",
+    "city": "Denver, CO",
+    "source": "sports-passport-2023.html",
+    "id": "evt-0220",
+    "venue_key": "Ball Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2023.html"
+    },
+    "teams_canonical": [
+      "Anaheim Ducks",
+      "Colorado Avalanche"
+    ]
+  },
+  {
+    "date": "2023-11-14",
+    "year": 2023,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "LA Clippers",
+      "Denver Nuggets"
+    ],
+    "scores": [
+      108,
+      111
+    ],
+    "venue_recorded": "Ball Arena",
+    "city": "Denver, CO",
+    "source": "sports-passport-2023.html",
+    "id": "evt-0219",
+    "venue_key": "Ball Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2023.html"
+    },
+    "teams_canonical": [
+      "Los Angeles Clippers",
+      "Denver Nuggets"
+    ]
+  },
+  {
+    "date": "2023-10-29",
+    "year": 2023,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Kansas City Chiefs",
+      "Denver Broncos"
+    ],
+    "scores": [
+      9,
+      24
+    ],
+    "venue_recorded": "Empower Field at Mile High",
+    "city": "Denver, CO",
+    "source": "sports-passport-2023.html",
+    "id": "evt-0218",
+    "venue_key": "Empower Field at Mile High",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2023.html"
+    },
+    "teams_canonical": [
+      "Kansas City Chiefs",
+      "Denver Broncos"
+    ]
+  },
+  {
+    "date": "2023-09-08",
+    "year": 2023,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Illinois Fighting Illini",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      23,
+      34
+    ],
+    "venue_recorded": "David Booth Kansas Memorial Stadium",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2023.html",
+    "id": "evt-0217",
+    "venue_key": "David Booth Kansas Memorial Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2023.html"
+    },
+    "teams_canonical": [
+      "Illinois Fighting Illini",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2023-09-07",
+    "year": 2023,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Detroit Lions",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      21,
+      20
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2023.html",
+    "id": "evt-0216",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2023.html"
+    },
+    "teams_canonical": [
+      "Detroit Lions",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2023-08-01",
+    "year": 2023,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Oakland Athletics",
+      "Los Angeles Dodgers"
+    ],
+    "scores": [
+      3,
+      7
+    ],
+    "venue_recorded": "Dodger Stadium",
+    "city": "Los Angeles, CA",
+    "source": "sports-passport-2023.html",
+    "id": "evt-0215",
+    "venue_key": "Dodger Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2023.html"
+    },
+    "teams_canonical": [
+      "Oakland Athletics",
+      "Los Angeles Dodgers"
+    ]
+  },
+  {
+    "date": "2023-05-24",
+    "year": 2023,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Miami Marlins",
+      "Colorado Rockies"
+    ],
+    "scores": [
+      10,
+      2
+    ],
+    "venue_recorded": "Coors Field",
+    "city": "Denver, CO",
+    "source": "sports-passport-2023.html",
+    "id": "evt-0214",
+    "venue_key": "Coors Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2023.html"
+    },
+    "teams_canonical": [
+      "Miami Marlins",
+      "Colorado Rockies"
+    ]
+  },
+  {
+    "date": "2023-04-18",
+    "year": 2023,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Pittsburgh Pirates",
+      "Colorado Rockies"
+    ],
+    "scores": [
+      5,
+      3
+    ],
+    "venue_recorded": "Coors Field",
+    "city": "Denver, CO",
+    "source": "sports-passport-2023.html",
+    "id": "evt-0213",
+    "venue_key": "Coors Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2023.html"
+    },
+    "teams_canonical": [
+      "Pittsburgh Pirates",
+      "Colorado Rockies"
+    ]
+  },
+  {
+    "date": "2023-04-17",
+    "year": 2023,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Tampa Bay Rays",
+      "Cincinnati Reds"
+    ],
+    "scores": [
+      1,
+      8
+    ],
+    "venue_recorded": "Great American Ball Park",
+    "city": "Cincinnati, OH",
+    "source": "sports-passport-2023.html",
+    "id": "evt-0212",
+    "venue_key": "Great American Ball Park",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2023.html"
+    },
+    "teams_canonical": [
+      "Tampa Bay Rays",
+      "Cincinnati Reds"
+    ]
+  },
+  {
+    "date": "2023-04-12",
+    "year": 2023,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "St. Louis Cardinals",
+      "Colorado Rockies"
+    ],
+    "scores": [
+      7,
+      4
+    ],
+    "venue_recorded": "Coors Field",
+    "city": "Denver, CO",
+    "source": "sports-passport-2023.html",
+    "id": "evt-0211",
+    "venue_key": "Coors Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2023.html"
+    },
+    "teams_canonical": [
+      "St. Louis Cardinals",
+      "Colorado Rockies"
+    ]
+  },
+  {
+    "date": "2023-04-08",
+    "year": 2023,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Washington Nationals",
+      "Colorado Rockies"
+    ],
+    "scores": [
+      7,
+      6
+    ],
+    "venue_recorded": "Coors Field",
+    "city": "Denver, CO",
+    "source": "sports-passport-2023.html",
+    "id": "evt-0210",
+    "venue_key": "Coors Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2023.html"
+    },
+    "teams_canonical": [
+      "Washington Nationals",
+      "Colorado Rockies"
+    ]
+  },
+  {
+    "date": "2024-01-29",
+    "year": 2024,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Milwaukee Bucks",
+      "Denver Nuggets"
+    ],
+    "scores": [
+      107,
+      113
+    ],
+    "venue_recorded": "Ball Arena",
+    "city": "Denver, CO",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0225",
+    "venue_key": "Ball Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Milwaukee Bucks",
+      "Denver Nuggets"
+    ]
+  },
+  {
+    "date": "2024-02-20",
+    "year": 2024,
+    "sport": "Hockey",
+    "league": "",
+    "teams": [
+      "Vancouver Canucks",
+      "Colorado Avalanche"
+    ],
+    "scores": [
+      1,
+      3
+    ],
+    "venue_recorded": "Ball Arena",
+    "city": "Denver, CO",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0226",
+    "venue_key": "Ball Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Vancouver Canucks",
+      "Colorado Avalanche"
+    ]
+  },
+  {
+    "date": "2024-02-29",
+    "year": 2024,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Washington Wizards",
+      "Los Angeles Lakers"
+    ],
+    "scores": [
+      131,
+      134
+    ],
+    "venue_recorded": "Crypto.com Arena",
+    "city": "Los Angeles, CA",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0227",
+    "venue_key": "Crypto.com Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Washington Wizards",
+      "Los Angeles Lakers"
+    ]
+  },
+  {
+    "date": "2024-03-12",
+    "year": 2024,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Minnesota Timberwolves",
+      "LA Clippers"
+    ],
+    "scores": [
+      118,
+      100
+    ],
+    "venue_recorded": "Crypto.com Arena",
+    "city": "Los Angeles, CA",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0228",
+    "venue_key": "Crypto.com Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Minnesota Timberwolves",
+      "Los Angeles Clippers"
+    ]
+  },
+  {
+    "date": "2024-03-19",
+    "year": 2024,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Wagner Seahawks",
+      "Howard Bison"
+    ],
+    "scores": [
+      71,
+      68
+    ],
+    "venue_recorded": "UD Arena",
+    "city": "Dayton, OH",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0230",
+    "venue_key": "UD Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Wagner Seahawks",
+      "Howard Bison"
+    ]
+  },
+  {
+    "date": "2024-03-19",
+    "year": 2024,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Colorado State Rams",
+      "Virginia Cavaliers"
+    ],
+    "scores": [
+      67,
+      42
+    ],
+    "venue_recorded": "UD Arena",
+    "city": "Dayton, OH",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0229",
+    "venue_key": "UD Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Colorado State Rams",
+      "Virginia Cavaliers"
+    ]
+  },
+  {
+    "date": "2024-04-22",
+    "year": 2024,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Los Angeles Lakers",
+      "Denver Nuggets"
+    ],
+    "scores": [
+      99,
+      101
+    ],
+    "venue_recorded": "Ball Arena",
+    "city": "Denver, CO",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0231",
+    "venue_key": "Ball Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Los Angeles Lakers",
+      "Denver Nuggets"
+    ]
+  },
+  {
+    "date": "2024-05-27",
+    "year": 2024,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Cleveland Guardians",
+      "Colorado Rockies"
+    ],
+    "scores": [
+      6,
+      8
+    ],
+    "venue_recorded": "Coors Field",
+    "city": "Denver, CO",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0232",
+    "venue_key": "Coors Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Cleveland Guardians",
+      "Colorado Rockies"
+    ]
+  },
+  {
+    "date": "2024-06-04",
+    "year": 2024,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Cincinnati Reds",
+      "Colorado Rockies"
+    ],
+    "scores": [
+      4,
+      1
+    ],
+    "venue_recorded": "Coors Field",
+    "city": "Denver, CO",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0233",
+    "venue_key": "Coors Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Cincinnati Reds",
+      "Colorado Rockies"
+    ]
+  },
+  {
+    "date": "2024-07-04",
+    "year": 2024,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Milwaukee Brewers",
+      "Colorado Rockies"
+    ],
+    "scores": [
+      3,
+      4
+    ],
+    "venue_recorded": "Coors Field",
+    "city": "Denver, CO",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0234",
+    "venue_key": "Coors Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Milwaukee Brewers",
+      "Colorado Rockies"
+    ]
+  },
+  {
+    "date": "2024-07-05",
+    "year": 2024,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Kansas City Royals",
+      "Colorado Rockies"
+    ],
+    "scores": [
+      2,
+      4
+    ],
+    "venue_recorded": "Coors Field",
+    "city": "Denver, CO",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0235",
+    "venue_key": "Coors Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Kansas City Royals",
+      "Colorado Rockies"
+    ]
+  },
+  {
+    "date": "2024-07-06",
+    "year": 2024,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Kansas City Royals",
+      "Colorado Rockies"
+    ],
+    "scores": [
+      1,
+      3
+    ],
+    "venue_recorded": "Coors Field",
+    "city": "Denver, CO",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0236",
+    "venue_key": "Coors Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Kansas City Royals",
+      "Colorado Rockies"
+    ]
+  },
+  {
+    "date": "2024-08-26",
+    "year": 2024,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "Miami Marlins",
+      "Colorado Rockies"
+    ],
+    "scores": [
+      2,
+      3
+    ],
+    "venue_recorded": "Coors Field",
+    "city": "Denver, CO",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0237",
+    "venue_key": "Coors Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Miami Marlins",
+      "Colorado Rockies"
+    ]
+  },
+  {
+    "date": "2024-09-05",
+    "year": 2024,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Baltimore Ravens",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      20,
+      27
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0238",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Baltimore Ravens",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2024-09-07",
+    "year": 2024,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Kansas Jayhawks",
+      "Illinois Fighting Illini"
+    ],
+    "scores": [
+      17,
+      23
+    ],
+    "venue_recorded": "Memorial Stadium",
+    "city": "Champaign, IL",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0239",
+    "venue_key": "Memorial Stadium — Champaign",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Kansas Jayhawks",
+      "Illinois Fighting Illini"
+    ]
+  },
+  {
+    "date": "2024-09-13",
+    "year": 2024,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "UNLV Rebels",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      23,
+      20
+    ],
+    "venue_recorded": "Sporting Park",
+    "city": "Kansas City, KS",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0240",
+    "venue_key": "Children's Mercy Park",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "UNLV Rebels",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2024-09-15",
+    "year": 2024,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Cincinnati Bengals",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      25,
+      26
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0241",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Cincinnati Bengals",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2024-09-25",
+    "year": 2024,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "St. Louis Cardinals",
+      "Colorado Rockies"
+    ],
+    "scores": [
+      5,
+      2
+    ],
+    "venue_recorded": "Coors Field",
+    "city": "Denver, CO",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0242",
+    "venue_key": "Coors Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "St. Louis Cardinals",
+      "Colorado Rockies"
+    ]
+  },
+  {
+    "date": "2024-10-20",
+    "year": 2024,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Las Vegas Raiders",
+      "Los Angeles Rams"
+    ],
+    "scores": [
+      15,
+      20
+    ],
+    "venue_recorded": "SoFi Stadium",
+    "city": "Inglewood, CA",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0243",
+    "venue_key": "SoFi Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Las Vegas Raiders",
+      "Los Angeles Rams"
+    ]
+  },
+  {
+    "date": "2024-11-22",
+    "year": 2024,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Dallas Mavericks",
+      "Denver Nuggets"
+    ],
+    "scores": [
+      123,
+      120
+    ],
+    "venue_recorded": "Ball Arena",
+    "city": "Denver, CO",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0244",
+    "venue_key": "Ball Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Dallas Mavericks",
+      "Denver Nuggets"
+    ]
+  },
+  {
+    "date": "2024-12-14",
+    "year": 2024,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Texas A&M Aggies",
+      "Purdue Boilermakers"
+    ],
+    "scores": [
+      70,
+      66
+    ],
+    "venue_recorded": "Gainbridge Fieldhouse",
+    "city": "Indianapolis, IN",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0245",
+    "venue_key": "Gainbridge Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Texas A&M Aggies",
+      "Purdue Boilermakers"
+    ]
+  },
+  {
+    "date": "2024-12-14",
+    "year": 2024,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Wisconsin Badgers",
+      "Butler Bulldogs"
+    ],
+    "scores": [
+      83,
+      73
+    ],
+    "venue_recorded": "Gainbridge Fieldhouse",
+    "city": "Indianapolis, IN",
+    "source": "sports-passport-2024.html",
+    "id": "evt-0246",
+    "venue_key": "Gainbridge Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2024.html"
+    },
+    "teams_canonical": [
+      "Wisconsin Badgers",
+      "Butler Bulldogs"
+    ]
+  },
+  {
+    "date": "2025-01-03",
+    "year": 2025,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "San Antonio Spurs",
+      "Denver Nuggets"
+    ],
+    "scores": [
+      113,
+      110
+    ],
+    "venue_recorded": "Ball Arena",
+    "city": "Denver, CO",
+    "source": "sports-passport-2025.html",
+    "id": "evt-0247",
+    "venue_key": "Ball Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2025.html"
+    },
+    "teams_canonical": [
+      "San Antonio Spurs",
+      "Denver Nuggets"
+    ]
+  },
+  {
+    "date": "2025-01-05",
+    "year": 2025,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Kansas City Chiefs",
+      "Denver Broncos"
+    ],
+    "scores": [
+      0,
+      38
+    ],
+    "venue_recorded": "Empower Field at Mile High",
+    "city": "Denver, CO",
+    "source": "sports-passport-2025.html",
+    "id": "evt-0248",
+    "venue_key": "Empower Field at Mile High",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2025.html"
+    },
+    "teams_canonical": [
+      "Kansas City Chiefs",
+      "Denver Broncos"
+    ]
+  },
+  {
+    "date": "2025-02-12",
+    "year": 2025,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Portland Trail Blazers",
+      "Denver Nuggets"
+    ],
+    "scores": [
+      121,
+      132
+    ],
+    "venue_recorded": "Ball Arena",
+    "city": "Denver, CO",
+    "source": "sports-passport-2025.html",
+    "id": "evt-0249",
+    "venue_key": "Ball Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2025.html"
+    },
+    "teams_canonical": [
+      "Portland Trail Blazers",
+      "Denver Nuggets"
+    ]
+  },
+  {
+    "date": "2025-07-22",
+    "year": 2025,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "St. Louis Cardinals",
+      "Colorado Rockies"
+    ],
+    "scores": [
+      4,
+      8
+    ],
+    "venue_recorded": "Coors Field",
+    "city": "Denver, CO",
+    "source": "sports-passport-2025.html",
+    "id": "evt-0250",
+    "venue_key": "Coors Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2025.html"
+    },
+    "teams_canonical": [
+      "St. Louis Cardinals",
+      "Colorado Rockies"
+    ]
+  },
+  {
+    "date": "2025-07-23",
+    "year": 2025,
+    "sport": "Baseball",
+    "league": "",
+    "teams": [
+      "St. Louis Cardinals",
+      "Colorado Rockies"
+    ],
+    "scores": [
+      0,
+      6
+    ],
+    "venue_recorded": "Coors Field",
+    "city": "Denver, CO",
+    "source": "sports-passport-2025.html",
+    "id": "evt-0251",
+    "venue_key": "Coors Field",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2025.html"
+    },
+    "teams_canonical": [
+      "St. Louis Cardinals",
+      "Colorado Rockies"
+    ]
+  },
+  {
+    "date": "2025-09-14",
+    "year": 2025,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Philadelphia Eagles",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      20,
+      17
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2025.html",
+    "id": "evt-0252",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2025.html"
+    },
+    "teams_canonical": [
+      "Philadelphia Eagles",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2025-10-27",
+    "year": 2025,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Washington Commanders",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      7,
+      28
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2025.html",
+    "id": "evt-0253",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2025.html"
+    },
+    "teams_canonical": [
+      "Washington Commanders",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2025-11-20",
+    "year": 2025,
+    "sport": "Hockey",
+    "league": "",
+    "teams": [
+      "New York Rangers",
+      "Colorado Avalanche"
+    ],
+    "scores": [
+      3,
+      6
+    ],
+    "venue_recorded": "Ball Arena",
+    "city": "Denver, CO",
+    "source": "sports-passport-2025.html",
+    "id": "evt-0254",
+    "venue_key": "Ball Arena",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2025.html"
+    },
+    "teams_canonical": [
+      "New York Rangers",
+      "Colorado Avalanche"
+    ]
+  },
+  {
+    "date": "2025-12-22",
+    "year": 2025,
+    "sport": "Basketball",
+    "league": "",
+    "teams": [
+      "Davidson Wildcats",
+      "Kansas Jayhawks"
+    ],
+    "scores": [
+      61,
+      90
+    ],
+    "venue_recorded": "Allen Fieldhouse",
+    "city": "Lawrence, KS",
+    "source": "sports-passport-2025.html",
+    "id": "evt-0255",
+    "venue_key": "Allen Fieldhouse",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2025.html"
+    },
+    "teams_canonical": [
+      "Davidson Wildcats",
+      "Kansas Jayhawks"
+    ]
+  },
+  {
+    "date": "2025-12-25",
+    "year": 2025,
+    "sport": "Football",
+    "league": "",
+    "teams": [
+      "Denver Broncos",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      20,
+      13
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "sports-passport-2025.html",
+    "id": "evt-0256",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "documented_archive",
+      "basis": "archive_record",
+      "provenance": "sports-passport-2025.html"
+    },
+    "teams_canonical": [
+      "Denver Broncos",
+      "Kansas City Chiefs"
+    ]
+  },
+  {
+    "date": "2026-01-14",
+    "year": 2026,
+    "sport": "Basketball",
+    "league": "NBA",
+    "teams": [
+      "Denver Nuggets",
+      "Dallas Mavericks"
+    ],
+    "scores": [
+      118,
+      109
+    ],
+    "venue_recorded": "American Airlines Center",
+    "city": "Dallas, TX",
+    "source": "attendance-screenshot-2026",
+    "id": "evt-0257",
+    "venue_key": "American Airlines Center",
+    "evidence": {
+      "type": "attendance_record",
+      "basis": "attendance_record",
+      "provenance": "attendance-screenshot-2026"
+    },
+    "teams_canonical": [
+      "Denver Nuggets",
+      "Dallas Mavericks"
+    ]
+  },
+  {
+    "date": "2026-01-20",
+    "year": 2026,
+    "sport": "Basketball",
+    "league": "NCAA",
+    "teams": [
+      "Kansas Jayhawks",
+      "Colorado Buffaloes"
+    ],
+    "scores": [
+      75,
+      69
+    ],
+    "venue_recorded": "CU Events Center",
+    "city": "Boulder, CO",
+    "source": "attendance-screenshot-2026",
+    "id": "evt-0258",
+    "venue_key": "CU Events Center",
+    "evidence": {
+      "type": "attendance_record",
+      "basis": "attendance_record",
+      "provenance": "attendance-screenshot-2026"
+    },
+    "teams_canonical": [
+      "Kansas Jayhawks",
+      "Colorado Buffaloes"
+    ]
+  },
+  {
+    "date": "2026-03-28",
+    "year": 2026,
+    "sport": "Soccer",
+    "league": "NWSL",
+    "teams": [
+      "Denver Summit FC",
+      "Washington Spirit"
+    ],
+    "scores": [
+      0,
+      0
+    ],
+    "venue_recorded": "Empower Field at Mile High",
+    "city": "Denver, CO",
+    "source": "attendance-screenshot-2026",
+    "id": "evt-0259",
+    "venue_key": "Empower Field at Mile High",
+    "evidence": {
+      "type": "attendance_record",
+      "basis": "attendance_record",
+      "provenance": "attendance-screenshot-2026"
+    },
+    "teams_canonical": [
+      "Denver Summit FC",
+      "Washington Spirit"
+    ]
+  },
+  {
+    "date": "2026-04-04",
+    "year": 2026,
+    "sport": "Basketball",
+    "league": "NCAA",
+    "teams": [
+      "Michigan Wolverines",
+      "Arizona Wildcats"
+    ],
+    "scores": [
+      91,
+      73
+    ],
+    "venue_recorded": "Lucas Oil Stadium",
+    "city": "Indianapolis, IN",
+    "source": "attendance-screenshot-2026",
+    "id": "evt-0260",
+    "venue_key": "Lucas Oil Stadium",
+    "evidence": {
+      "type": "attendance_record",
+      "basis": "attendance_record",
+      "provenance": "attendance-screenshot-2026"
+    },
+    "teams_canonical": [
+      "Michigan Wolverines",
+      "Arizona Wildcats"
+    ]
+  },
+  {
+    "date": "2026-04-04",
+    "year": 2026,
+    "sport": "Basketball",
+    "league": "NCAA",
+    "teams": [
+      "Illinois Fighting Illini",
+      "UConn Huskies"
+    ],
+    "scores": [
+      62,
+      71
+    ],
+    "venue_recorded": "Lucas Oil Stadium",
+    "city": "Indianapolis, IN",
+    "source": "attendance-screenshot-2026",
+    "id": "evt-0261",
+    "venue_key": "Lucas Oil Stadium",
+    "evidence": {
+      "type": "attendance_record",
+      "basis": "attendance_record",
+      "provenance": "attendance-screenshot-2026"
+    },
+    "teams_canonical": [
+      "Illinois Fighting Illini",
+      "UConn Huskies"
+    ]
+  },
+  {
+    "date": "2026-05-03",
+    "year": 2026,
+    "sport": "Baseball",
+    "league": "MLB",
+    "teams": [
+      "Atlanta Braves",
+      "Colorado Rockies"
+    ],
+    "scores": [
+      11,
+      6
+    ],
+    "venue_recorded": "Coors Field",
+    "city": "Denver, CO",
+    "source": "attendance-screenshot-2026",
+    "id": "evt-0262",
+    "venue_key": "Coors Field",
+    "evidence": {
+      "type": "attendance_record",
+      "basis": "attendance_record",
+      "provenance": "attendance-screenshot-2026"
+    },
+    "teams_canonical": [
+      "Atlanta Braves",
+      "Colorado Rockies"
+    ]
+  },
+  {
+    "date": "2026-05-12",
+    "year": 2026,
+    "sport": "Baseball",
+    "league": "Double-A",
+    "teams": [
+      "Rocket City Trash Pandas",
+      "Birmingham Barons"
+    ],
+    "scores": [
+      3,
+      2
+    ],
+    "venue_recorded": "Regions Field",
+    "city": "Birmingham, AL",
+    "source": "attendance-screenshot-2026",
+    "id": "evt-0263",
+    "venue_key": "Regions Field",
+    "evidence": {
+      "type": "attendance_record",
+      "basis": "attendance_record",
+      "provenance": "attendance-screenshot-2026"
+    },
+    "teams_canonical": [
+      "Rocket City Trash Pandas",
+      "Birmingham Barons"
+    ]
+  },
+  {
+    "date": "2026-06-20",
+    "year": 2026,
+    "sport": "Soccer",
+    "league": "FIFA World Cup",
+    "teams": [
+      "Ecuador",
+      "Curaçao"
+    ],
+    "scores": [
+      0,
+      0
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "attendance-screenshot-2026",
+    "id": "evt-0264",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "attendance_record",
+      "basis": "attendance_record",
+      "provenance": "attendance-screenshot-2026"
+    },
+    "teams_canonical": [
+      "Ecuador",
+      "Curaçao"
+    ]
+  },
+  {
+    "date": "2026-07-03",
+    "year": 2026,
+    "sport": "Soccer",
+    "league": "NWSL",
+    "teams": [
+      "Denver Summit FC",
+      "Kansas City Current"
+    ],
+    "scores": [
+      0,
+      3
+    ],
+    "venue_recorded": "DICK'S Sporting Goods Park",
+    "city": "Commerce City, CO",
+    "source": "attendance-screenshot-2026",
+    "id": "evt-0265",
+    "venue_key": "DICK'S Sporting Goods Park",
+    "evidence": {
+      "type": "attendance_record",
+      "basis": "attendance_record",
+      "provenance": "attendance-screenshot-2026"
+    },
+    "teams_canonical": [
+      "Denver Summit FC",
+      "Kansas City Current"
+    ]
+  },
+  {
+    "date": "2026-08-29",
+    "year": 2026,
+    "sport": "Baseball",
+    "league": "WPBL",
+    "teams": [
+      "New York Heights",
+      "Los Angeles Queens"
+    ],
+    "scores": [
+      6,
+      10
+    ],
+    "venue_recorded": "Robin Roberts Stadium",
+    "city": "Springfield, IL",
+    "source": "attendance-screenshot-2026",
+    "id": "evt-0266",
+    "venue_key": "Robin Roberts Stadium",
+    "evidence": {
+      "type": "attendance_record",
+      "basis": "attendance_record",
+      "provenance": "attendance-screenshot-2026"
+    },
+    "teams_canonical": [
+      "New York Heights",
+      "Los Angeles Queens"
+    ]
+  },
+  {
+    "date": "2026-09-01",
+    "year": 2026,
+    "sport": "Baseball",
+    "league": "Double-A",
+    "teams": [
+      "Montgomery Biscuits",
+      "Rocket City Trash Pandas"
+    ],
+    "scores": [
+      9,
+      10
+    ],
+    "venue_recorded": "Toyota Field",
+    "city": "Madison, AL",
+    "source": "attendance-screenshot-2026",
+    "id": "evt-0267",
+    "venue_key": "Toyota Field",
+    "evidence": {
+      "type": "attendance_record",
+      "basis": "attendance_record",
+      "provenance": "attendance-screenshot-2026"
+    },
+    "teams_canonical": [
+      "Montgomery Biscuits",
+      "Rocket City Trash Pandas"
+    ]
+  },
+  {
+    "date": "2026-09-14",
+    "year": 2026,
+    "sport": "Football",
+    "league": "NFL",
+    "teams": [
+      "Denver Broncos",
+      "Kansas City Chiefs"
+    ],
+    "scores": [
+      10,
+      31
+    ],
+    "venue_recorded": "Arrowhead Stadium",
+    "city": "Kansas City, MO",
+    "source": "attendance-screenshot-2026",
+    "id": "evt-0268",
+    "venue_key": "Arrowhead Stadium",
+    "evidence": {
+      "type": "attendance_record",
+      "basis": "attendance_record",
+      "provenance": "attendance-screenshot-2026"
+    },
+    "teams_canonical": [
+      "Denver Broncos",
+      "Kansas City Chiefs"
+    ]
+  }
+]

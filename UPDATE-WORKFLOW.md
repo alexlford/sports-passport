@@ -101,3 +101,9 @@ Supported evidence types are `ticket_stub`, `attendance_record`, `direct_confirm
 
 Event records may also add `competition_round`, `site_type`, `personal_note`, `media_ids`, and `personal_context`. `media_ids` must resolve to stable IDs in `data/media.json`; `personal_context` is a small structured object whose values are non-empty strings or arrays of strings. These fields are optional so ordinary game additions stay lightweight.
 
+## Generated resolved public data
+
+The event chunks, `corrections.json`, `team-aliases.json`, `venues.json`, `venue-additions.json`, and `venue-corrections.json` are the authoring/source layer. The browser does not merge these overlays. Run `python tools/build_resolved_data.py` after source changes to generate `data/resolved-events.json` and `data/resolved-venues.json`, then refresh the cache manifest and static routes.
+
+`venue-additions.json` is therefore an authoring overlay/history file, not a second public venue database. New keys are appended to the resolved venue list; an existing key updates the base record deterministically. `corrections.json` and `venue-corrections.json` work the same way: they remain auditable source patches while the public runtime reads only compiled results. Generated resolved files must not be hand-edited; CI runs `python tools/build_resolved_data.py --check` and fails if they drift from the source layer.
+

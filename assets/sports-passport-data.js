@@ -83,48 +83,24 @@ async function fetchJson(path, fallback) {
 }
 
 async function load(name) {
-  if (!cache[name]) cache[name] = fetchJson(`/data/${name}.json`).then(async value => {
-    if (name === "team-aliases" && value && typeof value === "object" && !Array.isArray(value)) {
-      teamAliases = value;
-      return value;
-    }
-    if (name === "events" && value && Array.isArray(value.chunks)) {
-      const parts = await Promise.all(value.chunks.map(file => fetchJson(`/data/${file}`)));
-      let events = parts.flat();
-      try {
-        const corrections = await fetchJson("/data/corrections.json", {});
-        events = events.map(e => corrections[e.id] ? {...e, ...corrections[e.id]} : e);
-      } catch (_) {}
-      try {
-        const aliases = await fetchJson("/data/team-aliases.json", {});
+  if (!cache[name]) {
+    if (name === "events") {
+      cache[name] = Promise.all([
+        fetchJson("/data/resolved-events.json"),
+        fetchJson("/data/team-aliases.json", {})
+      ]).then(([events,aliases]) => {
         if (aliases && typeof aliases === "object" && !Array.isArray(aliases)) teamAliases = aliases;
-      } catch (_) {}
-      events = events.map(e => ({
-        ...e,
-        city: normalizeCity(e.city),
-        teams_canonical: Array.isArray(e.teams) ? e.teams.map(t => teamAliases[t] || t) : []
-      }));
-      return events;
+        return events;
+      });
+    } else if (name === "venues") {
+      cache[name] = fetchJson("/data/resolved-venues.json");
+    } else {
+      cache[name] = fetchJson(`/data/${name}.json`).then(value => {
+        if (name === "team-aliases" && value && typeof value === "object" && !Array.isArray(value)) teamAliases = value;
+        return value;
+      });
     }
-    if (name === "venues" && Array.isArray(value)) {
-      let venues = value;
-      try {
-        const additions = await fetchJson("/data/venue-additions.json", []);
-        if (Array.isArray(additions) && additions.length) {
-          const byKey = new Map(venues.map(v => [v.key, v]));
-          additions.forEach(v => byKey.set(v.key, {...(byKey.get(v.key)||{}), ...v}));
-          venues = [...byKey.values()];
-        }
-      } catch (_) {}
-      try {
-        const corrections = await fetchJson("/data/venue-corrections.json", {});
-        return venues.map(v => corrections[v.key] ? {...v, ...corrections[v.key], city: normalizeCity(corrections[v.key].city || v.city)} : {...v, city: normalizeCity(v.city)});
-      } catch (_) {
-        return venues.map(v => ({...v, city: normalizeCity(v.city)}));
-      }
-    }
-    return value;
-  });
+  }
   return cache[name];
 }
 
