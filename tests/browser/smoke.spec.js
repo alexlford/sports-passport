@@ -72,10 +72,16 @@ test('geography map initializes and exposes venue popups', async ({ page }) => {
   await page.goto('/geography/', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('#geo-map')).toBeVisible();
   const markers = page.locator('#geo-map .leaflet-marker-icon');
-  await expect(markers.first()).toBeVisible({ timeout: 10000 });
+  const firstMarker = markers.first();
+  await expect(firstMarker).toBeVisible({ timeout: 10000 });
   expect(await markers.count()).toBeGreaterThan(0);
 
-  await markers.first().click();
+  // At an archive-wide zoom nearby venues can visually overlap. Leaflet markers
+  // are keyboard-enabled, so use the accessible interaction path rather than
+  // forcing a pointer click through an obscuring marker.
+  await firstMarker.focus();
+  await expect(firstMarker).toBeFocused();
+  await page.keyboard.press('Enter');
   await expect(page.locator('.leaflet-popup-content')).toBeVisible();
   await expect(page.locator('.leaflet-popup-content a')).toHaveAttribute('href', /venues|venue-profile/);
 
