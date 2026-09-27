@@ -55,7 +55,7 @@
   const legacyQuery = new URLSearchParams(params).toString();
   if (legacyQuery) history.replaceState(null, '', `${cleanPath}?${legacyQuery}${location.hash || ''}`);
 
-  fetch(`/${template}`, {cache:'no-store'})
+  fetch(`/${template}`, {cache:'no-cache'})
     .then(response => {
       if (!response.ok) throw new Error(`Could not load ${template}`);
       return response.text();
