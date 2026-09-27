@@ -104,6 +104,26 @@ test('geography map initializes and exposes venue popups', async ({ page }) => {
   await reset.click();
 });
 
+test('archive JSON requests use the revalidated cache manifest version', async ({ page }) => {
+  await page.goto('/teams/kansas-city-chiefs/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('h1').first()).toContainText('Kansas City Chiefs');
+
+  const manifest = await page.evaluate(async () => {
+    const response = await fetch('/data/cache-manifest.json', { cache: 'no-cache' });
+    return response.json();
+  });
+  expect(manifest.version).toMatch(/^[0-9a-f]{20}$/);
+
+  const resources = await page.evaluate(() => performance.getEntriesByType('resource').map(entry => entry.name));
+  const dataResources = resources.filter(url => /\/data\/[^/?]+\.json(?:\?|$)/.test(url));
+  expect(dataResources.some(url => /\/data\/cache-manifest\.json(?:\?|$)/.test(url))).toBe(true);
+  const versioned = dataResources.filter(url => !/\/data\/cache-manifest\.json(?:\?|$)/.test(url));
+  expect(versioned.length).toBeGreaterThan(0);
+  for (const url of versioned) {
+    expect(new URL(url).searchParams.get('v')).toBe(manifest.version);
+  }
+});
+
 test('mobile navigation opens, exposes primary destinations, and closes', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'phone', 'Mobile navigation behavior is phone-specific.');
   await page.goto('/', { waitUntil: 'domcontentloaded' });
