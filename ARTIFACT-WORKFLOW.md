@@ -85,3 +85,16 @@ When choosing what to digitize or research next, use this order:
 6. other tickets, credentials, programs, photos, seat views, and keepsakes that add something the event data alone cannot show
 
 The guiding rule is simple: **provenance over decoration**.
+
+## Selective public media layer
+
+The public site uses `data/media.json` as the stable media catalog. Media IDs are durable (`media-####`) and presentation contexts are explicit: exact events, team slugs, venue slugs, life chapters, or Personal Canon ranking references. The full Artifacts workbench remains private from navigation and crawl surfaces; only contextual evidence is surfaced on public pages.
+
+For every published image:
+
+- keep an original/fallback source plus optimized AVIF and WebP derivatives under `assets/media/`;
+- record intrinsic width and height, descriptive alt text, optional caption/credit, and explicit contexts in `data/media.json`;
+- link physical artifacts through `media_id` instead of embedding file paths in `data/artifacts.json`;
+- render through `assets/archive-media.js`, which uses `<picture>`, `loading="lazy"`, and `decoding="async"`;
+- prefer provenance over decoration. If a real source image is unavailable, show the cataloged artifact as text and keep its digitization status explicit.
+

@@ -33,10 +33,33 @@ for name in PUBLIC_TEMPLATES:
         continue
     texts[name] = path.read_text(encoding='utf-8')
 
-# Artifacts are deliberately retained internally but should not leak back into public presentation.
+# The full Artifacts workbench remains an internal collection/research surface. Public pages may
+# selectively render provenance-linked evidence, but they must not advertise or link to the workbench.
 for name, text in texts.items():
-    if 'artifact' in text.lower():
-        errors.append(f'{name} contains public-facing artifact copy or integration')
+    for forbidden in (
+        'href="artifacts.html"',
+        "href='artifacts.html'",
+        'href="/artifacts/"',
+        "href='/artifacts/'",
+        "D.load('artifact-priorities')",
+        'D.load("artifact-priorities")',
+    ):
+        if forbidden in text:
+            errors.append(f'{name} exposes the internal Artifacts workbench: {forbidden}')
+
+home = texts.get('index.html', '')
+for forbidden in ('<h3>Artifacts</h3>', 'Sports Passport · Artifacts', 'Open Artifacts'):
+    if forbidden in home:
+        errors.append(f'index.html advertises the internal Artifacts workbench: {forbidden}')
+
+# Selective public evidence is intentionally limited to contextual archive pages. Other directory/
+# analytics pages should stay text/data-first unless a future tranche explicitly adds a media context.
+SELECTIVE_EVIDENCE_TEMPLATES = {
+    'event.html', 'favorites.html', 'venue-profile.html', 'team-profile.html', 'phase.html'
+}
+for name, text in texts.items():
+    if name not in SELECTIVE_EVIDENCE_TEMPLATES and ('D.load(\'artifacts\')' in text or 'D.load("artifacts")' in text):
+        errors.append(f'{name} loads artifacts outside an approved selective evidence context')
 
 # The narrative architecture is five life chapters, not generic eras/stages.
 journeys = texts.get('journeys.html', '')
@@ -94,6 +117,6 @@ if errors:
     sys.exit(1)
 
 print(
-    f'OK: {len(texts)} public templates keep Artifacts unpublished, use consistent life-chapter terminology, '
-    'maintain first-person archive voice, and preserve navigable chapter analytics.'
+    f'OK: {len(texts)} public templates keep the Artifacts workbench unpublished while allowing selective provenance-linked evidence, '
+    'use consistent life-chapter terminology, maintain first-person archive voice, and preserve navigable chapter analytics.'
 )
