@@ -26,7 +26,7 @@ jobs:
       - name: Validate Event Passport changes
         run: |
           python tools/validate_event_passports.py
-          python tools/validate_generated_routes.py
+          python tools/validate_site.py
       - name: Remove helper files and commit
         run: |
           rm tools/apply_event_passport_atomic.py
