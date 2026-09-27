@@ -133,6 +133,34 @@ test('geography map initializes and exposes venue popups', async ({ page }) => {
   await reset.click();
 });
 
+test('geography map renders without overflow and preserves mobile interactions', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'phone', 'This regression is specific to the narrow mobile map layout.');
+  await page.goto('/geography/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('#geo-map')).toBeVisible();
+
+  const markers = page.locator('#geo-map .leaflet-marker-icon');
+  const firstMarker = markers.first();
+  await expect(firstMarker).toBeVisible({ timeout: 10000 });
+  expect(await markers.count()).toBeGreaterThan(0);
+
+  await firstMarker.focus();
+  await expect(firstMarker).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('.leaflet-popup-content')).toBeVisible();
+  await expect(page.locator('.leaflet-popup-content a')).toHaveAttribute('href', /\/venues\/[^/?#]+\//);
+
+  const reset = page.locator('#reset-map');
+  await expect(reset).toBeVisible();
+  await expect(reset).toHaveCSS('min-height', '44px');
+  await reset.click();
+
+  const overflow = await page.evaluate(() => ({
+    scrollWidth: document.documentElement.scrollWidth,
+    clientWidth: document.documentElement.clientWidth
+  }));
+  expect(overflow.scrollWidth).toBeLessThanOrEqual(overflow.clientWidth + 2);
+});
+
 test('archive JSON requests use the revalidated cache manifest version', async ({ page }) => {
   await page.goto('/teams/kansas-city-chiefs/', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('h1').first()).toContainText('Kansas City Chiefs');
