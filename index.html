@@ -57,6 +57,7 @@
         <strong id="latest-matchup">—</strong>
         <span id="latest-detail">—</span>
       </div>
+      <a class="cta latest-passport hidden" id="latest-open" href="#">Open Event Passport →</a>
       <div class="leader"><span>Events so far</span><strong id="current-events">—</strong></div>
       <div class="leader"><span>Sports</span><strong id="current-sports">—</strong></div>
       <div class="leader"><span>Venues</span><strong id="current-venues">—</strong></div>
@@ -146,6 +147,7 @@
     document.querySelector('#latest-date').textContent=dateFmt(latest.date);
     document.querySelector('#latest-matchup').textContent=`${D.matchup(latest)}${D.score(latest)?` · ${D.score(latest)}`:''}`;
     document.querySelector('#latest-detail').textContent=`${latest.venue_recorded}${latest.city?` · ${latest.city}`:''}`;
+    const latestOpen=document.querySelector('#latest-open');latestOpen.href=`event.html?id=${encodeURIComponent(latest.id)}`;latestOpen.classList.remove('hidden');
   }
   const topExperience=rankings.sports_experiences?.[0],favoriteVenue=rankings.favorite_venues?.[0],bestVenue=rankings.best_venues?.[0];
   const previews=[

@@ -4,3 +4,5 @@
 @media(max-width:960px){.current-feature{grid-template-columns:1fr}.portal-grid{grid-template-columns:1fr 1fr}.chapters{grid-template-columns:1fr 1fr}.home-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:700px){.home-shell{padding:12px 14px 30px}.home-hero{padding:30px 20px;border-radius:23px;margin-top:10px}.home-hero:after{right:-120px;top:-110px}.home-hero h1{font-size:clamp(3.8rem,18vw,5.3rem);margin-bottom:16px}.home-hero .deck{font-size:1.08rem;line-height:1.55}.home-stats{grid-template-columns:1fr 1fr;gap:8px}.home-stat{min-height:84px;padding:13px 11px}.home-stat strong{font-size:1.45rem}.portal-grid,.chapters,.explore-section:last-of-type .portal-grid{grid-template-columns:1fr}.section-intro{grid-template-columns:1fr;gap:8px}.current-feature{margin:32px 0}.current-main,.current-side{padding:20px;border-radius:19px}.hero-actions{gap:8px}.hero-actions a{width:100%}.explore-section{margin:40px 0}.portal{min-height:0;padding:18px}.chapter{padding:16px}.home-note{margin:32px 0;padding:17px}}
 @media(max-width:350px){.home-stats{grid-template-columns:1fr}}
+
+.latest-passport{margin-top:14px}
