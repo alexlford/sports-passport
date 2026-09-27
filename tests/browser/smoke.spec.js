@@ -110,7 +110,7 @@ test('event passports retain chronological navigation', async ({ page }) => {
   await archiveLinks.first().click();
   await expect(page.locator('.event-hero')).toBeVisible();
   expect(page.url()).not.toBe(before);
-  await page.waitForURL(url => /\/events\/[^/?#]+\/$/.test(url.pathname), { timeout: 5000 });
+  await page.waitForURL(/\/events\/[^/?#]+\/$/, { timeout: 5000 });
   expect(page.url()).toMatch(/\/events\/[^/?#]+\/$/);
 });
 
