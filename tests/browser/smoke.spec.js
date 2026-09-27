@@ -31,6 +31,34 @@ for (const [name, path, heading] of routes) {
   });
 }
 
+test('lifetime analytics renders without overflow and keeps the phone timeline legible', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'phone', 'This regression is specific to the narrow mobile layout.');
+  await page.goto('/analytics/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('h1').first()).toContainText(/Lifetime\s*Analytics/i);
+  await expect(page.locator('.bars')).toBeVisible();
+
+  const summaryMetrics = await page.locator('.stats').evaluate(stats => {
+    const last = stats.lastElementChild;
+    const statsBox = stats.getBoundingClientRect();
+    const lastBox = last.getBoundingClientRect();
+    return { statsWidth: statsBox.width, lastWidth: lastBox.width };
+  });
+  expect(summaryMetrics.lastWidth).toBeGreaterThan(summaryMetrics.statsWidth * 0.95);
+
+  const timeline = await page.locator('.bars').evaluate(bars => ({
+    scrollWidth: bars.scrollWidth,
+    clientWidth: bars.clientWidth,
+    count: bars.querySelectorAll('.barwrap').length,
+    visibleYearLabels: [...bars.querySelectorAll('.barwrap span')].filter(label => getComputedStyle(label).display !== 'none').length,
+    tallestBar: Math.max(...[...bars.querySelectorAll('.bar')].map(bar => bar.getBoundingClientRect().height))
+  }));
+  expect(timeline.count).toBeGreaterThan(30);
+  expect(timeline.scrollWidth).toBeLessThanOrEqual(timeline.clientWidth + 2);
+  expect(timeline.visibleYearLabels).toBeGreaterThanOrEqual(6);
+  expect(timeline.visibleYearLabels).toBeLessThan(timeline.count);
+  expect(timeline.tallestBar).toBeGreaterThan(120);
+});
+
 test('first-class deep routes survive direct reloads without template bootstrapping', async ({ page }) => {
   await page.goto('/teams/kansas-city-chiefs/', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('h1').first()).toContainText('Kansas City Chiefs');
