@@ -1,0 +1,33 @@
+.stats{grid-template-columns:repeat(5,minmax(0,1fr))}
+.stat{min-width:0}
+.stat strong{overflow-wrap:anywhere}
+.stat span{line-height:1.3}
+.method-note{margin-top:18px;padding:14px 16px;border:1px solid var(--line);border-left:5px solid #725b86;border-radius:14px;background:#fffaf0;color:var(--muted);line-height:1.5}
+.leader-link{color:inherit;text-decoration:none;font-weight:800}
+.leader-link:hover,.leader-link:focus-visible{text-decoration:underline}
+.bars{display:flex;align-items:flex-end;gap:5px;height:242px;padding-top:16px;overflow-x:auto}
+.barwrap{min-width:24px;flex:1;text-align:center}
+.barwrap a{display:block;text-decoration:none}
+.barwrap a:hover span,.barwrap a:focus-visible span{text-decoration:underline}
+.bar{height:var(--h);min-height:3px;background:var(--blue);border-radius:5px 5px 2px 2px}
+.barwrap span{display:block;font-size:.58rem;color:var(--muted);transform:rotate(-55deg);margin-top:13px}
+.status-links{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.status-link{display:block;padding:16px;border:1px solid var(--line);border-radius:16px;background:#fffdf8;text-decoration:none}
+.status-link span{display:block;color:var(--muted);font-size:.72rem;text-transform:uppercase}
+.status-link strong{display:block;margin-top:6px;font:900 1.12rem var(--serif)}
+@media(max-width:900px){
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .status-links{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .stats{grid-template-columns:1fr 1fr}
+  .hero .stats .stat:last-child{grid-column:1/-1}
+  .status-links{grid-template-columns:1fr}
+  .bars{height:208px;gap:2px;padding:12px 0 30px;overflow-x:hidden}
+  .bars .barwrap{min-width:0;flex:1 1 0}
+  .bars .barwrap b{display:none}
+  .bars .barwrap span{display:none;margin-top:8px;font-size:.48rem;line-height:1;white-space:nowrap;transform:none}
+  .bars .barwrap:nth-child(5n+3) span{display:block}
+  .bars .barwrap:nth-last-child(-n+3) span{display:none}
+  .bars .barwrap:last-child span{display:block;width:30px;margin-left:calc(100% - 30px);text-align:right}
+}
