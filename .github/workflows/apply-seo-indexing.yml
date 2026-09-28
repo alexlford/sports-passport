@@ -1,0 +1,46 @@
+name: Apply SEO Indexing
+
+on:
+  push:
+    branches: [audit/seo-indexing]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: seo-indexing
+  cancel-in-progress: true
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/seo-indexing
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Wire SEO runtime and generate sitemap
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('assets/sports-passport-data.js')
+          s=p.read_text()
+          anchor="      document.head.appendChild(script);\n    }\n  }\n"
+          replacement="      document.head.appendChild(script);\n    }\n    if (!document.querySelector('script[data-sports-passport-seo]')) {\n      const seo = document.createElement('script');\n      seo.src = '/assets/seo.js';\n      seo.defer = true;\n      seo.dataset.sportsPassportSeo = 'true';\n      document.head.appendChild(seo);\n    }\n  }\n"
+          if replacement not in s:
+              if anchor not in s: raise SystemExit('boot injection anchor missing')
+              s=s.replace(anchor,replacement,1)
+          p.write_text(s)
+          PY
+          python tools/generate_sitemap.py
+      - name: Commit generated SEO assets
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/sports-passport-data.js sitemap.xml
+          git commit -m "Wire structured SEO and full sitemap"
+          git push origin HEAD:audit/seo-indexing
