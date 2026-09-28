@@ -16,7 +16,7 @@ for token,label in (
     ("aria-live', 'polite'",'live result status'),
     ('map-text-alternative','text alternative for maps'),
     ('accessibleThemeColor','dynamic team theme contrast guard'),
-    ('data-contrast-ratio','runtime contrast annotation'),
+    ('dataset.contrastRatio','runtime contrast annotation'),
 ):
     if token not in runtime:
         errors.append(f'accessibility runtime missing {label}: {token}')
