@@ -11,10 +11,10 @@ const routes = [
   ['venue profile', '/venues/arrowhead-stadium/', /Arrowhead Stadium/i],
   ['geography', '/geography/', /Places/i],
   ['venue atlas', '/geography/map/', /Where it\s*happened/i],
-  ['life chapters', '/journeys/', /Sports|Journeys/i],
+  ['life chapters', '/journeys/', /Sports|across a life/i],
   ['personal canon', '/favorites/', /Top Tens/i],
   ['analytics', '/analytics/', /Lifetime\s*Analytics/i],
-  ['hall of fame', '/hall-of-fame/', /Hall of\s*Fame/i],
+  ['record book', '/hall-of-fame/', /Record\s*Book/i],
   ['about', '/about/', /Why this\s*exists/i],
   ['search', '/search/', /Find a game|Search/i]
 ];

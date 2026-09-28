@@ -30,7 +30,7 @@
     const section = {
       years: 'Years', events: 'Events', teams: 'Teams', venues: 'Places', geography: 'Places',
       journeys: 'Life Chapters', chapters: 'Life Chapters', favorites: 'Personal Canon',
-      analytics: 'Analytics', 'hall-of-fame': 'Hall of Fame', search: 'Search', about: 'About'
+      analytics: 'Analytics', 'hall-of-fame': 'Record Book', search: 'Search', about: 'About'
     }[part];
     if (section) return section;
     if (index === parts.length - 1) {
