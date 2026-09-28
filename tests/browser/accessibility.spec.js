@@ -64,6 +64,29 @@ test('maps expose a textual venue alternative', async ({ page }, testInfo) => {
   expect(await alternative.locator('li').count()).toBeGreaterThan(20);
 });
 
+test('map filters reduce both maps to ranked Top 10 venues and announce the count', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop');
+  for (const path of ['/geography/', '/geography/map/']) {
+    await page.goto(path, { waitUntil: 'domcontentloaded' });
+    const controls = page.locator('.map-filter-controls');
+    await expect(controls).toBeVisible({ timeout: 10000 });
+    const all = controls.locator('button[data-map-filter="all"]');
+    const ranked = controls.locator('button[data-map-filter="ranked"]');
+    await expect(all).toHaveAttribute('aria-pressed', 'true');
+    const markers = page.locator('.leaflet-marker-icon');
+    await expect(markers.first()).toBeVisible({ timeout: 10000 });
+    const total = await markers.count();
+    expect(total).toBeGreaterThan(20);
+    await ranked.click();
+    await expect(ranked).toHaveAttribute('aria-pressed', 'true');
+    await expect(all).toHaveAttribute('aria-pressed', 'false');
+    const visible = await markers.evaluateAll(nodes => nodes.filter(node => !node.hidden).length);
+    expect(visible).toBeGreaterThan(0);
+    expect(visible).toBeLessThan(total);
+    await expect(controls.locator('.map-filter-status')).toContainText(`${visible} of ${total} venues shown`);
+  }
+});
+
 test('dynamic team themes enforce AA contrast against white text', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop');
   await page.goto('/teams/kansas-city-chiefs/', { waitUntil: 'domcontentloaded' });
