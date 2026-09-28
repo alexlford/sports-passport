@@ -1,0 +1,65 @@
+name: Apply Canonical Terminology
+
+on:
+  push:
+    branches: [audit/terminology]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/terminology
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Normalize public labels and regenerate routes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          for p in Path('.').glob('*.html'):
+              s = p.read_text(encoding='utf-8')
+              s = s.replace('Hall of Fame', 'Record Book')
+              s = s.replace('href="favorites.html">Top Tens</a>', 'href="favorites.html">Personal Canon</a>')
+              s = s.replace('href="journeys.html">Journeys</a>', 'href="journeys.html">Life Chapters</a>')
+              if p.name == 'journeys.html':
+                  s = s.replace('<title>Journeys | Sports Passport</title>', '<title>Life Chapters | Sports Passport</title>')
+                  s = s.replace('Sports Passport · Journeys', 'Sports Passport · Life Chapters')
+              p.write_text(s, encoding='utf-8')
+
+          for rel in ['assets/archive-desks.js', 'assets/seo.js']:
+              p = Path(rel)
+              s = p.read_text(encoding='utf-8').replace('Hall of Fame', 'Record Book')
+              p.write_text(s, encoding='utf-8')
+
+          p = Path('tests/browser/smoke.spec.js')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace("['hall of fame', '/hall-of-fame/', /Hall of\\s*Fame/i]", "['record book', '/hall-of-fame/', /Record\\s*Book/i]")
+          p.write_text(s, encoding='utf-8')
+
+          p = Path('.github/workflows/validate.yml')
+          s = p.read_text(encoding='utf-8')
+          anchor = "      - name: Validate public storytelling polish\n        run: python tools/validate_public_copy.py\n"
+          addition = "      - name: Validate public terminology\n        run: python tools/validate_terminology.py\n" + anchor
+          if 'Validate public terminology' not in s:
+              if anchor not in s:
+                  raise SystemExit('validation workflow anchor missing')
+              s = s.replace(anchor, addition, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+          python tools/generate_routes.py
+          python tools/validate_terminology.py
+      - name: Commit normalized terminology
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Standardize public terminology"
+          git push origin HEAD:audit/terminology
