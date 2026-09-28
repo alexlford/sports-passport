@@ -106,6 +106,29 @@
     update();
   }
 
+  function archiveLoadFailure(reason) {
+    const message = String(reason?.message || reason || '');
+    return /Could not load|Failed to fetch|NetworkError|Load failed/i.test(message);
+  }
+
+  function showDataLoadError(reason) {
+    if (document.querySelector('.data-load-error')) return;
+    const main = document.querySelector('main');
+    if (!main) return;
+    const panel = document.createElement('section');
+    panel.className = 'data-load-error';
+    panel.setAttribute('role', 'alert');
+    panel.setAttribute('aria-live', 'assertive');
+    panel.innerHTML = '<div class="data-load-error__kicker">Archive unavailable</div><h1>That page’s data did not load.</h1><p>The navigation still works. Try the request again, or return to the Sports Passport home page.</p><div class="data-load-error__actions"><button type="button" class="data-load-retry">Try again</button><a href="/">Go to Sports Passport home</a></div>';
+    panel.querySelector('.data-load-retry')?.addEventListener('click', () => location.reload());
+    const header = main.querySelector(':scope > .site-header, :scope > header');
+    if (header) header.insertAdjacentElement('afterend', panel);
+    else main.prepend(panel);
+    panel.querySelector('h1')?.setAttribute('tabindex', '-1');
+    panel.querySelector('h1')?.focus();
+    panel.dataset.reason = String(reason?.message || reason || 'archive-data-load-failure').slice(0, 160);
+  }
+
   async function enhanceMapTextAlternative() {
     const mapElement = document.querySelector('#geo-map, #map');
     if (!mapElement || document.querySelector('.map-text-alternative')) return;
@@ -147,13 +170,23 @@
     enhanceMapTextAlternative();
   }
 
+  window.addEventListener('unhandledrejection', event => {
+    if (!archiveLoadFailure(event.reason)) return;
+    showDataLoadError(event.reason);
+    event.preventDefault();
+  });
+  window.addEventListener('error', event => {
+    if (!archiveLoadFailure(event.error || event.message)) return;
+    showDataLoadError(event.error || event.message);
+  });
+
   const observer = new MutationObserver(() => runEnhancements());
   function boot() {
     runEnhancements();
     observer.observe(document.body, { childList: true, subtree: true });
   }
 
-  window.SportsPassportAccessibility = { contrastRatio, accessibleThemeColor, runEnhancements };
+  window.SportsPassportAccessibility = { contrastRatio, accessibleThemeColor, runEnhancements, showDataLoadError };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, { once: true });
   else boot();
 })();
