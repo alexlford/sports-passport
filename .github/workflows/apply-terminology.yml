@@ -42,16 +42,6 @@ jobs:
           s = p.read_text(encoding='utf-8')
           s = s.replace("['hall of fame', '/hall-of-fame/', /Hall of\\s*Fame/i]", "['record book', '/hall-of-fame/', /Record\\s*Book/i]")
           p.write_text(s, encoding='utf-8')
-
-          p = Path('.github/workflows/validate.yml')
-          s = p.read_text(encoding='utf-8')
-          anchor = "      - name: Validate public storytelling polish\n        run: python tools/validate_public_copy.py\n"
-          addition = "      - name: Validate public terminology\n        run: python tools/validate_terminology.py\n" + anchor
-          if 'Validate public terminology' not in s:
-              if anchor not in s:
-                  raise SystemExit('validation workflow anchor missing')
-              s = s.replace(anchor, addition, 1)
-          p.write_text(s, encoding='utf-8')
           PY
           python tools/generate_routes.py
           python tools/validate_terminology.py
