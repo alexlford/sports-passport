@@ -14,6 +14,7 @@ window.SportsPassportData = (() => {
   ensureStyle('assets/readability.css', 'data-sports-passport-readability');
   ensureStyle('assets/chrome.css', 'data-sports-passport-chrome');
   ensureStyle('assets/density.css', 'data-sports-passport-density');
+  ensureStyle('/assets/accessibility.css', 'data-sports-passport-accessibility');
 
   function upsertMeta(attribute, key, content) {
     if (!content) return;
@@ -379,6 +380,13 @@ async function load(name) {
     hydrateGlobalChrome();
     polishPublicationMetadata();
     polishAnnualVenueLeaders();
+    if (!document.querySelector('script[data-sports-passport-accessibility]')) {
+      const script = document.createElement('script');
+      script.src = '/assets/accessibility.js';
+      script.defer = true;
+      script.dataset.sportsPassportAccessibility = 'true';
+      document.head.appendChild(script);
+    }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();

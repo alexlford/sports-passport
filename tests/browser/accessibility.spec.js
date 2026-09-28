@@ -23,3 +23,62 @@ for (const path of criticalRoutes) {
     expect(results.violations, JSON.stringify(results.violations, null, 2)).toEqual([]);
   });
 }
+
+test('skip link targets main content', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop');
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  const skip = page.locator('.skip-link');
+  await expect(skip).toHaveAttribute('href', '#main-content');
+  await expect(page.locator('#main-content')).toHaveCount(1);
+});
+
+test('mobile menu closes with Escape and returns focus', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop');
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  const menu = page.locator('.menu-toggle');
+  await expect(menu).toBeVisible();
+  await menu.click();
+  await expect(menu).toHaveAttribute('aria-expanded', 'true');
+  await page.keyboard.press('Escape');
+  await expect(menu).toHaveAttribute('aria-expanded', 'false');
+  await expect(menu).toBeFocused();
+});
+
+test('team filters announce live result counts', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop');
+  await page.goto('/teams/', { waitUntil: 'domcontentloaded' });
+  const status = page.locator('#team-filter-status');
+  await expect(status).toHaveAttribute('aria-live', 'polite');
+  await page.locator('#q').fill('Chiefs');
+  await expect(status).toContainText('1 team shown');
+});
+
+test('maps expose a textual venue alternative', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop');
+  await page.goto('/geography/', { waitUntil: 'domcontentloaded' });
+  const alternative = page.locator('.map-text-alternative');
+  await expect(alternative.locator('summary')).toContainText(/Text alternative: \d+ mapped venues/);
+  await alternative.locator('summary').click();
+  await expect(alternative.locator('li').first()).toBeVisible();
+  expect(await alternative.locator('li').count()).toBeGreaterThan(20);
+});
+
+test('dynamic team themes enforce AA contrast against white text', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop');
+  await page.goto('/teams/kansas-city-chiefs/', { waitUntil: 'domcontentloaded' });
+  const theme = page.locator('.team-theme');
+  await expect(theme).toHaveAttribute('data-contrast-checked', 'true');
+  const ratio = Number(await theme.getAttribute('data-contrast-ratio'));
+  expect(ratio).toBeGreaterThanOrEqual(4.5);
+
+  const failures = await page.evaluate(async () => {
+    const colors = await window.SportsPassportData.load('team-colors');
+    const helper = window.SportsPassportAccessibility;
+    return Object.entries(colors).flatMap(([team, palette]) => palette.map(color => {
+      const result = helper.accessibleThemeColor(color);
+      return result.ratio < 4.5 ? { team, color, ratio: result.ratio } : null;
+    }).filter(Boolean));
+  });
+  expect(failures).toEqual([]);
+});
