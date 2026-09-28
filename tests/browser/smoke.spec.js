@@ -11,7 +11,7 @@ const routes = [
   ['venue profile', '/venues/arrowhead-stadium/', /Arrowhead Stadium/i],
   ['geography', '/geography/', /Places/i],
   ['venue atlas', '/geography/map/', /Where it\s*happened/i],
-  ['life chapters', '/journeys/', /Life\s*Chapters/i],
+  ['life chapters', '/journeys/', /Sports|across a life/i],
   ['personal canon', '/favorites/', /Top Tens/i],
   ['analytics', '/analytics/', /Lifetime\s*Analytics/i],
   ['record book', '/hall-of-fame/', /Record\s*Book/i],
