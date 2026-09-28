@@ -109,6 +109,17 @@
     }
   }
 
+  function loadArchiveDeskGuide() {
+    const path = canonicalPath();
+    if (!['/favorites/', '/analytics/', '/hall-of-fame/'].includes(path)) return;
+    if (document.querySelector('script[data-sports-passport-archive-desks]')) return;
+    const script = document.createElement('script');
+    script.src = '/assets/archive-desks.js';
+    script.defer = true;
+    script.dataset.sportsPassportArchiveDesks = 'true';
+    document.head.appendChild(script);
+  }
+
   function boot() {
     upsertMeta('property', 'og:image', SOCIAL_IMAGE);
     upsertMeta('property', 'og:image:alt', 'Sports Passport — Alex Ford’s live sports archive');
@@ -116,6 +127,7 @@
     upsertMeta('name', 'twitter:card', 'summary_large_image');
     addGlobalSchemas();
     addRouteSchema().catch(() => {});
+    loadArchiveDeskGuide();
   }
 
   window.SportsPassportSeo = { addJsonLd, addGlobalSchemas, addRouteSchema };
