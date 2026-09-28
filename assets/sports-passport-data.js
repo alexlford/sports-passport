@@ -387,6 +387,13 @@ async function load(name) {
       script.dataset.sportsPassportAccessibility = 'true';
       document.head.appendChild(script);
     }
+    if (!document.querySelector('script[data-sports-passport-seo]')) {
+      const seo = document.createElement('script');
+      seo.src = '/assets/seo.js';
+      seo.defer = true;
+      seo.dataset.sportsPassportSeo = 'true';
+      document.head.appendChild(seo);
+    }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
