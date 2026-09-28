@@ -1,0 +1,50 @@
+name: Apply Accessibility Hardening
+
+on:
+  push:
+    branches: [audit/accessibility-hardening]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: accessibility-hardening
+  cancel-in-progress: true
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/accessibility-hardening
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Wire shared accessibility assets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('assets/sports-passport-data.js')
+          s=p.read_text()
+          old="  ensureStyle('assets/density.css', 'data-sports-passport-density');\n"
+          new=old+"  ensureStyle('/assets/accessibility.css', 'data-sports-passport-accessibility');\n"
+          if new not in s:
+              if old not in s: raise SystemExit('style anchor missing')
+              s=s.replace(old,new,1)
+          old_boot="  function boot() {\n    hydrateGlobalChrome();\n    polishPublicationMetadata();\n    polishAnnualVenueLeaders();\n  }\n"
+          new_boot="  function boot() {\n    hydrateGlobalChrome();\n    polishPublicationMetadata();\n    polishAnnualVenueLeaders();\n    if (!document.querySelector('script[data-sports-passport-accessibility]')) {\n      const script = document.createElement('script');\n      script.src = '/assets/accessibility.js';\n      script.defer = true;\n      script.dataset.sportsPassportAccessibility = 'true';\n      document.head.appendChild(script);\n    }\n  }\n"
+          if new_boot not in s:
+              if old_boot not in s: raise SystemExit('boot anchor missing')
+              s=s.replace(old_boot,new_boot,1)
+          p.write_text(s)
+          PY
+      - name: Commit runtime wiring
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/sports-passport-data.js
+          git commit -m "Wire shared accessibility enhancements"
+          git push origin HEAD:audit/accessibility-hardening
