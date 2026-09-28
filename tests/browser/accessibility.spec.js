@@ -82,3 +82,23 @@ test('dynamic team themes enforce AA contrast against white text', async ({ page
   });
   expect(failures).toEqual([]);
 });
+
+test('archive data failures render a recoverable fallback without hiding navigation', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop');
+  await page.goto('/teams/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.global-nav')).toBeVisible();
+  await expect.poll(async () => page.evaluate(() => Boolean(window.SportsPassportAccessibility))).toBe(true);
+
+  await page.evaluate(() => {
+    Promise.reject(new Error('Could not load /data/resolved-events.json'));
+  });
+
+  const fallback = page.locator('.data-load-error');
+  await expect(fallback).toBeVisible();
+  await expect(fallback).toHaveAttribute('role', 'alert');
+  await expect(fallback.locator('h1')).toContainText('data did not load');
+  await expect(fallback.locator('.data-load-retry')).toBeVisible();
+  await expect(fallback.locator('.data-load-retry')).toHaveCSS('min-height', '44px');
+  await expect(fallback.locator('a[href="/"]')).toBeVisible();
+  await expect(page.locator('.global-nav')).toBeVisible();
+});
