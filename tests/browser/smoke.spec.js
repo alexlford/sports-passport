@@ -14,7 +14,7 @@ const routes = [
   ['life chapters', '/journeys/', /Sports|Journeys/i],
   ['personal canon', '/favorites/', /Top Tens/i],
   ['analytics', '/analytics/', /Lifetime\s*Analytics/i],
-  ['hall of fame', '/hall-of-fame/', /Hall of\s*Fame/i],
+  ['record book', '/hall-of-fame/', /Record\s*Book/i],
   ['about', '/about/', /Why this\s*exists/i],
   ['search', '/search/', /Find a game|Search/i]
 ];

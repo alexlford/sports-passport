@@ -7,7 +7,7 @@
   const pages={
     canon:{title:'Personal Canon',summary:'Subjective rankings: the moments I would most want to relive and the venues I value most.',href:'/favorites/'},
     analytics:{title:'Analytics',summary:'Patterns and trends: how the archive changes across years, sports, teams, places, and life chapters.',href:'/analytics/'},
-    records:{title:'Hall of Fame',summary:'Objective record book: leaders, superlatives, and milestones calculated from confirmed/documented records.',href:'/hall-of-fame/'}
+    records:{title:'Record Book',summary:'Objective record book: leaders, superlatives, and milestones calculated from confirmed/documented records.',href:'/hall-of-fame/'}
   };
 
   const render=()=>{
@@ -18,7 +18,7 @@
     const guide=document.createElement('section');
     guide.className='archive-desk-guide';
     guide.setAttribute('aria-labelledby','archive-desk-guide-title');
-    guide.innerHTML=`<div class="archive-desk-kicker">Three complementary archive desks</div><h2 id="archive-desk-guide-title">Different questions, different lenses.</h2><p>Personal Canon is editorial, Analytics explains patterns, and Hall of Fame is the objective record book. None of the three replaces the underlying Event Passports, annual editions, team dossiers, or venue profiles.</p><nav class="archive-desk-links" aria-label="Archive desk guide">${Object.entries(pages).map(([id,page])=>`<a class="archive-desk-link" href="${page.href}"${id===key?' aria-current="page"':''}><strong>${page.title}</strong><span>${page.summary}</span></a>`).join('')}</nav>`;
+    guide.innerHTML=`<div class="archive-desk-kicker">Three complementary archive desks</div><h2 id="archive-desk-guide-title">Different questions, different lenses.</h2><p>Personal Canon is editorial, Analytics explains patterns, and Record Book is the objective record book. None of the three replaces the underlying Event Passports, annual editions, team dossiers, or venue profiles.</p><nav class="archive-desk-links" aria-label="Archive desk guide">${Object.entries(pages).map(([id,page])=>`<a class="archive-desk-link" href="${page.href}"${id===key?' aria-current="page"':''}><strong>${page.title}</strong><span>${page.summary}</span></a>`).join('')}</nav>`;
     if(header)header.insertAdjacentElement('afterend',guide);else main.prepend(guide);
   };
 
