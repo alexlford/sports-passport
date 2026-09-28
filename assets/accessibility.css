@@ -1,4 +1,4 @@
-/* Browser-audit accessibility corrections for public clean routes. */
+/* Shared accessibility corrections and progressive enhancements. */
 :root{
   /* Preserve sport identity while meeting WCAG AA for normal text on #fffdf8
      and for white text when the filter is active. */
@@ -6,10 +6,65 @@
   --sport-hockey:#437492!important;
 }
 
+.skip-link{
+  position:fixed;
+  left:16px;
+  top:12px;
+  z-index:10000;
+  transform:translateY(-180%);
+  padding:10px 14px;
+  border:2px solid var(--ink,#112b3c);
+  border-radius:10px;
+  background:#fffdf8;
+  color:#112b3c;
+  font-weight:900;
+  text-decoration:none;
+  box-shadow:0 4px 18px rgba(17,43,60,.18);
+}
+.skip-link:focus{transform:translateY(0)}
+
 /* Team colors remain visible in the card border/swatch; the semantic badge
    uses a stable high-contrast treatment regardless of a team's primary color. */
 .my-team-card .favorite-badge{
   background:var(--ink)!important;
   color:#fff!important;
   border:2px solid var(--team-primary)!important;
+}
+
+.filter-live-status{
+  margin:10px 0 0;
+  color:var(--muted,#625d55);
+  font-size:.78rem;
+  font-weight:750;
+}
+
+.map-text-alternative{
+  margin-top:12px;
+  border-top:1px solid var(--line,#d8cdb9);
+  padding-top:10px;
+}
+.map-text-alternative summary{
+  cursor:pointer;
+  font-weight:850;
+  color:var(--ink,#112b3c);
+}
+.map-text-alternative ul{
+  columns:2;
+  column-gap:28px;
+  margin:12px 0 0;
+  padding-left:20px;
+}
+.map-text-alternative li{break-inside:avoid;margin:0 0 8px;line-height:1.35}
+.map-text-alternative a{font-weight:800;color:inherit}
+@media(max-width:700px){.map-text-alternative ul{columns:1}}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto!important}
+  *,*::before,*::after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+    transition-delay:0s!important;
+  }
+  .leaflet-zoom-animated,.leaflet-pan-anim .leaflet-tile,.leaflet-fade-anim .leaflet-tile{transition:none!important}
 }
