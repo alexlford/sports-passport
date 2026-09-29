@@ -1,5 +1,6 @@
 (() => {
   const WHITE = '#ffffff';
+  const mapFilterState = new WeakMap();
 
   function parseHex(hex) {
     const value = String(hex || '').trim();
@@ -129,15 +130,81 @@
     panel.dataset.reason = String(reason?.message || reason || 'archive-data-load-failure').slice(0, 160);
   }
 
+  function updateMapFilter(mapElement) {
+    const rankedOnly = mapElement.dataset.venueFilter === 'ranked';
+    const markers = [...mapElement.querySelectorAll('.leaflet-marker-icon')];
+    let visible = 0;
+    markers.forEach(marker => {
+      const ranked = Boolean(marker.querySelector('.venue-marker.ranked'));
+      const shouldHide = rankedOnly && !ranked;
+      if (marker.hidden !== shouldHide) marker.hidden = shouldHide;
+      if (!shouldHide) visible += 1;
+    });
+
+    const shell = mapElement.closest('.geo-map-card, .atlas-shell');
+    const controls = shell?.querySelector('.map-filter-controls');
+    controls?.querySelectorAll('button[data-map-filter]').forEach(button => {
+      const active = button.dataset.mapFilter === (rankedOnly ? 'ranked' : 'all');
+      const pressed = String(active);
+      if (button.getAttribute('aria-pressed') !== pressed) button.setAttribute('aria-pressed', pressed);
+      if (button.classList.contains('active') !== active) button.classList.toggle('active', active);
+    });
+
+    const status = controls?.querySelector('.map-filter-status');
+    const statusText = `${visible} of ${markers.length} venues shown`;
+    if (status && markers.length && status.textContent !== statusText) status.textContent = statusText;
+    mapFilterState.set(mapElement, { markerCount: markers.length, filter: rankedOnly ? 'ranked' : 'all' });
+  }
+
+  function enhanceMapFilters() {
+    document.querySelectorAll('#geo-map, #map').forEach(mapElement => {
+      const shell = mapElement.closest('.geo-map-card, .atlas-shell');
+      const toolbar = shell?.querySelector('.geo-map-toolbar, .atlas-toolbar');
+      if (!shell || !toolbar) return;
+
+      let controls = toolbar.querySelector('.map-filter-controls');
+      let created = false;
+      if (!controls) {
+        created = true;
+        controls = document.createElement('div');
+        controls.className = 'map-filter-controls';
+        controls.setAttribute('role', 'group');
+        controls.setAttribute('aria-label', 'Venue map filter');
+        controls.innerHTML = '<button type="button" data-map-filter="all" aria-pressed="true">All venues</button><button type="button" data-map-filter="ranked" aria-pressed="false">Top 10 only</button><span class="map-filter-status" role="status" aria-live="polite"></span>';
+        const reset = toolbar.querySelector('#reset-map');
+        if (reset) toolbar.insertBefore(controls, reset);
+        else toolbar.appendChild(controls);
+        controls.querySelectorAll('button[data-map-filter]').forEach(button => button.addEventListener('click', () => {
+          mapElement.dataset.venueFilter = button.dataset.mapFilter;
+          updateMapFilter(mapElement);
+        }));
+      }
+
+      if (!mapElement.dataset.venueFilter) mapElement.dataset.venueFilter = 'all';
+      const state = mapFilterState.get(mapElement);
+      const markerCount = mapElement.querySelectorAll('.leaflet-marker-icon').length;
+      const filter = mapElement.dataset.venueFilter;
+      if (created || !state || state.markerCount !== markerCount || state.filter !== filter) {
+        updateMapFilter(mapElement);
+      }
+    });
+  }
+
   async function enhanceMapTextAlternative() {
     const mapElement = document.querySelector('#geo-map, #map');
-    if (!mapElement || document.querySelector('.map-text-alternative')) return;
+    if (!mapElement || document.querySelector('.map-text-alternative') || mapElement.dataset.textAlternativeLoading === 'true') return;
     const D = window.SportsPassportData;
     if (!D?.load) return;
+    mapElement.dataset.textAlternativeLoading = 'true';
     let events, venues;
     try {
       [events, venues] = await Promise.all([D.load('events'), D.load('venues')]);
     } catch (_) {
+      delete mapElement.dataset.textAlternativeLoading;
+      return;
+    }
+    if (document.querySelector('.map-text-alternative')) {
+      delete mapElement.dataset.textAlternativeLoading;
       return;
     }
     const mapped = venues
@@ -160,6 +227,7 @@
     details.append(summary, list);
     const container = mapElement.closest('.geo-map-card, .atlas-shell') || mapElement.parentElement;
     container?.appendChild(details);
+    delete mapElement.dataset.textAlternativeLoading;
   }
 
   function runEnhancements() {
@@ -167,6 +235,7 @@
     enhanceMenuKeyboard();
     enhanceTeamThemeContrast();
     enhanceLiveTeamCount();
+    enhanceMapFilters();
     enhanceMapTextAlternative();
   }
 
@@ -186,7 +255,7 @@
     observer.observe(document.body, { childList: true, subtree: true });
   }
 
-  window.SportsPassportAccessibility = { contrastRatio, accessibleThemeColor, runEnhancements, showDataLoadError };
+  window.SportsPassportAccessibility = { contrastRatio, accessibleThemeColor, runEnhancements, showDataLoadError, updateMapFilter };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, { once: true });
   else boot();
 })();
