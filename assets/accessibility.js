@@ -265,22 +265,106 @@
     delete mapElement.dataset.textAlternativeLoading;
   }
 
-  function removeInternalEventMetadata() {
+  function replaceTextNodes(root, replacements) {
+    if (!root) return;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      let value = node.nodeValue;
+      replacements.forEach(([pattern, replacement]) => { value = value.replace(pattern, replacement); });
+      if (value !== node.nodeValue) node.nodeValue = value;
+    });
+  }
+
+  function removeInternalArchiveMetadata() {
     const routeSource = String(window.SPORTS_ROUTE_SOURCE || '');
     const path = location.pathname.toLowerCase();
     const isEventPassport = routeSource === 'event.html' || /(^|\/)event\.html$/.test(path) || /^\/events\/[^/]+\/?$/.test(path);
-    if (!isEventPassport) return;
+    const isYear = routeSource === 'year.html' || /^\/years\/\d+\/?$/.test(path);
+    const isAbout = routeSource === 'about.html' || /^\/about\/?$/.test(path);
+    const isSearch = routeSource === 'search.html' || /^\/search\/?$/.test(path);
+    const isAnalytics = routeSource === 'lifetime-analytics.html' || /^\/analytics\/?$/.test(path);
 
-    const internalLabels = new Set(['Archive confidence', 'Evidence class', 'Evidence provenance', 'Event ID']);
-    document.querySelectorAll('.record-row').forEach(row => {
-      const label = row.querySelector(':scope > span')?.textContent?.trim();
-      if (internalLabels.has(label)) row.remove();
+    if (isEventPassport) {
+      const internalLabels = new Set(['Archive confidence', 'Evidence class', 'Evidence provenance', 'Event ID']);
+      document.querySelectorAll('.record-row').forEach(row => {
+        const label = row.querySelector(':scope > span')?.textContent?.trim();
+        if (internalLabels.has(label)) row.remove();
+      });
+      document.querySelectorAll('.status-row .status-chip:not(.top10)').forEach(chip => chip.remove());
+      document.querySelectorAll('.status-row').forEach(row => {
+        if (!row.querySelector('.status-chip')) row.remove();
+      });
+    }
+
+    // Confidence and provenance are internal archive bookkeeping. Keep the data,
+    // but remove those classifications from every visitor-facing archive surface.
+    document.querySelectorAll('.confidence-note, .year-card .confidence').forEach(element => element.remove());
+    document.querySelectorAll('.method-note').forEach(note => {
+      if (/confidence|\bverified\b|\bnotional\b|confirmed\s*\/\s*documented/i.test(note.textContent || '')) note.remove();
+    });
+    document.querySelectorAll('.event-card .badge, .event-confidence').forEach(chip => {
+      if (/^(Verified|Notional|Documented)$/i.test(chip.textContent?.trim() || '')) chip.remove();
     });
 
-    document.querySelectorAll('.status-row .status-chip:not(.top10)').forEach(chip => chip.remove());
-    document.querySelectorAll('.status-row').forEach(row => {
-      if (!row.querySelector('.status-chip')) row.remove();
+    document.querySelectorAll('.stat').forEach(stat => {
+      const label = stat.querySelector('span');
+      const text = label?.textContent?.trim();
+      if (text === 'Confirmed / documented') stat.remove();
+      else if (text === 'Confirmed record') label.textContent = 'Record';
     });
+
+    if (isYear) {
+      const deck = document.querySelector('.hero .deck');
+      if (deck && /This reconstructed early edition contains/i.test(deck.textContent || '')) {
+        deck.textContent = deck.textContent.replace(/\s*This reconstructed early edition contains.*$/i, '');
+      }
+      document.querySelectorAll('.section .head p').forEach(paragraph => {
+        if (/Early records are labeled Verified or Notional/i.test(paragraph.textContent || '')) {
+          paragraph.textContent = 'Recent games appear first. Team and venue names connect directly into the broader archive.';
+        }
+      });
+    }
+
+    if (isAbout) {
+      document.querySelectorAll('.confidence-band').forEach(band => band.closest('.section')?.remove());
+      const description = document.querySelector('meta[name="description"]');
+      if (description && /archive confidence/i.test(description.content || '')) {
+        description.content = 'How Alex Ford’s Sports Passport is organized: annual editions, life chapters, favorite teams, venue rankings, and editorial methodology.';
+      }
+    }
+
+    if (isSearch) {
+      const explainer = document.querySelector('.search-heading > p');
+      if (explainer && /event ID|confidence rules/i.test(explainer.textContent || '')) {
+        explainer.textContent = 'Try a team, stadium, city, year, or sport. Filters narrow the same archive without exposing internal bookkeeping.';
+      }
+    }
+
+    if (isAnalytics) {
+      const deck = document.querySelector('.hero .deck');
+      if (deck && /early-record confidence remains explicit/i.test(deck.textContent || '')) {
+        deck.textContent = deck.textContent.replace(/,?\s*while early-record confidence remains explicit\.?/i, '.');
+      }
+      document.querySelectorAll('.density-note').forEach(note => {
+        if (/notional/i.test(note.textContent || '')) note.textContent = 'Tap a team to open its dossier.';
+      });
+      replaceTextNodes(document.querySelector('#app'), [
+        [/\bFirst confirmed event\b/g, 'First event'],
+        [/\bLatest confirmed event\b/g, 'Latest event'],
+        [/\bNo confirmed events\b/gi, 'No events'],
+        [/\bconfirmed\/documented records\b/gi, 'archive records'],
+        [/\bconfirmed\/documented archive\b/gi, 'archive'],
+        [/\bconfirmed venue visits\b/gi, 'venue visits'],
+        [/\bconfirmed venues\b/gi, 'venues'],
+        [/\bconfirmed scores\b/gi, 'recorded scores'],
+        [/\bconfirmed records\b/gi, 'archive records'],
+        [/\bconfirmed events\b/gi, 'events'],
+        [/\bconfirmed event\b/gi, 'event'],
+        [/\bdocumented timeline\b/gi, 'timeline']
+      ]);
+    }
   }
 
   function runEnhancements() {
@@ -291,7 +375,7 @@
     enhanceArchiveFreshness();
     enhanceMapFilters();
     enhanceMapTextAlternative();
-    removeInternalEventMetadata();
+    removeInternalArchiveMetadata();
   }
 
   window.addEventListener('unhandledrejection', event => {
