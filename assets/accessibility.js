@@ -107,6 +107,41 @@
     update();
   }
 
+  async function enhanceArchiveFreshness() {
+    const footer = document.querySelector('.site-footer');
+    if (!footer || footer.dataset.archiveFreshnessReady === 'true' || footer.dataset.archiveFreshnessLoading === 'true') return;
+    const D = window.SportsPassportData;
+    if (!D?.load) return;
+    footer.dataset.archiveFreshnessLoading = 'true';
+    try {
+      const [events, config, manifestResponse] = await Promise.all([
+        D.load('events'),
+        D.load('config'),
+        fetch('/data/cache-manifest.json', { cache: 'no-cache' })
+      ]);
+      const manifest = manifestResponse.ok ? await manifestResponse.json() : null;
+      const dates = events.map(event => event.date).filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date)).sort();
+      const latest = dates.at(-1);
+      if (!latest) return;
+      const formatted = new Intl.DateTimeFormat('en-US', {
+        month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC'
+      }).format(new Date(`${latest}T00:00:00Z`));
+      const revision = String(manifest?.version || '').slice(0, 8);
+      const freshness = document.createElement('span');
+      freshness.className = 'archive-freshness';
+      freshness.textContent = `Archive through ${formatted} · ${config.version}${revision ? ` · rev ${revision}` : ''}`;
+      freshness.title = revision ? `Data revision ${manifest.version}` : 'Sports Passport archive version';
+      const firstLink = footer.querySelector('a');
+      if (firstLink) footer.insertBefore(freshness, firstLink);
+      else footer.appendChild(freshness);
+      footer.dataset.archiveFreshnessReady = 'true';
+    } catch (_) {
+      // Freshness metadata is supplementary; leave the footer usable if it cannot load.
+    } finally {
+      delete footer.dataset.archiveFreshnessLoading;
+    }
+  }
+
   function archiveLoadFailure(reason) {
     const message = String(reason?.message || reason || '');
     return /Could not load|Failed to fetch|NetworkError|Load failed/i.test(message);
@@ -235,6 +270,7 @@
     enhanceMenuKeyboard();
     enhanceTeamThemeContrast();
     enhanceLiveTeamCount();
+    enhanceArchiveFreshness();
     enhanceMapFilters();
     enhanceMapTextAlternative();
   }
