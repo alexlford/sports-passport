@@ -4,10 +4,10 @@ A personal, data-driven archive of live sports attendance for Alex Ford.
 
 ## Current archive
 
-- 266 event records
-- 57 physical venues
+- 269 event records
+- 59 physical venues
 - Annual editions from 1993 through the current 2026 season
-- Team, venue, geography, journey, analytics, favorites, and Hall of Fame views
+- Team, venue, geography, journey, analytics, favorites, and Record Book views
 - Three curated Top 10 rankings: sports experiences, favorite venues, and best venues visited
 
 ## Historical confidence
