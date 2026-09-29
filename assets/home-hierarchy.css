@@ -1,4 +1,72 @@
 /* DS-09: reduce equal-weight homepage entry points without removing destinations. */
+.home-search {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+  margin-top: 24px;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255,253,248,.82);
+  box-shadow: 0 8px 24px rgba(17,43,60,.06);
+}
+
+.home-search label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-size: .76rem;
+  font-weight: 950;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.home-search-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap: 8px;
+}
+
+.home-search input,
+.home-search button {
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  font: inherit;
+}
+
+.home-search input {
+  width: 100%;
+  padding: 10px 13px;
+  background: var(--white);
+  color: var(--ink);
+}
+
+.home-search input::placeholder {
+  color: var(--muted);
+}
+
+.home-search button {
+  padding: 10px 17px;
+  background: var(--ink);
+  color: var(--white);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.home-search input:focus-visible,
+.home-search button:focus-visible {
+  outline: 3px solid rgba(183,68,58,.28);
+  outline-offset: 2px;
+}
+
+.home-search p {
+  margin: 8px 2px 0;
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.45;
+}
+
 .home-secondary-links {
   display: flex;
   flex-wrap: wrap;
@@ -31,6 +99,19 @@
 }
 
 @media(max-width:700px) {
+  .home-search {
+    margin-top: 20px;
+    padding: 13px;
+  }
+
+  .home-search-row {
+    grid-template-columns: 1fr;
+  }
+
+  .home-search button {
+    width: 100%;
+  }
+
   .home-secondary-links {
     display: grid;
     grid-template-columns: 1fr 1fr;
