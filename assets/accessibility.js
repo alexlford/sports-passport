@@ -265,6 +265,24 @@
     delete mapElement.dataset.textAlternativeLoading;
   }
 
+  function removeInternalEventMetadata() {
+    const routeSource = String(window.SPORTS_ROUTE_SOURCE || '');
+    const path = location.pathname.toLowerCase();
+    const isEventPassport = routeSource === 'event.html' || /(^|\/)event\.html$/.test(path) || /^\/events\/[^/]+\/?$/.test(path);
+    if (!isEventPassport) return;
+
+    const internalLabels = new Set(['Archive confidence', 'Evidence class', 'Evidence provenance', 'Event ID']);
+    document.querySelectorAll('.record-row').forEach(row => {
+      const label = row.querySelector(':scope > span')?.textContent?.trim();
+      if (internalLabels.has(label)) row.remove();
+    });
+
+    document.querySelectorAll('.status-row .status-chip:not(.top10)').forEach(chip => chip.remove());
+    document.querySelectorAll('.status-row').forEach(row => {
+      if (!row.querySelector('.status-chip')) row.remove();
+    });
+  }
+
   function runEnhancements() {
     ensureSkipLink();
     enhanceMenuKeyboard();
@@ -273,6 +291,7 @@
     enhanceArchiveFreshness();
     enhanceMapFilters();
     enhanceMapTextAlternative();
+    removeInternalEventMetadata();
   }
 
   window.addEventListener('unhandledrejection', event => {
