@@ -74,6 +74,10 @@ test('modern event keeps evidence metadata internal', async ({ page }, testInfo)
 test('confidence classifications stay private across archive views', async ({ page }, testInfo) => {
   desktopOnly(testInfo);
 
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('#home-search-input')).toBeVisible();
+  await expectNoPublicArchiveBookkeeping(page);
+
   await page.goto('/years/', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('.year-card').first()).toBeVisible();
   await expectNoPublicArchiveBookkeeping(page);
@@ -114,6 +118,20 @@ test('confidence classifications stay private across archive views', async ({ pa
   await page.goto('/analytics/', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('.hero h1')).toBeVisible();
   await expectNoPublicArchiveBookkeeping(page);
+});
+
+test('homepage search hands queries to archive search', async ({ page }, testInfo) => {
+  desktopOnly(testInfo);
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  const input = page.locator('#home-search-input');
+  await expect(input).toBeVisible();
+  await input.fill('Chiefs');
+  await Promise.all([
+    page.waitForURL(url => url.pathname === '/search/' && url.searchParams.get('q') === 'Chiefs'),
+    input.press('Enter')
+  ]);
+  await expect(page.locator('#global-search')).toHaveValue('Chiefs');
+  await expect(page.locator('.search-result[data-result-type="team"]', { hasText: 'Kansas City Chiefs' })).toBeVisible();
 });
 
 test('public search does not expose confidence labels or internal event IDs', async ({ page }, testInfo) => {

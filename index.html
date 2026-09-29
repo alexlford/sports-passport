@@ -29,6 +29,14 @@
     <div class="kicker" id="archive-range">1993 → 2026</div>
     <h1>Sports<br>Passport</h1>
     <div class="deck">A personal archive of live sports, built like an annual media guide and organized like a passport.</div>
+    <form class="home-search" action="/search/" method="get" role="search" aria-label="Search Sports Passport">
+      <label for="home-search-input">Search the archive</label>
+      <div class="home-search-row">
+        <input id="home-search-input" name="q" type="search" autocomplete="off" placeholder="Search events, teams, venues, cities, or years">
+        <button type="submit">Search →</button>
+      </div>
+      <p id="home-search-hint">Search every event, team, venue, city, and year in Sports Passport.</p>
+    </form>
     <div class="hero-actions">
       <a class="primary" id="current-year-cta" href="year.html?y=2026">Open 2026 · In Progress →</a>
       <a href="favorites.html">Open the Top Tens</a>
@@ -108,7 +116,7 @@
     </nav>
   </section>
 
-  <div class="home-note"><strong>One shared archive, with confidence preserved.</strong> New games automatically flow into annual editions, analytics, team histories, venue profiles, journeys, and geography. Pre-2006 reconstructed records are explicitly marked Verified or Notional, while curated Top 10s remain a separate editorial layer.</div>
+  <div class="home-note"><strong>One shared archive.</strong> New games automatically flow into annual editions, analytics, team histories, venue profiles, journeys, and geography, while the curated Top 10s remain a separate editorial layer.</div>
   <footer class="site-footer"></footer>
 </main>
 
@@ -133,10 +141,14 @@
   document.querySelector('#city-total').textContent=Object.keys(allCities).length;
   document.querySelector('#year-total').textContent=current-start+1;
   document.querySelector('#latest-complete').textContent=complete;
+  const homeSearchInput=document.querySelector('#home-search-input');
+  const homeSearchHint=document.querySelector('#home-search-hint');
+  homeSearchInput.placeholder=`Search ${events.length} events, ${venues.length} venues…`;
+  homeSearchHint.textContent=`Search ${events.length} events, ${venues.length} venues, teams, cities, and years.`;
   document.querySelector('#current-main').dataset.year=current;
   document.querySelector('#current-title').textContent=current;
   document.querySelector('#current-kicker').textContent=`Year in Sports · ${current}`;
-  document.querySelector('#current-summary').textContent=currentEvents.length?`The live ${current} edition currently includes ${currentEvents.length} documented event${currentEvents.length===1?'':'s'}${latest?` through ${new Date(latest.date+'T12:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric'})}`:''}. It will keep growing as the season continues.`:`The ${current} edition is ready for the first documented event.`;
+  document.querySelector('#current-summary').textContent=currentEvents.length?`The live ${current} edition currently includes ${currentEvents.length} event${currentEvents.length===1?'':'s'}${latest?` through ${new Date(latest.date+'T12:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric'})}`:''}. It will keep growing as the season continues.`:`The ${current} edition is ready for its first event.`;
   for(const id of ['#current-year-cta','#current-open'])document.querySelector(id).href=`year.html?y=${current}`;
   document.querySelector('#current-year-cta').textContent=`Open ${current} · In Progress →`;
   document.querySelector('#current-events').textContent=currentEvents.length;
