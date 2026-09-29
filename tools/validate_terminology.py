@@ -7,7 +7,8 @@ ROOT = Path(__file__).resolve().parents[1]
 errors = []
 for rel in [
     'index.html', 'favorites.html', 'hall-of-fame.html', 'journeys.html',
-    'assets/archive-desks.js', 'assets/seo.js', 'tests/browser/smoke.spec.js'
+    'assets/archive-desks.js', 'assets/seo.js', 'assets/sports-passport-data.js',
+    'tests/browser/smoke.spec.js'
 ]:
     text = (ROOT / rel).read_text(encoding='utf-8')
     if 'Hall of Fame' in text:
