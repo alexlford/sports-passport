@@ -338,7 +338,7 @@
     if (isSearch) {
       const explainer = document.querySelector('.search-heading > p');
       if (explainer && /event ID|confidence rules/i.test(explainer.textContent || '')) {
-        explainer.textContent = 'Try a team, stadium, city, year, or sport. Filters narrow the same archive without exposing internal bookkeeping.';
+        explainer.textContent = 'Try a team, stadium, city, year, or sport. Filters narrow the same archive without changing the collection.';
       }
     }
 
