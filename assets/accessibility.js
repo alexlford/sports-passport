@@ -1,5 +1,6 @@
 (() => {
   const WHITE = '#ffffff';
+  const mapFilterState = new WeakMap();
 
   function parseHex(hex) {
     const value = String(hex || '').trim();
@@ -135,19 +136,24 @@
     let visible = 0;
     markers.forEach(marker => {
       const ranked = Boolean(marker.querySelector('.venue-marker.ranked'));
-      const show = !rankedOnly || ranked;
-      marker.hidden = !show;
-      if (show) visible += 1;
+      const shouldHide = rankedOnly && !ranked;
+      if (marker.hidden !== shouldHide) marker.hidden = shouldHide;
+      if (!shouldHide) visible += 1;
     });
+
     const shell = mapElement.closest('.geo-map-card, .atlas-shell');
     const controls = shell?.querySelector('.map-filter-controls');
     controls?.querySelectorAll('button[data-map-filter]').forEach(button => {
       const active = button.dataset.mapFilter === (rankedOnly ? 'ranked' : 'all');
-      button.setAttribute('aria-pressed', String(active));
-      button.classList.toggle('active', active);
+      const pressed = String(active);
+      if (button.getAttribute('aria-pressed') !== pressed) button.setAttribute('aria-pressed', pressed);
+      if (button.classList.contains('active') !== active) button.classList.toggle('active', active);
     });
+
     const status = controls?.querySelector('.map-filter-status');
-    if (status && markers.length) status.textContent = `${visible} of ${markers.length} venues shown`;
+    const statusText = `${visible} of ${markers.length} venues shown`;
+    if (status && markers.length && status.textContent !== statusText) status.textContent = statusText;
+    mapFilterState.set(mapElement, { markerCount: markers.length, filter: rankedOnly ? 'ranked' : 'all' });
   }
 
   function enhanceMapFilters() {
@@ -155,10 +161,14 @@
       const shell = mapElement.closest('.geo-map-card, .atlas-shell');
       const toolbar = shell?.querySelector('.geo-map-toolbar, .atlas-toolbar');
       if (!shell || !toolbar) return;
+
       let controls = toolbar.querySelector('.map-filter-controls');
+      let created = false;
       if (!controls) {
+        created = true;
         controls = document.createElement('div');
         controls.className = 'map-filter-controls';
+        controls.setAttribute('role', 'group');
         controls.setAttribute('aria-label', 'Venue map filter');
         controls.innerHTML = '<button type="button" data-map-filter="all" aria-pressed="true">All venues</button><button type="button" data-map-filter="ranked" aria-pressed="false">Top 10 only</button><span class="map-filter-status" role="status" aria-live="polite"></span>';
         const reset = toolbar.querySelector('#reset-map');
@@ -169,20 +179,32 @@
           updateMapFilter(mapElement);
         }));
       }
+
       if (!mapElement.dataset.venueFilter) mapElement.dataset.venueFilter = 'all';
-      updateMapFilter(mapElement);
+      const state = mapFilterState.get(mapElement);
+      const markerCount = mapElement.querySelectorAll('.leaflet-marker-icon').length;
+      const filter = mapElement.dataset.venueFilter;
+      if (created || !state || state.markerCount !== markerCount || state.filter !== filter) {
+        updateMapFilter(mapElement);
+      }
     });
   }
 
   async function enhanceMapTextAlternative() {
     const mapElement = document.querySelector('#geo-map, #map');
-    if (!mapElement || document.querySelector('.map-text-alternative')) return;
+    if (!mapElement || document.querySelector('.map-text-alternative') || mapElement.dataset.textAlternativeLoading === 'true') return;
     const D = window.SportsPassportData;
     if (!D?.load) return;
+    mapElement.dataset.textAlternativeLoading = 'true';
     let events, venues;
     try {
       [events, venues] = await Promise.all([D.load('events'), D.load('venues')]);
     } catch (_) {
+      delete mapElement.dataset.textAlternativeLoading;
+      return;
+    }
+    if (document.querySelector('.map-text-alternative')) {
+      delete mapElement.dataset.textAlternativeLoading;
       return;
     }
     const mapped = venues
@@ -205,6 +227,7 @@
     details.append(summary, list);
     const container = mapElement.closest('.geo-map-card, .atlas-shell') || mapElement.parentElement;
     container?.appendChild(details);
+    delete mapElement.dataset.textAlternativeLoading;
   }
 
   function runEnhancements() {
