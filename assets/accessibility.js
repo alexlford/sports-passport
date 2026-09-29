@@ -356,6 +356,7 @@
         [/\bNo confirmed events\b/gi, 'No events'],
         [/\bconfirmed\/documented records\b/gi, 'archive records'],
         [/\bconfirmed\/documented archive\b/gi, 'archive'],
+        [/\bconfirmed\/documented events\b/gi, 'events'],
         [/\bconfirmed venue visits\b/gi, 'venue visits'],
         [/\bconfirmed venues\b/gi, 'venues'],
         [/\bconfirmed scores\b/gi, 'recorded scores'],
