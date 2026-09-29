@@ -79,9 +79,8 @@ window.SPORTS_ROUTE_HASH=location.hash||'';
           <a class="atlas-cta" href="venue-map.html">Open the Venue Atlas →</a>
         </div>
         <div class="footprint-frame">
-          <div class="footprint-toolbar"><b>Archive venue footprint</b><button id="reset-map" type="button">Reset preview</button></div>
-          <div class="footprint-map" id="geo-map" role="group" aria-label="Preview of the geographic spread of mapped sports venues"><div class="footprint-popup" hidden><div class="leaflet-popup-content"></div></div></div>
-          <div class="footprint-legend"><span><i class="footprint-dot sample"></i>visit frequency</span><span><i class="footprint-dot sample ranked"></i>Top 10 venue</span><b>Preview only</b></div>
+          <div class="footprint-map" id="venue-footprint" role="img" aria-label="Preview of the geographic spread of mapped sports venues"></div>
+          <div class="footprint-legend"><span><i class="footprint-dot sample"></i>visit frequency</span><span><i class="footprint-dot sample ranked"></i>Top 10 venue</span><b>Preview only · explore in Venue Atlas</b></div>
         </div>
       </div>
     </section>
@@ -98,30 +97,19 @@ window.SPORTS_ROUTE_HASH=location.hash||'';
       </div>
     </section>`;
 
-  const footprint=document.querySelector('#geo-map');
-  const popup=footprint.querySelector('.footprint-popup');
-  const popupContent=popup.querySelector('.leaflet-popup-content');
-  const closePreview=()=>{popup.hidden=true;popupContent.innerHTML='';};
-  document.querySelector('#reset-map').addEventListener('click',closePreview);
+  const footprint=document.querySelector('#venue-footprint');
   if(mappedVenues.length){
     const lats=mappedVenues.map(v=>v.latitude),lons=mappedVenues.map(v=>v.longitude);
     const minLat=Math.min(...lats),maxLat=Math.max(...lats),minLon=Math.min(...lons),maxLon=Math.max(...lons);
     const latSpan=Math.max(maxLat-minLat,1),lonSpan=Math.max(maxLon-minLon,1);
     mappedVenues.forEach(v=>{
       const visits=vcounts[v.key]||0;
-      const dot=document.createElement('button');
-      dot.type='button';
-      dot.className=`footprint-dot leaflet-marker-icon${visits>=10?' frequent':''}${rankedSlugs.has(v.slug)?' ranked':''}`;
+      const dot=document.createElement('i');
+      dot.className=`footprint-dot${visits>=10?' frequent':''}${rankedSlugs.has(v.slug)?' ranked':''}`;
       dot.style.left=`${6+((v.longitude-minLon)/lonSpan)*88}%`;
       dot.style.top=`${8+(1-((v.latitude-minLat)/latSpan))*84}%`;
       dot.style.setProperty('--dot-size',`${visits>=10?18:visits>=4?13:9}px`);
-      dot.setAttribute('aria-label',`${v.display_name}, ${visits} archive visit${visits===1?'':'s'}`);
-      dot.addEventListener('click',()=>{
-        popupContent.innerHTML=`<strong>${v.display_name}</strong><span>${v.city} · ${visits} archive visit${visits===1?'':'s'}</span><a href="venue-profile.html?v=${encodeURIComponent(v.slug)}">Open venue profile →</a>`;
-        popup.style.left=dot.style.left;
-        popup.style.top=dot.style.top;
-        popup.hidden=false;
-      });
+      dot.setAttribute('aria-hidden','true');
       footprint.appendChild(dot);
     });
   }
