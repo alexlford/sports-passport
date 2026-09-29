@@ -125,3 +125,14 @@ test('archive data failures render a recoverable fallback without hiding navigat
   await expect(fallback.locator('a[href="/"]')).toBeVisible();
   await expect(page.locator('.global-nav')).toBeVisible();
 });
+
+test('global footer exposes archive through-date, archive version, and data revision', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop');
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  const freshness = page.locator('.archive-freshness');
+  await expect(freshness).toBeVisible();
+  await expect(freshness).toContainText(/Archive through [A-Z][a-z]{2} \d{1,2}, 2026/);
+  await expect(freshness).toContainText(/v26-2026-in-progress/);
+  await expect(freshness).toContainText(/rev [0-9a-f]{8}/);
+  await expect(freshness).toHaveAttribute('title', /Data revision [0-9a-f]{20}/);
+});
