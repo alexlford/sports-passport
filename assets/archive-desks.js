@@ -7,7 +7,7 @@
   const pages={
     canon:{title:'Personal Canon',summary:'Subjective rankings: the moments I would most want to relive and the venues I value most.',href:'/favorites/'},
     analytics:{title:'Analytics',summary:'Patterns and trends: how the archive changes across years, sports, teams, places, and life chapters.',href:'/analytics/'},
-    records:{title:'Record Book',summary:'Objective record book: leaders, superlatives, and milestones calculated from confirmed/documented records.',href:'/hall-of-fame/'}
+    records:{title:'Record Book',summary:'Objective record book: leaders, superlatives, and milestones calculated from the archive.',href:'/hall-of-fame/'}
   };
 
   const render=()=>{
