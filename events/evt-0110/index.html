@@ -76,7 +76,7 @@ history.replaceState(null,"","/events/evt-0110/?id=evt-0110"+window.SPORTS_ROUTE
   const context=[
     `<a class="context-card" href="year.html?y=${event.year}"><div class="kicker">Annual edition</div><h3>${event.year}</h3><p>See this game in the context of the full season.</p><span class="open">Open ${event.year} →</span></a>`,
     `<a class="context-card" href="${venueHref}"><div class="kicker">Venue</div><h3>${venueName}</h3><p>${event.city||venue?.city||''}</p><span class="open">Open venue profile →</span></a>`,
-    rank?`<a class="context-card" href="favorites.html#top-experiences"><div class="kicker">Personal Canon</div><h3>#${rank.rank} overall</h3><p>${rank.detail||rank.title}</p><span class="open">Open Top 10 →</span></a>`:`<a class="context-card" href="hall-of-fame.html"><div class="kicker">Archive context</div><h3>Hall of Fame</h3><p>Compare this game with confirmed archive leaders and signature moments.</p><span class="open">Open Hall of Fame →</span></a>`
+    rank?`<a class="context-card" href="favorites.html#top-experiences"><div class="kicker">Personal Canon</div><h3>#${rank.rank} overall</h3><p>${rank.detail||rank.title}</p><span class="open">Open Top 10 →</span></a>`:`<a class="context-card" href="hall-of-fame.html"><div class="kicker">Archive context</div><h3>Record Book</h3><p>Compare this game with confirmed archive leaders and signature moments.</p><span class="open">Open Record Book →</span></a>`
   ];
 
   const navCard=(e,label)=>e?`<a href="event.html?id=${encodeURIComponent(e.id)}"><span>${label}</span><strong>${D.matchup(e)} · ${e.date}</strong></a>`:'<div></div>';

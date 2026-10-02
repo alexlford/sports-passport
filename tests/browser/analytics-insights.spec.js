@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 
 const desktopOnly = (testInfo) => test.skip(testInfo.project.name !== 'desktop', 'Analytics insight assertions run once on desktop; route layout is covered at all viewports.');
 
-test('lifetime analytics exposes longitudinal confirmed-archive insights', async ({ page }, testInfo) => {
+test('lifetime analytics exposes longitudinal archive insights', async ({ page }, testInfo) => {
   desktopOnly(testInfo);
   await page.goto('/analytics/', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('#venue-expansion')).toBeVisible();
@@ -12,12 +12,15 @@ test('lifetime analytics exposes longitudinal confirmed-archive insights', async
   await expect(page.locator('#streaks .milestone-card')).toHaveCount(4);
 });
 
-test('longitudinal insight methodology is explicitly confirmed-record based', async ({ page }, testInfo) => {
+test('longitudinal insights use visitor-facing archive language', async ({ page }, testInfo) => {
   desktopOnly(testInfo);
   await page.goto('/analytics/', { waitUntil: 'domcontentloaded' });
-  await expect(page.locator('.method-note')).toContainText('confirmed/documented archive');
-  await expect(page.locator('#favorite-records')).toContainText('confirmed event');
-  await expect(page.locator('#streaks')).toContainText('confirmed/documented events only');
+  await expect(page.locator('.method-note')).toHaveCount(0);
+  await expect(page.locator('#venue-expansion')).toContainText('archive records');
+  await expect(page.locator('#favorite-records')).toContainText('recorded scores');
+  await expect(page.locator('#streaks')).toContainText('archive records');
+  const bodyText = await page.locator('body').innerText();
+  expect(bodyText).not.toMatch(/confirmed\s*\/\s*documented|\bnotional\b|\bverified\b/i);
 });
 
 test('chapter and state insight panels are populated', async ({ page }, testInfo) => {

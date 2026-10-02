@@ -11,10 +11,10 @@ const routes = [
   ['venue profile', '/venues/arrowhead-stadium/', /Arrowhead Stadium/i],
   ['geography', '/geography/', /Places/i],
   ['venue atlas', '/geography/map/', /Where it\s*happened/i],
-  ['life chapters', '/journeys/', /Sports|Journeys/i],
+  ['life chapters', '/journeys/', /Sports|across a life/i],
   ['personal canon', '/favorites/', /Top Tens/i],
   ['analytics', '/analytics/', /Lifetime\s*Analytics/i],
-  ['hall of fame', '/hall-of-fame/', /Hall of\s*Fame/i],
+  ['record book', '/hall-of-fame/', /Record\s*Book/i],
   ['about', '/about/', /Why this\s*exists/i],
   ['search', '/search/', /Find a game|Search/i]
 ];
@@ -104,6 +104,24 @@ test('team search and sport filters remain functional', async ({ page }) => {
   await expect(page.locator('#cards .team-card').first()).toBeVisible();
 });
 
+test('venue directory renders every venue card and its filters', async ({ page }) => {
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await page.goto('/venues/', { waitUntil: 'domcontentloaded' });
+  const cards = page.locator('#venue-grid a.card');
+  await expect(cards.first()).toBeVisible();
+  const total = Number(await page.locator('#venue-count').textContent());
+  await expect(cards).toHaveCount(total);
+
+  await page.locator('#venue-search').fill('Coors');
+  await expect(cards).toHaveCount(1);
+  await expect(cards.first()).toContainText('Coors Field');
+  await page.locator('#venue-search').fill('');
+  await expect(page.locator('#filters button[data-filter="All"]')).toHaveClass(/active/);
+  await expect(cards).toHaveCount(total);
+  expect(errors).toEqual([]);
+});
+
 test('event passports retain chronological navigation', async ({ page }) => {
   await page.goto('/events/evt-0268/', { waitUntil: 'domcontentloaded' });
   const archiveLinks = page.locator('.archive-nav a');
@@ -116,45 +134,27 @@ test('event passports retain chronological navigation', async ({ page }) => {
   expect(page.url()).toMatch(/\/events\/[^/?#]+\/$/);
 });
 
-test('geography map initializes and exposes venue popups', async ({ page }) => {
+test('geography overview uses a lightweight venue footprint and links to the full atlas', async ({ page }) => {
   await page.goto('/geography/', { waitUntil: 'domcontentloaded' });
-  await expect(page.locator('#geo-map')).toBeVisible();
-  const markers = page.locator('#geo-map .leaflet-marker-icon');
-  const firstMarker = markers.first();
-  await expect(firstMarker).toBeVisible({ timeout: 10000 });
-  expect(await markers.count()).toBeGreaterThan(0);
+  const footprint = page.locator('#venue-footprint');
+  await expect(footprint).toBeVisible();
+  const dots = footprint.locator('.footprint-dot');
+  await expect(dots.first()).toBeVisible({ timeout: 10000 });
+  expect(await dots.count()).toBeGreaterThan(0);
+  await expect(page.locator('.atlas-cta')).toHaveAttribute('href', /(?:\/geography\/map\/|venue-map\.html)/);
 
-  await firstMarker.focus();
-  await expect(firstMarker).toBeFocused();
-  await page.keyboard.press('Enter');
-  await expect(page.locator('.leaflet-popup-content')).toBeVisible();
-  await expect(page.locator('.leaflet-popup-content a')).toHaveAttribute('href', /\/venues\/[^/?#]+\//);
-
-  const reset = page.locator('#reset-map');
-  await expect(reset).toBeVisible();
-  await reset.click();
+  const resources = await page.evaluate(() => performance.getEntriesByType('resource').map(entry => entry.name));
+  expect(resources.some(url => /leaflet/i.test(url))).toBe(false);
+  await expect(page.locator('#geo-map')).toHaveCount(0);
+  await expect(page.locator('#reset-map')).toHaveCount(0);
 });
 
-test('geography map renders without overflow and preserves mobile interactions', async ({ page }, testInfo) => {
-  test.skip(testInfo.project.name !== 'phone', 'This regression is specific to the narrow mobile map layout.');
+test('geography overview stays lightweight and legible on phones', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'phone', 'This regression is specific to the narrow mobile layout.');
   await page.goto('/geography/', { waitUntil: 'domcontentloaded' });
-  await expect(page.locator('#geo-map')).toBeVisible();
-
-  const markers = page.locator('#geo-map .leaflet-marker-icon');
-  const firstMarker = markers.first();
-  await expect(firstMarker).toBeVisible({ timeout: 10000 });
-  expect(await markers.count()).toBeGreaterThan(0);
-
-  await firstMarker.focus();
-  await expect(firstMarker).toBeFocused();
-  await page.keyboard.press('Enter');
-  await expect(page.locator('.leaflet-popup-content')).toBeVisible();
-  await expect(page.locator('.leaflet-popup-content a')).toHaveAttribute('href', /\/venues\/[^/?#]+\//);
-
-  const reset = page.locator('#reset-map');
-  await expect(reset).toBeVisible();
-  await expect(reset).toHaveCSS('min-height', '44px');
-  await reset.click();
+  await expect(page.locator('#venue-footprint')).toBeVisible();
+  await expect(page.locator('.atlas-cta')).toBeVisible();
+  await expect(page.locator('.atlas-cta')).toHaveCSS('min-height', '44px');
 
   const overflow = await page.evaluate(() => ({
     scrollWidth: document.documentElement.scrollWidth,

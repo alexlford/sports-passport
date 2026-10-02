@@ -60,8 +60,8 @@
     const venue=venueByKey.get(event.venue_key);
     const originalTeams=Array.isArray(event.teams)?event.teams:[];
     const title=teams.length===2?`${teams[0]} vs ${teams[1]}`:D.matchup(event);
-    const meta=[event.date,venue?.display_name||event.venue_recorded,event.city,event.sport,D.confidenceLabel(event)].filter(Boolean).join(' · ');
-    records.push({type:'event',title,meta,href:`/events/${encodeURIComponent(event.id)}/`,sports:new Set(event.sport?[String(event.sport)]:[]),years:new Set([String(event.year)]),search:[title,...originalTeams,...teams,event.id,event.date,event.city,event.sport,event.league,venue?.display_name,venue?.key,venue?.slug,event.venue_recorded].filter(Boolean).join(' ')});
+    const meta=[event.date,venue?.display_name||event.venue_recorded,event.city,event.sport].filter(Boolean).join(' · ');
+    records.push({type:'event',title,meta,href:`/events/${encodeURIComponent(event.id)}/`,sports:new Set(event.sport?[String(event.sport)]:[]),years:new Set([String(event.year)]),search:[title,...originalTeams,...teams,event.date,event.city,event.sport,event.league,venue?.display_name,venue?.key,venue?.slug,event.venue_recorded].filter(Boolean).join(' ')});
   });
   [...teamMap.entries()].forEach(([team,teamEvents])=>{
     const sports=setFor(teamEvents,'sport'),years=new Set(teamEvents.map(e=>String(e.year)));
@@ -122,7 +122,7 @@
     syncUrl();
     if(!query&&activeType==='all'&&sport==='all'&&year==='all'){
       status.textContent='';
-      results.innerHTML='<div class="search-empty"><strong>Search the whole archive.</strong>Start with a team, venue, city, year, sport, league, or event ID. The filters can also browse a slice of the collection without a text query.</div>';
+      results.innerHTML='<div class="search-empty"><strong>Search the whole archive.</strong>Start with a team, venue, city, year, sport, or league. The filters can also browse a slice of the collection without a text query.</div>';
       return;
     }
     status.innerHTML=`<strong>${matches.length}</strong> result${matches.length===1?'':'s'}${query?` for “${esc(query)}”`:''}`;

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
+import json
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -117,11 +118,29 @@ for required in (
     if required not in phase:
         errors.append(f'phase.html missing chapter cross-linking token: {required}')
 
+# README archive totals are public-facing documentation and must stay synchronized with config.json.
+try:
+    config = json.loads((ROOT / 'data' / 'config.json').read_text(encoding='utf-8'))
+    readme = (ROOT / 'README.md').read_text(encoding='utf-8')
+    expected_readme_lines = (
+        f'- {config["event_count"]} event records',
+        f'- {config["venue_count"]} physical venues',
+        f'- Annual editions from {config["archive_start_year"]} through the current {config["current_year"]} season',
+    )
+    for line in expected_readme_lines:
+        if line not in readme:
+            errors.append(f'README.md archive summary is out of sync with config.json: expected {line}')
+    if 'Hall of Fame views' in readme:
+        errors.append('README.md contains retired Hall of Fame terminology; use Record Book')
+except Exception as exc:
+    errors.append(f'could not validate README archive summary against config.json: {exc}')
+
 if errors:
     print('\n'.join('ERROR: ' + e for e in errors))
     sys.exit(1)
 
 print(
     f'OK: {len(texts)} public templates keep the Artifacts workbench unpublished while allowing selective provenance-linked evidence, '
-    'separate objective Record Book records from Analytics and Personal Canon, use consistent life-chapter terminology, maintain first-person archive voice, and preserve navigable chapter analytics.'
+    'separate objective Record Book records from Analytics and Personal Canon, use consistent life-chapter terminology, '
+    'maintain first-person archive voice, preserve navigable chapter analytics, and keep README archive totals synchronized with config.json.'
 )

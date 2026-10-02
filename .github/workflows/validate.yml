@@ -52,6 +52,8 @@ jobs:
         run: python tools/validate_generated_links.py
       - name: Validate public navigation polish
         run: python tools/validate_navigation.py
+      - name: Validate public terminology
+        run: python tools/validate_terminology.py
       - name: Validate public storytelling polish
         run: python tools/validate_public_copy.py
       - name: Validate visual hierarchy and density
@@ -115,8 +117,16 @@ jobs:
         run: |
           set -o pipefail
           npx playwright test tests/browser/accessibility.spec.js --project=desktop 2>&1 | tee diagnostics/accessibility.log
+      - name: Archive feature regressions
+        id: archive_regressions
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          npx playwright test tests/browser/analytics-insights.spec.js tests/browser/archive-media.spec.js tests/browser/event-passport.spec.js tests/browser/resolved-data.spec.js tests/browser/structured-evidence.spec.js --project=desktop 2>&1 | tee diagnostics/archive-regressions.log
       - name: Upload browser diagnostics
-        if: ${{ always() && (steps.desktop_routes.outcome == 'failure' || steps.tablet_routes.outcome == 'failure' || steps.phone_routes.outcome == 'failure' || steps.desktop_interactions.outcome == 'failure' || steps.mobile_navigation.outcome == 'failure' || steps.accessibility.outcome == 'failure') }}
+        if: ${{ always() && (steps.desktop_routes.outcome == 'failure' || steps.tablet_routes.outcome == 'failure' || steps.phone_routes.outcome == 'failure' || steps.desktop_interactions.outcome == 'failure' || steps.mobile_navigation.outcome == 'failure' || steps.accessibility.outcome == 'failure' || steps.archive_regressions.outcome == 'failure') }}
         uses: actions/upload-artifact@v4
         with:
           name: browser-diagnostics
@@ -143,3 +153,6 @@ jobs:
       - name: Require accessibility
         if: always()
         run: test "${{ steps.accessibility.outcome }}" = "success"
+      - name: Require archive feature regressions
+        if: always()
+        run: test "${{ steps.archive_regressions.outcome }}" = "success"
