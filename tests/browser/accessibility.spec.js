@@ -54,9 +54,9 @@ test('team filters announce live result counts', async ({ page }, testInfo) => {
   await expect(status).toContainText('1 team shown');
 });
 
-test('maps expose a textual venue alternative', async ({ page }, testInfo) => {
+test('the venue atlas exposes a textual venue alternative', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop');
-  await page.goto('/geography/', { waitUntil: 'domcontentloaded' });
+  await page.goto('/geography/map/', { waitUntil: 'domcontentloaded' });
   const alternative = page.locator('.map-text-alternative');
   await expect(alternative.locator('summary')).toContainText(/Text alternative: \d+ mapped venues/);
   await alternative.locator('summary').click();
@@ -64,9 +64,20 @@ test('maps expose a textual venue alternative', async ({ page }, testInfo) => {
   expect(await alternative.locator('li').count()).toBeGreaterThan(20);
 });
 
-test('map filters reduce both maps to ranked Top 10 venues and announce the count', async ({ page }, testInfo) => {
+test('geography overview preview is labeled and points to the accessible atlas', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop');
-  for (const path of ['/geography/', '/geography/map/']) {
+  await page.goto('/geography/', { waitUntil: 'domcontentloaded' });
+  const footprint = page.locator('#venue-footprint');
+  await expect(footprint).toHaveAttribute('role', 'img');
+  await expect(footprint).toHaveAttribute('aria-label', /venues/i);
+  await expect(page.locator('.atlas-cta')).toHaveAttribute('href', /(?:\/geography\/map\/|venue-map\.html)/);
+  await expect(page.locator('#geo-map')).toHaveCount(0);
+});
+
+test('venue atlas filters reduce the map to ranked Top 10 venues and announce the count', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop');
+  // Geography is a lightweight overview (no map) since #115; the atlas is the one full map.
+  for (const path of ['/geography/map/']) {
     await page.goto(path, { waitUntil: 'domcontentloaded' });
     const controls = page.locator('.map-filter-controls');
     await expect(controls).toBeVisible({ timeout: 10000 });
