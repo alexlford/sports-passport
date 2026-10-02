@@ -134,45 +134,27 @@ test('event passports retain chronological navigation', async ({ page }) => {
   expect(page.url()).toMatch(/\/events\/[^/?#]+\/$/);
 });
 
-test('geography map initializes and exposes venue popups', async ({ page }) => {
+test('geography overview uses a lightweight venue footprint and links to the full atlas', async ({ page }) => {
   await page.goto('/geography/', { waitUntil: 'domcontentloaded' });
-  await expect(page.locator('#geo-map')).toBeVisible();
-  const markers = page.locator('#geo-map .leaflet-marker-icon');
-  const firstMarker = markers.first();
-  await expect(firstMarker).toBeVisible({ timeout: 10000 });
-  expect(await markers.count()).toBeGreaterThan(0);
+  const footprint = page.locator('#venue-footprint');
+  await expect(footprint).toBeVisible();
+  const dots = footprint.locator('.footprint-dot');
+  await expect(dots.first()).toBeVisible({ timeout: 10000 });
+  expect(await dots.count()).toBeGreaterThan(0);
+  await expect(page.locator('.atlas-cta')).toHaveAttribute('href', /(?:\/geography\/map\/|venue-map\.html)/);
 
-  await firstMarker.focus();
-  await expect(firstMarker).toBeFocused();
-  await page.keyboard.press('Enter');
-  await expect(page.locator('.leaflet-popup-content')).toBeVisible();
-  await expect(page.locator('.leaflet-popup-content a')).toHaveAttribute('href', /\/venues\/[^/?#]+\//);
-
-  const reset = page.locator('#reset-map');
-  await expect(reset).toBeVisible();
-  await reset.click();
+  const resources = await page.evaluate(() => performance.getEntriesByType('resource').map(entry => entry.name));
+  expect(resources.some(url => /leaflet/i.test(url))).toBe(false);
+  await expect(page.locator('#geo-map')).toHaveCount(0);
+  await expect(page.locator('#reset-map')).toHaveCount(0);
 });
 
-test('geography map renders without overflow and preserves mobile interactions', async ({ page }, testInfo) => {
-  test.skip(testInfo.project.name !== 'phone', 'This regression is specific to the narrow mobile map layout.');
+test('geography overview stays lightweight and legible on phones', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'phone', 'This regression is specific to the narrow mobile layout.');
   await page.goto('/geography/', { waitUntil: 'domcontentloaded' });
-  await expect(page.locator('#geo-map')).toBeVisible();
-
-  const markers = page.locator('#geo-map .leaflet-marker-icon');
-  const firstMarker = markers.first();
-  await expect(firstMarker).toBeVisible({ timeout: 10000 });
-  expect(await markers.count()).toBeGreaterThan(0);
-
-  await firstMarker.focus();
-  await expect(firstMarker).toBeFocused();
-  await page.keyboard.press('Enter');
-  await expect(page.locator('.leaflet-popup-content')).toBeVisible();
-  await expect(page.locator('.leaflet-popup-content a')).toHaveAttribute('href', /\/venues\/[^/?#]+\//);
-
-  const reset = page.locator('#reset-map');
-  await expect(reset).toBeVisible();
-  await expect(reset).toHaveCSS('min-height', '44px');
-  await reset.click();
+  await expect(page.locator('#venue-footprint')).toBeVisible();
+  await expect(page.locator('.atlas-cta')).toBeVisible();
+  await expect(page.locator('.atlas-cta')).toHaveCSS('min-height', '44px');
 
   const overflow = await page.evaluate(() => ({
     scrollWidth: document.documentElement.scrollWidth,

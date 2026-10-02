@@ -1,2 +1,105 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Geography | Sports Passport</title><link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><link rel="stylesheet" href="assets/geography.css"></head><body><main class="shell"><header class="top"><div class="brand">Sports Passport · Geography</div><nav class="nav"><a href="index.html">Archive</a><a href="venue-map.html">Venue Map</a><a href="venues.html">Venue Profiles</a></nav></header><div id="app"></div></main><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="assets/sports-passport-data.js"></script><script>(async()=>{const D=window.SportsPassportData,[events,venues,rankings]=await Promise.all([D.load("events"),D.load("venues"),D.load("curated-rankings")]);const cities=D.counts(events.map(e=>e.city).filter(Boolean)),vcounts=D.counts(events.map(e=>e.venue_key).filter(Boolean)),venueByKey=Object.fromEntries(venues.map(v=>[v.key,v]));const favoriteBySlug=new Map((rankings.favorite_venues||[]).flatMap(r=>(r.venue_slugs||[]).map(s=>[s,r.rank]))),bestBySlug=new Map((rankings.best_venues||[]).flatMap(r=>(r.venue_slugs||[]).map(s=>[s,r.rank]))),rankedSlugs=new Set([...favoriteBySlug.keys(),...bestBySlug.keys()]);const rows=(obj,n=12)=>Object.entries(obj).sort((a,b)=>b[1]-a[1]).slice(0,n).map(([k,v])=>`<div class="leader"><span>${k}</span><strong>${v}</strong></div>`).join("");const venueRows=(obj,n=12)=>Object.entries(obj).sort((a,b)=>b[1]-a[1]).slice(0,n).map(([key,count])=>{const v=venueByKey[key],label=v?.display_name||key,href=v?.slug?`venue-profile.html?v=${encodeURIComponent(v.slug)}`:null;return `<div class="leader"><span>${href?`<a class="venue-leader-link" href="${href}">${label}</a>`:label}</span><strong>${count}</strong></div>`}).join("");const mappedVenues=venues.filter(v=>Number.isFinite(v.latitude)&&Number.isFinite(v.longitude)),mapped=mappedVenues.length,rankedMapped=mappedVenues.filter(v=>rankedSlugs.has(v.slug)).length;document.querySelector("#app").innerHTML=`<section class="hero"><div class="kicker">Live geography desk</div><h1>Places<br>collected.</h1><div class="deck">Cities, physical venues, exact stadium coordinates, and the personal venue canon are derived from the same archive.</div><div class="stats"><div class="stat"><strong>${Object.keys(cities).length}</strong><span>Archive cities</span></div><div class="stat"><strong>${venues.length}</strong><span>Physical venues</span></div><div class="stat"><strong>${mapped}</strong><span>Mapped venues</span></div><div class="stat"><strong>${rankedMapped}</strong><span>Ranked venues mapped</span></div></div></section><section class="section"><div class="head"><div><div class="kicker">Stadium atlas</div><h2>Where the archive happened.</h2></div><p>A geographic map of every registered stadium and arena in the archive. Pan, zoom, and tap a marker for venue history, rankings, and its profile.</p></div><div class="geo-map-card"><div class="geo-map-toolbar"><b>Archive venue footprint</b><button id="reset-map" type="button">Reset view</button></div><div class="geo-map" id="geo-map" aria-label="Interactive map of sports venues"></div><div class="map-legend"><span class="legend-chip"><i class="legend-dot"></i>marker number = archive visits · dark = 10+ visits</span><span class="legend-chip"><i class="legend-dot ranked"></i>gold ring = Top 10 venue</span><a href="venue-map.html">Open the full Venue Atlas →</a></div></div></section><section class="section grid2"><div class="panel"><div class="kicker">City leaders</div><h2>Most common archive cities</h2>${rows(cities)}</div><div class="panel"><div class="kicker">Venue leaders</div><h2>Most common archive venues</h2>${venueRows(vcounts)}</div></section><section class="section"><div class="cards"><a class="card" href="favorites.html#favorite-venues"><div class="kicker">Personal canon</div><h3>Ranked Venues</h3><p>Compare the venues I personally love with the best venues I have visited on their own merits.</p></a><a class="card" href="venue-map.html"><div class="kicker">Interactive</div><h3>Full Venue Atlas</h3><p>Explore the same exact venue points in a larger map with direct links to every venue profile.</p></a><a class="card" href="venues.html"><div class="kicker">Venue directory</div><h3>Venue Profiles</h3><p>Archive visit counts, timelines, recurring canonical teams, rankings, and location context for every stadium and arena.</p></a></div></section>`;
-const map=L.map('geo-map',{scrollWheelZoom:false,zoomControl:true});L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);const bounds=[];mappedVenues.forEach(v=>{const n=vcounts[v.key]||0,size=n>=10?34:n>=4?28:23,fav=favoriteBySlug.get(v.slug),best=bestBySlug.get(v.slug),ranked=!!(fav||best);const icon=L.divIcon({className:'',html:`<div class="venue-marker ${n>=10?'frequent':''} ${ranked?'ranked':''}" style="width:${size}px;height:${size}px">${n||''}</div>`,iconSize:[size,size],iconAnchor:[size/2,size/2],popupAnchor:[0,-size/2]});const marker=L.marker([v.latitude,v.longitude],{icon,title:v.display_name,alt:v.display_name,keyboard:true}).addTo(map);const ranks=`${fav?`<span class="rank-chip">#${fav} Favorite Venue</span>`:''}${best?`<span class="rank-chip">#${best} Best Venue</span>`:''}`;marker.bindPopup(`<div class="geo-popup-title">${v.display_name}</div><div class="geo-popup-meta">${v.city} · ${n} archive visit${n===1?'':'s'}<br>${v.latitude.toFixed(5)}, ${v.longitude.toFixed(5)}</div>${ranks?`<div class="geo-popup-ranks">${ranks}</div>`:''}<a class="geo-popup-link" href="venue-profile.html?v=${encodeURIComponent(v.slug)}">Open venue profile →</a>`);bounds.push([v.latitude,v.longitude])});const fit=()=>{if(bounds.length)map.fitBounds(bounds,{padding:[28,28],maxZoom:5})};fit();document.querySelector('#reset-map').addEventListener('click',fit);setTimeout(()=>map.invalidateSize(),100)})();</script></body></html>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Geography | Sports Passport</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="assets/geography.css">
+</head>
+<body>
+<main class="shell">
+  <header class="top"><div class="brand">Sports Passport · Geography</div><nav class="nav"><a href="index.html">Archive</a><a href="venue-map.html">Venue Map</a><a href="venues.html">Venue Profiles</a></nav></header>
+  <div id="app"></div>
+</main>
+<script src="assets/sports-passport-data.js"></script>
+<script>
+(async()=>{
+  const D=window.SportsPassportData;
+  const [events,venues,rankings]=await Promise.all([D.load('events'),D.load('venues'),D.load('curated-rankings')]);
+  const cities=D.counts(events.map(e=>e.city).filter(Boolean));
+  const vcounts=D.counts(events.map(e=>e.venue_key).filter(Boolean));
+  const venueByKey=Object.fromEntries(venues.map(v=>[v.key,v]));
+  const favoriteBySlug=new Map((rankings.favorite_venues||[]).flatMap(r=>(r.venue_slugs||[]).map(s=>[s,r.rank])));
+  const bestBySlug=new Map((rankings.best_venues||[]).flatMap(r=>(r.venue_slugs||[]).map(s=>[s,r.rank])));
+  const rankedSlugs=new Set([...favoriteBySlug.keys(),...bestBySlug.keys()]);
+  const rows=(obj,n=12)=>Object.entries(obj).sort((a,b)=>b[1]-a[1]).slice(0,n).map(([k,v])=>`<div class="leader"><span>${k}</span><strong>${v}</strong></div>`).join('');
+  const venueRows=(obj,n=12)=>Object.entries(obj).sort((a,b)=>b[1]-a[1]).slice(0,n).map(([key,count])=>{
+    const v=venueByKey[key],label=v?.display_name||key,href=v?.slug?`venue-profile.html?v=${encodeURIComponent(v.slug)}`:null;
+    return `<div class="leader"><span>${href?`<a class="venue-leader-link" href="${href}">${label}</a>`:label}</span><strong>${count}</strong></div>`;
+  }).join('');
+  const mappedVenues=venues.filter(v=>Number.isFinite(v.latitude)&&Number.isFinite(v.longitude));
+  const mapped=mappedVenues.length;
+  const rankedMapped=mappedVenues.filter(v=>rankedSlugs.has(v.slug)).length;
+  const topVenue=Object.entries(vcounts).sort((a,b)=>b[1]-a[1])[0];
+  const topVenueName=topVenue?venueByKey[topVenue[0]]?.display_name||topVenue[0]:'—';
+  const topVenueCount=topVenue?.[1]||0;
+
+  document.querySelector('#app').innerHTML=`
+    <section class="hero">
+      <div class="kicker">Geography overview</div>
+      <h1>Places<br>collected.</h1>
+      <div class="deck">Cities, stadiums, arenas, and the travel patterns behind the archive, with one dedicated Venue Atlas for the full interactive map.</div>
+      <div class="stats">
+        <div class="stat"><strong>${Object.keys(cities).length}</strong><span>Archive cities</span></div>
+        <div class="stat"><strong>${venues.length}</strong><span>Physical venues</span></div>
+        <div class="stat"><strong>${mapped}</strong><span>Mapped venues</span></div>
+        <div class="stat"><strong>${rankedMapped}</strong><span>Ranked venues mapped</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="head">
+        <div><div class="kicker">Venue footprint</div><h2>See the shape. Open the atlas to explore it.</h2></div>
+        <p>This lightweight preview uses the same registered venue coordinates and visit counts as the full map without loading a second interactive map on this page.</p>
+      </div>
+      <div class="atlas-gateway">
+        <div class="atlas-copy">
+          <div class="kicker">Full interactive map</div>
+          <h3>Venue Atlas</h3>
+          <p>Pan, zoom, open venue popups, compare repeat visits, and jump directly into every stadium and arena profile.</p>
+          <div class="atlas-metrics">
+            <span><strong>${mapped}</strong> mapped venues</span>
+            <span><strong>${topVenueCount}</strong> visits at ${topVenueName}</span>
+          </div>
+          <a class="atlas-cta" href="venue-map.html">Open the Venue Atlas →</a>
+        </div>
+        <div class="footprint-frame">
+          <div class="footprint-map" id="venue-footprint" role="img" aria-label="Preview of the geographic spread of mapped sports venues"></div>
+          <div class="footprint-legend"><span><i class="footprint-dot sample"></i>visit frequency</span><span><i class="footprint-dot sample ranked"></i>Top 10 venue</span><b>Preview only · explore in Venue Atlas</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section grid2">
+      <div class="panel"><div class="kicker">City leaders</div><h2>Most common archive cities</h2>${rows(cities)}</div>
+      <div class="panel"><div class="kicker">Venue leaders</div><h2>Most common archive venues</h2>${venueRows(vcounts)}</div>
+    </section>
+
+    <section class="section">
+      <div class="cards">
+        <a class="card" href="favorites.html#favorite-venues"><div class="kicker">Personal canon</div><h3>Ranked Venues</h3><p>Compare the venues I personally love with the best venues I have visited on their own merits.</p></a>
+        <a class="card" href="venues.html"><div class="kicker">Venue directory</div><h3>Venue Profiles</h3><p>Archive visit counts, timelines, recurring canonical teams, rankings, and location context for every stadium and arena.</p></a>
+      </div>
+    </section>`;
+
+  const footprint=document.querySelector('#venue-footprint');
+  if(mappedVenues.length){
+    const lats=mappedVenues.map(v=>v.latitude),lons=mappedVenues.map(v=>v.longitude);
+    const minLat=Math.min(...lats),maxLat=Math.max(...lats),minLon=Math.min(...lons),maxLon=Math.max(...lons);
+    const latSpan=Math.max(maxLat-minLat,1),lonSpan=Math.max(maxLon-minLon,1);
+    mappedVenues.forEach(v=>{
+      const visits=vcounts[v.key]||0;
+      const dot=document.createElement('i');
+      dot.className=`footprint-dot${visits>=10?' frequent':''}${rankedSlugs.has(v.slug)?' ranked':''}`;
+      dot.style.left=`${6+((v.longitude-minLon)/lonSpan)*88}%`;
+      dot.style.top=`${8+(1-((v.latitude-minLat)/latSpan))*84}%`;
+      dot.style.setProperty('--dot-size',`${visits>=10?18:visits>=4?13:9}px`);
+      dot.setAttribute('aria-hidden','true');
+      footprint.appendChild(dot);
+    });
+  }
+})();
+</script>
+</body>
+</html>
