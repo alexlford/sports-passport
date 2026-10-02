@@ -85,12 +85,17 @@ for stale in ('What you saw here', 'recalculates automatically from the central 
     if stale in venue_profile:
         errors.append(f'venue-profile.html contains implementation/second-person wording: {stale}')
 
+# Record Book is the objective layer. Personal Canon rankings live only on favorites.html,
+# while Lifetime Analytics owns trends and longitudinal interpretation.
 hall = texts.get('hall-of-fame.html', '')
-if 'My personal canon' not in hall:
-    errors.append('hall-of-fame.html must use first-person Personal Canon wording')
-for stale in ("Alex's personal canon", "alongside Alex's curated"):
+for required in ('Record Book', 'objective', 'Lifetime Analytics', 'Personal Canon'):
+    if required not in hall:
+        errors.append(f'hall-of-fame.html missing Record Book scope language: {required}')
+for stale in ('My personal canon', 'Top 10 Sports Experiences.', 'rankings.sports_experiences', 'id="canon"'):
     if stale in hall:
-        errors.append(f'hall-of-fame.html contains inconsistent third-person wording: {stale}')
+        errors.append(f'hall-of-fame.html still duplicates Personal Canon content: {stale}')
+if '<a href="hall-of-fame.html">Record Book</a>' not in home:
+    errors.append('index.html must label the objective archive surface Record Book')
 
 geography = texts.get('geography.html', '')
 if '<div class="kicker">Venue directory</div>' not in geography:
@@ -136,6 +141,6 @@ if errors:
 
 print(
     f'OK: {len(texts)} public templates keep the Artifacts workbench unpublished while allowing selective provenance-linked evidence, '
-    'use consistent life-chapter terminology, maintain first-person archive voice, preserve navigable chapter analytics, '
-    'and keep README archive totals synchronized with config.json.'
+    'separate objective Record Book records from Analytics and Personal Canon, use consistent life-chapter terminology, '
+    'maintain first-person archive voice, preserve navigable chapter analytics, and keep README archive totals synchronized with config.json.'
 )

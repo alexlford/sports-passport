@@ -92,9 +92,10 @@ for item in ranked:
     if not event_id or event_id not in by_id:
         errors.append(f"ranked experience #{item.get('rank')} does not resolve to an archive event")
 
+# These views intentionally deep-link to exact Event Passports. The objective
+# Record Book is excluded because Personal Canon/event curation no longer lives there.
 linked_pages = [
     "favorites.html",
-    "hall-of-fame.html",
     "phase.html",
     "journey-profile.html",
     "team-profile.html",
