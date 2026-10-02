@@ -104,6 +104,24 @@ test('team search and sport filters remain functional', async ({ page }) => {
   await expect(page.locator('#cards .team-card').first()).toBeVisible();
 });
 
+test('venue directory renders every venue card and its filters', async ({ page }) => {
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await page.goto('/venues/', { waitUntil: 'domcontentloaded' });
+  const cards = page.locator('#venue-grid a.card');
+  await expect(cards.first()).toBeVisible();
+  const total = Number(await page.locator('#venue-count').textContent());
+  await expect(cards).toHaveCount(total);
+
+  await page.locator('#venue-search').fill('Coors');
+  await expect(cards).toHaveCount(1);
+  await expect(cards.first()).toContainText('Coors Field');
+  await page.locator('#venue-search').fill('');
+  await expect(page.locator('#filters button[data-filter="All"]')).toHaveClass(/active/);
+  await expect(cards).toHaveCount(total);
+  expect(errors).toEqual([]);
+});
+
 test('event passports retain chronological navigation', async ({ page }) => {
   await page.goto('/events/evt-0268/', { waitUntil: 'domcontentloaded' });
   const archiveLinks = page.locator('.archive-nav a');
